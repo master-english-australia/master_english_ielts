@@ -1,0 +1,55 @@
+# Next.js build output
+.next/
+out/
+
+# Production build
+build/
+dist/
+
+# Node dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# Environment variables
+.env
+.env*.local
+
+# TypeScript
+*.tsbuildinfo
+next-env.d.ts
+
+# Testing
+/coverage
+/test-results/
+/playwright-report/
+/playwright/.cache/
+/playwright-screenshots/
+/test-report/
+/blob-report/
+
+# IDE and editors
+.idea/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+*.swp
+*.swo
+.DS_Store
+
+# Debug logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Miscellaneous
+.temp
+.cache
+.vercel
+.turbo
+.eslintcache 

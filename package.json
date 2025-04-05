@@ -1,0 +1,33 @@
+{
+  "name": "master_english_ielts",
+  "version": "1.0.0",
+  "description": "IELTS English learning platform with Playwright MCP and Cursor Agent integration",
+  "main": "server.js",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "mcp": "node mcp.js",
+    "agent": "node cursor-agent-integration.js",
+    "test": "playwright test"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@playwright/test": "^1.51.1",
+    "@types/node": "^22.14.0",
+    "@types/react": "^19.1.0",
+    "@types/react-dom": "^19.1.1",
+    "express": "^5.1.0",
+    "next": "^15.2.4",
+    "playwright": "^1.51.1",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "typescript": "^5.8.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  }
+}
