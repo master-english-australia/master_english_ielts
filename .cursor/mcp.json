@@ -1,0 +1,7 @@
+{
+  "mcpServers": {
+    "playwright": {
+      "url": "ws://localhost:56145/b726892b2b6279bac5a98b011d18aea8"
+    }
+  }
+}

@@ -2,115 +2,77 @@
 
 import TestFilters from '@/components/TestFilters';
 import TestList from '@/components/TestList';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 
-// Sample data for the speaking tests
-const mockTests = [
-  {
-    id: '1',
-    type: 'Part 1',
-    title: 'IELTS Speaking Part 1: Introduction and Interview',
-    testUrl: '/ielts-tests/speaking/part-1-introduction',
-  },
-  {
-    id: '2',
-    type: 'Part 1',
-    title: 'IELTS Speaking Part 1: Work and Study',
-    testUrl: '/ielts-tests/speaking/part-1-work-study',
-  },
-  {
-    id: '3',
-    type: 'Part 1',
-    title: 'IELTS Speaking Part 1: Hometown and Accommodation',
-    testUrl: '/ielts-tests/speaking/part-1-hometown',
-  },
-  {
-    id: '4',
-    type: 'Part 2',
-    title: 'IELTS Speaking Part 2: Describe a Person',
-    testUrl: '/ielts-tests/speaking/part-2-person',
-  },
-  {
-    id: '5',
-    type: 'Part 2',
-    title: 'IELTS Speaking Part 2: Describe a Place',
-    testUrl: '/ielts-tests/speaking/part-2-place',
-  },
-  {
-    id: '6',
-    type: 'Part 2',
-    title: 'IELTS Speaking Part 2: Describe an Event',
-    testUrl: '/ielts-tests/speaking/part-2-event',
-  },
-  {
-    id: '7',
-    type: 'Part 3',
-    title: 'IELTS Speaking Part 3: Education Discussion',
-    testUrl: '/ielts-tests/speaking/part-3-education',
-  },
-  {
-    id: '8',
-    type: 'Part 3',
-    title: 'IELTS Speaking Part 3: Technology Discussion',
-    testUrl: '/ielts-tests/speaking/part-3-technology',
-  },
-  {
-    id: '9',
-    type: 'Part 3',
-    title: 'IELTS Speaking Part 3: Environment Discussion',
-    testUrl: '/ielts-tests/speaking/part-3-environment',
-  },
-  {
-    id: '10',
-    type: 'Full Test',
-    title: 'IELTS Speaking Full Mock Test: Technology Theme',
-    testUrl: '/ielts-tests/speaking/full-test-technology',
-  },
-  {
-    id: '11',
-    type: 'Full Test',
-    title: 'IELTS Speaking Full Mock Test: Travel Theme',
-    testUrl: '/ielts-tests/speaking/full-test-travel',
-  },
-];
+interface SpeakingTest {
+  id: string;
+  type: string;
+  title: string;
+  testUrl: string;
+  description: string;
+}
 
 export default function SpeakingTestsPage() {
-  const [filteredTests, setFilteredTests] = useState(mockTests);
-  
-  const handleFilterChange = (filters: {
-    search: string;
-    testLength: string;
-    testType: string;
-  }) => {
-    let filtered = [...mockTests];
-    
-    // Filter by search query
-    if (filters.search) {
-      const searchLower = filters.search.toLowerCase();
-      filtered = filtered.filter(test => 
-        test.title.toLowerCase().includes(searchLower)
-      );
+  const [tests] = useState<SpeakingTest[]>([
+    {
+      id: '1',
+      type: 'Academic',
+      title: 'Academic Speaking Test 1',
+      testUrl: '/ielts-tests/speaking/1',
+      description: 'Practice your speaking skills with this academic test featuring various topics.'
+    },
+    {
+      id: '2',
+      type: 'Academic',
+      title: 'Academic Speaking Test 2',
+      testUrl: '/ielts-tests/speaking/2',
+      description: 'Another academic speaking test to help you prepare for the IELTS exam.'
+    },
+    {
+      id: '3',
+      type: 'General',
+      title: 'General Speaking Test 1',
+      testUrl: '/ielts-tests/speaking/3',
+      description: 'Practice your speaking skills with this general training test featuring everyday topics.'
+    },
+    {
+      id: '4',
+      type: 'General',
+      title: 'General Speaking Test 2',
+      testUrl: '/ielts-tests/speaking/4',
+      description: 'Another general training speaking test to help you prepare for the IELTS exam.'
     }
-    
-    // Filter by test length
-    if (filters.testLength !== 'All') {
-      if (filters.testLength === 'Full Tests') {
-        filtered = filtered.filter(test => test.type === 'Full Test');
-      } else if (filters.testLength === 'Parts') {
-        filtered = filtered.filter(test => test.type !== 'Full Test');
-      }
-    }
-    
-    // Filter by test type (if applicable)
-    if (filters.testType !== 'All') {
-      filtered = filtered.filter(test => 
-        test.title.includes(filters.testType)
-      );
-    }
-    
-    setFilteredTests(filtered);
+  ]);
+
+  const [filters, setFilters] = useState({
+    search: '',
+    testType: 'All'
+  });
+
+  const handleFilterChange = (newFilters: { search: string; testType: string }) => {
+    setFilters(newFilters);
   };
-  
+
+  const filteredTestList = useMemo(() => {
+    return tests.filter(test => {
+      // Filter by test type
+      if (filters.testType !== 'All' && test.type !== filters.testType) {
+        return false;
+      }
+      
+      // Filter by search query
+      if (filters.search) {
+        const searchLower = filters.search.toLowerCase();
+        return (
+          test.title.toLowerCase().includes(searchLower) ||
+          test.description.toLowerCase().includes(searchLower)
+        );
+      }
+      
+      return true;
+    });
+  }, [tests, filters]);
+
   return (
     <div className="ielts-tests-container">
       <div className="page-content">
@@ -119,9 +81,9 @@ export default function SpeakingTestsPage() {
         </div>
         <div className="main-content">
           <TestList 
-            tests={filteredTests} 
-            title="Free Online IELTS Speaking Test Collection" 
-            description="Practice with our comprehensive collection of IELTS Speaking questions across all three parts with sample answers and detailed scoring guides."
+            tests={filteredTestList} 
+            title="Speaking Tests" 
+            description=""
           />
         </div>
       </div>

@@ -1,0 +1,226 @@
+.writing-test-page {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  background-color: #f5f5f5;
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+}
+
+.writing-test-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.writing-test-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  border-bottom: 1px solid #e0e0e0;
+  background-color: #f8f9fa;
+}
+
+.writing-test-header h1 {
+  font-size: 1.5rem;
+  color: #333;
+  margin: 0;
+}
+
+.word-count {
+  font-size: 0.9rem;
+  color: #666;
+  padding: 5px 10px;
+  background-color: #fff;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+}
+
+.writing-test-content {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+}
+
+.question-section {
+  padding: 20px;
+  overflow-y: auto;
+  min-width: 30%;
+  max-width: 70%;
+}
+
+.answer-section {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  min-width: 30%;
+  max-width: 70%;
+}
+
+.resize-handle {
+  width: 8px;
+  background-color: #e0e0e0;
+  cursor: col-resize;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.resize-handle:hover {
+  background-color: #007bff;
+}
+
+.resize-handle::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #007bff;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.resize-handle:hover::before {
+  opacity: 0.2;
+}
+
+.question-section h2 {
+  font-size: 1.2rem;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.question-text {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #444;
+}
+
+.answer-textarea {
+  flex: 1;
+  width: 100%;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+  line-height: 1.5;
+  resize: none;
+  margin-bottom: 15px;
+}
+
+.answer-textarea:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+.writing-test-footer {
+  padding: 15px;
+  border-top: 1px solid #e0e0e0;
+  background-color: #f8f9fa;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.submit-btn {
+  padding: 8px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.2s;
+}
+
+.submit-btn:hover {
+  background-color: #0056b3;
+}
+
+.loading, .error-message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  font-size: 1.1rem;
+  color: #666;
+}
+
+.error-message {
+  color: #dc3545;
+}
+
+.confirmation-dialog-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.confirmation-dialog {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  width: 90%;
+}
+
+.confirmation-dialog h3 {
+  margin: 0 0 15px 0;
+  color: #333;
+}
+
+.confirmation-dialog p {
+  margin: 0 0 20px 0;
+  color: #666;
+}
+
+.confirmation-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.cancel-btn {
+  padding: 8px 16px;
+  background-color: #6c757d;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.cancel-btn:hover {
+  background-color: #5a6268;
+}
+
+.confirm-btn {
+  padding: 8px 16px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.confirm-btn:hover {
+  background-color: #218838;
+} 

@@ -1,4 +1,7 @@
+'use client';
+
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import React from 'react';
 
 export default function IELTSTestsLayout({
@@ -6,6 +9,20 @@ export default function IELTSTestsLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const pathname = usePathname();
+  
+  // Check if the current path is a test page
+  const isTestPage = 
+    pathname?.includes('/ielts-tests/writing/') || 
+    pathname?.includes('/ielts-tests/reading/') || 
+    pathname?.includes('/ielts-tests/listening/') || 
+    pathname?.includes('/ielts-tests/speaking/');
+  
+  // Don't show the header for individual test pages
+  if (isTestPage) {
+    return <>{children}</>;
+  }
+
   return (
     <div className="ielts-tests-layout">
       <div className="ielts-tests-header">

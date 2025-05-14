@@ -1,5 +1,6 @@
 'use client';
 
+import '@/styles/TestList.css';
 import { useState } from 'react';
 import TestCard, { TestCardProps } from './TestCard';
 
@@ -15,7 +16,7 @@ interface TestListProps {
 
 export default function TestList({ tests, title, description }: TestListProps) {
   const [currentPage, setCurrentPage] = useState(1);
-  const testsPerPage = 12;
+  const testsPerPage = 18;
   
   // Calculate indices for current page
   const indexOfLastTest = currentPage * testsPerPage;
@@ -32,7 +33,7 @@ export default function TestList({ tests, title, description }: TestListProps) {
     <div className="test-list-container">
       <div className="test-list-header">
         <h1>{title}</h1>
-        <p>{description}</p>
+        {description && <p>{description}</p>}
       </div>
       
       <div className="test-grid">
