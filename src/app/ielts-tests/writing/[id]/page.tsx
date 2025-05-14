@@ -1,9 +1,11 @@
 'use client';
 
+import { FloatingLabelTextarea } from '@/components/FloatingLabelTextarea';
 import '@/styles/writing-test.css';
 import Link from 'next/link';
 import { useParams, useRouter } from 'next/navigation';
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 
 // Mock data for writing tests
 const writingTests = {
@@ -82,6 +84,7 @@ export default function WritingTestPage() {
   const [wordCount, setWordCount] = useState(0);
   const [timer, setTimer] = useState(0);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [currentPart, setCurrentPart] = useState<'part1' | 'part2'>('part1');
   const [feedback, setFeedback] = useState<{
     taskAchievement: number;
     coherenceAndCohesion: number;
@@ -189,15 +192,15 @@ export default function WritingTestPage() {
       
       // Only update DOM directly during drag, save state updates for the end
       if (contentElement && answerElement && resizeHandle) {
-        contentElement.style.width = `${newContentWidth}%`;
-        contentElement.style.maxWidth = `${newContentWidth}%`;
-        contentElement.style.flex = `0 0 ${newContentWidth}%`;
+        (contentElement as HTMLElement).style.width = `${newContentWidth}%`;
+        (contentElement as HTMLElement).style.maxWidth = `${newContentWidth}%`;
+        (contentElement as HTMLElement).style.flex = `0 0 ${newContentWidth}%`;
         
-        answerElement.style.width = `${newAnswerWidth}%`;
-        answerElement.style.maxWidth = `${newAnswerWidth}%`;
-        answerElement.style.flex = `0 0 ${newAnswerWidth}%`;
+        (answerElement as HTMLElement).style.width = `${newAnswerWidth}%`;
+        (answerElement as HTMLElement).style.maxWidth = `${newAnswerWidth}%`;
+        (answerElement as HTMLElement).style.flex = `0 0 ${newAnswerWidth}%`;
         
-        resizeHandle.style.right = `${newAnswerWidth}%`;
+        (resizeHandle as HTMLElement).style.right = `${newAnswerWidth}%`;
       }
       
       // Save the last width values
@@ -261,10 +264,11 @@ export default function WritingTestPage() {
   };
 
   const formatTime = (seconds: number) => {
-    const minutes = Math.floor(seconds / 60);
+    const hours = Math.floor(seconds / 3600);
+    const minutes = Math.floor((seconds % 3600) / 60);
     const secs = seconds % 60;
     
-    return `${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+    return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
   };
 
   if (!test) {
@@ -274,8 +278,17 @@ export default function WritingTestPage() {
   return (
     <div className="writing-test-page">
       <div className="writing-test-header">
-        <h1 className="writing-test-title">{test.title}</h1>
-        <span className="writing-test-timer">{formatTime(timer)}</span>
+        <span className="writing-test-timer">
+          <span className="timer-icon">⏱</span>
+          {formatTime(timer)}
+        </span>
+      </div>
+      
+      <div className="task-requirements-banner">
+        <div className="task-part">Part 1</div>
+        <div className="task-requirement">
+          You should spend about {Math.floor(test.timeLimit / 60)} minutes on this task. Write at least {test.instructions.replace(/[^0-9]/g, '')} words.
+        </div>
       </div>
       
       <div className="two-column-layout" ref={layoutRef}>
@@ -290,25 +303,6 @@ export default function WritingTestPage() {
           <div className="task-prompt">
             <h2>{test.promptTitle}</h2>
             <div dangerouslySetInnerHTML={{ __html: test.promptContent }} />
-          </div>
-          
-          {test.imageUrl && (
-            <div className="task-image">
-              <img src={test.imageUrl} alt="Task visual" />
-            </div>
-          )}
-          
-          <div className="task-instructions">
-            {test.instructions}
-          </div>
-          
-          <div className="task-guidelines">
-            <h3>Guidelines:</h3>
-            <ul>
-              {test.guidelines.map((guideline, index) => (
-                <li key={index}>{guideline}</li>
-              ))}
-            </ul>
           </div>
         </div>
         
@@ -328,17 +322,15 @@ export default function WritingTestPage() {
         >
           {!isSubmitted ? (
             <div className="editor-container">
-              <div className="editor-header">
-                <div className="word-count">Word Count: {wordCount}</div>
-              </div>
-              
-              <textarea
-                className="writing-editor"
+              <FloatingLabelTextarea
                 value={essay}
                 onChange={(e) => setEssay(e.target.value)}
-                placeholder="Write your answer here..."
+                label="Part 1 Answer"
+                placeholder="Enter your part 1 answer..."
                 disabled={isSubmitted}
               />
+              
+              <div className="word-count">Word Count: {wordCount}</div>
               
               <button 
                 className="submit-btn"
@@ -393,6 +385,37 @@ export default function WritingTestPage() {
             </div>
           )}
         </div>
+      </div>
+
+      <div className="part-switcher">
+        <div className="part-navigation">
+          <button 
+            className={`nav-arrow ${currentPart === 'part2' ? 'active' : ''}`}
+            onClick={() => setCurrentPart('part1')}
+            disabled={currentPart === 'part1'}
+          >
+            <IoIosArrowBack />
+          </button>
+          <button 
+            className={`nav-arrow ${currentPart === 'part1' ? 'active' : ''}`}
+            onClick={() => setCurrentPart('part2')}
+            disabled={currentPart === 'part2'}
+          >
+            <IoIosArrowForward />
+          </button>
+        </div>
+        <button 
+          className={`part-button ${currentPart === 'part1' ? 'active' : ''}`}
+          onClick={() => setCurrentPart('part1')}
+        >
+          Part 1
+        </button>
+        <button 
+          className={`part-button ${currentPart === 'part2' ? 'active' : ''}`}
+          onClick={() => setCurrentPart('part2')}
+        >
+          Part 2
+        </button>
       </div>
     </div>
   );
