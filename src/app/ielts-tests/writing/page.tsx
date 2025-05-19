@@ -15,25 +15,11 @@ interface WritingTest {
 export default function WritingTestsPage() {
   const [tests] = useState<WritingTest[]>([
     {
-      id: 'academic-task-1-chart',
+      id: 'academic-writing-test',
       type: 'Academic',
-      title: 'Academic Writing Task 1 - Chart',
-      testUrl: '/ielts-tests/writing/academic-task-1-chart',
-      description: 'Practice your writing skills with this Academic Task 1 test about charts and graphs.'
-    },
-    {
-      id: 'academic-task-2-essay',
-      type: 'Academic',
-      title: 'Academic Writing Task 2 - Essay',
-      testUrl: '/ielts-tests/writing/academic-task-2-essay',
-      description: 'Practice writing an academic essay with this Task 2 test about education and community service.'
-    },
-    {
-      id: 'general-task-1-letter',
-      type: 'General',
-      title: 'General Writing Task 1 - Letter',
-      testUrl: '/ielts-tests/writing/general-task-1-letter',
-      description: 'Practice your letter writing skills with this General Training Task 1 test.'
+      title: 'Academic Writing Test',
+      testUrl: '/ielts-tests/writing/academic-writing-test',
+      description: 'Practice both Academic Writing Task 1 (Chart/Graph) and Task 2 (Essay) in a single test.'
     }
   ]);
 

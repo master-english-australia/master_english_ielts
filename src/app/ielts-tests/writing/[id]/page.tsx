@@ -9,68 +9,41 @@ import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 
 // Mock data for writing tests
 const writingTests = {
-  'academic-task-1-chart': {
-    id: 'academic-task-1-chart',
-    title: 'Academic Writing Task 1 - Chart',
+  'academic-writing-test': {
+    id: 'academic-writing-test',
+    title: 'Academic Writing Test',
     type: 'Academic',
-    task: 'Task 1',
-    timeLimit: 1200, // 20 minutes
-    promptTitle: 'The charts below show the percentage of water used for different purposes in six areas of the world.',
-    promptContent: `
-      <p>The charts below show the percentage of water used for different purposes in six areas of the world.</p>
-      <p>Summarise the information by selecting and reporting the main features, and make comparisons where relevant.</p>
-    `,
-    imageUrl: '/sample-chart.jpg',
-    instructions: 'Write at least 150 words.',
-    guidelines: [
-      'Spend about 20 minutes on this task',
-      'Describe the main trends and comparisons',
-      'Do not give your opinion',
-      'Use appropriate language for describing data'
-    ]
-  },
-  'academic-task-2-essay': {
-    id: 'academic-task-2-essay',
-    title: 'Academic Writing Task 2 - Essay',
-    type: 'Academic',
-    task: 'Task 2',
-    timeLimit: 2400, // 40 minutes
-    promptTitle: 'Some people believe that unpaid community service should be a compulsory part of high school education.',
-    promptContent: `
-      <p>Some people believe that unpaid community service should be a compulsory part of high school education.</p>
-      <p>To what extent do you agree or disagree with this statement?</p>
-    `,
-    instructions: 'Write at least 250 words.',
-    guidelines: [
-      'Spend about 40 minutes on this task',
-      'Give reasons for your answer and include relevant examples from your own knowledge or experience',
-      'Write a well-organized essay with an introduction, body paragraphs, and conclusion',
-      'Use a range of vocabulary and grammatical structures'
-    ]
-  },
-  'general-task-1-letter': {
-    id: 'general-task-1-letter',
-    title: 'General Writing Task 1 - Letter',
-    type: 'General',
-    task: 'Task 1',
-    timeLimit: 1200, // 20 minutes
-    promptTitle: 'You are having problems with noise from your neighbor\'s apartment.',
-    promptContent: `
-      <p>You are having problems with noise from your neighbor's apartment.</p>
-      <p>Write a letter to your neighbor. In your letter:</p>
-      <ul>
-        <li>explain the situation</li>
-        <li>describe how the noise is affecting you</li>
-        <li>suggest what your neighbor could do about it</li>
-      </ul>
-    `,
-    instructions: 'Write at least 150 words.',
-    guidelines: [
-      'Spend about 20 minutes on this task',
-      'Begin your letter appropriately (Dear Sir/Madam or Dear Mr/Mrs/Ms + surname)',
-      'End your letter appropriately (Yours faithfully/sincerely)',
-      'Organize your letter clearly with appropriate paragraphing'
-    ]
+    part1: {
+      timeLimit: 3600, // 1 hour
+      promptTitle: 'The charts below show the percentage of water used for different purposes in six areas of the world.',
+      promptContent: `
+        <p>The charts below show the percentage of water used for different purposes in six areas of the world.</p>
+        <p>Summarise the information by selecting and reporting the main features, and make comparisons where relevant.</p>
+      `,
+      imageUrl: '/sample-chart.jpg',
+      instructions: 'Write at least 150 words.',
+      guidelines: [
+        'Spend about 20 minutes on this task',
+        'Describe the main trends and comparisons',
+        'Do not give your opinion',
+        'Use appropriate language for describing data'
+      ]
+    },
+    part2: {
+      timeLimit: 3600, // 1 hour
+      promptTitle: 'Some people believe that unpaid community service should be a compulsory part of high school education.',
+      promptContent: `
+        <p>Some people believe that unpaid community service should be a compulsory part of high school education.</p>
+        <p>To what extent do you agree or disagree with this statement?</p>
+      `,
+      instructions: 'Write at least 250 words.',
+      guidelines: [
+        'Spend about 40 minutes on this task',
+        'Give reasons for your answer and include relevant examples from your own knowledge or experience',
+        'Write a well-organized essay with an introduction, body paragraphs, and conclusion',
+        'Use a range of vocabulary and grammatical structures'
+      ]
+    }
   }
 };
 
@@ -80,9 +53,19 @@ export default function WritingTestPage() {
   const testId = params.id as string;
   const test = writingTests[testId as keyof typeof writingTests];
   
-  const [essay, setEssay] = useState('');
+  // Add check for invalid test ID
+  useEffect(() => {
+    if (!test) {
+      console.error(`Invalid test ID: ${testId}`);
+      router.push('/ielts-tests/writing');
+    }
+  }, [test, testId, router]);
+
+  // Separate essay states for each part
+  const [part1Essay, setPart1Essay] = useState('');
+  const [part2Essay, setPart2Essay] = useState('');
   const [wordCount, setWordCount] = useState(0);
-  const [timer, setTimer] = useState(0);
+  const [timer, setTimer] = useState(3600); // Start from 1:00:00
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [currentPart, setCurrentPart] = useState<'part1' | 'part2'>('part1');
   const [feedback, setFeedback] = useState<{
@@ -119,7 +102,6 @@ export default function WritingTestPage() {
       const resizeHandle = document.querySelector('.resize-handle');
       
       if (contentElement && answerElement && resizeHandle) {
-        // Use !important to ensure styles are applied
         contentElement.setAttribute('style', 
           `width: ${contentWidth}% !important; 
            max-width: ${contentWidth}% !important; 
@@ -138,8 +120,6 @@ export default function WritingTestPage() {
       }
     }, 100);
 
-    setTimer(test.timeLimit);
-
     const interval = setInterval(() => {
       setTimer(prevTimer => {
         if (prevTimer <= 1) {
@@ -154,7 +134,6 @@ export default function WritingTestPage() {
     return () => {
       clearInterval(interval);
       
-      // Remove full-width class when component unmounts
       if (appElement) {
         appElement.classList.remove('full-width-app');
       }
@@ -227,20 +206,22 @@ export default function WritingTestPage() {
   const handleResizeEnd = useCallback(() => {}, []);
 
   useEffect(() => {
-    // Count words
-    if (essay) {
-      const words = essay.trim().split(/\s+/);
+    // Count words based on current part's essay
+    const currentEssay = currentPart === 'part1' ? part1Essay : part2Essay;
+    if (currentEssay) {
+      const words = currentEssay.trim().split(/\s+/);
       setWordCount(words.length);
     } else {
       setWordCount(0);
     }
-  }, [essay]);
+  }, [currentPart, part1Essay, part2Essay]);
 
   const handleSubmitEssay = () => {
     if (isSubmitted) return;
 
-    // In a real application, we would send the essay to an API for evaluation
-    // Here we'll just simulate a response
+    // In a real application, we would send both essays to an API for evaluation
+    // Here we'll just simulate a response using the current part's essay
+    const currentEssay = currentPart === 'part1' ? part1Essay : part2Essay;
     
     // Calculate a "score" based on word count (just for demonstration)
     const mockFeedback = {
@@ -285,9 +266,9 @@ export default function WritingTestPage() {
       </div>
       
       <div className="task-requirements-banner">
-        <div className="task-part">Part 1</div>
+        <div className="task-part">Part {currentPart === 'part1' ? '1' : '2'}</div>
         <div className="task-requirement">
-          You should spend about {Math.floor(test.timeLimit / 60)} minutes on this task. Write at least {test.instructions.replace(/[^0-9]/g, '')} words.
+          You should spend about {Math.floor(test[currentPart].timeLimit / 60)} minutes on this task. Write at least {test[currentPart].instructions.replace(/[^0-9]/g, '')} words.
         </div>
       </div>
       
@@ -301,8 +282,8 @@ export default function WritingTestPage() {
           }}
         >
           <div className="task-prompt">
-            <h2>{test.promptTitle}</h2>
-            <div dangerouslySetInnerHTML={{ __html: test.promptContent }} />
+            <h2>{test[currentPart].promptTitle}</h2>
+            <div dangerouslySetInnerHTML={{ __html: test[currentPart].promptContent }} />
           </div>
         </div>
         
@@ -323,22 +304,20 @@ export default function WritingTestPage() {
           {!isSubmitted ? (
             <div className="editor-container">
               <FloatingLabelTextarea
-                value={essay}
-                onChange={(e) => setEssay(e.target.value)}
-                label="Part 1 Answer"
-                placeholder="Enter your part 1 answer..."
+                value={currentPart === 'part1' ? part1Essay : part2Essay}
+                onChange={(e) => {
+                  if (currentPart === 'part1') {
+                    setPart1Essay(e.target.value);
+                  } else {
+                    setPart2Essay(e.target.value);
+                  }
+                }}
+                label={`Part ${currentPart === 'part1' ? '1' : '2'} Answer`}
+                placeholder={`Enter your part ${currentPart === 'part1' ? '1' : '2'} answer...`}
                 disabled={isSubmitted}
               />
               
               <div className="word-count">Word Count: {wordCount}</div>
-              
-              <button 
-                className="submit-btn"
-                onClick={handleSubmitEssay}
-                disabled={isSubmitted}
-              >
-                Submit
-              </button>
             </div>
           ) : (
             <div className="feedback-container">
@@ -389,19 +368,28 @@ export default function WritingTestPage() {
 
       <div className="part-switcher">
         <div className="part-navigation">
+          <div className="arrow-buttons">
+            <button 
+              className={`nav-arrow ${currentPart === 'part2' ? 'active' : ''}`}
+              onClick={() => setCurrentPart('part1')}
+              disabled={currentPart === 'part1'}
+            >
+              <IoIosArrowBack />
+            </button>
+            <button 
+              className={`nav-arrow ${currentPart === 'part1' ? 'active' : ''}`}
+              onClick={() => setCurrentPart('part2')}
+              disabled={currentPart === 'part2'}
+            >
+              <IoIosArrowForward />
+            </button>
+          </div>
           <button 
-            className={`nav-arrow ${currentPart === 'part2' ? 'active' : ''}`}
-            onClick={() => setCurrentPart('part1')}
-            disabled={currentPart === 'part1'}
+            className="submit-btn"
+            onClick={handleSubmitEssay}
+            disabled={isSubmitted}
           >
-            <IoIosArrowBack />
-          </button>
-          <button 
-            className={`nav-arrow ${currentPart === 'part1' ? 'active' : ''}`}
-            onClick={() => setCurrentPart('part2')}
-            disabled={currentPart === 'part2'}
-          >
-            <IoIosArrowForward />
+            Submit
           </button>
         </div>
         <button 
