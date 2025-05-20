@@ -1,51 +1,16 @@
 'use client';
 
-import { FloatingLabelTextarea } from '@/components/FloatingLabelTextarea';
 import '@/styles/writing-test.css';
-import Link from 'next/link';
 import { useParams, useRouter } from 'next/navigation';
-import { useCallback, useEffect, useRef, useState } from 'react';
-import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
-
-// Mock data for writing tests
-const writingTests = {
-  'academic-writing-test': {
-    id: 'academic-writing-test',
-    title: 'Academic Writing Test',
-    type: 'Academic',
-    part1: {
-      timeLimit: 3600, // 1 hour
-      promptTitle: 'The charts below show the percentage of water used for different purposes in six areas of the world.',
-      promptContent: `
-        <p>The charts below show the percentage of water used for different purposes in six areas of the world.</p>
-        <p>Summarise the information by selecting and reporting the main features, and make comparisons where relevant.</p>
-      `,
-      imageUrl: '/sample-chart.jpg',
-      instructions: 'Write at least 150 words.',
-      guidelines: [
-        'Spend about 20 minutes on this task',
-        'Describe the main trends and comparisons',
-        'Do not give your opinion',
-        'Use appropriate language for describing data'
-      ]
-    },
-    part2: {
-      timeLimit: 3600, // 1 hour
-      promptTitle: 'Some people believe that unpaid community service should be a compulsory part of high school education.',
-      promptContent: `
-        <p>Some people believe that unpaid community service should be a compulsory part of high school education.</p>
-        <p>To what extent do you agree or disagree with this statement?</p>
-      `,
-      instructions: 'Write at least 250 words.',
-      guidelines: [
-        'Spend about 40 minutes on this task',
-        'Give reasons for your answer and include relevant examples from your own knowledge or experience',
-        'Write a well-organized essay with an introduction, body paragraphs, and conclusion',
-        'Use a range of vocabulary and grammatical structures'
-      ]
-    }
-  }
-};
+import { useEffect, useState } from 'react';
+import { PartSwitcher } from '../components/PartSwitcher';
+import { TaskRequirements } from '../components/TaskRequirements';
+import { TestHeader } from '../components/TestHeader';
+import { TestLayout } from '../components/TestLayout';
+import { writingTests } from '../mockData';
+import { Feedback } from '../types/feedback';
+import { calculateFeedback } from '../utils/feedbackHandler';
+import { countWords } from '../utils/wordCounter';
 
 export default function WritingTestPage() {
   const params = useParams();
@@ -53,7 +18,6 @@ export default function WritingTestPage() {
   const testId = params.id as string;
   const test = writingTests[testId as keyof typeof writingTests];
   
-  // Add check for invalid test ID
   useEffect(() => {
     if (!test) {
       console.error(`Invalid test ID: ${testId}`);
@@ -61,195 +25,30 @@ export default function WritingTestPage() {
     }
   }, [test, testId, router]);
 
-  // Separate essay states for each part
   const [part1Essay, setPart1Essay] = useState('');
   const [part2Essay, setPart2Essay] = useState('');
   const [wordCount, setWordCount] = useState(0);
-  const [timer, setTimer] = useState(3600); // Start from 1:00:00
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [currentPart, setCurrentPart] = useState<'part1' | 'part2'>('part1');
-  const [feedback, setFeedback] = useState<{
-    taskAchievement: number;
-    coherenceAndCohesion: number;
-    lexicalResource: number;
-    grammaticalRange: number;
-    overallBand: number;
-    comments: string;
-  } | null>(null);
-  
-  // New state for resizing
-  const [contentWidth, setContentWidth] = useState(50);
-  const [answerWidth, setAnswerWidth] = useState(50);
-  const [isResizing, setIsResizing] = useState(false);
-  const layoutRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (!test) {
-      router.push('/ielts-tests/writing');
-      return;
-    }
-
-    // Add full-width class to the app element
-    const appElement = document.getElementById('app');
-    if (appElement) {
-      appElement.classList.add('full-width-app');
-    }
-
-    // Initialize resize handle position
-    setTimeout(() => {
-      const contentElement = document.querySelector('.writing-test-content');
-      const answerElement = document.querySelector('.answer-section');
-      const resizeHandle = document.querySelector('.resize-handle');
-      
-      if (contentElement && answerElement && resizeHandle) {
-        contentElement.setAttribute('style', 
-          `width: ${contentWidth}% !important; 
-           max-width: ${contentWidth}% !important; 
-           flex: 0 0 ${contentWidth}% !important;`
-        );
-        
-        answerElement.setAttribute('style', 
-          `width: ${answerWidth}% !important; 
-           max-width: ${answerWidth}% !important; 
-           flex: 0 0 ${answerWidth}% !important;`
-        );
-        
-        resizeHandle.setAttribute('style', 
-          `right: ${answerWidth}% !important;`
-        );
-      }
-    }, 100);
-
-    const interval = setInterval(() => {
-      setTimer(prevTimer => {
-        if (prevTimer <= 1) {
-          clearInterval(interval);
-          handleSubmitEssay();
-          return 0;
-        }
-        return prevTimer - 1;
-      });
-    }, 1000);
-
-    return () => {
-      clearInterval(interval);
-      
-      if (appElement) {
-        appElement.classList.remove('full-width-app');
-      }
-    };
-  }, [test, router, contentWidth, answerWidth]);
-  
-  // Add resize event handlers
-  const handleResizeStart = useCallback((e: React.MouseEvent) => {
-    e.preventDefault();
-    setIsResizing(true);
-    
-    // Save reference to the elements we'll be modifying
-    const contentElement = document.querySelector('.writing-test-content');
-    const answerElement = document.querySelector('.answer-section');
-    const resizeHandle = document.querySelector('.resize-handle');
-    
-    // Store initial widths to avoid repeated state updates during drag
-    let lastContentWidth = contentWidth;
-    let lastAnswerWidth = answerWidth;
-    
-    // Add event listeners with the elements captured in closure
-    const handleMove = (moveEvent: MouseEvent) => {
-      if (!layoutRef.current) return;
-      
-      // Prevent default to avoid text selection during drag
-      moveEvent.preventDefault();
-      
-      const containerRect = layoutRef.current.getBoundingClientRect();
-      const containerWidth = containerRect.width;
-      const x = moveEvent.clientX - containerRect.left;
-      
-      // Calculate percentages with wider range (10% to 90%) for more flexibility
-      let newContentWidth = Math.min(Math.max((x / containerWidth) * 100, 10), 90);
-      let newAnswerWidth = 100 - newContentWidth;
-      
-      // Only update DOM directly during drag, save state updates for the end
-      if (contentElement && answerElement && resizeHandle) {
-        (contentElement as HTMLElement).style.width = `${newContentWidth}%`;
-        (contentElement as HTMLElement).style.maxWidth = `${newContentWidth}%`;
-        (contentElement as HTMLElement).style.flex = `0 0 ${newContentWidth}%`;
-        
-        (answerElement as HTMLElement).style.width = `${newAnswerWidth}%`;
-        (answerElement as HTMLElement).style.maxWidth = `${newAnswerWidth}%`;
-        (answerElement as HTMLElement).style.flex = `0 0 ${newAnswerWidth}%`;
-        
-        (resizeHandle as HTMLElement).style.right = `${newAnswerWidth}%`;
-      }
-      
-      // Save the last width values
-      lastContentWidth = newContentWidth;
-      lastAnswerWidth = newAnswerWidth;
-    };
-    
-    const handleUp = () => {
-      // Only update state once at the end of drag
-      setContentWidth(lastContentWidth);
-      setAnswerWidth(lastAnswerWidth);
-      setIsResizing(false);
-      
-      document.removeEventListener('mousemove', handleMove);
-      document.removeEventListener('mouseup', handleUp);
-    };
-    
-    document.addEventListener('mousemove', handleMove);
-    document.addEventListener('mouseup', handleUp);
-  }, [contentWidth, answerWidth]);
-  
-  // Remove the separate handlers since they're now included in handleResizeStart
-  const handleResizeMove = useCallback(() => {}, []);
-  const handleResizeEnd = useCallback(() => {}, []);
-
-  useEffect(() => {
-    // Count words based on current part's essay
-    const currentEssay = currentPart === 'part1' ? part1Essay : part2Essay;
-    if (currentEssay) {
-      const words = currentEssay.trim().split(/\s+/);
-      setWordCount(words.length);
-    } else {
-      setWordCount(0);
-    }
-  }, [currentPart, part1Essay, part2Essay]);
+  const [feedback, setFeedback] = useState<Feedback | null>(null);
 
   const handleSubmitEssay = () => {
     if (isSubmitted) return;
-
-    // In a real application, we would send both essays to an API for evaluation
-    // Here we'll just simulate a response using the current part's essay
-    const currentEssay = currentPart === 'part1' ? part1Essay : part2Essay;
-    
-    // Calculate a "score" based on word count (just for demonstration)
-    const mockFeedback = {
-      taskAchievement: Math.min(9, Math.max(5, Math.floor(wordCount / 50))),
-      coherenceAndCohesion: Math.min(9, Math.max(5, Math.floor(wordCount / 60))),
-      lexicalResource: Math.min(9, Math.max(5, Math.floor(wordCount / 70))),
-      grammaticalRange: Math.min(9, Math.max(5, Math.floor(wordCount / 80))),
-      overallBand: 0,
-      comments: "This is automated feedback. In a real application, this would include detailed comments on your essay structure, language use, and suggestions for improvement."
-    };
-    
-    mockFeedback.overallBand = Math.round(
-      (mockFeedback.taskAchievement + 
-      mockFeedback.coherenceAndCohesion + 
-      mockFeedback.lexicalResource + 
-      mockFeedback.grammaticalRange) / 4 * 10
-    ) / 10;
-    
-    setFeedback(mockFeedback);
+    setFeedback(calculateFeedback(wordCount));
     setIsSubmitted(true);
   };
 
-  const formatTime = (seconds: number) => {
-    const hours = Math.floor(seconds / 3600);
-    const minutes = Math.floor((seconds % 3600) / 60);
-    const secs = seconds % 60;
-    
-    return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+  useEffect(() => {
+    const currentEssay = currentPart === 'part1' ? part1Essay : part2Essay;
+    setWordCount(countWords(currentEssay));
+  }, [currentPart, part1Essay, part2Essay]);
+
+  const handleEssayChange = (part: 'part1' | 'part2', value: string) => {
+    if (part === 'part1') {
+      setPart1Essay(value);
+    } else {
+      setPart2Essay(value);
+    }
   };
 
   if (!test) {
@@ -258,153 +57,34 @@ export default function WritingTestPage() {
 
   return (
     <div className="writing-test-page">
-      <div className="writing-test-header">
-        <span className="writing-test-timer">
-          <span className="timer-icon">⏱</span>
-          {formatTime(timer)}
-        </span>
-      </div>
+      <TestHeader 
+        timeLimit={test.timeLimit} 
+        onTimeUp={handleSubmitEssay} 
+      />
       
-      <div className="task-requirements-banner">
-        <div className="task-part">Part {currentPart === 'part1' ? '1' : '2'}</div>
-        <div className="task-requirement">
-          You should spend about {Math.floor(test[currentPart].timeLimit / 60)} minutes on this task. Write at least {test[currentPart].instructions.replace(/[^0-9]/g, '')} words.
-        </div>
-      </div>
+      <TaskRequirements
+        currentPart={currentPart}
+        instructions={test[currentPart].instructions}
+      />
       
-      <div className="two-column-layout" ref={layoutRef}>
-        <div 
-          className="writing-test-content"
-          style={{
-            width: `${contentWidth}%`,
-            maxWidth: `${contentWidth}%`,
-            flex: `0 0 ${contentWidth}%`
-          }}
-        >
-          <div className="task-prompt">
-            <h2>{test[currentPart].promptTitle}</h2>
-            <div dangerouslySetInnerHTML={{ __html: test[currentPart].promptContent }} />
-          </div>
-        </div>
-        
-        <div 
-          className={`resize-handle ${isResizing ? 'active' : ''}`} 
-          onMouseDown={handleResizeStart}
-          style={{ right: `${answerWidth}%` }}
-        ></div>
-        
-        <div 
-          className="answer-section"
-          style={{
-            width: `${answerWidth}%`,
-            maxWidth: `${answerWidth}%`,
-            flex: `0 0 ${answerWidth}%`
-          }}
-        >
-          {!isSubmitted ? (
-            <div className="editor-container">
-              <FloatingLabelTextarea
-                value={currentPart === 'part1' ? part1Essay : part2Essay}
-                onChange={(e) => {
-                  if (currentPart === 'part1') {
-                    setPart1Essay(e.target.value);
-                  } else {
-                    setPart2Essay(e.target.value);
-                  }
-                }}
-                label={`Part ${currentPart === 'part1' ? '1' : '2'} Answer`}
-                placeholder={`Enter your part ${currentPart === 'part1' ? '1' : '2'} answer...`}
-                disabled={isSubmitted}
-              />
-              
-              <div className="word-count">Word Count: {wordCount}</div>
-            </div>
-          ) : (
-            <div className="feedback-container">
-              <div className="feedback-header">Essay Feedback</div>
-              
-              <div className="score-summary">
-                <div className="score-item">
-                  <span className="score-label">Task Achievement</span>
-                  <span className="score-value">{feedback?.taskAchievement.toFixed(1)}</span>
-                </div>
-                <div className="score-item">
-                  <span className="score-label">Coherence & Cohesion</span>
-                  <span className="score-value">{feedback?.coherenceAndCohesion.toFixed(1)}</span>
-                </div>
-                <div className="score-item">
-                  <span className="score-label">Lexical Resource</span>
-                  <span className="score-value">{feedback?.lexicalResource.toFixed(1)}</span>
-                </div>
-                <div className="score-item">
-                  <span className="score-label">Grammatical Range</span>
-                  <span className="score-value">{feedback?.grammaticalRange.toFixed(1)}</span>
-                </div>
-              </div>
-              
-              <div className="feedback-section">
-                <div className="score-item">
-                  <span className="score-label">Overall Band Score</span>
-                  <span className="score-value">{feedback?.overallBand.toFixed(1)}</span>
-                </div>
-              </div>
-              
-              <div className="feedback-details">
-                <div className="feedback-section">
-                  <div className="feedback-section-title">Comments:</div>
-                  <p>{feedback?.comments}</p>
-                </div>
-              </div>
-              
-              <div className="test-navigation">
-                <Link href="/ielts-tests/writing" className="nav-btn">
-                  Back to Writing Tests
-                </Link>
-              </div>
-            </div>
-          )}
-        </div>
-      </div>
+      <TestLayout
+        currentPart={currentPart}
+        promptTitle={test[currentPart].promptTitle}
+        promptContent={test[currentPart].promptContent}
+        isSubmitted={isSubmitted}
+        part1Essay={part1Essay}
+        part2Essay={part2Essay}
+        wordCount={wordCount}
+        feedback={feedback}
+        onEssayChange={handleEssayChange}
+      />
 
-      <div className="part-switcher">
-        <div className="part-navigation">
-          <div className="arrow-buttons">
-            <button 
-              className={`nav-arrow ${currentPart === 'part2' ? 'active' : ''}`}
-              onClick={() => setCurrentPart('part1')}
-              disabled={currentPart === 'part1'}
-            >
-              <IoIosArrowBack />
-            </button>
-            <button 
-              className={`nav-arrow ${currentPart === 'part1' ? 'active' : ''}`}
-              onClick={() => setCurrentPart('part2')}
-              disabled={currentPart === 'part2'}
-            >
-              <IoIosArrowForward />
-            </button>
-          </div>
-          <button 
-            className="submit-btn"
-            onClick={handleSubmitEssay}
-            disabled={isSubmitted}
-          >
-            Submit
-          </button>
-        </div>
-        <button 
-          className={`part-button ${currentPart === 'part1' ? 'active' : ''}`}
-          onClick={() => setCurrentPart('part1')}
-        >
-          Part 1
-        </button>
-        <button 
-          className={`part-button ${currentPart === 'part2' ? 'active' : ''}`}
-          onClick={() => setCurrentPart('part2')}
-        >
-          Part 2
-        </button>
-      </div>
+      <PartSwitcher
+        currentPart={currentPart}
+        isSubmitted={isSubmitted}
+        onPartChange={setCurrentPart}
+        onSubmit={handleSubmitEssay}
+      />
     </div>
   );
 } 
