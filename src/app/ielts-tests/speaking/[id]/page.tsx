@@ -76,7 +76,7 @@ export default function SpeakingTestPage() {
       />
       
       <TestLayout
-        questionNumber={currentQuestion}
+        questionNumber={currentQuestionData.id}
         questionText={currentQuestionData.text}
         onPrev={handlePrevQuestion}
         onNext={handleNextQuestion}

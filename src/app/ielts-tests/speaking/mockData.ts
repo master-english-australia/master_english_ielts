@@ -32,12 +32,12 @@ export const speakingTests = {
         instructions: 'You will be given a topic to talk about for 1-2 minutes.',
         questions: [
           {
-            id: 1,
+            id: 4,
             text: 'Describe a place you visited that impressed you.',
             followUp: 'You should say:\n- Where it was\n- When you went there\n- What you did there\n- Why it impressed you'
           },
           {
-            id: 2,
+            id: 5,
             text: 'Describe a person who has influenced you.',
             followUp: 'You should say:\n- Who the person is\n- How you know them\n- What they have done\n- Why they influenced you'
           }
@@ -49,12 +49,12 @@ export const speakingTests = {
         instructions: 'The examiner will ask you questions related to the topic in Part 2.',
         questions: [
           {
-            id: 1,
+            id: 6,
             text: 'What are the advantages and disadvantages of tourism?',
             followUp: 'How has tourism changed in your country in recent years?'
           },
           {
-            id: 2,
+            id: 7,
             text: 'How important is it to preserve historical buildings?',
             followUp: 'What can be done to protect historical sites?'
           }
