@@ -1,6 +1,6 @@
 import { FloatingLabelTextarea } from '@/components/FloatingLabelTextarea';
+import { FeedbackView } from '../../components/FeedbackView';
 import { Feedback } from '../types/feedback';
-import { FeedbackView } from './FeedbackView';
 
 interface AnswerSectionProps {
   answerWidth: number;

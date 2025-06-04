@@ -1,4 +1,4 @@
-import { formatTime, useTimer } from '../utils/timerHandler';
+import { formatTime, useTimer } from '../writing/utils/timerHandler';
 
 interface TestHeaderProps {
   timeLimit: number;

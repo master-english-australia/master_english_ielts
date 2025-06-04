@@ -1,6 +1,5 @@
 export const writingTests = {
-  'academic-writing-test': {
-    id: 'academic-writing-test',
+    id: 1,
     title: 'Academic Writing Test',
     type: 'Academic',
     timeLimit: 3600, // 1 hour
@@ -33,5 +32,4 @@ export const writingTests = {
         'Use a range of vocabulary and grammatical structures'
       ]
     }
-  }
-}; 
+  }; 
