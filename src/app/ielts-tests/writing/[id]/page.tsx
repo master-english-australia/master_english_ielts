@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 import { PartSwitcher } from '../../components/PartSwitcher';
 import { TaskRequirements } from '../../components/TaskRequirements';
 import { TestHeader } from '../../components/TestHeader';
-import { TestLayout } from '../../speaking/components/TestLayout';
+import { TestLayout } from '../components/TestLayout';
 import { writingTests } from '../mockData';
 import { Feedback } from '../types/feedback';
 import { calculateFeedback } from '../utils/feedbackHandler';
@@ -29,7 +29,7 @@ export default function WritingTestPage() {
   const [part2Essay, setPart2Essay] = useState('');
   const [wordCount, setWordCount] = useState(0);
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [currentPart, setCurrentPart] = useState<'part1' | 'part2'>('part1');
+  const [currentPart, setCurrentPart] = useState(1);
   const [feedback, setFeedback] = useState<Feedback | null>(null);
 
   const handleSubmitEssay = () => {
@@ -39,12 +39,12 @@ export default function WritingTestPage() {
   };
 
   useEffect(() => {
-    const currentEssay = currentPart === 'part1' ? part1Essay : part2Essay;
+    const currentEssay = currentPart === 1 ? part1Essay : part2Essay;
     setWordCount(countWords(currentEssay));
-  }, [currentPart, part1Essay, part2Essay]);
+  }, [currentPart]);
 
-  const handleEssayChange = (part: 'part1' | 'part2', value: string) => {
-    if (part === 'part1') {
+  const handleEssayChange = (part: number, value: string) => {
+    if (part === 1) {
       setPart1Essay(value);
     } else {
       setPart2Essay(value);
@@ -64,13 +64,13 @@ export default function WritingTestPage() {
       
       <TaskRequirements
         currentPart={currentPart}
-        instructions={test[currentPart].instructions}
+        instructions={test.part1.instructions}
       />
       
       <TestLayout
         currentPart={currentPart}
-        promptTitle={test[currentPart].promptTitle}
-        promptContent={test[currentPart].promptContent}
+        promptTitle={test.part1.promptTitle}
+        promptContent={test.part1.promptContent}
         isSubmitted={isSubmitted}
         part1Essay={part1Essay}
         part2Essay={part2Essay}
@@ -81,6 +81,7 @@ export default function WritingTestPage() {
 
       <PartSwitcher
         currentPart={currentPart}
+        totalParts={2}
         isSubmitted={isSubmitted}
         onPartChange={setCurrentPart}
         onSubmit={handleSubmitEssay}

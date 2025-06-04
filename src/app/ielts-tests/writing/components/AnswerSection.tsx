@@ -5,12 +5,12 @@ import { Feedback } from '../types/feedback';
 interface AnswerSectionProps {
   answerWidth: number;
   isSubmitted: boolean;
-  currentPart: 'part1' | 'part2';
+  currentPart: number;
   part1Essay: string;
   part2Essay: string;
   wordCount: number;
   feedback: Feedback | null;
-  onEssayChange: (part: 'part1' | 'part2', value: string) => void;
+  onEssayChange: (part: number, value: string) => void;
 }
 
 export const AnswerSection = ({
@@ -35,10 +35,10 @@ export const AnswerSection = ({
       {!isSubmitted ? (
         <div className="editor-container">
           <FloatingLabelTextarea
-            value={currentPart === 'part1' ? part1Essay : part2Essay}
+            value={currentPart === 1 ? part1Essay : part2Essay}
             onChange={(e) => onEssayChange(currentPart, e.target.value)}
-            label={`Part ${currentPart === 'part1' ? '1' : '2'} Answer`}
-            placeholder={`Enter your part ${currentPart === 'part1' ? '1' : '2'} answer...`}
+            label={`Part ${currentPart === 1 ? '1' : '2'} Answer`}
+            placeholder={`Enter your part ${currentPart === 1 ? '1' : '2'} answer...`}
             disabled={isSubmitted}
           />
           

@@ -380,19 +380,6 @@
   font-weight: bold;
 }
 
-.part-switcher {
-  width: calc(100% - 2rem);
-  margin: 1rem;
-  display: flex;
-  gap: 0.5rem;
-  padding: 0.5rem;
-  position: sticky;
-  bottom: 0;
-  background-color: #fff;
-  z-index: 100;
-  border-top: 1px solid #e0e0e0;
-}
-
 .part-button {
   flex: 1;
   padding: 0.5rem;

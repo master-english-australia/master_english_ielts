@@ -19,9 +19,14 @@ export const PartSwitcher = ({
   const parts = Array.from({ length: totalParts }, (_, i) => i + 1);
 
   return (
-    <Box className="part-switcher" sx={{ width: '100%' }}>
+    <Box sx={{ width: '100%', p: 2 }}>
       <Stack spacing={2} sx={{ width: '100%' }}>
-        <Stack direction="row" spacing={1} alignItems="center">
+        <Box sx={{ 
+          width: '100%', 
+          display: 'flex', 
+          justifyContent: 'space-between',
+          alignItems: 'center'
+        }}>
           <Stack direction="row" spacing={1}>
             <Button
               variant="outlined"
@@ -57,15 +62,17 @@ export const PartSwitcher = ({
           {onSubmit && (
             <Button
               variant="contained"
-              color="primary"
+              color="success"
               onClick={onSubmit}
               disabled={isSubmitted}
-              sx={{ ml: 'auto' }}
+              sx={{ 
+                textTransform: 'none'
+              }}
             >
               Submit
             </Button>
           )}
-        </Stack>
+        </Box>
         <Stack 
           direction="row" 
           spacing={1} 

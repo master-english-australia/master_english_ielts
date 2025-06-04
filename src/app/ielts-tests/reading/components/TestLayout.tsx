@@ -5,7 +5,7 @@ import { ResizeHandle } from './ResizeHandle';
 import { TaskPrompt } from './TaskPrompt';
 
 interface TestLayoutProps {
-  currentPart: number;
+  currentPart: 'part1' | 'part2';
   promptTitle: string;
   promptContent: string;
   isSubmitted: boolean;
@@ -13,7 +13,7 @@ interface TestLayoutProps {
   part2Essay: string;
   wordCount: number;
   feedback: any;
-  onEssayChange: (part: number, value: string) => void;
+  onEssayChange: (part: 'part1' | 'part2', value: string) => void;
 }
 
 export const TestLayout = ({
