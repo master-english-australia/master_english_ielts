@@ -1,7 +1,7 @@
 import { useCallback, useRef, useState } from 'react';
+import { ResizeHandle } from '../../components/ResizeHandle';
 import { createResizeEventHandlers } from '../utils/resizeEventHandler';
 import { AnswerSection } from './AnswerSection';
-import { ResizeHandle } from './ResizeHandle';
 import { TaskPrompt } from './TaskPrompt';
 
 interface TestLayoutProps {
@@ -42,13 +42,16 @@ export const TestLayout = ({
         setContentWidth,
         setAnswerWidth,
         setIsResizing
-      }
+      },
+      'content-prompt',
+      'answer-section'
     );
   }, [contentWidth, answerWidth]);
 
   return (
     <div className="two-column-layout" ref={layoutRef}>
       <TaskPrompt
+        id="content-prompt"
         contentWidth={contentWidth}
         promptTitle={promptTitle}
         promptContent={promptContent}
@@ -61,6 +64,7 @@ export const TestLayout = ({
       />
       
       <AnswerSection
+        id="answer-section"
         answerWidth={answerWidth}
         isSubmitted={isSubmitted}
         currentPart={currentPart}

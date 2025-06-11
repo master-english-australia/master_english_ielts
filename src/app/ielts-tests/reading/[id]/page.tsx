@@ -7,13 +7,14 @@ import { PartSwitcher } from '../../components/PartSwitcher';
 import { TaskRequirements } from '../../components/TaskRequirements';
 import { TestHeader } from '../../components/TestHeader';
 import { Feedback } from '../../writing/types/feedback';
+import { TestLayout } from '../components/TestLayout';
 import { readingTests } from '../mockData';
 
 export default function ReadingTestPage() {
   const params = useParams();
   const router = useRouter();
   const testId = params.id as string;
-  const test = readingTests[testId as keyof typeof readingTests];
+  const test = readingTests;
   
   useEffect(() => {
     if (!test) {
@@ -39,13 +40,13 @@ export default function ReadingTestPage() {
     } else if (currentPart > 1) {
       const prevPartData = test.parts[currentPart - 2];
       setCurrentPart(currentPart - 1);
-      setCurrentQuestion(prevPartData.questions.length);
+      setCurrentQuestion(prevPartData.question_groups.length);
     }
   };
 
   const handleNextQuestion = () => {
     const currentPartData = test.parts[currentPart - 1];
-    if (currentQuestion < currentPartData.questions.length) {
+    if (currentQuestion < currentPartData.question_groups.length) {
       setCurrentQuestion(currentQuestion + 1);
     } else if (currentPart < test.parts.length) {
       setCurrentPart(currentPart + 1);
@@ -58,32 +59,28 @@ export default function ReadingTestPage() {
   }
 
   const currentPartData = test.parts[currentPart - 1];
-  const currentQuestionData = currentPartData.questions[currentQuestion - 1];
+  const currentQuestionData = currentPartData.question_groups[currentQuestion - 1];
   const isFirstQuestion = currentPart === 1 && currentQuestion === 1;
-  const isLastQuestion = currentPart === test.parts.length && currentQuestion === currentPartData.questions.length;
+  const isLastQuestion = currentPart === test.parts.length && currentQuestion === currentPartData.question_groups.length;
 
   return (
     <div className="writing-test-page">
       <TestHeader 
-        timeLimit={test.timeLimit} 
+        timeLimit={test.time_limit} 
         onTimeUp={handleSubmitEssay} 
       />
       
       <TaskRequirements
         currentPart={currentPart}
-        instructions={currentPartData.instructions}
+        instructions={currentPartData.instruction}
       />
       
-      {/* <TestLayout
-        questionNumber={currentQuestionData.id}
-        questionText={currentQuestionData.text}
-        onPrev={handlePrevQuestion}
-        onNext={handleNextQuestion}
-        onSubmit={handleSubmitEssay}
-        isFirst={isFirstQuestion}
-        isLast={isLastQuestion}
+      <TestLayout
+        currentPart={currentPart}
         isSubmitted={isSubmitted}
-      /> */}
+        promptContent={currentPartData.content_html}
+        questionGroups={currentPartData.question_groups}
+      />
 
       <PartSwitcher
         currentPart={currentPart}

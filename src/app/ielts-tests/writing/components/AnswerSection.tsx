@@ -3,6 +3,7 @@ import { FeedbackView } from '../../components/FeedbackView';
 import { Feedback } from '../types/feedback';
 
 interface AnswerSectionProps {
+  id: string;
   answerWidth: number;
   isSubmitted: boolean;
   currentPart: number;
@@ -14,6 +15,7 @@ interface AnswerSectionProps {
 }
 
 export const AnswerSection = ({
+  id,
   answerWidth,
   isSubmitted,
   currentPart,
@@ -25,6 +27,7 @@ export const AnswerSection = ({
 }: AnswerSectionProps) => {
   return (
     <div 
+      id={id}
       className="answer-section"
       style={{
         width: `${answerWidth}%`,

@@ -16,7 +16,6 @@ export const useTimer = (initialTime: number, onTimeUp: () => void) => {
       setTimer(prevTimer => {
         if (prevTimer <= 1) {
           clearInterval(interval);
-          onTimeUp();
           return 0;
         }
         return prevTimer - 1;
@@ -26,7 +25,13 @@ export const useTimer = (initialTime: number, onTimeUp: () => void) => {
     return () => {
       clearInterval(interval);
     };
-  }, [onTimeUp]);
+  }, []);
+
+  useEffect(() => {
+    if (timer === 0) {
+      onTimeUp();
+    }
+  }, [timer, onTimeUp]);
 
   return timer;
 }; 

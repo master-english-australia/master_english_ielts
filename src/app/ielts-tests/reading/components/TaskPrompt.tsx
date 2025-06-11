@@ -8,7 +8,6 @@ interface TaskPromptProps {
 export const TaskPrompt = ({ 
   id,
   contentWidth, 
-  promptTitle, 
   promptContent 
 }: TaskPromptProps) => {
   return (
@@ -22,7 +21,6 @@ export const TaskPrompt = ({
       }}
     >
       <div className="task-prompt">
-        <h2>{promptTitle}</h2>
         <div dangerouslySetInnerHTML={{ __html: promptContent }} />
       </div>
     </div>

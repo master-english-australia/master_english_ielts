@@ -50,7 +50,6 @@ h1 {
 
 p {
   margin-bottom: 20px;
-  text-align: center;
   font-size: clamp(0.9rem, 2vw, 1.1rem);
 }
 

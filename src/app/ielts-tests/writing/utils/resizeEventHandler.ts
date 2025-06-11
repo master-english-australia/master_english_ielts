@@ -12,13 +12,15 @@ export const createResizeEventHandlers = (
   layoutRef: RefObject<HTMLDivElement | null>,
   contentWidth: number,
   answerWidth: number,
-  handlers: ResizeEventHandlers
+  handlers: ResizeEventHandlers,
+  contentId: string,
+  answerId: string
 ) => {
   e.preventDefault();
   handlers.setIsResizing(true);
   
-  const contentElement = document.querySelector('.writing-test-content');
-  const answerElement = document.querySelector('.answer-section');
+  const contentElement = document.getElementById(contentId);
+  const answerElement = document.getElementById(answerId);
   const resizeHandle = document.querySelector('.resize-handle');
   
   let lastContentWidth = contentWidth;

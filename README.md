@@ -75,3 +75,11 @@ To start the production server:
 ```
 npm start
 ```
+
+
+
+# submit functions
+- Writing: sending email to maher, new subscription, or AI
+- Speaking: sending email to maher 
+- Reading: Calculating the score
+- Listening: Calculating the score
