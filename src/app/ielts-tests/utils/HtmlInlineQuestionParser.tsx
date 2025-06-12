@@ -53,9 +53,43 @@ export const HtmlInlineQuestionParser: React.FC<{
     },
   };
 
-  const parsedHtml = parse(htmlText, options);
+  const safeHtmlText = htmlText
+    .replace(/<p>/g, "<div>")
+    .replace(/<\/p>/g, "</div>");
+  const parsedHtml = parse(safeHtmlText, options);
 
-  console.log(parsedHtml);
-
-  return <Box>{parsedHtml}</Box>;
+  return (
+    <Box
+      sx={{
+        "& > div": {
+          my: 3,
+        },
+        "& table": {
+          width: "100%",
+          borderCollapse: "collapse",
+          marginBottom: 2,
+        },
+        "& td, & th": {
+          border: "1px solid #ddd",
+          padding: "8px",
+          textAlign: "left",
+          verticalAlign: "top",
+        },
+        "& tr:nth-of-type(even)": {
+          backgroundColor: "#f9f9f9",
+        },
+        "& td ul": {
+          paddingLeft: "20px",
+          margin: 0,
+          listStyleType: "disc",
+        },
+        "& td li": {
+          marginBottom: "4px",
+          listStylePosition: "inside",
+        },
+      }}
+    >
+      {parsedHtml}
+    </Box>
+  );
 };

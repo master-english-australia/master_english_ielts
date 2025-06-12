@@ -8,13 +8,13 @@ import { TaskRequirements } from "../../components/TaskRequirements";
 import { TestHeader } from "../../components/TestHeader";
 import { Feedback } from "../../writing/types/feedback";
 import { TestLayout } from "../components/TestLayout";
-import { readingTests } from "../mockData";
+import { readingTest2 } from "../mockData";
 
 export default function ReadingTestPage() {
   const params = useParams();
   const router = useRouter();
   const testId = params.id as string;
-  const test = readingTests;
+  const test = readingTest2;
 
   useEffect(() => {
     if (!test) {

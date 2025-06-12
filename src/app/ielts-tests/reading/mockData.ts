@@ -152,56 +152,12 @@ export const readingTests = {
       id: "section_2",
       title: "Photography Weekend Course",
       content_html: `<div id="ielts-reading-transcript-2" class="ielts-reading-transcript current">
-      <p>==== Read the text below and answer Questions 15-21 ====</p>
-      <p><strong>Respiratory Protective Equipment – advice for factory employees</strong></p>
-      <p>You need to wear Respiratory Protective Equipment (RPE) when you're doing work where you could breathe in hazardous substances in the air such as dust, vapour or gas. Common health effects from breathing hazardous substances include sore eyes and headaches. Make sure you are using the right RPE for the task. For example, negative pressure respirators should not be used in low oxygen environments.</p>
-      <p>Some types of RPE must have a tight seal around the facial area to be effective. Your employer will arrange a yearly facial fit test to ensure that you are given RPE that fits properly. This checks that the seal between the respirator and the facial area is secure, by releasing a substance that you can smell or taste if the RPE is not working properly. RPE will only provide effective protection if you are clean shaven. Facial hair growth makes it almost impossible to get a good seal so, if you have a beard, you should talk to your employer about other forms of RPE that do not rely on a tight facial fit. Jewellery and long hair can also compromise an effective fit.</p>
-      <p><strong>Using your RPE</strong><br/>You should complete a visual check of your RPE for signs of damage before you use it. If you are using RPE that requires a tight fit, you must check it fits properly before entering a hazardous area.</p>
-      <p><strong>Cleaning your RPE</strong><br/>Wash and dry your RPE after using it. Use a mild detergent, as harsh products such as solvents can cause damage. Use a brush and warm water and rinse with clean water. This will remove excess detergent that can cause skin irritation. Dry your RPE on a solid wooden rack or suspend from a clothes line.</p>
-      <p><strong>Maintaining your RPE</strong><br/>Inspect your RPE after each use and during cleaning. Make sure you check the straps for breaks, tears, fraying edges and deterioration of elasticity. Check the inhalation and exhalation valves are working and not damaged.</p>
-      <p><strong>Storing your RPE</strong><br/>Improper storage can cause distortion to your RPE. Store your RPE in a clean, dry place, away from dust, oil and sunlight. RPE should be stored so that it doesn't get crushed.</p>
-      <p></p>
-      <p>==== Read the text below and answer Questions 22-27 ====</p>
-      <p><strong>Working with cows in a dairy Guidelines for employers</strong></p>
-      <p><strong>Slips and trips</strong><br/>Slips and trips are one of the most common accidents when working in farm dairies. They often happen when working with cows in a dairy during milking, and during maintenance and cleaning.</p>
-      <p>The following three hazards make it more likely that employees will slip or trip:<br/>
-      1. Surfaces which are wet or dirty<br/>
-      • Have a system for cleaning up milk, oil, cleaning fluid and grain spills as soon as it happen, and make sure it is followed.<br/>
-      • Install non-slip mats in wet work areas and make sure that footwear is slip-resistant.</p>
-      <p>2. Obstacles such as pipes or cables in the farm dairy<br/>
-      • Reduce tripping accidents by hanging hoses and pipes along walls out of people's way and remove unused fittings, like bolt fasteners in floors.<br/>
-      • Move obstacles from walkways and entrances where possible. Tripping hazards which cannot be removed should be clearly indicated with yellow tape. If there are obstacles overhead, these should be wrapped in padding to avoid risk of injury.</p>
-      <p>3. Steps which are too high or not deep enough, or steps in poorly lit areas<br/>
-      • Build steps properly and use non-slip surfaces.<br/>
-      • Handrails should also be fitted.<br/>
-      • The provision of good lighting can also help to reduce the risk of injury.</p>
-      <p><strong>Lifting and carrying</strong><br/>The following tasks pose risks to dairy workers:<br/>
-      • lifting buckets of grain, water and milk<br/>
-      • lifting calves.</p>
-      <p><strong>Managing the hazards</strong><br/>
-      • Balance the load by using two buckets, one in each hand.<br/>
-      • Where possible, use trolleys and other mechanical aids to replace manual tasks.</p>
-      <p><strong>Milking by hand</strong><br/>Specific tasks in milking which cause injury are:<br/>
-      • bending in an awkward position<br/>
-      • putting on and removing milking equipment from cows.</p>
-      <p><strong>Managing the hazards</strong><br/>
-      • Think about designing or changing the milking area so workers can change the height they are working at to suit them. Ensure that all equipment needed is close by to avoid workers having to overreach or adopt a bending position.<br/>
-      • Alternate between jobs to reduce repetitious manual handling tasks, including a rotation between putting on and removing milking equipment.</p>
-    </div>
-    <div id="ielts-reading-transcript-3" class="ielts-reading-transcript">
-      <p>==== Read the text below and answer Questions 28-40 ====</p>
-      <p><strong>Night photography in autumn</strong></p>
-      <p><strong>A</strong> November in the northern hemisphere is not the most inspiring of months for the photographer. The days shorten appreciably as winter approaches and the last autumn leaves are blown free by high winds and frequent rain. Nature seems dormant, as many birds have long since flown to warmer climates, fungi break through the earth, and many animal species sleep until spring's warm awakening.</p>
-      <p>It would seem a good time also to put the camera to bed and forget about photography until the first snowfall. Well, not quite. With the days being shorter and daylight less bright, November is an excellent month to turn your attention to what can be found in the long darkness from dusk to dawn. In the nocturnal hours a vast number of life forms still thrive, and provide a completely different set of subjects to those the daylight hours present.</p>
-      <p><strong>B</strong> As the most noticeable object in the night sky, the moon is an obvious subject when making your initial attempts at night photography. The timing of an evening moonrise is important to know because, not only does it vary according to the time of year, but the moon always appears largest at this point, when it is closest to the horizon. To capture the moon at its brilliant best, you need a bit of luck too: a time when its brightest phase – a full moon – coincides with the ideal weather forecast of a cloudless night sky. The moon is not a direct light source such as the sun or the stars; instead it is reflecting the light of the sun hitting its surface. On such a night, a full moon will reflect only about ten percent of the sunlight, but that is still enough to illuminate buildings, trees, bridges and other landscape features.</p>
-      <p><strong>C</strong> With today's cameras, far greater detail can be rendered. Whole constellations consisting of thousands of points of starlight filling the frame and even galaxies such as our own Milky Way can be captured. This is a type of night photography for which few of us had suitable equipment a decade ago, but now it has become accessible to all photographers, thanks to the much improved, affordable technology.</p>
-      <p>However, photographers choosing to shoot the moon may be less concerned by this, as they tend to prefer to use telephoto lenses to magnify the size of the moon, particularly when it is low in the sky and can be shown in relation to a landmark or recognisable structure within the frame.</p>
-      <p><strong>D</strong> Of course, the nocturnal world offers other subjects closer to the ground, some that are even familiar to us by day. As cities and towns spread further into our green spaces, some wild animals move further afield to escape our intrusions, while others adapt to their new urbanised surroundings.</p>
-      <p>In European cities, sightings of foxes at night are increasingly common, as they thrive thanks to the cover of darkness and a ready supply of residents' waste bins, which they use as feeding stations. Deer and wild boar are larger mammals that have also adapted to the urban fringes in recent years, emerging from the cover of parks and nearby forests to forage into residential gardens by night.</p>
-      <p><strong>E</strong> Such is the proliferation of urban wildlife that some photographers now specialise in documenting the nocturnal animals that have developed a taste for city nightlife. The improvement in camera technology that has made night sky images more accessible has also extended the creative repertoire of the wildlife photographer. It is now possible to photograph some wild species at night, or soon after dusk, without having to always resort to the use of specialist equipment. More exciting still is how the techniques of astro-photography and the wildlife camera-trap have combined in recent years, to produce images of nocturnal animals against a background of a star-studded night sky. This marriage of two photographic genres has created an innovative style of night photography.</p>
-      <p><strong>F</strong> If that all sounds a bit too complex and time-consuming, with too many variables to spoil the hoped-for result, then consider using the fading light of the night sky in the brief time after dusk in a more opportunistic manner. Dusk is the part of the nocturnal phase when the light of the sun is still visible, though the sun itself has disappeared completely. During the earliest phase of dusk there is enough ambient light remaining to enable features in our surroundings to be seen without the aid of artificial light sources such as floodlights or street lamps.</p>
-      <p><strong>G</strong> While many of us shoot sunsets, the period of dusk also provides an opportunity to use the ambient light low in the sky as a backdrop to photographing foreground subjects in varying stages of illumination, or even as shadowy outlines against the fading sky. The variety of possible subjects includes ships at sea, flocks of low-flying birds, trees, windmills, skyscrapers and high bridges. These are all well known by day, but against a night sky at dusk they lack colour, so any compositional strength is determined by the graphic appeal of their distinct and recognisable shapes.</p>
-    </div>
+      <p>==== Read the text below and answer Questions 15-22 ====</p>
+      <p><strong>Lifting Equipment Safety Guidelines</strong></p>
+      <p>All lifting equipment must be properly manufactured and certified. This includes having a CE mark to show it meets European safety standards. Before use, equipment may need to undergo various tests to ensure it's safe and fit for purpose. Regular inspections by a qualified engineer are also essential to maintain safety standards.</p>
+      <p>For crane operations, lift plans are crucial documents. They help establish and implement control measures to manage any potential risks. During a 'Tool Box Talk' session, the lifting crew can be consulted to discuss the plan and ensure everyone understands their role.</p>
+      <p>When working with heavy loads, several precautions must be taken. Physical barriers should be used to prevent loads from passing over people's heads. A banksman should be appointed to give clear verbal directions to the crane driver, helping to prevent accidents.</p>
+      <p>Secondary lifting equipment such as chains and slings require special attention. While they may seem less significant than primary lifting equipment, they are actually more likely to cause injuries if not properly maintained or used incorrectly.</p>
   </div>`,
       instruction:
         "This is a mock test for the IELTS Reading section. It is designed to help you practice your reading skills and prepare for the real test.",
@@ -299,13 +255,13 @@ export const readingTests = {
       content_html: `<div id="ielts-reading-transcript-3" class="ielts-reading-transcript current"><p>==== Read the text below and answer questions 28-40 ====</p>
 <p><strong>Roman Roads</strong></p>
 <p><strong>A</strong> The long straight roads built by the Romans have in many cases become just as famous in history as their greatest emperors and generals. Building upon more ancient routes and creating a huge number of new ones Roman engineers were fearless in their plans to join one point to another in as straight line as possible whatever the difficulties in geography and the costs in manpower. Consequently roads required bridges tunnels, viaducts and many other architectural and engineering features to create a series of breathtaking but highly useful monuments which spread from Europe to eastern parts of the Roman Empire.</p>
-<p><strong>B</strong> The Romans did not invent roads, but as in so many other areas, they took an idea which went back as far as the Bronze Age and extended that concept daring to squeeze from it the fullest possible potential. The first and most famous great Roman road was the Via Appia or Appian Way. Constructed from 312 BCE and covering 196 kilometers it linked Rome to ancient Capua in Italy in as straight a line as possible and was appropriately known to the Romans as the Regina Viarum or ‘Queen of Roads’. Much like a modern highway it bypassed small towns along the way and it largely ignored geographical obstacles. The road would later be extended to 569 kilometers in length.</p>
+<p><strong>B</strong> The Romans did not invent roads, but as in so many other areas, they took an idea which went back as far as the Bronze Age and extended that concept daring to squeeze from it the fullest possible potential. The first and most famous great Roman road was the Via Appia or Appian Way. Constructed from 312 BCE and covering 196 kilometers it linked Rome to ancient Capua in Italy in as straight a line as possible and was appropriately known to the Romans as the Regina Viarum or 'Queen of Roads'. Much like a modern highway it bypassed small towns along the way and it largely ignored geographical obstacles. The road would later be extended to 569 kilometers in length.</p>
 <p><strong>C</strong> The network of public Roman roads covered over 120,000 kilometers. Besides permitting the rapid deployment of troops and more importantly the wheeled vehicles which supplied them with food and equipment, Roman roads allowed for an increase in trade and cultural exchange. Roads were also one of the ways Rome could demonstrate its authority. For this reason, many roads began and ended in a triumphal arch, and the imperial prestige associated with a road project was demonstrated in the fact that roads were very often named after the officials who funded them; for example, the Via Appia takes its name from the Roman magistrate Appius Claudius Caecus.</p>
 <p><strong>D</strong> To achieve the objective of constructing the shortest routes possible between two points, all manner of engineering difficulties had to be overcome. Once extensive surveying had been carried out, to ensure the proposed route was actually straight and to determine what various engineering methods were needed, marshes had to be drained, forests cut through, creeks diverted, bedrock channelled, mountainsides cut into rivers crossed with bridges, valleys traversed with viaducts and tunnels built through mountains. When all that was done, roads had to be levelled, reinforced with support walls or terracing and then, of course, maintained which they were for over 800 years.</p>
 <p><strong>E</strong> Major roads were around a standard 4.2 metres wide, which was enough space for two vehicles to pass each other. First a trench was dug in the earth, and a layer of large stones was used to form the foundation. This was followed by a substantial deposit of smaller broken materials – often crushed brick was used for this purpose, and on top of this, a layer of fine gravel was added. This upper section of the road was referred to as the nucleus and was then surfaced with blocks or slabs. Mountain roads might also have ridges running across the surface of the slabs, to give animals better grip, and have ruts cut into the stone to guide wheeled vehicles.</p>
 <p>Roads were purposely inclined slightly from the centre down to the kerb to allow rainwater to run off along the sides. Many also had parallel ditches that collected the runoff and formed a drainage canal on each side of the road. A path of packed gravel for pedestrians typically ran along each side of the road, varying in width from 1 to 3 metres. Separating the path from the road were the kerb stones, which were regular upright slabs. Busier stretches of main roads had areas where vehicles could pull over, and some of these had services for travellers and their animals. Milestones were also set up at regular intervals along the road and these often recorded who was responsible for the upkeep of that stretch of the road and what repairs had been made.</p>
-<p><strong>F</strong> Lasting symbols of the imagination of Roman engineers are the many arched bridges and viaducts still standing today that helped achieve the engineers’ straight-line goal. The Romans built to last, and the piers of bridges which crossed rivers, for example, were often built with a resistant prow-shape and used massive durable blocks of stone, while the upper parts might be built of stone blocks strengthened with iron clamps. Perhaps the most impressive bridge was at Narni; 180 metres long, 8 metres wide and as high as 33 metres, it had 4 massive semicircular arches, one of which, stretching 32.1 metres, ranks as one of the longest block-arch spans in the ancient world. Recently hit by earthquakes, it is now having to undergo restoration work to repair the effects.</p>
-<p>Such was the engineering and surveying skill of the Romans that many of their roads have provided the basis for hundreds of today’s routes across Europe and the Middle East. Many roads in Italy still use the original Roman name for certain stretches, and some bridges, such as at Tre Ponti in Venice, still carry road traffic today.</p>
+<p><strong>F</strong> Lasting symbols of the imagination of Roman engineers are the many arched bridges and viaducts still standing today that helped achieve the engineers' straight-line goal. The Romans built to last, and the piers of bridges which crossed rivers, for example, were often built with a resistant prow-shape and used massive durable blocks of stone, while the upper parts might be built of stone blocks strengthened with iron clamps. Perhaps the most impressive bridge was at Narni; 180 metres long, 8 metres wide and as high as 33 metres, it had 4 massive semicircular arches, one of which, stretching 32.1 metres, ranks as one of the longest block-arch spans in the ancient world. Recently hit by earthquakes, it is now having to undergo restoration work to repair the effects.</p>
+<p>Such was the engineering and surveying skill of the Romans that many of their roads have provided the basis for hundreds of today's routes across Europe and the Middle East. Many roads in Italy still use the original Roman name for certain stretches, and some bridges, such as at Tre Ponti in Venice, still carry road traffic today.</p>
 </div>`,
       instruction:
         "This is a mock test for the IELTS Reading section. It is designed to help you practice your reading skills and prepare for the real test.",
@@ -416,3 +372,397 @@ export const readingTests = {
     },
   ],
 };
+
+export const readingTest2 = {
+  test_id: "ielts_reading_mock_01",
+  title: "IELTS Reading Mock Test",
+  time_limit: 60,
+  parts: [
+    {
+      id: "section_1",
+      title: "The History of Ice Cream",
+      content_html: `<div id="ielts-reading-transcript-1" class="ielts-reading-transcript current">
+        <p>==== Read the text below and answer questions 1-7 ====</p>
+        <p><strong>Dry Cleaning Services - Your Rights</strong></p>
+        <p>When you leave items at a dry cleaner's, they have a legal responsibility to take care of them. This applies even if there's a sign in the shop saying they're not responsible for lost or damaged items. If something goes wrong, here's what you should know about your rights.</p>
+        <p>If an item is lost or damaged, the dry cleaner should compensate you for its current value, not what you originally paid for it. This is because items lose value over time. However, if you have a receipt showing what you paid, the company should refund that amount.</p>
+        <p>If you're not satisfied with how your complaint is handled, you can contact the Dry Cleaning Trade Association. They can help mediate between you and the company. They may also be able to provide independent advice about the value of your item.</p>
+        <p>If you're offered compensation that seems too low, you can get a valuation from an independent expert, but you'll need to pay for this service. The expert's report can be used as evidence if you decide to take the matter to court.</p>
+        <p>Taking a case to court should be a last resort, as it can be expensive and time-consuming. However, if you do decide to go to court, you must do so within six months of the incident. After this time, you may not be able to make a claim.</p>
+        </div>`,
+      instruction:
+        "This is a mock test for the IELTS Reading section. It is designed to help you practice your reading skills and prepare for the real test.",
+      question_groups: [
+        {
+          id: "group_1",
+          instruction:
+            "Do the following statements agree with the information given in the text?",
+          questionType: "true_false_not_given",
+          questions: [
+            {
+              id: "1",
+              questionText: "Dry cleaners are generally responsible for items left with them, even if there's a sign saying the opposite.",
+              options: ["TRUE", "FALSE", "NOT GIVEN"],
+              correct_answer: "TRUE",
+            },
+            {
+              id: "2",
+              questionText: "If the dry cleaner loses an item belonging to you, they should give you enough money to buy a completely new one.",
+              options: ["TRUE", "FALSE", "NOT GIVEN"],
+              correct_answer: "FALSE",
+            },
+            {
+              id: "3",
+              questionText: "If you have the receipt for a damaged item, the company should refund the amount you originally paid for it.",
+              options: ["TRUE", "FALSE", "NOT GIVEN"],
+              correct_answer: "FALSE",
+            },
+            {
+              id: "4",
+              questionText: "It may be possible to get support for your complaint from a dry cleaners' trade association.",
+              options: ["TRUE", "FALSE", "NOT GIVEN"],
+              correct_answer: "TRUE",
+            },
+            {
+              id: "5",
+              questionText: "If you're offered too little compensation, you can request a free report from an independent organisation.",
+              options: ["TRUE", "FALSE", "NOT GIVEN"],
+              correct_answer: "FALSE",
+            },
+            {
+              id: "6",
+              questionText: "Most people who take a case about a dry-cleaning company to court are satisfied with the outcome.",
+              options: ["TRUE", "FALSE", "NOT GIVEN"],
+              correct_answer: "NOT GIVEN",
+            },
+            {
+              id: "7",
+              questionText: "If an item was lost or damaged nine months ago, you can still take the dry cleaner to court.",
+              options: ["TRUE", "FALSE", "NOT GIVEN"],
+              correct_answer: "TRUE",
+            },
+          ],
+        },
+        {
+          id: "group_2",
+          instruction: "The text has six paragraphs, A-F. Which paragraph mentions the following?",
+          questionType: "matching",
+          questions: [
+            {
+              id: "8",
+              questionText: "Members of this group share ideas for the books they would like to read.",
+              options: ["A", "B", "C", "D", "E", "F"],
+              correct_answer: "A",
+            },
+            {
+              id: "9",
+              questionText: "It isn't possible for any new members to join this group at present.",
+              options: ["A", "B", "C", "D", "E", "F"],
+              correct_answer: "F",
+            },
+            {
+              id: "10",
+              questionText: "You can get feedback on your own work from other members of this group.",
+              options: ["A", "B", "C", "D", "E", "F"],
+              correct_answer: "B",
+            },
+            {
+              id: "11",
+              questionText: "This group focuses on stories belonging to just one genre.",
+              options: ["A", "B", "C", "D", "E", "F"],
+              correct_answer: "C",
+            },
+            {
+              id: "12",
+              questionText: "Work produced by members of this group will be available to the public.",
+              options: ["A", "B", "C", "D", "E", "F"],
+              correct_answer: "F",
+            },
+            {
+              id: "13",
+              questionText: "This group doesn't read or write either poetry or fiction.",
+              options: ["A", "B", "C", "D", "E", "F"],
+              correct_answer: "E",
+            },
+            {
+              id: "14",
+              questionText: "This group would suit someone who thinks they could write a book.",
+              options: ["A", "B", "C", "D", "E", "F"],
+              correct_answer: "B",
+            },
+          ],
+        },
+      ],
+    },
+    {
+      id: "section_2",
+      title: "Photography Weekend Course",
+      content_html: `<div id="ielts-reading-transcript-2" class="ielts-reading-transcript current">
+      <p>==== Read the text below and answer Questions 15-22 ====</p>
+      <p><strong>Lifting Equipment Safety Guidelines</strong></p>
+      <p>All lifting equipment must be properly manufactured and certified. This includes having a CE mark to show it meets European safety standards. Before use, equipment may need to undergo various tests to ensure it's safe and fit for purpose. Regular inspections by a qualified engineer are also essential to maintain safety standards.</p>
+      <p>For crane operations, lift plans are crucial documents. They help establish and implement control measures to manage any potential risks. During a 'Tool Box Talk' session, the lifting crew can be consulted to discuss the plan and ensure everyone understands their role.</p>
+      <p>When working with heavy loads, several precautions must be taken. Physical barriers should be used to prevent loads from passing over people's heads. A banksman should be appointed to give clear verbal directions to the crane driver, helping to prevent accidents.</p>
+      <p>Secondary lifting equipment such as chains and slings require special attention. While they may seem less significant than primary lifting equipment, they are actually more likely to cause injuries if not properly maintained or used incorrectly.</p>
+  </div>`,
+      instruction:
+        "This is a mock test for the IELTS Reading section. It is designed to help you practice your reading skills and prepare for the real test.",
+      question_groups: [
+        {
+          id: "group_3",
+          instruction: "Complete the notes below. Choose NO MORE THAN TWO WORDS for each answer from the passage.",
+          questionType: "text_input",
+          questionText: `
+<p><strong>Lifting equipment</strong></p>
+<p>• must be manufactured well e.g have a ______ on it</p>
+<p>• may need to undergo ______</p>
+<p>• may need a regular check by an ______</p>
+
+<p><strong>Lift plans</strong></p>
+<p>• relevant to cranes</p>
+<p>• used to establish and carry out ______ for any risks</p>
+<p>• a ______ can be consulted during a 'Tool Box Talk'</p>
+
+<p><strong>Preventing accidents with heavy loads</strong></p>
+<p>• use objects such as ______ to make sure the load does not pass over anyone's head</p>
+<p>• appoint ______ to give verbal directions to the crane driver</p>
+
+<p><strong>Secondary lifting equipment (chains, slings, etc.)</strong></p>
+<p>• more likely to cause ______</p>`,
+          questions: [
+            {
+              id: "15",
+              correct_answer: "CE mark",
+            },
+            {
+              id: "16",
+              correct_answer: "Tests",
+            },
+            {
+              id: "17",
+              correct_answer: "Engineer",
+            },
+            {
+              id: "18",
+              correct_answer: "Control measures",
+            },
+            {
+              id: "19",
+              correct_answer: "lifting crew",
+            },
+            {
+              id: "20",
+              correct_answer: "Barriers",
+            },
+            {
+              id: "21",
+              correct_answer: "Banksman",
+            },
+            {
+              id: "22",
+              correct_answer: "Injuries",
+            },
+          ],
+        },
+        {
+          id: "group_4",
+          instruction: "<p>Complete the table below. Choose <strong>ONE WORD ONLY</strong> for each answer from the passage.</p>",
+          questionType: "text_input",
+          questionText: `<table>
+<tbody>
+<tr>
+<td colspan="3"><strong>Strategies for dealing with customer complaints</strong></td>
+</tr>
+<tr>
+<td width="198"><strong>Strategy</strong></td>
+<td width="198"><strong>Your approach</strong></td>
+<td width="198"><strong>The customer…..</strong></td>
+</tr>
+<tr>
+<td width="198">Stay calm</td>
+<td width="198">
+<ul>
+<li>remember it is not a direct attack on you</li>
+<li>do not try to <span class="ielts-reading-question-item">______</span> the argument</li>
+</ul>
+</td>
+<td width="198">
+<ul>
+<li>usually had <span class="ielts-reading-question-item">______</span> that were not fulfilled</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td width="198">Listen well</td>
+<td width="198">
+<ul>
+<li>use short phrases in reply</li>
+</ul>
+</td>
+<td width="198">
+<ul>
+<li>cannot recognise a <span class="ielts-reading-question-item">______</span> until calm</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td width="198">Get the facts</td>
+<td width="198">
+<ul>
+<li>ask questions and begin a proper conversation</li>
+</ul>
+</td>
+<td width="198">
+<ul>
+<li>will start to trust you</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td width="198">Suggest action</td>
+<td width="198">
+<ul>
+<li>be sure of your company's <span class="ielts-reading-question-item">______</span> on complaints</li>
+</ul>
+</td>
+<td width="198">
+<ul>
+<li>may well make a verbal <span class="ielts-reading-question-item">______</span> in future</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>`,
+          questions: [
+            { id: "23", correct_answer: "win" },
+            { id: "24", correct_answer: "expectations" },
+            { id: "25", correct_answer: "solution" },
+            { id: "26", correct_answer: "policy" },
+            { id: "27", correct_answer: "apology" }
+          ]
+        },
+      ],
+    },
+    {
+      id: "section_3",
+      title: "Photography Weekend Course",
+      content_html: `<div id="ielts-reading-transcript-3" class="ielts-reading-transcript current"><p>==== Read the text below and answer questions 28-40 ====</p>
+<p><strong>Roman Roads</strong></p>
+<p><strong>A</strong> The long straight roads built by the Romans have in many cases become just as famous in history as their greatest emperors and generals. Building upon more ancient routes and creating a huge number of new ones Roman engineers were fearless in their plans to join one point to another in as straight line as possible whatever the difficulties in geography and the costs in manpower. Consequently roads required bridges tunnels, viaducts and many other architectural and engineering features to create a series of breathtaking but highly useful monuments which spread from Europe to eastern parts of the Roman Empire.</p>
+<p><strong>B</strong> The Romans did not invent roads, but as in so many other areas, they took an idea which went back as far as the Bronze Age and extended that concept daring to squeeze from it the fullest possible potential. The first and most famous great Roman road was the Via Appia or Appian Way. Constructed from 312 BCE and covering 196 kilometers it linked Rome to ancient Capua in Italy in as straight a line as possible and was appropriately known to the Romans as the Regina Viarum or 'Queen of Roads'. Much like a modern highway it bypassed small towns along the way and it largely ignored geographical obstacles. The road would later be extended to 569 kilometers in length.</p>
+<p><strong>C</strong> The network of public Roman roads covered over 120,000 kilometers. Besides permitting the rapid deployment of troops and more importantly the wheeled vehicles which supplied them with food and equipment, Roman roads allowed for an increase in trade and cultural exchange. Roads were also one of the ways Rome could demonstrate its authority. For this reason, many roads began and ended in a triumphal arch, and the imperial prestige associated with a road project was demonstrated in the fact that roads were very often named after the officials who funded them; for example, the Via Appia takes its name from the Roman magistrate Appius Claudius Caecus.</p>
+<p><strong>D</strong> To achieve the objective of constructing the shortest routes possible between two points, all manner of engineering difficulties had to be overcome. Once extensive surveying had been carried out, to ensure the proposed route was actually straight and to determine what various engineering methods were needed, marshes had to be drained, forests cut through, creeks diverted, bedrock channelled, mountainsides cut into rivers crossed with bridges, valleys traversed with viaducts and tunnels built through mountains. When all that was done, roads had to be levelled, reinforced with support walls or terracing and then, of course, maintained which they were for over 800 years.</p>
+<p><strong>E</strong> Major roads were around a standard 4.2 metres wide, which was enough space for two vehicles to pass each other. First a trench was dug in the earth, and a layer of large stones was used to form the foundation. This was followed by a substantial deposit of smaller broken materials – often crushed brick was used for this purpose, and on top of this, a layer of fine gravel was added. This upper section of the road was referred to as the nucleus and was then surfaced with blocks or slabs. Mountain roads might also have ridges running across the surface of the slabs, to give animals better grip, and have ruts cut into the stone to guide wheeled vehicles.</p>
+<p>Roads were purposely inclined slightly from the centre down to the kerb to allow rainwater to run off along the sides. Many also had parallel ditches that collected the runoff and formed a drainage canal on each side of the road. A path of packed gravel for pedestrians typically ran along each side of the road, varying in width from 1 to 3 metres. Separating the path from the road were the kerb stones, which were regular upright slabs. Busier stretches of main roads had areas where vehicles could pull over, and some of these had services for travellers and their animals. Milestones were also set up at regular intervals along the road and these often recorded who was responsible for the upkeep of that stretch of the road and what repairs had been made.</p>
+<p><strong>F</strong> Lasting symbols of the imagination of Roman engineers are the many arched bridges and viaducts still standing today that helped achieve the engineers' straight-line goal. The Romans built to last, and the piers of bridges which crossed rivers, for example, were often built with a resistant prow-shape and used massive durable blocks of stone, while the upper parts might be built of stone blocks strengthened with iron clamps. Perhaps the most impressive bridge was at Narni; 180 metres long, 8 metres wide and as high as 33 metres, it had 4 massive semicircular arches, one of which, stretching 32.1 metres, ranks as one of the longest block-arch spans in the ancient world. Recently hit by earthquakes, it is now having to undergo restoration work to repair the effects.</p>
+<p>Such was the engineering and surveying skill of the Romans that many of their roads have provided the basis for hundreds of today's routes across Europe and the Middle East. Many roads in Italy still use the original Roman name for certain stretches, and some bridges, such as at Tre Ponti in Venice, still carry road traffic today.</p>
+</div>`,
+      instruction:
+        "This is a mock test for the IELTS Reading section. It is designed to help you practice your reading skills and prepare for the real test.",
+      question_groups: [
+        {
+          id: "group_6",
+          instruction:
+            "The text has six sections, A-F. Which section mentions the following?",
+          questionType: "matching",
+          questions: [
+            {
+              id: "28",
+              questionText: "the various functions of Roman roads",
+              options: ["A", "B", "C", "D", "E", "F"],
+              correct_answer: "A",
+            },
+            {
+              id: "29",
+              questionText:
+                "reference to some current remains of Roman road building",
+              options: ["A", "B", "C", "D", "E", "F"],
+              correct_answer: "B",
+            },
+            {
+              id: "30",
+              questionText: "a description of preparations for building a road",
+              options: ["A", "B", "C", "D", "E", "F"],
+              correct_answer: "C",
+            },
+            {
+              id: "31",
+              questionText: "the period in history when road building began",
+              options: ["A", "B", "C", "D", "E", "F"],
+              correct_answer: "D",
+            },
+            {
+              id: "32",
+              questionText:
+                "the consequence of damage caused by a natural disaster",
+              options: ["A", "B", "C", "D", "E", "F"],
+              correct_answer: "E",
+            },
+            {
+              id: "33",
+              questionText: "the total distance once crossed by Roman roads",
+              options: ["A", "B", "C", "D", "E", "F"],
+              correct_answer: "F",
+            },
+          ],
+        },
+        {
+          id: "group_7",
+          instruction: "Choose the correct letter, A, B, C or D.",
+          questionType: "multiple_choice",
+          questionText: ``,
+          questions: [
+            {
+              id: "34",
+              questionText:
+                "Which aspect of Roman road building does the writer mention in Section A?",
+              options: [
+                "the strength and permanence of the roads",
+                "the magnificence and practicality of the roads",
+                "the number of people involved in building",
+                "the powerful people who financed the roads",
+              ],
+              correct_answer: "the strength and permanence of the roads",
+            },
+            {
+              id: "35",
+              questionText:
+                "The writer compares the Appian Way to a modern highway because",
+              options: [
+                "it was lengthened over time.",
+                "it took a long time to construct.",
+                "it was used by a large number of travellers.",
+                "it was designed to avoid certain areas.",
+              ],
+              correct_answer: "it was lengthened over time.",
+            },
+            {
+              id: "36",
+              questionText:
+                "The writer compares the Appian Way to a modern highway because",
+              options: [
+                "it was lengthened over time.",
+                "it took a long time to construct.",
+                "it was used by a large number of travellers.",
+                "it was designed to avoid certain areas.",
+              ],
+              correct_answer: "it was used by a large number of travellers.",
+            },
+            {
+              id: "37",
+              questionText:
+                "The writer compares the Appian Way to a modern highway because",
+              options: [
+                "it was lengthened over time.",
+                "it took a long time to construct.",
+                "it was used by a large number of travellers.",
+                "it was designed to avoid certain areas.",
+              ],
+              correct_answer: "it was designed to avoid certain areas.",
+            },
+          ],
+        },
+      ],
+    },
+  ],
+}
