@@ -1,8 +1,8 @@
-import { useCallback, useRef, useState } from 'react';
-import { ResizeHandle } from '../../components/ResizeHandle';
-import { createResizeEventHandlers } from '../utils/resizeEventHandler';
-import { AnswerSection } from './AnswerSection';
-import { TaskPrompt } from './TaskPrompt';
+import { useCallback, useRef, useState } from "react";
+import { ResizeHandle } from "../../components/ResizeHandle";
+import { createResizeEventHandlers } from "../utils/resizeEventHandler";
+import { AnswerSection } from "./AnswerSection";
+import { TaskPrompt } from "./TaskPrompt";
 
 interface TestLayoutProps {
   currentPart: number;
@@ -25,28 +25,31 @@ export const TestLayout = ({
   part2Essay,
   wordCount,
   feedback,
-  onEssayChange
+  onEssayChange,
 }: TestLayoutProps) => {
   const [contentWidth, setContentWidth] = useState(50);
   const [answerWidth, setAnswerWidth] = useState(50);
   const [isResizing, setIsResizing] = useState(false);
   const layoutRef = useRef<HTMLDivElement>(null);
 
-  const handleResizeStart = useCallback((e: React.MouseEvent) => {
-    createResizeEventHandlers(
-      e,
-      layoutRef,
-      contentWidth,
-      answerWidth,
-      {
-        setContentWidth,
-        setAnswerWidth,
-        setIsResizing
-      },
-      'content-prompt',
-      'answer-section'
-    );
-  }, [contentWidth, answerWidth]);
+  const handleResizeStart = useCallback(
+    (e: React.MouseEvent) => {
+      createResizeEventHandlers(
+        e,
+        layoutRef,
+        contentWidth,
+        answerWidth,
+        {
+          setContentWidth,
+          setAnswerWidth,
+          setIsResizing,
+        },
+        "content-prompt",
+        "answer-section",
+      );
+    },
+    [contentWidth, answerWidth],
+  );
 
   return (
     <div className="two-column-layout" ref={layoutRef}>
@@ -56,13 +59,13 @@ export const TestLayout = ({
         promptTitle={promptTitle}
         promptContent={promptContent}
       />
-      
+
       <ResizeHandle
         isResizing={isResizing}
         answerWidth={answerWidth}
         onResizeStart={handleResizeStart}
       />
-      
+
       <AnswerSection
         id="answer-section"
         answerWidth={answerWidth}
@@ -76,4 +79,4 @@ export const TestLayout = ({
       />
     </div>
   );
-}; 
+};

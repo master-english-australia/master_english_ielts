@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import TestFilters from '@/components/TestFilters';
-import TestList from '@/components/TestList';
-import { useMemo, useState } from 'react';
+import TestFilters from "@/components/TestFilters";
+import TestList from "@/components/TestList";
+import { useMemo, useState } from "react";
 
 interface WritingTest {
   id: string;
@@ -15,30 +15,34 @@ interface WritingTest {
 export default function WritingTestsPage() {
   const [tests] = useState<WritingTest[]>([
     {
-      id: 'academic-writing-test',
-      type: 'Academic',
-      title: 'Academic Writing Test',
-      testUrl: '/ielts-tests/writing/academic-writing-test',
-      description: 'Practice both Academic Writing Task 1 (Chart/Graph) and Task 2 (Essay) in a single test.'
-    }
+      id: "academic-writing-test",
+      type: "Academic",
+      title: "Academic Writing Test",
+      testUrl: "/ielts-tests/writing/academic-writing-test",
+      description:
+        "Practice both Academic Writing Task 1 (Chart/Graph) and Task 2 (Essay) in a single test.",
+    },
   ]);
 
   const [filters, setFilters] = useState({
-    search: '',
-    testType: 'All'
+    search: "",
+    testType: "All",
   });
 
-  const handleFilterChange = (newFilters: { search: string; testType: string }) => {
+  const handleFilterChange = (newFilters: {
+    search: string;
+    testType: string;
+  }) => {
     setFilters(newFilters);
   };
 
   const filteredTestList = useMemo(() => {
-    return tests.filter(test => {
+    return tests.filter((test) => {
       // Filter by test type
-      if (filters.testType !== 'All' && test.type !== filters.testType) {
+      if (filters.testType !== "All" && test.type !== filters.testType) {
         return false;
       }
-      
+
       // Filter by search query
       if (filters.search) {
         const searchLower = filters.search.toLowerCase();
@@ -47,7 +51,7 @@ export default function WritingTestsPage() {
           test.description.toLowerCase().includes(searchLower)
         );
       }
-      
+
       return true;
     });
   }, [tests, filters]);
@@ -59,13 +63,13 @@ export default function WritingTestsPage() {
           <TestFilters onFilterChange={handleFilterChange} />
         </div>
         <div className="main-content">
-          <TestList 
-            tests={filteredTestList} 
-            title="Writing Tests" 
+          <TestList
+            tests={filteredTestList}
+            title="Writing Tests"
             description="Practice your IELTS writing skills with these tasks."
           />
         </div>
       </div>
     </div>
   );
-} 
+}

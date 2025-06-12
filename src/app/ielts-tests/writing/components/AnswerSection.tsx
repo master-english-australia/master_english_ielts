@@ -1,6 +1,6 @@
-import { FloatingLabelTextarea } from '@/components/FloatingLabelTextarea';
-import { FeedbackView } from '../../components/FeedbackView';
-import { Feedback } from '../types/feedback';
+import { FloatingLabelTextarea } from "@/components/FloatingLabelTextarea";
+import { FeedbackView } from "../../components/FeedbackView";
+import { Feedback } from "../types/feedback";
 
 interface AnswerSectionProps {
   id: string;
@@ -23,16 +23,16 @@ export const AnswerSection = ({
   part2Essay,
   wordCount,
   feedback,
-  onEssayChange
+  onEssayChange,
 }: AnswerSectionProps) => {
   return (
-    <div 
+    <div
       id={id}
       className="answer-section"
       style={{
         width: `${answerWidth}%`,
         maxWidth: `${answerWidth}%`,
-        flex: `0 0 ${answerWidth}%`
+        flex: `0 0 ${answerWidth}%`,
       }}
     >
       {!isSubmitted ? (
@@ -40,11 +40,11 @@ export const AnswerSection = ({
           <FloatingLabelTextarea
             value={currentPart === 1 ? part1Essay : part2Essay}
             onChange={(e) => onEssayChange(currentPart, e.target.value)}
-            label={`Part ${currentPart === 1 ? '1' : '2'} Answer`}
-            placeholder={`Enter your part ${currentPart === 1 ? '1' : '2'} answer...`}
+            label={`Part ${currentPart === 1 ? "1" : "2"} Answer`}
+            placeholder={`Enter your part ${currentPart === 1 ? "1" : "2"} answer...`}
             disabled={isSubmitted}
           />
-          
+
           <div className="word-count">Word Count: {wordCount}</div>
         </div>
       ) : (
@@ -52,4 +52,4 @@ export const AnswerSection = ({
       )}
     </div>
   );
-}; 
+};

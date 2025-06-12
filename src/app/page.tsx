@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import { useEffect } from 'react';
+import Link from "next/link";
+import { useEffect } from "react";
 
 interface FeatureProps {
   title: string;
@@ -21,40 +21,45 @@ function FeatureCard({ title, description, link }: FeatureProps) {
 
 export default function Home() {
   useEffect(() => {
-    console.log('IELTS Master application loaded');
+    console.log("IELTS Master application loaded");
   }, []);
 
   const features = [
     {
-      title: 'Speaking Practice',
-      description: 'Practice your IELTS speaking skills with AI-powered conversations.',
-      link: '/ielts-tests/speaking'
+      title: "Speaking Practice",
+      description:
+        "Practice your IELTS speaking skills with AI-powered conversations.",
+      link: "/ielts-tests/speaking",
     },
     {
-      title: 'Writing Assessment',
-      description: 'Get your IELTS essays evaluated with detailed feedback.',
-      link: '/ielts-tests/writing'
+      title: "Writing Assessment",
+      description: "Get your IELTS essays evaluated with detailed feedback.",
+      link: "/ielts-tests/writing",
     },
     {
-      title: 'Reading Exercises',
-      description: 'Improve your reading comprehension with IELTS-style passages.',
-      link: '/ielts-tests/reading'
+      title: "Reading Exercises",
+      description:
+        "Improve your reading comprehension with IELTS-style passages.",
+      link: "/ielts-tests/reading",
     },
     {
-      title: 'Listening Tests',
-      description: 'Enhance your listening skills with authentic IELTS audio tests.',
-      link: '/ielts-tests/listening'
+      title: "Listening Tests",
+      description:
+        "Enhance your listening skills with authentic IELTS audio tests.",
+      link: "/ielts-tests/listening",
     },
   ];
 
   return (
     <main className="design-mockup">
       <h1>IELTS Master</h1>
-      <p>Prepare for your IELTS exam with our comprehensive practice platform</p>
-      
+      <p>
+        Prepare for your IELTS exam with our comprehensive practice platform
+      </p>
+
       <div className="feature-grid">
         {features.map((feature, index) => (
-          <FeatureCard 
+          <FeatureCard
             key={index}
             title={feature.title}
             description={feature.description}
@@ -64,4 +69,4 @@ export default function Home() {
       </div>
     </main>
   );
-} 
+}

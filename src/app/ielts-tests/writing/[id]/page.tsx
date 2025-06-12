@@ -1,32 +1,32 @@
-'use client';
+"use client";
 
-import '@/styles/writing-test.css';
-import { useParams, useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
-import { PartSwitcher } from '../../components/PartSwitcher';
-import { TaskRequirements } from '../../components/TaskRequirements';
-import { TestHeader } from '../../components/TestHeader';
-import { TestLayout } from '../components/TestLayout';
-import { writingTests } from '../mockData';
-import { Feedback } from '../types/feedback';
-import { calculateFeedback } from '../utils/feedbackHandler';
-import { countWords } from '../utils/wordCounter';
+import "@/styles/writing-test.css";
+import { useParams, useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import { PartSwitcher } from "../../components/PartSwitcher";
+import { TaskRequirements } from "../../components/TaskRequirements";
+import { TestHeader } from "../../components/TestHeader";
+import { TestLayout } from "../components/TestLayout";
+import { writingTests } from "../mockData";
+import { Feedback } from "../types/feedback";
+import { calculateFeedback } from "../utils/feedbackHandler";
+import { countWords } from "../utils/wordCounter";
 
 export default function WritingTestPage() {
   const params = useParams();
   const router = useRouter();
   const testId = params.id as string;
   const test = writingTests;
-  
+
   useEffect(() => {
     if (!test) {
       console.error(`Invalid test ID: ${testId}`);
-      router.push('/ielts-tests/writing');
+      router.push("/ielts-tests/writing");
     }
   }, [test, testId, router]);
 
-  const [part1Essay, setPart1Essay] = useState('');
-  const [part2Essay, setPart2Essay] = useState('');
+  const [part1Essay, setPart1Essay] = useState("");
+  const [part2Essay, setPart2Essay] = useState("");
   const [wordCount, setWordCount] = useState(0);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [currentPart, setCurrentPart] = useState(1);
@@ -57,16 +57,13 @@ export default function WritingTestPage() {
 
   return (
     <div className="writing-test-page">
-      <TestHeader 
-        timeLimit={test.timeLimit} 
-        onTimeUp={handleSubmitEssay} 
-      />
-      
+      <TestHeader timeLimit={test.timeLimit} onTimeUp={handleSubmitEssay} />
+
       <TaskRequirements
         currentPart={currentPart}
         instructions={test.part1.instructions}
       />
-      
+
       <TestLayout
         currentPart={currentPart}
         promptTitle={test.part1.promptTitle}
@@ -88,4 +85,4 @@ export default function WritingTestPage() {
       />
     </div>
   );
-} 
+}

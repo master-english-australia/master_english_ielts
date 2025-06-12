@@ -25,7 +25,7 @@ body {
 }
 
 /* Remove padding for test pages */
-#app:has(.reading-test-page), 
+#app:has(.reading-test-page),
 #app:has(.listening-test-page) {
   max-width: 100%;
   padding: 0;
@@ -69,7 +69,10 @@ p {
   font-weight: 600;
   font-size: 1.1rem;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    background-color 0.3s ease;
 }
 
 .cta-button:hover {
@@ -90,7 +93,9 @@ p {
   background-color: #f1f5f9;
   border-radius: 6px;
   padding: 20px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
   cursor: pointer;
   display: flex;
   flex-direction: column;
@@ -147,7 +152,7 @@ p {
   .feature-grid {
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   }
-  
+
   .design-mockup {
     padding: 20px;
   }
@@ -157,19 +162,19 @@ p {
   .feature-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .feature-card {
     min-height: 180px;
   }
-  
+
   #app {
     padding: 15px;
   }
-  
+
   .design-mockup {
     padding: 15px;
   }
 }
 
 /* Import IELTS Tests styles */
-@import './ielts-tests.css'; 
+@import "./ielts-tests.css";

@@ -1,8 +1,8 @@
 export enum QuestionType {
-  MultipleChoice = 'multiple_choice',
-  Matching = 'matching',
-  TrueFalseNotGiven = 'true_false_not_given',
-  TextInput = 'text_input',
+  MultipleChoice = "multiple_choice",
+  Matching = "matching",
+  TrueFalseNotGiven = "true_false_not_given",
+  TextInput = "text_input",
 }
 
 export interface Question {
@@ -11,4 +11,3 @@ export interface Question {
   options?: string[];
   correctAnswer: string;
 }
-

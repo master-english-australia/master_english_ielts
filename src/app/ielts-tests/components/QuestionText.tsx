@@ -1,6 +1,6 @@
-import { Box, Typography } from '@mui/material';
-import React from 'react';
-import { QuestionNumberBox } from './QuestionNumberBox';
+import { Box, Typography } from "@mui/material";
+import React from "react";
+import { QuestionNumberBox } from "./QuestionNumberBox";
 
 type Props = {
   number: string;
@@ -8,8 +8,8 @@ type Props = {
 };
 
 export const QuestionText: React.FC<Props> = ({ number, text }) => (
-  <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+  <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
     <QuestionNumberBox questionNumber={number} />
-    <Typography sx={{ textAlign: 'left' }}>{text}</Typography>
+    <Typography sx={{ textAlign: "left" }}>{text}</Typography>
   </Box>
 );

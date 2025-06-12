@@ -5,20 +5,20 @@ interface TaskPromptProps {
   promptContent: string;
 }
 
-export const TaskPrompt = ({ 
+export const TaskPrompt = ({
   id,
-  contentWidth, 
-  promptTitle, 
-  promptContent 
+  contentWidth,
+  promptTitle,
+  promptContent,
 }: TaskPromptProps) => {
   return (
-    <div 
+    <div
       id={id}
       className="writing-test-content"
       style={{
         width: `${contentWidth}%`,
         maxWidth: `${contentWidth}%`,
-        flex: `0 0 ${contentWidth}%`
+        flex: `0 0 ${contentWidth}%`,
       }}
     >
       <div className="task-prompt">
@@ -27,4 +27,4 @@ export const TaskPrompt = ({
       </div>
     </div>
   );
-}; 
+};

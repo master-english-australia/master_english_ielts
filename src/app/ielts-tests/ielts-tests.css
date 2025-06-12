@@ -125,12 +125,12 @@
   .page-content {
     flex-direction: column;
   }
-  
+
   .sidebar {
     width: 100%;
   }
-  
+
   .test-list {
     grid-template-columns: 1fr;
   }
-} 
+}

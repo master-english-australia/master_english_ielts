@@ -129,7 +129,10 @@
   border-right: none;
   overflow-y: auto;
   height: calc(100vh - 120px);
-  transition: width 0.1s ease, flex 0.1s ease, max-width 0.1s ease;
+  transition:
+    width 0.1s ease,
+    flex 0.1s ease,
+    max-width 0.1s ease;
 }
 
 .resize-handle {
@@ -144,7 +147,8 @@
   transition: background-color 0.2s ease;
 }
 
-.resize-handle:hover, .resize-handle.active {
+.resize-handle:hover,
+.resize-handle.active {
   background-color: #0077ff;
   width: 2px;
 }
@@ -169,7 +173,12 @@
   top: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(to right, rgba(255,255,255,0.1), rgba(255,255,255,0.3), rgba(255,255,255,0.1));
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0.3),
+    rgba(255, 255, 255, 0.1)
+  );
   animation: shine 1.5s infinite;
 }
 
@@ -192,7 +201,10 @@
   flex: 0 0 50%;
   overflow-y: auto;
   height: calc(100vh - 120px);
-  transition: width 0.1s ease, flex 0.1s ease, max-width 0.1s ease;
+  transition:
+    width 0.1s ease,
+    flex 0.1s ease,
+    max-width 0.1s ease;
 }
 
 .task-prompt {
@@ -408,7 +420,7 @@
   .two-column-layout {
     flex-direction: column;
   }
-  
+
   .writing-test-content {
     width: 100%;
     max-width: 100%;
@@ -417,7 +429,7 @@
     border-right: none;
     border-bottom: 1px solid #e0e0e0;
   }
-  
+
   .answer-section {
     width: 100%;
     max-width: 100%;
@@ -479,4 +491,4 @@
 
 .nav-arrow:hover:not(:disabled) {
   opacity: 0.8;
-} 
+}

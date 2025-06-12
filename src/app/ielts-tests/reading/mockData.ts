@@ -29,107 +29,124 @@ export const readingTests = {
         • The following equipment is essential: A digital SLR or bridge camera with its instruction manual, batteries and charger; memory cards; comfortable walking footwear with good grip; warm outdoor clothing and waterproofs.<br/>
         • Recommended equipment: A tripod, filters, a laptop with editing software and charger.</p>
         </div>`,
-      instruction: "This is a mock test for the IELTS Reading section. It is designed to help you practice your reading skills and prepare for the real test.",
+      instruction:
+        "This is a mock test for the IELTS Reading section. It is designed to help you practice your reading skills and prepare for the real test.",
       question_groups: [
         {
           id: "group_1",
-          instruction: "Look at the advertisements for ice-cream makers A–F. For which ice-cream maker are the following statements true?",
+          instruction:
+            "Look at the advertisements for ice-cream makers A–F. For which ice-cream maker are the following statements true?",
           questionType: "matching",
           questions: [
             {
               id: "1",
-              questionText: "Users of this machine will need to put some physical effort into making ice cream.",
+              questionText:
+                "Users of this machine will need to put some physical effort into making ice cream.",
               options: ["A", "B", "C", "D", "E", "F"],
-              correct_answer: "B"
+              correct_answer: "B",
             },
             {
               id: "2",
-              questionText: "This machine can be fitted onto an existing kitchen appliance.",
+              questionText:
+                "This machine can be fitted onto an existing kitchen appliance.",
               options: ["A", "B", "C", "D", "E", "F"],
-              correct_answer: "F"
+              correct_answer: "F",
             },
             {
               id: "3",
-              questionText: "This machine is the most expensive in the selection.",
+              questionText:
+                "This machine is the most expensive in the selection.",
               options: ["A", "B", "C", "D", "E", "F"],
-              correct_answer: "A"
+              correct_answer: "A",
             },
             {
               id: "4",
-              questionText: "This machine is the most expensive in the selection.",
+              questionText:
+                "This machine is the most expensive in the selection.",
               options: ["A", "B", "C", "D", "E", "F"],
-              correct_answer: "A"
+              correct_answer: "A",
             },
             {
               id: "5",
-              questionText: "This machine is the most expensive in the selection.",
+              questionText:
+                "This machine is the most expensive in the selection.",
               options: ["A", "B", "C", "D", "E", "F"],
-              correct_answer: "A"
+              correct_answer: "A",
             },
             {
               id: "6",
-              questionText: "This machine is the most expensive in the selection.",
+              questionText:
+                "This machine is the most expensive in the selection.",
               options: ["A", "B", "C", "D", "E", "F"],
-              correct_answer: "A"
+              correct_answer: "A",
             },
             {
               id: "7",
-              questionText: "This machine is the most expensive in the selection.",
+              questionText:
+                "This machine is the most expensive in the selection.",
               options: ["A", "B", "C", "D", "E", "F"],
-              correct_answer: "A"
-            }
-          ]
+              correct_answer: "A",
+            },
+          ],
         },
         {
           id: "group_2",
-          instruction: "Do the following statements agree with the information given in the text?",
+          instruction:
+            "Do the following statements agree with the information given in the text?",
           questionType: "true_false_not_given",
           questions: [
             {
               id: "8",
-              questionText: "Ice cream makers were first invented in the 20th century.",
+              questionText:
+                "Ice cream makers were first invented in the 20th century.",
               options: ["TRUE", "FALSE", "NOT GIVEN"],
-              correct_answer: "FALSE"
+              correct_answer: "FALSE",
             },
             {
               id: "9",
-              questionText: "People found it difficult to clean older ice cream makers.",
+              questionText:
+                "People found it difficult to clean older ice cream makers.",
               options: ["TRUE", "FALSE", "NOT GIVEN"],
-              correct_answer: "TRUE"
+              correct_answer: "TRUE",
             },
             {
               id: "10",
-              questionText: "Modern ice cream makers are only suitable for professional use.",
+              questionText:
+                "Modern ice cream makers are only suitable for professional use.",
               options: ["TRUE", "FALSE", "NOT GIVEN"],
-              correct_answer: "FALSE"
+              correct_answer: "FALSE",
             },
             {
               id: "11",
-              questionText: "Modern ice cream makers are only suitable for professional use.",
+              questionText:
+                "Modern ice cream makers are only suitable for professional use.",
               options: ["TRUE", "FALSE", "NOT GIVEN"],
-              correct_answer: "FALSE"
+              correct_answer: "FALSE",
             },
             {
               id: "12",
-              questionText: "Modern ice cream makers are only suitable for professional use.",
+              questionText:
+                "Modern ice cream makers are only suitable for professional use.",
               options: ["TRUE", "FALSE", "NOT GIVEN"],
-              correct_answer: "FALSE"
+              correct_answer: "FALSE",
             },
             {
               id: "13",
-              questionText: "Modern ice cream makers are only suitable for professional use.",
+              questionText:
+                "Modern ice cream makers are only suitable for professional use.",
               options: ["TRUE", "FALSE", "NOT GIVEN"],
-              correct_answer: "FALSE"
+              correct_answer: "FALSE",
             },
             {
               id: "14",
-              questionText: "Modern ice cream makers are only suitable for professional use.",
+              questionText:
+                "Modern ice cream makers are only suitable for professional use.",
               options: ["TRUE", "FALSE", "NOT GIVEN"],
-              correct_answer: "FALSE"
-            }
-          ]
-        }
-      ]
+              correct_answer: "FALSE",
+            },
+          ],
+        },
+      ],
     },
     {
       id: "section_2",
@@ -186,43 +203,46 @@ export const readingTests = {
       <p><strong>G</strong> While many of us shoot sunsets, the period of dusk also provides an opportunity to use the ambient light low in the sky as a backdrop to photographing foreground subjects in varying stages of illumination, or even as shadowy outlines against the fading sky. The variety of possible subjects includes ships at sea, flocks of low-flying birds, trees, windmills, skyscrapers and high bridges. These are all well known by day, but against a night sky at dusk they lack colour, so any compositional strength is determined by the graphic appeal of their distinct and recognisable shapes.</p>
     </div>
   </div>`,
-      instruction: "This is a mock test for the IELTS Reading section. It is designed to help you practice your reading skills and prepare for the real test.",
+      instruction:
+        "This is a mock test for the IELTS Reading section. It is designed to help you practice your reading skills and prepare for the real test.",
       question_groups: [
         {
           id: "group_4",
-          instruction: "<p>Complete the sentences below. Choose <strong>ONE WORD ONLY</strong> from the text for each answer.",
+          instruction:
+            "<p>Complete the sentences below. Choose <strong>ONE WORD ONLY</strong> from the text for each answer.",
           questionType: "text_input",
           questionText: `<li>Parking is limited, so the use of alternative methods of transport and the ______ of cars is encouraged.</li><li>Staff with the highest ______ are given parking spaces first.</li><li>Some parking spaces are reserved for company vehicles during the ______ but may be used by staff at other times.</li><li>If an employee leaves the company permanently, their parking space will normally be given to their ______</li><li>If an employee takes extended leave, their parking space will be given to the person who provides ______ for the absent employee.</li><li>All ______ about car parking should be sent to the HR Manager.</li>`,
           questions: [
             {
               id: "15",
-              correct_answer: "parking"
+              correct_answer: "parking",
             },
             {
               id: "16",
-              correct_answer: "highest"
+              correct_answer: "highest",
             },
             {
               id: "17",
-              correct_answer: "weekend"
+              correct_answer: "weekend",
             },
             {
               id: "18",
-              correct_answer: "replacement"
+              correct_answer: "replacement",
             },
             {
               id: "19",
-              correct_answer: "replacement"
+              correct_answer: "replacement",
             },
             {
               id: "20",
-              correct_answer: "HR Manager"
-            }
-          ]
+              correct_answer: "HR Manager",
+            },
+          ],
         },
         {
           id: "group_5",
-          instruction: "<p>Complete the sentences below. Choose <strong>ONE WORD ONLY</strong> from the text for each answer.",
+          instruction:
+            "<p>Complete the sentences below. Choose <strong>ONE WORD ONLY</strong> from the text for each answer.</p>",
           questionType: "text_input",
           questionText: `
 <p><strong>Making sure offices are safe</strong></p>
@@ -238,40 +258,40 @@ export const readingTests = {
 <p><strong>To prevent injuries due to posture and repetitive movement ensure that</strong><br>
 • office furniture is ______<br>
 • ______ are provided for documents<br>
-• the mouse is placed next to the computer keyboard</p></div>
+• the mouse is placed next to the computer keyboard</p>
           `,
           questions: [
             {
               id: "21",
-              correct_answer: "parking"
+              correct_answer: "parking",
             },
             {
               id: "22",
-              correct_answer: "highest"
+              correct_answer: "highest",
             },
             {
               id: "23",
-              correct_answer: "weekend"
+              correct_answer: "weekend",
             },
             {
               id: "24",
-              correct_answer: "replacement"
+              correct_answer: "replacement",
             },
             {
               id: "25",
-              correct_answer: "replacement"
+              correct_answer: "replacement",
             },
             {
               id: "26",
-              correct_answer: "HR Manager"
+              correct_answer: "HR Manager",
             },
             {
               id: "27",
-              correct_answer: "HR Manager"
-            }
-          ]
-        }
-      ]
+              correct_answer: "HR Manager",
+            },
+          ],
+        },
+      ],
     },
     {
       id: "section_3",
@@ -287,50 +307,54 @@ export const readingTests = {
 <p><strong>F</strong> Lasting symbols of the imagination of Roman engineers are the many arched bridges and viaducts still standing today that helped achieve the engineers’ straight-line goal. The Romans built to last, and the piers of bridges which crossed rivers, for example, were often built with a resistant prow-shape and used massive durable blocks of stone, while the upper parts might be built of stone blocks strengthened with iron clamps. Perhaps the most impressive bridge was at Narni; 180 metres long, 8 metres wide and as high as 33 metres, it had 4 massive semicircular arches, one of which, stretching 32.1 metres, ranks as one of the longest block-arch spans in the ancient world. Recently hit by earthquakes, it is now having to undergo restoration work to repair the effects.</p>
 <p>Such was the engineering and surveying skill of the Romans that many of their roads have provided the basis for hundreds of today’s routes across Europe and the Middle East. Many roads in Italy still use the original Roman name for certain stretches, and some bridges, such as at Tre Ponti in Venice, still carry road traffic today.</p>
 </div>`,
-      instruction: "This is a mock test for the IELTS Reading section. It is designed to help you practice your reading skills and prepare for the real test.",
+      instruction:
+        "This is a mock test for the IELTS Reading section. It is designed to help you practice your reading skills and prepare for the real test.",
       question_groups: [
         {
           id: "group_6",
-          instruction: "The text has six sections, A-F. Which section mentions the following?",
+          instruction:
+            "The text has six sections, A-F. Which section mentions the following?",
           questionType: "matching",
           questions: [
             {
               id: "28",
               questionText: "the various functions of Roman roads",
               options: ["A", "B", "C", "D", "E", "F"],
-              correct_answer: "A"
+              correct_answer: "A",
             },
             {
               id: "29",
-              questionText: "reference to some current remains of Roman road building",
+              questionText:
+                "reference to some current remains of Roman road building",
               options: ["A", "B", "C", "D", "E", "F"],
-              correct_answer: "B"
+              correct_answer: "B",
             },
             {
               id: "30",
               questionText: "a description of preparations for building a road",
               options: ["A", "B", "C", "D", "E", "F"],
-              correct_answer: "C"
+              correct_answer: "C",
             },
             {
               id: "31",
               questionText: "the period in history when road building began",
               options: ["A", "B", "C", "D", "E", "F"],
-              correct_answer: "D"
+              correct_answer: "D",
             },
             {
               id: "32",
-              questionText: "the consequence of damage caused by a natural disaster",
+              questionText:
+                "the consequence of damage caused by a natural disaster",
               options: ["A", "B", "C", "D", "E", "F"],
-              correct_answer: "E"
+              correct_answer: "E",
             },
             {
               id: "33",
               questionText: "the total distance once crossed by Roman roads",
               options: ["A", "B", "C", "D", "E", "F"],
-              correct_answer: "F"
-            }
-          ]
+              correct_answer: "F",
+            },
+          ],
         },
         {
           id: "group_7",
@@ -340,31 +364,55 @@ export const readingTests = {
           questions: [
             {
               id: "34",
-              questionText: "Which aspect of Roman road building does the writer mention in Section A?",
-              options: ["the strength and permanence of the roads", "the magnificence and practicality of the roads", "the number of people involved in building", "the powerful people who financed the roads"],
-              correct_answer: "the strength and permanence of the roads"
+              questionText:
+                "Which aspect of Roman road building does the writer mention in Section A?",
+              options: [
+                "the strength and permanence of the roads",
+                "the magnificence and practicality of the roads",
+                "the number of people involved in building",
+                "the powerful people who financed the roads",
+              ],
+              correct_answer: "the strength and permanence of the roads",
             },
             {
               id: "35",
-              questionText: "The writer compares the Appian Way to a modern highway because",
-              options: ["it was lengthened over time.", "it took a long time to construct.", "it was used by a large number of travellers.", "it was designed to avoid certain areas."],
-              correct_answer: "it was lengthened over time."
+              questionText:
+                "The writer compares the Appian Way to a modern highway because",
+              options: [
+                "it was lengthened over time.",
+                "it took a long time to construct.",
+                "it was used by a large number of travellers.",
+                "it was designed to avoid certain areas.",
+              ],
+              correct_answer: "it was lengthened over time.",
             },
             {
               id: "36",
-              questionText: "The writer compares the Appian Way to a modern highway because",
-              options: ["it was lengthened over time.", "it took a long time to construct.", "it was used by a large number of travellers.", "it was designed to avoid certain areas."],
-              correct_answer: "it was used by a large number of travellers."
+              questionText:
+                "The writer compares the Appian Way to a modern highway because",
+              options: [
+                "it was lengthened over time.",
+                "it took a long time to construct.",
+                "it was used by a large number of travellers.",
+                "it was designed to avoid certain areas.",
+              ],
+              correct_answer: "it was used by a large number of travellers.",
             },
             {
               id: "37",
-              questionText: "The writer compares the Appian Way to a modern highway because",
-              options: ["it was lengthened over time.", "it took a long time to construct.", "it was used by a large number of travellers.", "it was designed to avoid certain areas."],
-              correct_answer: "it was designed to avoid certain areas."
-            }
-          ]
-        }
-      ]
-    }
-  ]
-}; 
+              questionText:
+                "The writer compares the Appian Way to a modern highway because",
+              options: [
+                "it was lengthened over time.",
+                "it took a long time to construct.",
+                "it was used by a large number of travellers.",
+                "it was designed to avoid certain areas.",
+              ],
+              correct_answer: "it was designed to avoid certain areas.",
+            },
+          ],
+        },
+      ],
+    },
+  ],
+};

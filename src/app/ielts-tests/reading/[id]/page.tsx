@@ -1,25 +1,25 @@
-'use client';
+"use client";
 
-import '@/styles/writing-test.css';
-import { useParams, useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
-import { PartSwitcher } from '../../components/PartSwitcher';
-import { TaskRequirements } from '../../components/TaskRequirements';
-import { TestHeader } from '../../components/TestHeader';
-import { Feedback } from '../../writing/types/feedback';
-import { TestLayout } from '../components/TestLayout';
-import { readingTests } from '../mockData';
+import "@/styles/writing-test.css";
+import { useParams, useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import { PartSwitcher } from "../../components/PartSwitcher";
+import { TaskRequirements } from "../../components/TaskRequirements";
+import { TestHeader } from "../../components/TestHeader";
+import { Feedback } from "../../writing/types/feedback";
+import { TestLayout } from "../components/TestLayout";
+import { readingTests } from "../mockData";
 
 export default function ReadingTestPage() {
   const params = useParams();
   const router = useRouter();
   const testId = params.id as string;
   const test = readingTests;
-  
+
   useEffect(() => {
     if (!test) {
       console.error(`Invalid test ID: ${testId}`);
-      router.push('/ielts-tests/speaking');
+      router.push("/ielts-tests/speaking");
     }
   }, [test, testId, router]);
 
@@ -59,22 +59,22 @@ export default function ReadingTestPage() {
   }
 
   const currentPartData = test.parts[currentPart - 1];
-  const currentQuestionData = currentPartData.question_groups[currentQuestion - 1];
+  const currentQuestionData =
+    currentPartData.question_groups[currentQuestion - 1];
   const isFirstQuestion = currentPart === 1 && currentQuestion === 1;
-  const isLastQuestion = currentPart === test.parts.length && currentQuestion === currentPartData.question_groups.length;
+  const isLastQuestion =
+    currentPart === test.parts.length &&
+    currentQuestion === currentPartData.question_groups.length;
 
   return (
     <div className="writing-test-page">
-      <TestHeader 
-        timeLimit={test.time_limit} 
-        onTimeUp={handleSubmitEssay} 
-      />
-      
+      <TestHeader timeLimit={test.time_limit} onTimeUp={handleSubmitEssay} />
+
       <TaskRequirements
         currentPart={currentPart}
         instructions={currentPartData.instruction}
       />
-      
+
       <TestLayout
         currentPart={currentPart}
         isSubmitted={isSubmitted}
@@ -93,4 +93,4 @@ export default function ReadingTestPage() {
       />
     </div>
   );
-} 
+}

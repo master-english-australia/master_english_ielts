@@ -1,13 +1,13 @@
-'use client';
+"use client";
 
-import '@/app/ielts-tests/writing/success/SuccessPage.css';
-import { useRouter } from 'next/navigation';
+import "@/app/ielts-tests/writing/success/SuccessPage.css";
+import { useRouter } from "next/navigation";
 
 export default function SuccessPage() {
   const router = useRouter();
 
   const handleBackToTests = () => {
-    router.push('/ielts-tests/writing');
+    router.push("/ielts-tests/writing");
   };
 
   return (
@@ -21,4 +21,4 @@ export default function SuccessPage() {
       </div>
     </div>
   );
-} 
+}

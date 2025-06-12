@@ -7,4 +7,3 @@ export interface QuestionGroup {
   questions: Question[];
   questionText?: string;
 }
-

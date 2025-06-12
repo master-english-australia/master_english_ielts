@@ -1,4 +1,4 @@
-import { formatTime, useTimer } from '../writing/utils/timerHandler';
+import { formatTime, useTimer } from "../writing/utils/timerHandler";
 
 interface TestHeaderProps {
   timeLimit: number;
@@ -16,4 +16,4 @@ export const TestHeader = ({ timeLimit, onTimeUp }: TestHeaderProps) => {
       </span>
     </div>
   );
-}; 
+};

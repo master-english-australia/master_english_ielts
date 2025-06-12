@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import { useState } from 'react';
+import Link from "next/link";
+import { useState } from "react";
 
 export interface TestCardProps {
   type: string;
@@ -10,12 +10,17 @@ export interface TestCardProps {
   questionType?: string;
 }
 
-export default function TestCard({ type, title, testUrl, questionType }: TestCardProps) {
+export default function TestCard({
+  type,
+  title,
+  testUrl,
+  questionType,
+}: TestCardProps) {
   const [isHovered, setIsHovered] = useState(false);
-  
+
   return (
-    <div 
-      className={`test-card ${isHovered ? 'hover' : ''}`}
+    <div
+      className={`test-card ${isHovered ? "hover" : ""}`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -29,4 +34,4 @@ export default function TestCard({ type, title, testUrl, questionType }: TestCar
       </Link>
     </div>
   );
-} 
+}

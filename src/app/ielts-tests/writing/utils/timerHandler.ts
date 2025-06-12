@@ -1,11 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 
 export const formatTime = (seconds: number) => {
   const hours = Math.floor(seconds / 3600);
   const minutes = Math.floor((seconds % 3600) / 60);
   const secs = seconds % 60;
-  
-  return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+
+  return `${hours.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}`;
 };
 
 export const useTimer = (initialTime: number, onTimeUp: () => void) => {
@@ -13,7 +13,7 @@ export const useTimer = (initialTime: number, onTimeUp: () => void) => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setTimer(prevTimer => {
+      setTimer((prevTimer) => {
         if (prevTimer <= 1) {
           clearInterval(interval);
           return 0;
@@ -34,4 +34,4 @@ export const useTimer = (initialTime: number, onTimeUp: () => void) => {
   }, [timer, onTimeUp]);
 
   return timer;
-}; 
+};

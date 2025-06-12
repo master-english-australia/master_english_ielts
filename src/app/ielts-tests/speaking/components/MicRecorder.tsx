@@ -1,14 +1,17 @@
-import MicIcon from '@mui/icons-material/Mic';
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import { useRef, useState } from 'react';
+import MicIcon from "@mui/icons-material/Mic";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import { useRef, useState } from "react";
 
 interface MicRecorderProps {
   isSubmitted: boolean;
   onAudioRecorded?: (audioURL: string | null) => void;
 }
 
-export const MicRecorder = ({ isSubmitted, onAudioRecorded }: MicRecorderProps) => {
+export const MicRecorder = ({
+  isSubmitted,
+  onAudioRecorded,
+}: MicRecorderProps) => {
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
   const [record, setRecord] = useState(false);
   const [audioURL, setAudioURL] = useState<string | null>(null);
@@ -29,7 +32,7 @@ export const MicRecorder = ({ isSubmitted, onAudioRecorded }: MicRecorderProps) 
         setAudioChunks((prev) => [...prev, e.data]);
       };
       mediaRecorder.onstop = () => {
-        const blob = new Blob(audioChunks.concat(), { type: 'audio/webm' });
+        const blob = new Blob(audioChunks.concat(), { type: "audio/webm" });
         const url = URL.createObjectURL(blob);
         setAudioURL(url);
         setRecord(false);
@@ -38,7 +41,7 @@ export const MicRecorder = ({ isSubmitted, onAudioRecorded }: MicRecorderProps) 
         if (onAudioRecorded) onAudioRecorded(url);
       };
     } catch (err) {
-      setError('マイクの利用が許可されていません。');
+      setError("マイクの利用が許可されていません。");
       setRecord(false);
     }
   };
@@ -50,10 +53,17 @@ export const MicRecorder = ({ isSubmitted, onAudioRecorded }: MicRecorderProps) 
   };
 
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mb: 3 }}>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        mb: 3,
+      }}
+    >
       <Button
-        variant={record ? 'contained' : 'outlined'}
-        color={record ? 'error' : 'primary'}
+        variant={record ? "contained" : "outlined"}
+        color={record ? "error" : "primary"}
         onClick={record ? stopRecording : startRecording}
         sx={{
           mt: 2,
@@ -61,24 +71,20 @@ export const MicRecorder = ({ isSubmitted, onAudioRecorded }: MicRecorderProps) 
           height: 64,
           minWidth: 0,
           minHeight: 0,
-          borderRadius: '50%',
+          borderRadius: "50%",
           p: 0,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
           boxShadow: record ? 4 : 1,
           fontSize: 32,
         }}
         disabled={isSubmitted}
       >
-        <MicIcon sx={{ fontSize: 36, color: record ? 'white' : 'inherit' }} />
+        <MicIcon sx={{ fontSize: 36, color: record ? "white" : "inherit" }} />
       </Button>
-      {audioURL && (
-        <audio controls src={audioURL} style={{ marginTop: 12 }} />
-      )}
-      {error && (
-        <Box sx={{ color: 'red', mt: 1 }}>{error}</Box>
-      )}
+      {audioURL && <audio controls src={audioURL} style={{ marginTop: 12 }} />}
+      {error && <Box sx={{ color: "red", mt: 1 }}>{error}</Box>}
     </Box>
   );
-}; 
+};

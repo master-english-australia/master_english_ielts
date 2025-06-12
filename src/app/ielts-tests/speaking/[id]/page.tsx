@@ -1,25 +1,25 @@
-'use client';
+"use client";
 
-import '@/styles/writing-test.css';
-import { useParams, useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
-import { PartSwitcher } from '../../components/PartSwitcher';
-import { TaskRequirements } from '../../components/TaskRequirements';
-import { TestHeader } from '../../components/TestHeader';
-import { Feedback } from '../../writing/types/feedback';
-import { TestLayout } from '../components/TestLayout';
-import { speakingTests } from '../mockData';
+import "@/styles/writing-test.css";
+import { useParams, useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import { PartSwitcher } from "../../components/PartSwitcher";
+import { TaskRequirements } from "../../components/TaskRequirements";
+import { TestHeader } from "../../components/TestHeader";
+import { Feedback } from "../../writing/types/feedback";
+import { TestLayout } from "../components/TestLayout";
+import { speakingTests } from "../mockData";
 
 export default function SpeakingTestPage() {
   const params = useParams();
   const router = useRouter();
   const testId = params.id as string;
   const test = speakingTests[testId as keyof typeof speakingTests];
-  
+
   useEffect(() => {
     if (!test) {
       console.error(`Invalid test ID: ${testId}`);
-      router.push('/ielts-tests/speaking');
+      router.push("/ielts-tests/speaking");
     }
   }, [test, testId, router]);
 
@@ -61,20 +61,19 @@ export default function SpeakingTestPage() {
   const currentPartData = test.parts[currentPart - 1];
   const currentQuestionData = currentPartData.questions[currentQuestion - 1];
   const isFirstQuestion = currentPart === 1 && currentQuestion === 1;
-  const isLastQuestion = currentPart === test.parts.length && currentQuestion === currentPartData.questions.length;
+  const isLastQuestion =
+    currentPart === test.parts.length &&
+    currentQuestion === currentPartData.questions.length;
 
   return (
     <div className="writing-test-page">
-      <TestHeader 
-        timeLimit={test.timeLimit} 
-        onTimeUp={handleSubmitEssay} 
-      />
-      
+      <TestHeader timeLimit={test.timeLimit} onTimeUp={handleSubmitEssay} />
+
       <TaskRequirements
         currentPart={currentPart}
         instructions={currentPartData.instructions}
       />
-      
+
       <TestLayout
         questionNumber={currentQuestionData.id}
         questionText={currentQuestionData.text}
@@ -97,4 +96,4 @@ export default function SpeakingTestPage() {
       />
     </div>
   );
-} 
+}

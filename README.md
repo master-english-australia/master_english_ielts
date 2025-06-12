@@ -5,11 +5,13 @@ An English learning platform for IELTS preparation with Next.js, TypeScript, Pla
 ## Setup and Installation
 
 1. Install dependencies:
+
    ```
    npm install
    ```
 
 2. Start the Next.js development server:
+
    ```
    npm run dev
    ```
@@ -76,10 +78,9 @@ To start the production server:
 npm start
 ```
 
-
-
 # submit functions
+
 - Writing: sending email to maher, new subscription, or AI
-- Speaking: sending email to maher 
+- Speaking: sending email to maher
 - Reading: Calculating the score
 - Listening: Calculating the score

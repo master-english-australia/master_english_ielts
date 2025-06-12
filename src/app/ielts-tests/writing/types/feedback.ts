@@ -5,4 +5,4 @@ export interface Feedback {
   grammaticalRange: number;
   overallBand: number;
   comments: string;
-} 
+}

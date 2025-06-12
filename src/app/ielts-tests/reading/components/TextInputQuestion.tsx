@@ -1,8 +1,8 @@
 // TextInputQuestion.tsx
-import { Box } from '@mui/material';
-import React from 'react';
-import { QuestionGroup } from '../../models/QuestionGroup';
-import { HtmlInlineQuestionParser } from '../../utils/HtmlInlineQuestionParser';
+import { Box } from "@mui/material";
+import React from "react";
+import { QuestionGroup } from "../../models/QuestionGroup";
+import { HtmlInlineQuestionParser } from "../../utils/HtmlInlineQuestionParser";
 
 type Props = {
   questionGroup: QuestionGroup;
@@ -11,8 +11,14 @@ type Props = {
 export const TextInputQuestion: React.FC<Props> = ({ questionGroup }) => {
   return (
     <Box padding={2} border={1} borderColor="grey.400" borderRadius={1}>
-      <div style={{  }} dangerouslySetInnerHTML={{ __html: questionGroup.instruction }} />
-      <HtmlInlineQuestionParser htmlText={questionGroup.questionText || ''} questions={questionGroup.questions} />
+      <div
+        style={{}}
+        dangerouslySetInnerHTML={{ __html: questionGroup.instruction }}
+      />
+      <HtmlInlineQuestionParser
+        htmlText={questionGroup.questionText || ""}
+        questions={questionGroup.questions}
+      />
     </Box>
   );
 };

@@ -21,15 +21,12 @@ export const AnswerSection = ({
       style={{
         width: `${answerWidth}%`,
         maxWidth: `${answerWidth}%`,
-        flex: `0 0 ${answerWidth}%`
+        flex: `0 0 ${answerWidth}%`,
       }}
     >
       {questionGroups.map((group) => (
-        <QuestionRenderer
-          key={group.id}
-          questionGroup={group}
-        />
+        <QuestionRenderer key={group.id} questionGroup={group} />
       ))}
     </Box>
   );
-}; 
+};

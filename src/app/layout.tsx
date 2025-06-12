@@ -1,9 +1,10 @@
-import '@/styles/globals.css';
-import type { Metadata } from 'next';
+import "@/styles/globals.css";
+import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: 'IELTS Master - English Learning Platform',
-  description: 'Practice and prepare for your IELTS exam with our comprehensive platform',
+  title: "IELTS Master - English Learning Platform",
+  description:
+    "Practice and prepare for your IELTS exam with our comprehensive platform",
 };
 
 export default function RootLayout({
@@ -18,4 +19,4 @@ export default function RootLayout({
       </body>
     </html>
   );
-} 
+}

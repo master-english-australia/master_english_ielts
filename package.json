@@ -8,6 +8,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "format": "prettier --write .",
     "mcp": "node mcp.js",
     "agent": "node cursor-agent-integration.js",
     "test": "playwright test"
@@ -43,6 +44,7 @@
     "autoprefixer": "^10.4.21",
     "nodemon": "^3.1.9",
     "postcss": "^8.5.3",
+    "prettier": "^3.5.3",
     "tailwindcss": "^4.1.7"
   }
 }

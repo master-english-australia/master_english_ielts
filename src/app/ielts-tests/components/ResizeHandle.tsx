@@ -4,16 +4,16 @@ interface ResizeHandleProps {
   onResizeStart: (e: React.MouseEvent) => void;
 }
 
-export const ResizeHandle = ({ 
-  isResizing, 
-  answerWidth, 
-  onResizeStart 
+export const ResizeHandle = ({
+  isResizing,
+  answerWidth,
+  onResizeStart,
 }: ResizeHandleProps) => {
   return (
-    <div 
-      className={`resize-handle ${isResizing ? 'active' : ''}`} 
+    <div
+      className={`resize-handle ${isResizing ? "active" : ""}`}
       onMouseDown={onResizeStart}
       style={{ right: `${answerWidth}%` }}
     />
   );
-}; 
+};
