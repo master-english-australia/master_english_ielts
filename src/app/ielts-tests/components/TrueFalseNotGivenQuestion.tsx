@@ -1,7 +1,7 @@
 import { Box, Radio, Typography } from "@mui/material";
 import React from "react";
-import { QuestionText } from "../../components/QuestionText";
-import { QuestionGroup } from "../../models/QuestionGroup";
+import { QuestionGroup } from "../models/QuestionGroup";
+import { QuestionText } from "./QuestionText";
 
 type Props = {
   questionGroup: QuestionGroup;
@@ -46,7 +46,7 @@ export const TrueFalseNotGivenQuestion: React.FC<Props> = ({
     </Box>
     {questionGroup.questions.map((question) => (
       <Box marginY={2} key={question.id}>
-        <QuestionText number={question.id} text={question.questionText} />
+        <QuestionText number={question.id} text={question.questionText || ""} />
         <Box sx={{ display: "flex", flexDirection: "column", mt: 1 }}>
           {options.map((opt) => (
             <Box

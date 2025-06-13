@@ -1,6 +1,6 @@
 import { Box } from "@mui/material";
+import { QuestionRenderer } from "../../components/QuestionRenderer";
 import { QuestionGroup } from "../../models/QuestionGroup";
-import { QuestionRenderer } from "./QuestionRenderer";
 
 interface AnswerSectionProps {
   id: string;

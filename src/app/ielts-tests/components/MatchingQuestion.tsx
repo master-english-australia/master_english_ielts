@@ -1,7 +1,7 @@
 import { Box, MenuItem, Select, Typography } from "@mui/material";
 import React, { useState } from "react";
-import { QuestionText } from "../../components/QuestionText";
-import { QuestionGroup } from "../../models/QuestionGroup";
+import { QuestionGroup } from "../models/QuestionGroup";
+import { QuestionText } from "./QuestionText";
 
 type Props = {
   questionGroup: QuestionGroup;
@@ -35,7 +35,7 @@ export const MatchingQuestion: React.FC<Props> = ({ questionGroup }) => {
             marginY: 2,
           }}
         >
-          <QuestionText number={question.id} text={question.questionText} />
+          <QuestionText number={question.id} text={question.questionText || ""} />
           <Select
             size="small"
             value={selectedAnswers[question.id] || ""}

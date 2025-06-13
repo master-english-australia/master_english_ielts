@@ -18,15 +18,12 @@ export default function TestList({ tests, title, description }: TestListProps) {
   const [currentPage, setCurrentPage] = useState(1);
   const testsPerPage = 18;
 
-  // Calculate indices for current page
   const indexOfLastTest = currentPage * testsPerPage;
   const indexOfFirstTest = indexOfLastTest - testsPerPage;
   const currentTests = tests.slice(indexOfFirstTest, indexOfLastTest);
 
-  // Calculate total pages
   const totalPages = Math.ceil(tests.length / testsPerPage);
 
-  // Helper function for pagination
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
   return (

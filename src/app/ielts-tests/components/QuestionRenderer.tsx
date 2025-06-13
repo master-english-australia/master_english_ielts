@@ -1,10 +1,10 @@
 // QuestionRenderer.tsx
 import { Box } from "@mui/material";
 import React from "react";
-import { QuestionNumbers } from "../../components/QuestionNumbers";
-import { QuestionGroup } from "../../models/QuestionGroup";
+import { QuestionGroup } from "../models/QuestionGroup";
 import { MatchingQuestion } from "./MatchingQuestion";
 import { MultipleChoiceQuestion } from "./MultipleChoiceQuestion";
+import { QuestionNumbers } from "./QuestionNumbers";
 import { TextInputQuestion } from "./TextInputQuestion";
 import { TrueFalseNotGivenQuestion } from "./TrueFalseNotGivenQuestion";
 

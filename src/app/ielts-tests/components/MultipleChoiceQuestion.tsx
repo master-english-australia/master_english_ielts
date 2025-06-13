@@ -1,7 +1,7 @@
 import { Box, Radio, Typography } from "@mui/material";
 import React from "react";
-import { QuestionText } from "../../components/QuestionText";
-import { QuestionGroup } from "../../models/QuestionGroup";
+import { QuestionGroup } from "../models/QuestionGroup";
+import { QuestionText } from "./QuestionText";
 
 type Props = {
   questionGroup: QuestionGroup;
@@ -14,7 +14,7 @@ export const MultipleChoiceQuestion: React.FC<Props> = ({ questionGroup }) => (
     </Typography>
     {questionGroup.questions.map((question) => (
       <Box key={question.id} my={2}>
-        <QuestionText text={question.questionText} number={question.id} />
+        <QuestionText text={question.questionText || ""} number={question.id} />
         <Box height={8} />
         {question.options?.map((option, index) => (
           <Box key={index} sx={{ display: "flex", alignItems: "center" }}>

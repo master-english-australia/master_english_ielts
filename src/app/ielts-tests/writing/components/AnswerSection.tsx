@@ -1,5 +1,3 @@
-import { FloatingLabelTextarea } from "@/components/FloatingLabelTextarea";
-import { FeedbackView } from "../../components/FeedbackView";
 import { Feedback } from "../types/feedback";
 
 interface AnswerSectionProps {
@@ -37,18 +35,12 @@ export const AnswerSection = ({
     >
       {!isSubmitted ? (
         <div className="editor-container">
-          <FloatingLabelTextarea
-            value={currentPart === 1 ? part1Essay : part2Essay}
-            onChange={(e) => onEssayChange(currentPart, e.target.value)}
-            label={`Part ${currentPart === 1 ? "1" : "2"} Answer`}
-            placeholder={`Enter your part ${currentPart === 1 ? "1" : "2"} answer...`}
-            disabled={isSubmitted}
-          />
+          <></>
 
           <div className="word-count">Word Count: {wordCount}</div>
         </div>
       ) : (
-        <FeedbackView feedback={feedback} />
+        <></>
       )}
     </div>
   );

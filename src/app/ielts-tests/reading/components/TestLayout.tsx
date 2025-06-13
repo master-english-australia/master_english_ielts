@@ -49,7 +49,8 @@ export const TestLayout = ({
       <TaskPrompt
         id={taskPromptId}
         contentWidth={contentWidth}
-        promptContent={promptContent}
+        promptContent={promptContent} 
+        promptTitle={""}
       />
 
       <ResizeHandle
