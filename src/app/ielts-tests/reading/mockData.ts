@@ -401,43 +401,50 @@ export const readingTest2 = {
           questions: [
             {
               id: "1",
-              questionText: "Dry cleaners are generally responsible for items left with them, even if there's a sign saying the opposite.",
+              questionText:
+                "Dry cleaners are generally responsible for items left with them, even if there's a sign saying the opposite.",
               options: ["TRUE", "FALSE", "NOT GIVEN"],
               correctAnswer: "TRUE",
             },
             {
               id: "2",
-              questionText: "If the dry cleaner loses an item belonging to you, they should give you enough money to buy a completely new one.",
+              questionText:
+                "If the dry cleaner loses an item belonging to you, they should give you enough money to buy a completely new one.",
               options: ["TRUE", "FALSE", "NOT GIVEN"],
               correctAnswer: "FALSE",
             },
             {
               id: "3",
-              questionText: "If you have the receipt for a damaged item, the company should refund the amount you originally paid for it.",
+              questionText:
+                "If you have the receipt for a damaged item, the company should refund the amount you originally paid for it.",
               options: ["TRUE", "FALSE", "NOT GIVEN"],
               correctAnswer: "FALSE",
             },
             {
               id: "4",
-              questionText: "It may be possible to get support for your complaint from a dry cleaners' trade association.",
+              questionText:
+                "It may be possible to get support for your complaint from a dry cleaners' trade association.",
               options: ["TRUE", "FALSE", "NOT GIVEN"],
               correctAnswer: "TRUE",
             },
             {
               id: "5",
-              questionText: "If you're offered too little compensation, you can request a free report from an independent organisation.",
+              questionText:
+                "If you're offered too little compensation, you can request a free report from an independent organisation.",
               options: ["TRUE", "FALSE", "NOT GIVEN"],
               correctAnswer: "FALSE",
             },
             {
               id: "6",
-              questionText: "Most people who take a case about a dry-cleaning company to court are satisfied with the outcome.",
+              questionText:
+                "Most people who take a case about a dry-cleaning company to court are satisfied with the outcome.",
               options: ["TRUE", "FALSE", "NOT GIVEN"],
               correctAnswer: "NOT GIVEN",
             },
             {
               id: "7",
-              questionText: "If an item was lost or damaged nine months ago, you can still take the dry cleaner to court.",
+              questionText:
+                "If an item was lost or damaged nine months ago, you can still take the dry cleaner to court.",
               options: ["TRUE", "FALSE", "NOT GIVEN"],
               correctAnswer: "TRUE",
             },
@@ -445,48 +452,56 @@ export const readingTest2 = {
         },
         {
           id: "group_2",
-          instruction: "The text has six paragraphs, A-F. Which paragraph mentions the following?",
+          instruction:
+            "The text has six paragraphs, A-F. Which paragraph mentions the following?",
           questionType: "matching",
           questions: [
             {
               id: "8",
-              questionText: "Members of this group share ideas for the books they would like to read.",
+              questionText:
+                "Members of this group share ideas for the books they would like to read.",
               options: ["A", "B", "C", "D", "E", "F"],
               correctAnswer: "A",
             },
             {
               id: "9",
-              questionText: "It isn't possible for any new members to join this group at present.",
+              questionText:
+                "It isn't possible for any new members to join this group at present.",
               options: ["A", "B", "C", "D", "E", "F"],
               correctAnswer: "F",
             },
             {
               id: "10",
-              questionText: "You can get feedback on your own work from other members of this group.",
+              questionText:
+                "You can get feedback on your own work from other members of this group.",
               options: ["A", "B", "C", "D", "E", "F"],
               correctAnswer: "B",
             },
             {
               id: "11",
-              questionText: "This group focuses on stories belonging to just one genre.",
+              questionText:
+                "This group focuses on stories belonging to just one genre.",
               options: ["A", "B", "C", "D", "E", "F"],
               correctAnswer: "C",
             },
             {
               id: "12",
-              questionText: "Work produced by members of this group will be available to the public.",
+              questionText:
+                "Work produced by members of this group will be available to the public.",
               options: ["A", "B", "C", "D", "E", "F"],
               correctAnswer: "F",
             },
             {
               id: "13",
-              questionText: "This group doesn't read or write either poetry or fiction.",
+              questionText:
+                "This group doesn't read or write either poetry or fiction.",
               options: ["A", "B", "C", "D", "E", "F"],
               correctAnswer: "E",
             },
             {
               id: "14",
-              questionText: "This group would suit someone who thinks they could write a book.",
+              questionText:
+                "This group would suit someone who thinks they could write a book.",
               options: ["A", "B", "C", "D", "E", "F"],
               correctAnswer: "B",
             },
@@ -510,7 +525,8 @@ export const readingTest2 = {
       question_groups: [
         {
           id: "group_3",
-          instruction: "Complete the notes below. Choose NO MORE THAN TWO WORDS for each answer from the passage.",
+          instruction:
+            "Complete the notes below. Choose NO MORE THAN TWO WORDS for each answer from the passage.",
           questionType: "text_input",
           questionText: `
 <p><strong>Lifting equipment</strong></p>
@@ -566,7 +582,8 @@ export const readingTest2 = {
         },
         {
           id: "group_4",
-          instruction: "<p>Complete the table below. Choose <strong>ONE WORD ONLY</strong> for each answer from the passage.</p>",
+          instruction:
+            "<p>Complete the table below. Choose <strong>ONE WORD ONLY</strong> for each answer from the passage.</p>",
           questionType: "text_input",
           questionText: `<table>
 <tbody>
@@ -638,8 +655,8 @@ export const readingTest2 = {
             { id: "24", correctAnswer: "expectations" },
             { id: "25", correctAnswer: "solution" },
             { id: "26", correctAnswer: "policy" },
-            { id: "27", correctAnswer: "apology" }
-          ]
+            { id: "27", correctAnswer: "apology" },
+          ],
         },
       ],
     },
@@ -765,4 +782,4 @@ export const readingTest2 = {
       ],
     },
   ],
-}
+};

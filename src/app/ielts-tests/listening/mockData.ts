@@ -43,49 +43,49 @@ export const readingTests = {
               questionText:
                 "Users of this machine will need to put some physical effort into making ice cream.",
               options: ["A", "B", "C", "D", "E", "F"],
-              correct_answer: "B",
+              correctAnswer: "B",
             },
             {
               id: "2",
               questionText:
                 "This machine can be fitted onto an existing kitchen appliance.",
               options: ["A", "B", "C", "D", "E", "F"],
-              correct_answer: "F",
+              correctAnswer: "F",
             },
             {
               id: "3",
               questionText:
                 "This machine is the most expensive in the selection.",
               options: ["A", "B", "C", "D", "E", "F"],
-              correct_answer: "A",
+              correctAnswer: "A",
             },
             {
               id: "4",
               questionText:
                 "This machine is the most expensive in the selection.",
               options: ["A", "B", "C", "D", "E", "F"],
-              correct_answer: "A",
+              correctAnswer: "A",
             },
             {
               id: "5",
               questionText:
                 "This machine is the most expensive in the selection.",
               options: ["A", "B", "C", "D", "E", "F"],
-              correct_answer: "A",
+              correctAnswer: "A",
             },
             {
               id: "6",
               questionText:
                 "This machine is the most expensive in the selection.",
               options: ["A", "B", "C", "D", "E", "F"],
-              correct_answer: "A",
+              correctAnswer: "A",
             },
             {
               id: "7",
               questionText:
                 "This machine is the most expensive in the selection.",
               options: ["A", "B", "C", "D", "E", "F"],
-              correct_answer: "A",
+              correctAnswer: "A",
             },
           ],
         },
@@ -100,49 +100,49 @@ export const readingTests = {
               questionText:
                 "Ice cream makers were first invented in the 20th century.",
               options: ["TRUE", "FALSE", "NOT GIVEN"],
-              correct_answer: "FALSE",
+              correctAnswer: "FALSE",
             },
             {
               id: "9",
               questionText:
                 "People found it difficult to clean older ice cream makers.",
               options: ["TRUE", "FALSE", "NOT GIVEN"],
-              correct_answer: "TRUE",
+              correctAnswer: "TRUE",
             },
             {
               id: "10",
               questionText:
                 "Modern ice cream makers are only suitable for professional use.",
               options: ["TRUE", "FALSE", "NOT GIVEN"],
-              correct_answer: "FALSE",
+              correctAnswer: "FALSE",
             },
             {
               id: "11",
               questionText:
                 "Modern ice cream makers are only suitable for professional use.",
               options: ["TRUE", "FALSE", "NOT GIVEN"],
-              correct_answer: "FALSE",
+              correctAnswer: "FALSE",
             },
             {
               id: "12",
               questionText:
                 "Modern ice cream makers are only suitable for professional use.",
               options: ["TRUE", "FALSE", "NOT GIVEN"],
-              correct_answer: "FALSE",
+              correctAnswer: "FALSE",
             },
             {
               id: "13",
               questionText:
                 "Modern ice cream makers are only suitable for professional use.",
               options: ["TRUE", "FALSE", "NOT GIVEN"],
-              correct_answer: "FALSE",
+              correctAnswer: "FALSE",
             },
             {
               id: "14",
               questionText:
                 "Modern ice cream makers are only suitable for professional use.",
               options: ["TRUE", "FALSE", "NOT GIVEN"],
-              correct_answer: "FALSE",
+              correctAnswer: "FALSE",
             },
           ],
         },
@@ -171,27 +171,27 @@ export const readingTests = {
           questions: [
             {
               id: "15",
-              correct_answer: "parking",
+              correctAnswer: "parking",
             },
             {
               id: "16",
-              correct_answer: "highest",
+              correctAnswer: "highest",
             },
             {
               id: "17",
-              correct_answer: "weekend",
+              correctAnswer: "weekend",
             },
             {
               id: "18",
-              correct_answer: "replacement",
+              correctAnswer: "replacement",
             },
             {
               id: "19",
-              correct_answer: "replacement",
+              correctAnswer: "replacement",
             },
             {
               id: "20",
-              correct_answer: "HR Manager",
+              correctAnswer: "HR Manager",
             },
           ],
         },
@@ -219,31 +219,31 @@ export const readingTests = {
           questions: [
             {
               id: "21",
-              correct_answer: "parking",
+              correctAnswer: "parking",
             },
             {
               id: "22",
-              correct_answer: "highest",
+              correctAnswer: "highest",
             },
             {
               id: "23",
-              correct_answer: "weekend",
+              correctAnswer: "weekend",
             },
             {
               id: "24",
-              correct_answer: "replacement",
+              correctAnswer: "replacement",
             },
             {
               id: "25",
-              correct_answer: "replacement",
+              correctAnswer: "replacement",
             },
             {
               id: "26",
-              correct_answer: "HR Manager",
+              correctAnswer: "HR Manager",
             },
             {
               id: "27",
-              correct_answer: "HR Manager",
+              correctAnswer: "HR Manager",
             },
           ],
         },
@@ -276,39 +276,39 @@ export const readingTests = {
               id: "28",
               questionText: "the various functions of Roman roads",
               options: ["A", "B", "C", "D", "E", "F"],
-              correct_answer: "A",
+              correctAnswer: "A",
             },
             {
               id: "29",
               questionText:
                 "reference to some current remains of Roman road building",
               options: ["A", "B", "C", "D", "E", "F"],
-              correct_answer: "B",
+              correctAnswer: "B",
             },
             {
               id: "30",
               questionText: "a description of preparations for building a road",
               options: ["A", "B", "C", "D", "E", "F"],
-              correct_answer: "C",
+              correctAnswer: "C",
             },
             {
               id: "31",
               questionText: "the period in history when road building began",
               options: ["A", "B", "C", "D", "E", "F"],
-              correct_answer: "D",
+              correctAnswer: "D",
             },
             {
               id: "32",
               questionText:
                 "the consequence of damage caused by a natural disaster",
               options: ["A", "B", "C", "D", "E", "F"],
-              correct_answer: "E",
+              correctAnswer: "E",
             },
             {
               id: "33",
               questionText: "the total distance once crossed by Roman roads",
               options: ["A", "B", "C", "D", "E", "F"],
-              correct_answer: "F",
+              correctAnswer: "F",
             },
           ],
         },
@@ -328,7 +328,7 @@ export const readingTests = {
                 "the number of people involved in building",
                 "the powerful people who financed the roads",
               ],
-              correct_answer: "the strength and permanence of the roads",
+              correctAnswer: "the strength and permanence of the roads",
             },
             {
               id: "35",
@@ -340,7 +340,7 @@ export const readingTests = {
                 "it was used by a large number of travellers.",
                 "it was designed to avoid certain areas.",
               ],
-              correct_answer: "it was lengthened over time.",
+              correctAnswer: "it was lengthened over time.",
             },
             {
               id: "36",
@@ -352,7 +352,7 @@ export const readingTests = {
                 "it was used by a large number of travellers.",
                 "it was designed to avoid certain areas.",
               ],
-              correct_answer: "it was used by a large number of travellers.",
+              correctAnswer: "it was used by a large number of travellers.",
             },
             {
               id: "37",
@@ -364,7 +364,7 @@ export const readingTests = {
                 "it was used by a large number of travellers.",
                 "it was designed to avoid certain areas.",
               ],
-              correct_answer: "it was designed to avoid certain areas.",
+              correctAnswer: "it was designed to avoid certain areas.",
             },
           ],
         },
@@ -401,94 +401,109 @@ export const readingTest2 = {
           questions: [
             {
               id: "1",
-              questionText: "Dry cleaners are generally responsible for items left with them, even if there's a sign saying the opposite.",
+              questionText:
+                "Dry cleaners are generally responsible for items left with them, even if there's a sign saying the opposite.",
               options: ["TRUE", "FALSE", "NOT GIVEN"],
-              correct_answer: "TRUE",
+              correctAnswer: "TRUE",
             },
             {
               id: "2",
-              questionText: "If the dry cleaner loses an item belonging to you, they should give you enough money to buy a completely new one.",
+              questionText:
+                "If the dry cleaner loses an item belonging to you, they should give you enough money to buy a completely new one.",
               options: ["TRUE", "FALSE", "NOT GIVEN"],
-              correct_answer: "FALSE",
+              correctAnswer: "FALSE",
             },
             {
               id: "3",
-              questionText: "If you have the receipt for a damaged item, the company should refund the amount you originally paid for it.",
+              questionText:
+                "If you have the receipt for a damaged item, the company should refund the amount you originally paid for it.",
               options: ["TRUE", "FALSE", "NOT GIVEN"],
-              correct_answer: "FALSE",
+              correctAnswer: "FALSE",
             },
             {
               id: "4",
-              questionText: "It may be possible to get support for your complaint from a dry cleaners' trade association.",
+              questionText:
+                "It may be possible to get support for your complaint from a dry cleaners' trade association.",
               options: ["TRUE", "FALSE", "NOT GIVEN"],
-              correct_answer: "TRUE",
+              correctAnswer: "TRUE",
             },
             {
               id: "5",
-              questionText: "If you're offered too little compensation, you can request a free report from an independent organisation.",
+              questionText:
+                "If you're offered too little compensation, you can request a free report from an independent organisation.",
               options: ["TRUE", "FALSE", "NOT GIVEN"],
-              correct_answer: "FALSE",
+              correctAnswer: "FALSE",
             },
             {
               id: "6",
-              questionText: "Most people who take a case about a dry-cleaning company to court are satisfied with the outcome.",
+              questionText:
+                "Most people who take a case about a dry-cleaning company to court are satisfied with the outcome.",
               options: ["TRUE", "FALSE", "NOT GIVEN"],
-              correct_answer: "NOT GIVEN",
+              correctAnswer: "NOT GIVEN",
             },
             {
               id: "7",
-              questionText: "If an item was lost or damaged nine months ago, you can still take the dry cleaner to court.",
+              questionText:
+                "If an item was lost or damaged nine months ago, you can still take the dry cleaner to court.",
               options: ["TRUE", "FALSE", "NOT GIVEN"],
-              correct_answer: "TRUE",
+              correctAnswer: "TRUE",
             },
           ],
         },
         {
           id: "group_2",
-          instruction: "The text has six paragraphs, A-F. Which paragraph mentions the following?",
+          instruction:
+            "The text has six paragraphs, A-F. Which paragraph mentions the following?",
           questionType: "matching",
           questions: [
             {
               id: "8",
-              questionText: "Members of this group share ideas for the books they would like to read.",
+              questionText:
+                "Members of this group share ideas for the books they would like to read.",
               options: ["A", "B", "C", "D", "E", "F"],
-              correct_answer: "A",
+              correctAnswer: "A",
             },
             {
               id: "9",
-              questionText: "It isn't possible for any new members to join this group at present.",
+              questionText:
+                "It isn't possible for any new members to join this group at present.",
               options: ["A", "B", "C", "D", "E", "F"],
-              correct_answer: "F",
+              correctAnswer: "F",
             },
             {
               id: "10",
-              questionText: "You can get feedback on your own work from other members of this group.",
+              questionText:
+                "You can get feedback on your own work from other members of this group.",
               options: ["A", "B", "C", "D", "E", "F"],
-              correct_answer: "B",
+              correctAnswer: "B",
             },
             {
               id: "11",
-              questionText: "This group focuses on stories belonging to just one genre.",
+              questionText:
+                "This group focuses on stories belonging to just one genre.",
               options: ["A", "B", "C", "D", "E", "F"],
-              correct_answer: "C",
+              correctAnswer: "C",
             },
             {
               id: "12",
-              questionText: "Work produced by members of this group will be available to the public.",
+              questionText:
+                "Work produced by members of this group will be available to the public.",
               options: ["A", "B", "C", "D", "E", "F"],
-              correct_answer: "F",
+              correctAnswer: "F",
             },
             {
               id: "13",
-              questionText: "This group doesn't read or write either poetry or fiction.",
+              questionText:
+                "This group doesn't read or write either poetry or fiction.",
               options: ["A", "B", "C", "D", "E", "F"],
-              correct_answer: "E",
+              correctAnswer: "E",
             },
             {
               id: "14",
-              questionText: "This group would suit someone who thinks they could write a book.",
+              questionText:
+                "This group would suit someone who thinks they could write a book.",
               options: ["A", "B", "C", "D", "E", "F"],
-              correct_answer: "B",
+              correctAnswer: "B",
             },
           ],
         },
@@ -510,7 +525,8 @@ export const readingTest2 = {
       question_groups: [
         {
           id: "group_3",
-          instruction: "Complete the notes below. Choose NO MORE THAN TWO WORDS for each answer from the passage.",
+          instruction:
+            "Complete the notes below. Choose NO MORE THAN TWO WORDS for each answer from the passage.",
           questionType: "text_input",
           questionText: `
 <p><strong>Lifting equipment</strong></p>
@@ -532,41 +548,42 @@ export const readingTest2 = {
           questions: [
             {
               id: "15",
-              correct_answer: "CE mark",
+              correctAnswer: "CE mark",
             },
             {
               id: "16",
-              correct_answer: "Tests",
+              correctAnswer: "Tests",
             },
             {
               id: "17",
-              correct_answer: "Engineer",
+              correctAnswer: "Engineer",
             },
             {
               id: "18",
-              correct_answer: "Control measures",
+              correctAnswer: "Control measures",
             },
             {
               id: "19",
-              correct_answer: "lifting crew",
+              correctAnswer: "lifting crew",
             },
             {
               id: "20",
-              correct_answer: "Barriers",
+              correctAnswer: "Barriers",
             },
             {
               id: "21",
-              correct_answer: "Banksman",
+              correctAnswer: "Banksman",
             },
             {
               id: "22",
-              correct_answer: "Injuries",
+              correctAnswer: "Injuries",
             },
           ],
         },
         {
           id: "group_4",
-          instruction: "<p>Complete the table below. Choose <strong>ONE WORD ONLY</strong> for each answer from the passage.</p>",
+          instruction:
+            "<p>Complete the table below. Choose <strong>ONE WORD ONLY</strong> for each answer from the passage.</p>",
           questionType: "text_input",
           questionText: `<table>
 <tbody>
@@ -634,12 +651,12 @@ export const readingTest2 = {
 </tbody>
 </table>`,
           questions: [
-            { id: "23", correct_answer: "win" },
-            { id: "24", correct_answer: "expectations" },
-            { id: "25", correct_answer: "solution" },
-            { id: "26", correct_answer: "policy" },
-            { id: "27", correct_answer: "apology" }
-          ]
+            { id: "23", correctAnswer: "win" },
+            { id: "24", correctAnswer: "expectations" },
+            { id: "25", correctAnswer: "solution" },
+            { id: "26", correctAnswer: "policy" },
+            { id: "27", correctAnswer: "apology" },
+          ],
         },
       ],
     },
@@ -670,39 +687,39 @@ export const readingTest2 = {
               id: "28",
               questionText: "the various functions of Roman roads",
               options: ["A", "B", "C", "D", "E", "F"],
-              correct_answer: "A",
+              correctAnswer: "A",
             },
             {
               id: "29",
               questionText:
                 "reference to some current remains of Roman road building",
               options: ["A", "B", "C", "D", "E", "F"],
-              correct_answer: "B",
+              correctAnswer: "B",
             },
             {
               id: "30",
               questionText: "a description of preparations for building a road",
               options: ["A", "B", "C", "D", "E", "F"],
-              correct_answer: "C",
+              correctAnswer: "C",
             },
             {
               id: "31",
               questionText: "the period in history when road building began",
               options: ["A", "B", "C", "D", "E", "F"],
-              correct_answer: "D",
+              correctAnswer: "D",
             },
             {
               id: "32",
               questionText:
                 "the consequence of damage caused by a natural disaster",
               options: ["A", "B", "C", "D", "E", "F"],
-              correct_answer: "E",
+              correctAnswer: "E",
             },
             {
               id: "33",
               questionText: "the total distance once crossed by Roman roads",
               options: ["A", "B", "C", "D", "E", "F"],
-              correct_answer: "F",
+              correctAnswer: "F",
             },
           ],
         },
@@ -722,7 +739,7 @@ export const readingTest2 = {
                 "the number of people involved in building",
                 "the powerful people who financed the roads",
               ],
-              correct_answer: "the strength and permanence of the roads",
+              correctAnswer: "the strength and permanence of the roads",
             },
             {
               id: "35",
@@ -734,7 +751,7 @@ export const readingTest2 = {
                 "it was used by a large number of travellers.",
                 "it was designed to avoid certain areas.",
               ],
-              correct_answer: "it was lengthened over time.",
+              correctAnswer: "it was lengthened over time.",
             },
             {
               id: "36",
@@ -746,7 +763,7 @@ export const readingTest2 = {
                 "it was used by a large number of travellers.",
                 "it was designed to avoid certain areas.",
               ],
-              correct_answer: "it was used by a large number of travellers.",
+              correctAnswer: "it was used by a large number of travellers.",
             },
             {
               id: "37",
@@ -758,11 +775,11 @@ export const readingTest2 = {
                 "it was used by a large number of travellers.",
                 "it was designed to avoid certain areas.",
               ],
-              correct_answer: "it was designed to avoid certain areas.",
+              correctAnswer: "it was designed to avoid certain areas.",
             },
           ],
         },
       ],
     },
   ],
-}
+};

@@ -35,7 +35,10 @@ export const MatchingQuestion: React.FC<Props> = ({ questionGroup }) => {
             marginY: 2,
           }}
         >
-          <QuestionText number={question.id} text={question.questionText || ""} />
+          <QuestionText
+            number={question.id}
+            text={question.questionText || ""}
+          />
           <Select
             size="small"
             value={selectedAnswers[question.id] || ""}
