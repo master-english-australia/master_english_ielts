@@ -6,4 +6,5 @@ export interface QuestionGroup {
   questionType: string;
   questions: Question[];
   questionText?: string;
+  seekPosition?: number;
 }

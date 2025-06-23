@@ -1,379 +1,4 @@
-export const readingTests = {
-  test_id: "ielts_reading_mock_01",
-  title: "IELTS Reading Mock Test",
-  time_limit: 60,
-  parts: [
-    {
-      id: "section_1",
-      title: "The History of Ice Cream",
-      content_html: `<div id="ielts-reading-transcript-1" class="ielts-reading-transcript current">
-        <p>==== Read the text below and answer questions 1-7 ====</p>
-        <p><strong>The best ice cream makers</strong></p>
-        <p>Have you ever considered making ice cream at home but thought it would be too complicated? Here is a selection of machines that could change your mind</p>
-        <p><strong>A Magimix Gelato Expert</strong><br/>If you're an ice cream fanatic, it doesn't get better than this. It's quick, taking as little as 20 minutes, and consistent in its results, while the three automated programmes are very easy to use and it has an unusually generous two-litre capacity. On the other hand, we found it noisier than many, and the ice cream is softer than we might have liked.</p>
-        <p><strong>B Shake n Make Ice Cream Maker</strong><br/>If you want to make some basic soft ice cream, this is a fun little gadget that gets decent results. You add a little ice and salt to the base, then your ingredients to the stainless-steel tub, pop the lid on and give it a good shake for at least three minutes. Provided you measure everything exactly and shake back and forth consistently, it's surprisingly efficient.</p>
-        <p><strong>C Sage Smart Scoop</strong><br/>This is a seriously smart machine. Our favourite feature is the built-in sensor that works out whether the consistency of your ice cream or frozen yoghurt is right for you (from the 12 hardness settings) so that it can stop mixing when it's ready, alerting you with a fun tune. As you'd expect from the considerable price tag, there's a built-in freezer and it feels beautifully engineered.</p>
-        <p><strong>D Lakeland Digital Ice Cream Maker</strong><br/>You simply pop on the lid and pour in the ingredients, then set the timer using the nice, clear digital display. Some customers reportedly struggled to disassemble it in order to wash the bowl and paddle, but we didn't have that problem. We're also giving it extra points for the recipe book, which has some really tasty ideas.</p>
-        <p><strong>E Judge Ice Cream Maker</strong><br/>We had a few criticisms, perhaps not surprisingly when you consider this is one of the cheapest models in our selection – notably the fact that the paddle isn't as robust as the ones in other models. We'd have liked more recipes, too. But, for a budget machine, this is a bargain.</p>
-        <p><strong>F KitchenAid Artisan Ice Cream Maker</strong><br/>If you own a KitchenAid food mixer, this attachment (one of 15 that fits this machine) is a good way to start ice cream making. You simply freeze the bowl before use and attach it to the mixer (a quick and easy job) and pour in your favourite fresh ingredients, with some recipes taking just 20 minutes.</p>
-        <p></p>
-        <p>==== Read the text below and answer Questions 8-14 ====</p>
-        <p><strong>Photography weekend course on the coast of Cornwall</strong></p>
-        <p>Our three-night photography weekend is designed to appeal to all levels. Participants will be able to enjoy some of the fantastic locations on this beautiful coastline, with its ever-changing light, while staying in a comfortable hotel and enjoying some typical dishes of this south-western region of Britain.</p>
-        <p>Price includes: Personal daily tuition, discussions, welcome reception, and dinner, bed and breakfast for three nights in a twin or double room.</p>
-        <p>Price does not include: Insurance and photographic equipment plus transport to photographic venues. Participants are required to arrange this. Car share during the weekend is a popular option.</p>
-        <p><strong>Course information</strong><br/>
-        • Our courses are relaxed but comprehensive, and the content is largely dictated by those attending. Included within the sessions are editing workshops at the hotel and photo shoots down by the sea. Visits further away are also undertaken to experiment with different landscapes.<br/>
-        • Arrival by mid-afternoon on the first day will allow you to check into the hotel and enjoy some Cornish refreshments before heading out into the fresh air for our first shoot together at sunset. Dinner and a good night's sleep and you'll be ready to start at sunrise the next day. In the evenings you will have a chance to unwind at the hotel, share your thoughts on the day and spend time looking at images and sharing editing techniques.<br/>
-        • Maximum numbers: Four photographers per course.<br/>
-        • The following equipment is essential: A digital SLR or bridge camera with its instruction manual, batteries and charger; memory cards; comfortable walking footwear with good grip; warm outdoor clothing and waterproofs.<br/>
-        • Recommended equipment: A tripod, filters, a laptop with editing software and charger.</p>
-        </div>`,
-      instruction:
-        "This is a mock test for the IELTS Reading section. It is designed to help you practice your reading skills and prepare for the real test.",
-      question_groups: [
-        {
-          id: "group_1",
-          instruction:
-            "Look at the advertisements for ice-cream makers A–F. For which ice-cream maker are the following statements true?",
-          questionType: "matching",
-          questions: [
-            {
-              id: "1",
-              questionText:
-                "Users of this machine will need to put some physical effort into making ice cream.",
-              options: ["A", "B", "C", "D", "E", "F"],
-              correctAnswer: "B",
-            },
-            {
-              id: "2",
-              questionText:
-                "This machine can be fitted onto an existing kitchen appliance.",
-              options: ["A", "B", "C", "D", "E", "F"],
-              correctAnswer: "F",
-            },
-            {
-              id: "3",
-              questionText:
-                "This machine is the most expensive in the selection.",
-              options: ["A", "B", "C", "D", "E", "F"],
-              correctAnswer: "A",
-            },
-            {
-              id: "4",
-              questionText:
-                "This machine is the most expensive in the selection.",
-              options: ["A", "B", "C", "D", "E", "F"],
-              correctAnswer: "A",
-            },
-            {
-              id: "5",
-              questionText:
-                "This machine is the most expensive in the selection.",
-              options: ["A", "B", "C", "D", "E", "F"],
-              correctAnswer: "A",
-            },
-            {
-              id: "6",
-              questionText:
-                "This machine is the most expensive in the selection.",
-              options: ["A", "B", "C", "D", "E", "F"],
-              correctAnswer: "A",
-            },
-            {
-              id: "7",
-              questionText:
-                "This machine is the most expensive in the selection.",
-              options: ["A", "B", "C", "D", "E", "F"],
-              correctAnswer: "A",
-            },
-          ],
-        },
-        {
-          id: "group_2",
-          instruction:
-            "Do the following statements agree with the information given in the text?",
-          questionType: "true_false_not_given",
-          questions: [
-            {
-              id: "8",
-              questionText:
-                "Ice cream makers were first invented in the 20th century.",
-              options: ["TRUE", "FALSE", "NOT GIVEN"],
-              correctAnswer: "FALSE",
-            },
-            {
-              id: "9",
-              questionText:
-                "People found it difficult to clean older ice cream makers.",
-              options: ["TRUE", "FALSE", "NOT GIVEN"],
-              correctAnswer: "TRUE",
-            },
-            {
-              id: "10",
-              questionText:
-                "Modern ice cream makers are only suitable for professional use.",
-              options: ["TRUE", "FALSE", "NOT GIVEN"],
-              correctAnswer: "FALSE",
-            },
-            {
-              id: "11",
-              questionText:
-                "Modern ice cream makers are only suitable for professional use.",
-              options: ["TRUE", "FALSE", "NOT GIVEN"],
-              correctAnswer: "FALSE",
-            },
-            {
-              id: "12",
-              questionText:
-                "Modern ice cream makers are only suitable for professional use.",
-              options: ["TRUE", "FALSE", "NOT GIVEN"],
-              correctAnswer: "FALSE",
-            },
-            {
-              id: "13",
-              questionText:
-                "Modern ice cream makers are only suitable for professional use.",
-              options: ["TRUE", "FALSE", "NOT GIVEN"],
-              correctAnswer: "FALSE",
-            },
-            {
-              id: "14",
-              questionText:
-                "Modern ice cream makers are only suitable for professional use.",
-              options: ["TRUE", "FALSE", "NOT GIVEN"],
-              correctAnswer: "FALSE",
-            },
-          ],
-        },
-      ],
-    },
-    {
-      id: "section_2",
-      title: "Photography Weekend Course",
-      content_html: `<div id="ielts-reading-transcript-2" class="ielts-reading-transcript current">
-      <p>==== Read the text below and answer Questions 15-22 ====</p>
-      <p><strong>Lifting Equipment Safety Guidelines</strong></p>
-      <p>All lifting equipment must be properly manufactured and certified. This includes having a CE mark to show it meets European safety standards. Before use, equipment may need to undergo various tests to ensure it's safe and fit for purpose. Regular inspections by a qualified engineer are also essential to maintain safety standards.</p>
-      <p>For crane operations, lift plans are crucial documents. They help establish and implement control measures to manage any potential risks. During a 'Tool Box Talk' session, the lifting crew can be consulted to discuss the plan and ensure everyone understands their role.</p>
-      <p>When working with heavy loads, several precautions must be taken. Physical barriers should be used to prevent loads from passing over people's heads. A banksman should be appointed to give clear verbal directions to the crane driver, helping to prevent accidents.</p>
-      <p>Secondary lifting equipment such as chains and slings require special attention. While they may seem less significant than primary lifting equipment, they are actually more likely to cause injuries if not properly maintained or used incorrectly.</p>
-  </div>`,
-      instruction:
-        "This is a mock test for the IELTS Reading section. It is designed to help you practice your reading skills and prepare for the real test.",
-      question_groups: [
-        {
-          id: "group_4",
-          instruction:
-            "<p>Complete the sentences below. Choose <strong>ONE WORD ONLY</strong> from the text for each answer.",
-          questionType: "text_input",
-          questionText: `<li>Parking is limited, so the use of alternative methods of transport and the ______ of cars is encouraged.</li><li>Staff with the highest ______ are given parking spaces first.</li><li>Some parking spaces are reserved for company vehicles during the ______ but may be used by staff at other times.</li><li>If an employee leaves the company permanently, their parking space will normally be given to their ______</li><li>If an employee takes extended leave, their parking space will be given to the person who provides ______ for the absent employee.</li><li>All ______ about car parking should be sent to the HR Manager.</li>`,
-          questions: [
-            {
-              id: "15",
-              correctAnswer: "parking",
-            },
-            {
-              id: "16",
-              correctAnswer: "highest",
-            },
-            {
-              id: "17",
-              correctAnswer: "weekend",
-            },
-            {
-              id: "18",
-              correctAnswer: "replacement",
-            },
-            {
-              id: "19",
-              correctAnswer: "replacement",
-            },
-            {
-              id: "20",
-              correctAnswer: "HR Manager",
-            },
-          ],
-        },
-        {
-          id: "group_5",
-          instruction:
-            "<p>Complete the sentences below. Choose <strong>ONE WORD ONLY</strong> from the text for each answer.</p>",
-          questionType: "text_input",
-          questionText: `
-<p><strong>Making sure offices are safe</strong></p>
-<p><strong>To prevent slips, trips, falls and collisions, ensure that</strong><br>
-• boxes, files, etc. are correctly stored<br>
-• items such as ______ do not create a tripping hazard<br>
-• workers do not use ______ to reach high object<br>
-• ______ are fixed at corners<br>
-• floors are covered by ______ especially at entrances</p>
-<p><strong>To prevent injuries caused by objects, ensure that</strong><br>
-• ______ in office furniture are kept closed<br>
-• objects which are heavy are kept near the floor</p>
-<p><strong>To prevent injuries due to posture and repetitive movement ensure that</strong><br>
-• office furniture is ______<br>
-• ______ are provided for documents<br>
-• the mouse is placed next to the computer keyboard</p>
-          `,
-          questions: [
-            {
-              id: "21",
-              correctAnswer: "parking",
-            },
-            {
-              id: "22",
-              correctAnswer: "highest",
-            },
-            {
-              id: "23",
-              correctAnswer: "weekend",
-            },
-            {
-              id: "24",
-              correctAnswer: "replacement",
-            },
-            {
-              id: "25",
-              correctAnswer: "replacement",
-            },
-            {
-              id: "26",
-              correctAnswer: "HR Manager",
-            },
-            {
-              id: "27",
-              correctAnswer: "HR Manager",
-            },
-          ],
-        },
-      ],
-    },
-    {
-      id: "section_3",
-      title: "Photography Weekend Course",
-      content_html: `<div id="ielts-reading-transcript-3" class="ielts-reading-transcript current"><p>==== Read the text below and answer questions 28-40 ====</p>
-<p><strong>Roman Roads</strong></p>
-<p><strong>A</strong> The long straight roads built by the Romans have in many cases become just as famous in history as their greatest emperors and generals. Building upon more ancient routes and creating a huge number of new ones Roman engineers were fearless in their plans to join one point to another in as straight line as possible whatever the difficulties in geography and the costs in manpower. Consequently roads required bridges tunnels, viaducts and many other architectural and engineering features to create a series of breathtaking but highly useful monuments which spread from Europe to eastern parts of the Roman Empire.</p>
-<p><strong>B</strong> The Romans did not invent roads, but as in so many other areas, they took an idea which went back as far as the Bronze Age and extended that concept daring to squeeze from it the fullest possible potential. The first and most famous great Roman road was the Via Appia or Appian Way. Constructed from 312 BCE and covering 196 kilometers it linked Rome to ancient Capua in Italy in as straight a line as possible and was appropriately known to the Romans as the Regina Viarum or 'Queen of Roads'. Much like a modern highway it bypassed small towns along the way and it largely ignored geographical obstacles. The road would later be extended to 569 kilometers in length.</p>
-<p><strong>C</strong> The network of public Roman roads covered over 120,000 kilometers. Besides permitting the rapid deployment of troops and more importantly the wheeled vehicles which supplied them with food and equipment, Roman roads allowed for an increase in trade and cultural exchange. Roads were also one of the ways Rome could demonstrate its authority. For this reason, many roads began and ended in a triumphal arch, and the imperial prestige associated with a road project was demonstrated in the fact that roads were very often named after the officials who funded them; for example, the Via Appia takes its name from the Roman magistrate Appius Claudius Caecus.</p>
-<p><strong>D</strong> To achieve the objective of constructing the shortest routes possible between two points, all manner of engineering difficulties had to be overcome. Once extensive surveying had been carried out, to ensure the proposed route was actually straight and to determine what various engineering methods were needed, marshes had to be drained, forests cut through, creeks diverted, bedrock channelled, mountainsides cut into rivers crossed with bridges, valleys traversed with viaducts and tunnels built through mountains. When all that was done, roads had to be levelled, reinforced with support walls or terracing and then, of course, maintained which they were for over 800 years.</p>
-<p><strong>E</strong> Major roads were around a standard 4.2 metres wide, which was enough space for two vehicles to pass each other. First a trench was dug in the earth, and a layer of large stones was used to form the foundation. This was followed by a substantial deposit of smaller broken materials – often crushed brick was used for this purpose, and on top of this, a layer of fine gravel was added. This upper section of the road was referred to as the nucleus and was then surfaced with blocks or slabs. Mountain roads might also have ridges running across the surface of the slabs, to give animals better grip, and have ruts cut into the stone to guide wheeled vehicles.</p>
-<p>Roads were purposely inclined slightly from the centre down to the kerb to allow rainwater to run off along the sides. Many also had parallel ditches that collected the runoff and formed a drainage canal on each side of the road. A path of packed gravel for pedestrians typically ran along each side of the road, varying in width from 1 to 3 metres. Separating the path from the road were the kerb stones, which were regular upright slabs. Busier stretches of main roads had areas where vehicles could pull over, and some of these had services for travellers and their animals. Milestones were also set up at regular intervals along the road and these often recorded who was responsible for the upkeep of that stretch of the road and what repairs had been made.</p>
-<p><strong>F</strong> Lasting symbols of the imagination of Roman engineers are the many arched bridges and viaducts still standing today that helped achieve the engineers' straight-line goal. The Romans built to last, and the piers of bridges which crossed rivers, for example, were often built with a resistant prow-shape and used massive durable blocks of stone, while the upper parts might be built of stone blocks strengthened with iron clamps. Perhaps the most impressive bridge was at Narni; 180 metres long, 8 metres wide and as high as 33 metres, it had 4 massive semicircular arches, one of which, stretching 32.1 metres, ranks as one of the longest block-arch spans in the ancient world. Recently hit by earthquakes, it is now having to undergo restoration work to repair the effects.</p>
-<p>Such was the engineering and surveying skill of the Romans that many of their roads have provided the basis for hundreds of today's routes across Europe and the Middle East. Many roads in Italy still use the original Roman name for certain stretches, and some bridges, such as at Tre Ponti in Venice, still carry road traffic today.</p>
-</div>`,
-      instruction:
-        "This is a mock test for the IELTS Reading section. It is designed to help you practice your reading skills and prepare for the real test.",
-      question_groups: [
-        {
-          id: "group_6",
-          instruction:
-            "The text has six sections, A-F. Which section mentions the following?",
-          questionType: "matching",
-          questions: [
-            {
-              id: "28",
-              questionText: "the various functions of Roman roads",
-              options: ["A", "B", "C", "D", "E", "F"],
-              correctAnswer: "A",
-            },
-            {
-              id: "29",
-              questionText:
-                "reference to some current remains of Roman road building",
-              options: ["A", "B", "C", "D", "E", "F"],
-              correctAnswer: "B",
-            },
-            {
-              id: "30",
-              questionText: "a description of preparations for building a road",
-              options: ["A", "B", "C", "D", "E", "F"],
-              correctAnswer: "C",
-            },
-            {
-              id: "31",
-              questionText: "the period in history when road building began",
-              options: ["A", "B", "C", "D", "E", "F"],
-              correctAnswer: "D",
-            },
-            {
-              id: "32",
-              questionText:
-                "the consequence of damage caused by a natural disaster",
-              options: ["A", "B", "C", "D", "E", "F"],
-              correctAnswer: "E",
-            },
-            {
-              id: "33",
-              questionText: "the total distance once crossed by Roman roads",
-              options: ["A", "B", "C", "D", "E", "F"],
-              correctAnswer: "F",
-            },
-          ],
-        },
-        {
-          id: "group_7",
-          instruction: "Choose the correct letter, A, B, C or D.",
-          questionType: "multiple_choice",
-          questionText: ``,
-          questions: [
-            {
-              id: "34",
-              questionText:
-                "Which aspect of Roman road building does the writer mention in Section A?",
-              options: [
-                "the strength and permanence of the roads",
-                "the magnificence and practicality of the roads",
-                "the number of people involved in building",
-                "the powerful people who financed the roads",
-              ],
-              correctAnswer: "the strength and permanence of the roads",
-            },
-            {
-              id: "35",
-              questionText:
-                "The writer compares the Appian Way to a modern highway because",
-              options: [
-                "it was lengthened over time.",
-                "it took a long time to construct.",
-                "it was used by a large number of travellers.",
-                "it was designed to avoid certain areas.",
-              ],
-              correctAnswer: "it was lengthened over time.",
-            },
-            {
-              id: "36",
-              questionText:
-                "The writer compares the Appian Way to a modern highway because",
-              options: [
-                "it was lengthened over time.",
-                "it took a long time to construct.",
-                "it was used by a large number of travellers.",
-                "it was designed to avoid certain areas.",
-              ],
-              correctAnswer: "it was used by a large number of travellers.",
-            },
-            {
-              id: "37",
-              questionText:
-                "The writer compares the Appian Way to a modern highway because",
-              options: [
-                "it was lengthened over time.",
-                "it took a long time to construct.",
-                "it was used by a large number of travellers.",
-                "it was designed to avoid certain areas.",
-              ],
-              correctAnswer: "it was designed to avoid certain areas.",
-            },
-          ],
-        },
-      ],
-    },
-  ],
-};
-
-export const readingTest2 = {
+export const mocktest = {
   test_id: "ielts_reading_mock_01",
   title: "IELTS Reading Mock Test",
   time_limit: 60,
@@ -390,14 +15,44 @@ export const readingTest2 = {
         <p>If you're offered compensation that seems too low, you can get a valuation from an independent expert, but you'll need to pay for this service. The expert's report can be used as evidence if you decide to take the matter to court.</p>
         <p>Taking a case to court should be a last resort, as it can be expensive and time-consuming. However, if you do decide to go to court, you must do so within six months of the incident. After this time, you may not be able to make a claim.</p>
         </div>`,
-      instruction:
-        "This is a mock test for the IELTS Reading section. It is designed to help you practice your reading skills and prepare for the real test.",
+      instruction: " Listen and answer questions 1-10",
+      audio_url:
+        "https://file-examples.com/storage/feaa6a7f0468517af9bc02d/2017/11/file_example_MP3_5MG.mp3",
       question_groups: [
         {
           id: "group_1",
-          instruction:
-            "Do the following statements agree with the information given in the text?",
-          questionType: "true_false_not_given",
+          instruction: "",
+          questionType: "text_input",
+          questionText: `<div class="ielts-listening-question-section-content">
+                                            <p>Complete the notes below</p>
+<p>Write&nbsp;<b>ONE WORD AND/OR A NUMBER</b>&nbsp;for each answer.</p>
+<p style="text-align: center"><strong>First day at work</strong></p>
+<table>
+<tbody>
+<tr>
+<td>Name of supervisor</td>
+<td><span class="ielts-listening-question-item">______</span></td>
+</tr>
+<tr>
+<td>Where to leave coat and bag:</td>
+<td>use <span class="ielts-listening-question-item">______</span> in staffroom</td>
+</tr>
+<tr>
+<td>See Tiffany in HR:</td>
+<td>to give <span class="ielts-listening-question-item">______</span> number to
+</tr>
+<tr>
+<td>Location of HR office:</td>
+<td>on <span class="ielts-listening-question-item">______</span>&nbsp;floor</td>
+</tr>
+<tr>
+<td>Supervisor’s mobile number:</td>
+<td><span class="ielts-listening-question-item">______</span></td>
+</tr>
+</tbody>
+</table>
+                                        </div>`,
+          seekPosition: 20,
           questions: [
             {
               id: "1",
@@ -455,6 +110,7 @@ export const readingTest2 = {
           instruction:
             "The text has six paragraphs, A-F. Which paragraph mentions the following?",
           questionType: "matching",
+          seekPosition: 20,
           questions: [
             {
               id: "8",
@@ -522,6 +178,8 @@ export const readingTest2 = {
   </div>`,
       instruction:
         "This is a mock test for the IELTS Reading section. It is designed to help you practice your reading skills and prepare for the real test.",
+      audio_url:
+        "https://file-examples.com/storage/feaa6a7f0468517af9bc02d/2017/11/file_example_MP3_1MG.mp3",
       question_groups: [
         {
           id: "group_3",
@@ -545,6 +203,7 @@ export const readingTest2 = {
 
 <p><strong>Secondary lifting equipment (chains, slings, etc.)</strong></p>
 <p>• more likely to cause ______</p>`,
+          seekPosition: 20,
           questions: [
             {
               id: "15",
@@ -650,6 +309,7 @@ export const readingTest2 = {
 </tr>
 </tbody>
 </table>`,
+          seekPosition: 40,
           questions: [
             { id: "23", correctAnswer: "win" },
             { id: "24", correctAnswer: "expectations" },
@@ -676,12 +336,15 @@ export const readingTest2 = {
 </div>`,
       instruction:
         "This is a mock test for the IELTS Reading section. It is designed to help you practice your reading skills and prepare for the real test.",
+      audio_url:
+        "https://file-examples.com/wp-content/storage/2017/11/file_example_MP3_1MG.mp3",
       question_groups: [
         {
           id: "group_6",
           instruction:
             "The text has six sections, A-F. Which section mentions the following?",
           questionType: "matching",
+          seekPosition: 20,
           questions: [
             {
               id: "28",
@@ -727,6 +390,7 @@ export const readingTest2 = {
           id: "group_7",
           instruction: "Choose the correct letter, A, B, C or D.",
           questionType: "multiple_choice",
+          seekPosition: 40,
           questionText: ``,
           questions: [
             {

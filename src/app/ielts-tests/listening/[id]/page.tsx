@@ -1,24 +1,26 @@
 "use client";
 
+import { useAudio } from "@/app/hooks/useAudio";
 import "@/styles/writing-test.css";
+import { Box } from "@mui/material";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { PartSwitcher } from "../../components/PartSwitcher";
-import { TaskRequirements } from "../../components/TaskRequirements";
 import { TestHeader } from "../../components/TestHeader";
+import { ListeningTastRequirement } from "../components/ListeningTastRequirement";
 import { TestLayout } from "../components/TestLayout";
-import { readingTest2 } from "../mockData";
+import { mocktest } from "../mockData";
 
 export default function ListeningTestPage() {
   const params = useParams();
   const router = useRouter();
   const testId = params.id as string;
-  const test = readingTest2;
+  const test = mocktest;
 
   useEffect(() => {
     if (!test) {
       console.error(`Invalid test ID: ${testId}`);
-      router.push("/ielts-tests/speaking");
+      router.push("/ielts-tests/listening");
     }
   }, [test, testId, router]);
 
@@ -36,17 +38,29 @@ export default function ListeningTestPage() {
   }
 
   const currentPartData = test.parts[currentPart - 1];
+  const { isPlaying, duration, currentTime, play, pause, toggle, seekTo } =
+    useAudio(currentPartData.audio_url);
 
   return (
-    <div className="writing-test-page">
+    <Box>
       <TestHeader timeLimit={test.time_limit} onTimeUp={handleSubmitEssay} />
 
-      <TaskRequirements
+      <ListeningTastRequirement
         currentPart={currentPart}
         instructions={currentPartData.instruction}
+        isPlaying={isPlaying}
+        toggle={toggle}
+        duration={duration}
+        currentTime={currentTime}
+        play={play}
+        pause={pause}
+        seekTo={seekTo}
       />
 
-      <TestLayout questionGroups={currentPartData.question_groups} />
+      <TestLayout
+        questionGroups={currentPartData.question_groups}
+        seekTo={seekTo}
+      />
 
       <PartSwitcher
         currentPart={currentPart}
@@ -57,6 +71,6 @@ export default function ListeningTestPage() {
           setCurrentQuestion(1);
         }}
       />
-    </div>
+    </Box>
   );
 }
