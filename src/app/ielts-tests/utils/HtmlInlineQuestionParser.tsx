@@ -1,6 +1,6 @@
+import { QuestionNumberBox } from "@/app/components/QuestionNumberBox";
 import { Box, TextField } from "@mui/material";
 import parse, { HTMLReactParserOptions } from "html-react-parser";
-import { QuestionNumberBox } from "../components/QuestionNumberBox";
 import { Question } from "../models/Question";
 
 export const HtmlInlineQuestionParser: React.FC<{

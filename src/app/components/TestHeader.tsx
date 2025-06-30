@@ -1,4 +1,7 @@
-import { formatTime, useTimer } from "../writing/utils/timerHandler";
+import {
+  formatTime,
+  useTimer,
+} from "../ielts-tests/writing/utils/timerHandler";
 
 interface TestHeaderProps {
   timeLimit: number;

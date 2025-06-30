@@ -1,6 +1,6 @@
 import { Box, Typography } from "@mui/material";
 import "react-h5-audio-player/lib/styles.css";
-import { SoundPlayer } from "../../components/SoundPlayer";
+import { SoundPlayer } from "../../../components/SoundPlayer";
 
 interface ListeningTastRequirementProps {
   currentPart: number;

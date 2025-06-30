@@ -1,5 +1,5 @@
 import { useCallback, useRef, useState } from "react";
-import { ResizeHandle } from "../../components/ResizeHandle";
+import { ResizeHandle } from "../../../components/ResizeHandle";
 import { createResizeEventHandlers } from "../utils/resizeEventHandler";
 import { AnswerSection } from "./AnswerSection";
 import { TaskPrompt } from "./TaskPrompt";

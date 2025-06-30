@@ -3,9 +3,9 @@
 import "@/styles/writing-test.css";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { PartSwitcher } from "../../components/PartSwitcher";
-import { TaskRequirements } from "../../components/TaskRequirements";
-import { TestHeader } from "../../components/TestHeader";
+import { PartSwitcher } from "../../../components/PartSwitcher";
+import { TaskRequirements } from "../../../components/TaskRequirements";
+import { TestHeader } from "../../../components/TestHeader";
 import { TestLayout } from "../components/TestLayout";
 import { writingTests } from "../mockData";
 import { Feedback } from "../types/feedback";
