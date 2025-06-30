@@ -1,7 +1,7 @@
 "use client";
 
-import TestFilters from "@/components/TestFilters";
-import TestList from "@/components/TestList";
+import TestFilters from "@/app/components/TestFilters";
+import TestList from "@/app/components/TestList";
 import { useMemo, useState } from "react";
 
 interface ListeningTest {
