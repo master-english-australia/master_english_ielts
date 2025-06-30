@@ -20,9 +20,7 @@ function FeatureCard({ title, description, link }: FeatureProps) {
 }
 
 export default function Home() {
-  useEffect(() => {
-    console.log("IELTS Master application loaded");
-  }, []);
+  useEffect(() => {}, []);
 
   const features = [
     {

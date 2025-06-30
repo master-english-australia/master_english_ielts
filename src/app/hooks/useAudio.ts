@@ -32,9 +32,6 @@ export function useAudio(src: string) {
   }, [src]);
 
   const play = () => {
-    console.log("play");
-    console.log("audioRef.current", audioRef.current);
-    console.log("audioRef.current.duration", audioRef.current?.duration);
     if (!audioRef.current) return;
     audioRef.current.play();
     setIsPlaying(true);

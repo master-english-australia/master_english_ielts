@@ -17,7 +17,7 @@ export const mocktest = {
         </div>`,
       instruction: " Listen and answer questions 1-10",
       audio_url:
-        "https://file-examples.com/storage/feaa6a7f0468517af9bc02d/2017/11/file_example_MP3_5MG.mp3",
+        "https://file-examples.com/storage/feb2b5780e6861a159e5a39/2017/11/file_example_MP3_5MG.mp3",
       question_groups: [
         {
           id: "group_1",
@@ -179,7 +179,7 @@ export const mocktest = {
       instruction:
         "This is a mock test for the IELTS Reading section. It is designed to help you practice your reading skills and prepare for the real test.",
       audio_url:
-        "https://file-examples.com/storage/feaa6a7f0468517af9bc02d/2017/11/file_example_MP3_1MG.mp3",
+        "https://file-examples.com/storage/feb2b5780e6861a159e5a39/2017/11/file_example_MP3_5MG.mp3",
       question_groups: [
         {
           id: "group_3",

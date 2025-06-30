@@ -55,7 +55,6 @@ export const SoundPlayer = ({
         step={0.5}
         max={duration}
         onChange={(_, value) => {
-          console.log("value", value);
           seekTo(value);
         }}
         sx={(t) => ({
