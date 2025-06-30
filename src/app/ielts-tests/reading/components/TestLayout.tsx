@@ -1,6 +1,6 @@
 import { useCallback, useRef, useState } from "react";
 import { ResizeHandle } from "../../../components/ResizeHandle";
-import { QuestionGroup } from "../../models/QuestionGroup";
+import { QuestionGroup } from "../../../models/QuestionGroup";
 import { createResizeEventHandlers } from "../../writing/utils/resizeEventHandler";
 import { AnswerSection } from "./AnswerSection";
 import { TaskPrompt } from "./TaskPrompt";

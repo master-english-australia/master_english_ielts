@@ -1,5 +1,5 @@
 import { Box } from "@mui/material";
-import { QuestionGroup } from "../../models/QuestionGroup";
+import { QuestionGroup } from "../../../models/QuestionGroup";
 import { ListeningQuestionRenderer } from "./ListeningQuestionRenderer";
 
 interface TestLayoutProps {

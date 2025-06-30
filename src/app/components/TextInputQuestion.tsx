@@ -1,8 +1,8 @@
 // TextInputQuestion.tsx
 import { Box } from "@mui/material";
 import React from "react";
-import { QuestionGroup } from "../ielts-tests/models/QuestionGroup";
-import { HtmlInlineQuestionParser } from "../ielts-tests/utils/HtmlInlineQuestionParser";
+import { QuestionGroup } from "../models/QuestionGroup";
+import { HtmlInlineQuestionParser } from "../utils/HtmlInlineQuestionParser";
 
 type Props = {
   questionGroup: QuestionGroup;

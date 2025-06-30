@@ -3,7 +3,7 @@ import { Box } from "@mui/material";
 import React from "react";
 import { QuestionNumbers } from "../../../components/QuestionNumbers";
 import { QuestionTypeRenderer } from "../../../components/QuestionTypeRenderer";
-import { QuestionGroup } from "../../models/QuestionGroup";
+import { QuestionGroup } from "../../../models/QuestionGroup";
 import { ResumeSoundButton } from "./ResumeSoundButton";
 
 type Props = {
