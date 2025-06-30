@@ -1,12 +1,11 @@
 "use client";
 
-import "@/styles/writing-test.css";
+import { Box } from "@mui/material";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { PartSwitcher } from "../../../components/PartSwitcher";
 import { TaskRequirements } from "../../../components/TaskRequirements";
 import { TestHeader } from "../../../components/TestHeader";
-import { Feedback } from "../../writing/types/feedback";
 import { TestLayout } from "../components/TestLayout";
 import { speakingTests } from "../mockData";
 
@@ -26,7 +25,6 @@ export default function SpeakingTestPage() {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [currentPart, setCurrentPart] = useState(1);
   const [currentQuestion, setCurrentQuestion] = useState(1);
-  const [feedback, setFeedback] = useState<Feedback | null>(null);
 
   const handleSubmitEssay = () => {
     if (isSubmitted) return;
@@ -34,7 +32,6 @@ export default function SpeakingTestPage() {
   };
 
   const handlePrevQuestion = () => {
-    const currentPartData = test.parts[currentPart - 1];
     if (currentQuestion > 1) {
       setCurrentQuestion(currentQuestion - 1);
     } else if (currentPart > 1) {
@@ -66,7 +63,7 @@ export default function SpeakingTestPage() {
     currentQuestion === currentPartData.questions.length;
 
   return (
-    <div className="writing-test-page">
+    <Box>
       <TestHeader timeLimit={test.timeLimit} onTimeUp={handleSubmitEssay} />
 
       <TaskRequirements
@@ -94,6 +91,6 @@ export default function SpeakingTestPage() {
           setCurrentQuestion(1);
         }}
       />
-    </div>
+    </Box>
   );
 }

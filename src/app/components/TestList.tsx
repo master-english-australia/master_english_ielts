@@ -1,8 +1,8 @@
 "use client";
 
-import "@/styles/TestList.css";
+import TestCard, { TestCardProps } from "@/app/components/TestCard";
+import { Box, Button, Typography } from "@mui/material";
 import { useState } from "react";
-import TestCard, { TestCardProps } from "./TestCard";
 
 interface Test extends TestCardProps {
   id: string;
@@ -27,13 +27,13 @@ export default function TestList({ tests, title, description }: TestListProps) {
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
   return (
-    <div className="test-list-container">
-      <div className="test-list-header">
-        <h1>{title}</h1>
-        {description && <p>{description}</p>}
-      </div>
+    <Box className="test-list-container">
+      <Box className="test-list-header">
+        <Typography variant="h1">{title}</Typography>
+        {description && <Typography variant="body1">{description}</Typography>}
+      </Box>
 
-      <div className="test-grid">
+      <Box className="test-grid">
         {currentTests.map((test) => (
           <TestCard
             key={test.id}
@@ -43,39 +43,39 @@ export default function TestList({ tests, title, description }: TestListProps) {
             questionType={test.questionType}
           />
         ))}
-      </div>
+      </Box>
 
       {totalPages > 1 && (
-        <div className="pagination">
+        <Box className="pagination">
           {currentPage > 1 && (
-            <button
+            <Button
               className="pagination-btn prev"
               onClick={() => paginate(currentPage - 1)}
             >
               &laquo; Previous
-            </button>
+            </Button>
           )}
 
           {Array.from({ length: totalPages }, (_, i) => (
-            <button
+            <Button
               key={i + 1}
               className={`pagination-btn ${currentPage === i + 1 ? "active" : ""}`}
               onClick={() => paginate(i + 1)}
             >
               {i + 1}
-            </button>
+            </Button>
           ))}
 
           {currentPage < totalPages && (
-            <button
+            <Button
               className="pagination-btn next"
               onClick={() => paginate(currentPage + 1)}
             >
               Next &raquo;
-            </button>
+            </Button>
           )}
-        </div>
+        </Box>
       )}
-    </div>
+    </Box>
   );
 }

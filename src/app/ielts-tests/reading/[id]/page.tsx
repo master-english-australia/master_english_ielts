@@ -1,6 +1,6 @@
 "use client";
 
-import "@/styles/writing-test.css";
+import { Box } from "@mui/material";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { PartSwitcher } from "../../../components/PartSwitcher";
@@ -33,41 +33,14 @@ export default function ReadingTestPage() {
     setIsSubmitted(true);
   };
 
-  const handlePrevQuestion = () => {
-    const currentPartData = test.parts[currentPart - 1];
-    if (currentQuestion > 1) {
-      setCurrentQuestion(currentQuestion - 1);
-    } else if (currentPart > 1) {
-      const prevPartData = test.parts[currentPart - 2];
-      setCurrentPart(currentPart - 1);
-      setCurrentQuestion(prevPartData.question_groups.length);
-    }
-  };
-
-  const handleNextQuestion = () => {
-    const currentPartData = test.parts[currentPart - 1];
-    if (currentQuestion < currentPartData.question_groups.length) {
-      setCurrentQuestion(currentQuestion + 1);
-    } else if (currentPart < test.parts.length) {
-      setCurrentPart(currentPart + 1);
-      setCurrentQuestion(1);
-    }
-  };
-
   if (!test) {
     return <div>Loading test data...</div>;
   }
 
   const currentPartData = test.parts[currentPart - 1];
-  const currentQuestionData =
-    currentPartData.question_groups[currentQuestion - 1];
-  const isFirstQuestion = currentPart === 1 && currentQuestion === 1;
-  const isLastQuestion =
-    currentPart === test.parts.length &&
-    currentQuestion === currentPartData.question_groups.length;
 
   return (
-    <div className="writing-test-page">
+    <Box>
       <TestHeader timeLimit={test.time_limit} onTimeUp={handleSubmitEssay} />
 
       <TaskRequirements
@@ -91,6 +64,6 @@ export default function ReadingTestPage() {
           setCurrentQuestion(1);
         }}
       />
-    </div>
+    </Box>
   );
 }

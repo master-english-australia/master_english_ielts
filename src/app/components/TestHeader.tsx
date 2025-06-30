@@ -1,3 +1,5 @@
+import WatchLaterIcon from "@mui/icons-material/WatchLater";
+import { Box, Typography } from "@mui/material";
 import {
   formatTime,
   useTimer,
@@ -12,11 +14,20 @@ export const TestHeader = ({ timeLimit, onTimeUp }: TestHeaderProps) => {
   const timer = useTimer(timeLimit, onTimeUp);
 
   return (
-    <div className="writing-test-header">
-      <span className="writing-test-timer">
-        <span className="timer-icon">⏱</span>
+    <Box
+      sx={{
+        width: "100%",
+        padding: "1rem 0",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
+      <WatchLaterIcon sx={{ fontSize: 18 }} />
+      <Box width={8} />
+      <Typography variant="body1" fontWeight={600}>
         {formatTime(timer)}
-      </span>
-    </div>
+      </Typography>
+    </Box>
   );
 };

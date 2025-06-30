@@ -1,6 +1,6 @@
 "use client";
 
-import "@/styles/writing-test.css";
+import { Box } from "@mui/material";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { PartSwitcher } from "../../../components/PartSwitcher";
@@ -56,7 +56,7 @@ export default function WritingTestPage() {
   }
 
   return (
-    <div className="writing-test-page">
+    <Box>
       <TestHeader timeLimit={test.timeLimit} onTimeUp={handleSubmitEssay} />
 
       <TaskRequirements
@@ -83,6 +83,6 @@ export default function WritingTestPage() {
         onPartChange={setCurrentPart}
         onSubmit={handleSubmitEssay}
       />
-    </div>
+    </Box>
   );
 }

@@ -1,7 +1,6 @@
 "use client";
 
 import { useAudio } from "@/app/hooks/useAudio";
-import "@/styles/writing-test.css";
 import { Box } from "@mui/material";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
