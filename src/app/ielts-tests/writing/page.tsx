@@ -1,19 +1,11 @@
 "use client";
 
-import TestFilters from "@/app/components/TestFilters";
-import TestList from "@/app/components/TestList";
-import { useMemo, useState } from "react";
-
-interface WritingTest {
-  id: string;
-  type: string;
-  title: string;
-  testUrl: string;
-  description: string;
-}
+import TestListPage from "@/app/components/TestListPage";
+import { IeltsTest } from "@/app/models/IeltsTest";
+import { useState } from "react";
 
 export default function WritingTestsPage() {
-  const [tests] = useState<WritingTest[]>([
+  const [tests] = useState<IeltsTest[]>([
     {
       id: "academic-writing-test",
       type: "Academic",
@@ -24,52 +16,5 @@ export default function WritingTestsPage() {
     },
   ]);
 
-  const [filters, setFilters] = useState({
-    search: "",
-    testType: "All",
-  });
-
-  const handleFilterChange = (newFilters: {
-    search: string;
-    testType: string;
-  }) => {
-    setFilters(newFilters);
-  };
-
-  const filteredTestList = useMemo(() => {
-    return tests.filter((test) => {
-      // Filter by test type
-      if (filters.testType !== "All" && test.type !== filters.testType) {
-        return false;
-      }
-
-      // Filter by search query
-      if (filters.search) {
-        const searchLower = filters.search.toLowerCase();
-        return (
-          test.title.toLowerCase().includes(searchLower) ||
-          test.description.toLowerCase().includes(searchLower)
-        );
-      }
-
-      return true;
-    });
-  }, [tests, filters]);
-
-  return (
-    <div className="ielts-tests-container">
-      <div className="page-content">
-        <div className="sidebar">
-          <TestFilters onFilterChange={handleFilterChange} />
-        </div>
-        <div className="main-content">
-          <TestList
-            tests={filteredTestList}
-            title="Writing Tests"
-            description="Practice your IELTS writing skills with these tasks."
-          />
-        </div>
-      </div>
-    </div>
-  );
+  return <TestListPage tests={tests} />;
 }

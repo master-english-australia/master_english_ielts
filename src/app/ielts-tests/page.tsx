@@ -8,10 +8,7 @@ export default function IELTSTestsPage() {
   const pathname = usePathname();
 
   useEffect(() => {
-    // Only redirect if we're exactly at /ielts-tests
     if (pathname === "/ielts-tests") {
-      // Redirect to reading tests page by default
-      // Using replace instead of push allows the back button to skip this page
       router.replace("/ielts-tests/reading");
     }
   }, [router, pathname]);
