@@ -1,9 +1,9 @@
+import { Box, TextField, Typography } from "@mui/material";
 import { Feedback } from "../types/feedback";
 
 interface AnswerSectionProps {
   id: string;
   answerWidth: number;
-  isSubmitted: boolean;
   currentPart: number;
   part1Essay: string;
   part2Essay: string;
@@ -15,33 +15,55 @@ interface AnswerSectionProps {
 export const AnswerSection = ({
   id,
   answerWidth,
-  isSubmitted,
   currentPart,
   part1Essay,
   part2Essay,
   wordCount,
-  feedback,
   onEssayChange,
 }: AnswerSectionProps) => {
+  const currentEssay = currentPart === 1 ? part1Essay : part2Essay;
+
   return (
-    <div
+    <Box
       id={id}
-      className="answer-section"
-      style={{
-        width: `${answerWidth}%`,
-        maxWidth: `${answerWidth}%`,
-        flex: `0 0 ${answerWidth}%`,
+      width={`${answerWidth}%`}
+      maxWidth={`${answerWidth}%`}
+      flex={`0 0 ${answerWidth}%`}
+      sx={{
+        overflowY: "auto",
+        padding: "1.5rem",
+        transition: "width 0.1s ease",
+        display: "flex",
+        flexDirection: "column",
       }}
     >
-      {!isSubmitted ? (
-        <div className="editor-container">
-          <></>
+      <Typography variant="subtitle1" sx={{ fontWeight: "bold", mb: 1 }}>
+        Part {currentPart} Answer
+      </Typography>
 
-          <div className="word-count">Word Count: {wordCount}</div>
-        </div>
-      ) : (
-        <></>
-      )}
-    </div>
+      <TextField
+        placeholder={`Enter your part ${currentPart} answer...`}
+        multiline
+        minRows={15}
+        maxRows={30}
+        fullWidth
+        variant="outlined"
+        value={currentEssay}
+        onChange={(e) => onEssayChange(currentPart, e.target.value)}
+        sx={{
+          flex: 1,
+          mb: 1,
+          backgroundColor: "#fff",
+          "& textarea": {
+            fontSize: "1rem",
+            lineHeight: 1.6,
+          },
+        }}
+      />
+
+      <Typography variant="body2" color="text.secondary">
+        Word Count: {wordCount}
+      </Typography>
+    </Box>
   );
 };

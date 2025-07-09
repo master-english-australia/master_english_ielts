@@ -16,13 +16,11 @@ export const AnswerSection = ({
 }: AnswerSectionProps) => {
   return (
     <Box
+      position="relative"
       id={id}
-      className="answer-section"
-      style={{
-        width: `${answerWidth}%`,
-        maxWidth: `${answerWidth}%`,
-        flex: `0 0 ${answerWidth}%`,
-      }}
+      width={`${answerWidth}%`}
+      maxWidth={`${answerWidth}%`}
+      flex={`0 0 ${answerWidth}%`}
     >
       {questionGroups.map((group) => (
         <QuestionRenderer key={group.id} questionGroup={group} />

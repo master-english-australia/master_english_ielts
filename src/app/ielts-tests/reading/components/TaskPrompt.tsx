@@ -1,3 +1,5 @@
+import { Box } from "@mui/material";
+
 interface TaskPromptProps {
   id: string;
   contentWidth: number;
@@ -11,18 +13,14 @@ export const TaskPrompt = ({
   promptContent,
 }: TaskPromptProps) => {
   return (
-    <div
+    <Box
+      position="relative"
       id={id}
-      className="writing-test-content"
-      style={{
-        width: `${contentWidth}%`,
-        maxWidth: `${contentWidth}%`,
-        flex: `0 0 ${contentWidth}%`,
-      }}
+      width={`${contentWidth}%`}
+      maxWidth={`${contentWidth}%`}
+      flex={`0 0 ${contentWidth}%`}
     >
-      <div className="task-prompt">
-        <div dangerouslySetInnerHTML={{ __html: promptContent }} />
-      </div>
-    </div>
+      <Box dangerouslySetInnerHTML={{ __html: promptContent }} />
+    </Box>
   );
 };

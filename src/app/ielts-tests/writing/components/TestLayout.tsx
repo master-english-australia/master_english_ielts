@@ -1,3 +1,4 @@
+import { Box } from "@mui/material";
 import { useCallback, useRef, useState } from "react";
 import { ResizeHandle } from "../../../components/ResizeHandle";
 import { createResizeEventHandlers } from "../utils/resizeEventHandler";
@@ -29,30 +30,21 @@ export const TestLayout = ({
 }: TestLayoutProps) => {
   const [contentWidth, setContentWidth] = useState(50);
   const [answerWidth, setAnswerWidth] = useState(50);
-  const [isResizing, setIsResizing] = useState(false);
   const layoutRef = useRef<HTMLDivElement>(null);
 
-  const handleResizeStart = useCallback(
-    (e: React.MouseEvent) => {
-      createResizeEventHandlers(
-        e,
-        layoutRef,
-        contentWidth,
-        answerWidth,
-        {
-          setContentWidth,
-          setAnswerWidth,
-          setIsResizing,
-        },
-        "content-prompt",
-        "answer-section",
-      );
-    },
-    [contentWidth, answerWidth],
-  );
+  const handleResizeStart = useCallback((e: React.MouseEvent) => {
+    createResizeEventHandlers(e, layoutRef, setContentWidth, setAnswerWidth);
+  }, []);
 
   return (
-    <div className="two-column-layout" ref={layoutRef}>
+    <Box
+      p={2}
+      ref={layoutRef}
+      display="flex"
+      gap={2}
+      width="100%"
+      position="relative"
+    >
       <TaskPrompt
         id="content-prompt"
         contentWidth={contentWidth}
@@ -61,15 +53,13 @@ export const TestLayout = ({
       />
 
       <ResizeHandle
-        isResizing={isResizing}
-        answerWidth={answerWidth}
+        contentWidth={contentWidth}
         onResizeStart={handleResizeStart}
       />
 
       <AnswerSection
         id="answer-section"
         answerWidth={answerWidth}
-        isSubmitted={isSubmitted}
         currentPart={currentPart}
         part1Essay={part1Essay}
         part2Essay={part2Essay}
@@ -77,6 +67,6 @@ export const TestLayout = ({
         feedback={feedback}
         onEssayChange={onEssayChange}
       />
-    </div>
+    </Box>
   );
 };
