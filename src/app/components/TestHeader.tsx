@@ -1,9 +1,6 @@
 import WatchLaterIcon from "@mui/icons-material/WatchLater";
 import { Box, Typography } from "@mui/material";
-import {
-  formatTime,
-  useTimer,
-} from "../ielts-tests/writing/utils/timerHandler";
+import { formatTime, useTimer } from "../utils/timerHandler";
 
 interface TestHeaderProps {
   timeLimit: number;
