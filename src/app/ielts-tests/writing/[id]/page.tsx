@@ -57,7 +57,7 @@ export default function WritingTestPage() {
 
   return (
     <Box>
-      <TestHeader timeLimit={test.timeLimit} onTimeUp={handleSubmitEssay} />
+      <TestHeader timeLimit={test.timeLimit} />
 
       <TaskRequirements
         currentPart={currentPart}

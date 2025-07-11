@@ -7,11 +7,10 @@ import {
 
 interface TestHeaderProps {
   timeLimit: number;
-  onTimeUp: () => void;
 }
 
-export const TestHeader = ({ timeLimit, onTimeUp }: TestHeaderProps) => {
-  const timer = useTimer(timeLimit, onTimeUp);
+export const TestHeader = ({ timeLimit }: TestHeaderProps) => {
+  const timer = useTimer(timeLimit);
 
   return (
     <Box

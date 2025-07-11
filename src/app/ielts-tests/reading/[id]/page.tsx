@@ -41,7 +41,7 @@ export default function ReadingTestPage() {
 
   return (
     <Box>
-      <TestHeader timeLimit={test.time_limit} onTimeUp={handleSubmitEssay} />
+      <TestHeader timeLimit={test.time_limit} />
 
       <TaskRequirements
         currentPart={currentPart}

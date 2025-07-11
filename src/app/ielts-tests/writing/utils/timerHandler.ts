@@ -8,7 +8,7 @@ export const formatTime = (seconds: number) => {
   return `${hours.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}`;
 };
 
-export const useTimer = (initialTime: number, onTimeUp: () => void) => {
+export const useTimer = (initialTime: number) => {
   const [timer, setTimer] = useState(initialTime);
 
   useEffect(() => {
@@ -26,12 +26,6 @@ export const useTimer = (initialTime: number, onTimeUp: () => void) => {
       clearInterval(interval);
     };
   }, []);
-
-  useEffect(() => {
-    if (timer === 0) {
-      onTimeUp();
-    }
-  }, [timer, onTimeUp]);
 
   return timer;
 };

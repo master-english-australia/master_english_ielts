@@ -27,7 +27,7 @@ export default function ListeningTestPage() {
   const [currentPart, setCurrentPart] = useState(1);
   const [currentQuestion, setCurrentQuestion] = useState(1);
 
-  const handleSubmitEssay = () => {
+  const handleSubmit = () => {
     if (isSubmitted) return;
     setIsSubmitted(true);
   };
@@ -42,7 +42,7 @@ export default function ListeningTestPage() {
 
   return (
     <Box>
-      <TestHeader timeLimit={test.time_limit} onTimeUp={handleSubmitEssay} />
+      <TestHeader timeLimit={test.time_limit} />
 
       <ListeningTastRequirement
         currentPart={currentPart}
@@ -69,6 +69,7 @@ export default function ListeningTestPage() {
           setCurrentPart(part);
           setCurrentQuestion(1);
         }}
+        onSubmit={handleSubmit}
       />
     </Box>
   );
