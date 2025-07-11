@@ -16,5 +16,5 @@ export default function WritingTestsPage() {
     },
   ]);
 
-  return <TestListPage tests={tests} />;
+  return <TestListPage tests={tests} title="Writing Tests" />;
 }

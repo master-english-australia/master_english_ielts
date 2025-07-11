@@ -40,5 +40,5 @@ export default function ReadingTestsPage() {
     },
   ]);
 
-  return <TestListPage tests={tests} />;
+  return <TestListPage tests={tests} title="Reading Tests" />;
 }

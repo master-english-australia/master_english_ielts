@@ -8,9 +8,10 @@ import { IeltsTest } from "../models/IeltsTest";
 
 interface TestListPageProps {
   tests: IeltsTest[];
+  title: string;
 }
 
-export default function TestListPage({ tests }: TestListPageProps) {
+export default function TestListPage({ tests, title }: TestListPageProps) {
   const [filters, setFilters] = useState({
     search: "",
     testType: "All",
@@ -48,11 +49,7 @@ export default function TestListPage({ tests }: TestListPageProps) {
           <TestFilters onFilterChange={handleFilterChange} />
         </Box>
         <Box flex={1}>
-          <TestList
-            tests={filteredTestList}
-            title="Reading Tests"
-            description=""
-          />
+          <TestList tests={filteredTestList} title={title} description="" />
         </Box>
       </Box>
     </Box>
