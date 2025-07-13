@@ -6,6 +6,7 @@ import { QuestionText } from "./QuestionText";
 export const MultipleChoiceQuestion: React.FC<QuestionProps> = ({
   questionGroup,
   onChangeAnswer,
+  state,
 }) => (
   <Box>
     <Typography sx={{ textAlign: "left", mb: 2 }}>
