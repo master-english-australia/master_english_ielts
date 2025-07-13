@@ -1,15 +1,11 @@
 import { Box, Radio, Typography } from "@mui/material";
 import React from "react";
-import { QuestionGroup } from "../models/QuestionGroup";
+import { QuestionProps } from "../models/props/questionProps";
 import { QuestionText } from "./QuestionText";
-
-type Props = {
-  questionGroup: QuestionGroup;
-};
 
 const options = ["TRUE", "FALSE", "NOT GIVEN"];
 
-export const TrueFalseNotGivenQuestion: React.FC<Props> = ({
+export const TrueFalseNotGivenQuestion: React.FC<QuestionProps> = ({
   questionGroup,
 }) => (
   <Box marginY={2}>

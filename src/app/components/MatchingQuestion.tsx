@@ -1,13 +1,12 @@
 import { Box, MenuItem, Select, Typography } from "@mui/material";
 import React, { useState } from "react";
-import { QuestionGroup } from "../models/QuestionGroup";
+import { QuestionProps } from "../models/props/questionProps";
 import { QuestionText } from "./QuestionText";
 
-type Props = {
-  questionGroup: QuestionGroup;
-};
-
-export const MatchingQuestion: React.FC<Props> = ({ questionGroup }) => {
+export const MatchingQuestion: React.FC<QuestionProps> = ({
+  questionGroup,
+  onChangeAnswer,
+}) => {
   const [selectedAnswers, setSelectedAnswers] = useState<
     Record<string, string>
   >({});

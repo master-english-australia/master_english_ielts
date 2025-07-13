@@ -7,18 +7,42 @@ import { TrueFalseNotGivenQuestion } from "./TrueFalseNotGivenQuestion";
 
 type Props = {
   questionGroup: QuestionGroup;
+  onChangeAnswer: (questionNumber: number, value: string) => void;
 };
 
-export const QuestionTypeRenderer: React.FC<Props> = ({ questionGroup }) => {
+export const QuestionTypeRenderer: React.FC<Props> = ({
+  questionGroup,
+  onChangeAnswer,
+}) => {
   switch (questionGroup.questionType) {
     case "multiple_choice":
-      return <MultipleChoiceQuestion questionGroup={questionGroup} />;
+      return (
+        <MultipleChoiceQuestion
+          questionGroup={questionGroup}
+          onChangeAnswer={onChangeAnswer}
+        />
+      );
     case "true_false_not_given":
-      return <TrueFalseNotGivenQuestion questionGroup={questionGroup} />;
+      return (
+        <TrueFalseNotGivenQuestion
+          questionGroup={questionGroup}
+          onChangeAnswer={onChangeAnswer}
+        />
+      );
     case "text_input":
-      return <TextInputQuestion questionGroup={questionGroup} />;
+      return (
+        <TextInputQuestion
+          questionGroup={questionGroup}
+          onChangeAnswer={onChangeAnswer}
+        />
+      );
     case "matching":
-      return <MatchingQuestion questionGroup={questionGroup} />;
+      return (
+        <MatchingQuestion
+          questionGroup={questionGroup}
+          onChangeAnswer={onChangeAnswer}
+        />
+      );
     default:
       return <div>Unsupported question type</div>;
   }

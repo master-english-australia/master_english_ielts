@@ -1,13 +1,12 @@
 import { Box, Radio, Typography } from "@mui/material";
 import React from "react";
-import { QuestionGroup } from "../models/QuestionGroup";
+import { QuestionProps } from "../models/props/questionProps";
 import { QuestionText } from "./QuestionText";
 
-type Props = {
-  questionGroup: QuestionGroup;
-};
-
-export const MultipleChoiceQuestion: React.FC<Props> = ({ questionGroup }) => (
+export const MultipleChoiceQuestion: React.FC<QuestionProps> = ({
+  questionGroup,
+  onChangeAnswer,
+}) => (
   <Box>
     <Typography sx={{ textAlign: "left", mb: 2 }}>
       {questionGroup.instruction}

@@ -8,11 +8,13 @@ import { PartSwitcher } from "../../../components/PartSwitcher";
 import { TestHeader } from "../../../components/TestHeader";
 import { ListeningTastRequirement } from "../components/ListeningTastRequirement";
 import { TestLayout } from "../components/TestLayout";
+import { useListeningAnswers } from "../hooks/useAnswerContext";
 import { mocktest } from "../mockData";
 
 export default function ListeningTestPage() {
   const params = useParams();
   const router = useRouter();
+  const {} = useListeningAnswers();
   const testId = params.id as string;
   const test = mocktest;
 

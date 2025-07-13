@@ -4,6 +4,7 @@ import React from "react";
 import { QuestionNumbers } from "../../../components/QuestionNumbers";
 import { QuestionTypeRenderer } from "../../../components/QuestionTypeRenderer";
 import { QuestionGroup } from "../../../models/QuestionGroup";
+import { useListeningAnswers } from "../hooks/useAnswerContext";
 import { ResumeSoundButton } from "./ResumeSoundButton";
 
 type Props = {
@@ -15,6 +16,12 @@ export const ListeningQuestionRenderer: React.FC<Props> = ({
   questionGroup,
   seekTo,
 }) => {
+  const { state, dispatch } = useListeningAnswers();
+
+  const handleChangeAnswer = (questionNumber: number, value: string) => {
+    dispatch({ type: "UPSERT", questionNumber, value });
+  };
+
   return (
     <Box mb={8}>
       <QuestionNumbers questions={questionGroup.questions} />
@@ -23,7 +30,10 @@ export const ListeningQuestionRenderer: React.FC<Props> = ({
         onClick={() => seekTo(questionGroup.seekPosition ?? 0)}
       />
       <Box sx={{ height: 8 }} />
-      <QuestionTypeRenderer questionGroup={questionGroup} />
+      <QuestionTypeRenderer
+        questionGroup={questionGroup}
+        onChangeAnswer={handleChangeAnswer}
+      />
     </Box>
   );
 };

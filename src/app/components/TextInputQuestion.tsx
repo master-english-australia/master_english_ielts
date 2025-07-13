@@ -1,14 +1,13 @@
 // TextInputQuestion.tsx
 import { Box } from "@mui/material";
 import React from "react";
-import { QuestionGroup } from "../models/QuestionGroup";
+import { QuestionProps } from "../models/props/questionProps";
 import { HtmlInlineQuestionParser } from "../utils/HtmlInlineQuestionParser";
 
-type Props = {
-  questionGroup: QuestionGroup;
-};
-
-export const TextInputQuestion: React.FC<Props> = ({ questionGroup }) => {
+export const TextInputQuestion: React.FC<QuestionProps> = ({
+  questionGroup,
+  onChangeAnswer,
+}) => {
   return (
     <Box padding={2} border={1} borderColor="grey.400" borderRadius={1}>
       <div dangerouslySetInnerHTML={{ __html: questionGroup.instruction }} />
