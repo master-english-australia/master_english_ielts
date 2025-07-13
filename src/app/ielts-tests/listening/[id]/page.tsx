@@ -8,7 +8,10 @@ import { PartSwitcher } from "../../../components/PartSwitcher";
 import { TestHeader } from "../../../components/TestHeader";
 import { ListeningTastRequirement } from "../components/ListeningTastRequirement";
 import { TestLayout } from "../components/TestLayout";
-import { useListeningAnswers } from "../hooks/useAnswerContext";
+import {
+  ListeningAnswerProvider,
+  useListeningAnswers,
+} from "../hooks/useAnswerContext";
 import { mocktest } from "../mockData";
 
 export default function ListeningTestPage() {
@@ -43,36 +46,38 @@ export default function ListeningTestPage() {
     useAudio(currentPartData.audio_url);
 
   return (
-    <Box>
-      <TestHeader timeLimit={test.time_limit} />
+    <ListeningAnswerProvider>
+      <Box>
+        <TestHeader timeLimit={test.time_limit} />
 
-      <ListeningTastRequirement
-        currentPart={currentPart}
-        instructions={currentPartData.instruction}
-        isPlaying={isPlaying}
-        toggle={toggle}
-        duration={duration}
-        currentTime={currentTime}
-        play={play}
-        pause={pause}
-        seekTo={seekTo}
-      />
+        <ListeningTastRequirement
+          currentPart={currentPart}
+          instructions={currentPartData.instruction}
+          isPlaying={isPlaying}
+          toggle={toggle}
+          duration={duration}
+          currentTime={currentTime}
+          play={play}
+          pause={pause}
+          seekTo={seekTo}
+        />
 
-      <TestLayout
-        questionGroups={currentPartData.question_groups}
-        seekTo={seekTo}
-      />
+        <TestLayout
+          questionGroups={currentPartData.question_groups}
+          seekTo={seekTo}
+        />
 
-      <PartSwitcher
-        currentPart={currentPart}
-        totalParts={test.parts.length}
-        isSubmitted={isSubmitted}
-        onPartChange={(part) => {
-          setCurrentPart(part);
-          setCurrentQuestion(1);
-        }}
-        onSubmit={handleSubmit}
-      />
-    </Box>
+        <PartSwitcher
+          currentPart={currentPart}
+          totalParts={test.parts.length}
+          isSubmitted={isSubmitted}
+          onPartChange={(part) => {
+            setCurrentPart(part);
+            setCurrentQuestion(1);
+          }}
+          onSubmit={handleSubmit}
+        />
+      </Box>
+    </ListeningAnswerProvider>
   );
 }

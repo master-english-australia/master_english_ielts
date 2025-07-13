@@ -8,6 +8,7 @@ import { TaskRequirements } from "../../../components/TaskRequirements";
 import { TestHeader } from "../../../components/TestHeader";
 import { Feedback } from "../../writing/types/feedback";
 import { TestLayout } from "../components/TestLayout";
+import { ReadingAnswerProvider } from "../hooks/useAnswerContext";
 import { readingTest2 } from "../mockData";
 
 export default function ReadingTestPage() {
@@ -40,30 +41,32 @@ export default function ReadingTestPage() {
   const currentPartData = test.parts[currentPart - 1];
 
   return (
-    <Box>
-      <TestHeader timeLimit={test.time_limit} />
+    <ReadingAnswerProvider>
+      <Box>
+        <TestHeader timeLimit={test.time_limit} />
 
-      <TaskRequirements
-        currentPart={currentPart}
-        instructions={currentPartData.instruction}
-      />
+        <TaskRequirements
+          currentPart={currentPart}
+          instructions={currentPartData.instruction}
+        />
 
-      <TestLayout
-        currentPart={currentPart}
-        isSubmitted={isSubmitted}
-        promptContent={currentPartData.content_html}
-        questionGroups={currentPartData.question_groups}
-      />
+        <TestLayout
+          currentPart={currentPart}
+          isSubmitted={isSubmitted}
+          promptContent={currentPartData.content_html}
+          questionGroups={currentPartData.question_groups}
+        />
 
-      <PartSwitcher
-        currentPart={currentPart}
-        totalParts={test.parts.length}
-        isSubmitted={isSubmitted}
-        onPartChange={(part) => {
-          setCurrentPart(part);
-          setCurrentQuestion(1);
-        }}
-      />
-    </Box>
+        <PartSwitcher
+          currentPart={currentPart}
+          totalParts={test.parts.length}
+          isSubmitted={isSubmitted}
+          onPartChange={(part) => {
+            setCurrentPart(part);
+            setCurrentQuestion(1);
+          }}
+        />
+      </Box>
+    </ReadingAnswerProvider>
   );
 }

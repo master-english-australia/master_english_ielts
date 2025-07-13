@@ -7,6 +7,8 @@ const options = ["TRUE", "FALSE", "NOT GIVEN"];
 
 export const TrueFalseNotGivenQuestion: React.FC<QuestionProps> = ({
   questionGroup,
+  onChangeAnswer,
+  answerState,
 }) => (
   <Box marginY={2}>
     <Typography sx={{ textAlign: "left", mb: 2 }}>
@@ -51,8 +53,10 @@ export const TrueFalseNotGivenQuestion: React.FC<QuestionProps> = ({
             >
               <Radio
                 value={opt}
-                checked={question.correctAnswer === opt}
-                onChange={() => {}}
+                checked={opt === answerState[Number(question.id)]}
+                onChange={(e) => {
+                  onChangeAnswer(Number(question.id), e.target.value);
+                }}
               />
               <Typography>{opt}</Typography>
             </Box>

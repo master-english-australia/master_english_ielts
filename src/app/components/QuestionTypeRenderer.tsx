@@ -23,7 +23,7 @@ export const QuestionTypeRenderer: React.FC<Props> = ({
         <MultipleChoiceQuestion
           questionGroup={questionGroup}
           onChangeAnswer={onChangeAnswer}
-          state={state}
+          answerState={state}
         />
       );
     case "true_false_not_given":
@@ -31,7 +31,7 @@ export const QuestionTypeRenderer: React.FC<Props> = ({
         <TrueFalseNotGivenQuestion
           questionGroup={questionGroup}
           onChangeAnswer={onChangeAnswer}
-          state={state}
+          answerState={state}
         />
       );
     case "text_input":
@@ -39,7 +39,7 @@ export const QuestionTypeRenderer: React.FC<Props> = ({
         <TextInputQuestion
           questionGroup={questionGroup}
           onChangeAnswer={onChangeAnswer}
-          state={state}
+          answerState={state}
         />
       );
     case "matching":
@@ -47,7 +47,7 @@ export const QuestionTypeRenderer: React.FC<Props> = ({
         <MatchingQuestion
           questionGroup={questionGroup}
           onChangeAnswer={onChangeAnswer}
-          state={state}
+          answerState={state}
         />
       );
     default:
