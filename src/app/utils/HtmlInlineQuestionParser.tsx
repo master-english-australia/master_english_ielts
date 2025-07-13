@@ -1,12 +1,15 @@
 import { QuestionNumberBox } from "@/app/components/QuestionNumberBox";
 import { Box, TextField } from "@mui/material";
 import parse, { HTMLReactParserOptions } from "html-react-parser";
+import { AnswerState } from "../contexts/createAnswerContext";
 import { Question } from "../models/Question";
 
 export const HtmlInlineQuestionParser: React.FC<{
   htmlText: string;
   questions: Question[];
-}> = ({ htmlText, questions }) => {
+  onChangeAnswer: (questionNumber: number, value: string) => void;
+  answerState: AnswerState;
+}> = ({ htmlText, questions, onChangeAnswer, answerState }) => {
   let fieldIndex = 0;
 
   const options: HTMLReactParserOptions = {
@@ -18,6 +21,7 @@ export const HtmlInlineQuestionParser: React.FC<{
         for (let i = 0; i < parts.length; i++) {
           nodes.push(parts[i]);
           if (i < parts.length - 1) {
+            const question = questions[fieldIndex];
             nodes.push(
               <Box
                 key={`input-${fieldIndex}`}
@@ -29,7 +33,7 @@ export const HtmlInlineQuestionParser: React.FC<{
                   my: "2px",
                 }}
               >
-                <QuestionNumberBox questionNumber={questions[fieldIndex].id} />
+                <QuestionNumberBox questionNumber={question.id} />
                 <TextField
                   key={`input-${fieldIndex}`}
                   size="small"
@@ -40,6 +44,10 @@ export const HtmlInlineQuestionParser: React.FC<{
                         height: "26px",
                       },
                     },
+                  }}
+                  value={answerState[Number(question.id)]}
+                  onChange={(e) => {
+                    onChangeAnswer(Number(question.id), e.target.value);
                   }}
                 />
               </Box>,

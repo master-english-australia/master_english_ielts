@@ -6,7 +6,7 @@ import { QuestionText } from "./QuestionText";
 export const MultipleChoiceQuestion: React.FC<QuestionProps> = ({
   questionGroup,
   onChangeAnswer,
-  answerState: state,
+  answerState,
 }) => (
   <Box>
     <Typography sx={{ textAlign: "left", mb: 2 }}>
@@ -20,8 +20,10 @@ export const MultipleChoiceQuestion: React.FC<QuestionProps> = ({
           <Box key={index} sx={{ display: "flex", alignItems: "center" }}>
             <Radio
               value={option}
-              checked={question.correctAnswer === option}
-              onChange={() => {}}
+              checked={option === answerState[Number(question.id)]}
+              onChange={(e) => {
+                onChangeAnswer(Number(question.id), e.target.value);
+              }}
             />
             {option}
           </Box>

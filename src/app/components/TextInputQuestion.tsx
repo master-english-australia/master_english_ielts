@@ -7,6 +7,7 @@ import { HtmlInlineQuestionParser } from "../utils/HtmlInlineQuestionParser";
 export const TextInputQuestion: React.FC<QuestionProps> = ({
   questionGroup,
   onChangeAnswer,
+  answerState,
 }) => {
   return (
     <Box padding={2} border={1} borderColor="grey.400" borderRadius={1}>
@@ -14,6 +15,8 @@ export const TextInputQuestion: React.FC<QuestionProps> = ({
       <HtmlInlineQuestionParser
         htmlText={questionGroup.questionText || ""}
         questions={questionGroup.questions}
+        onChangeAnswer={onChangeAnswer}
+        answerState={answerState}
       />
     </Box>
   );

@@ -1,23 +1,13 @@
 import { Box, MenuItem, Select, Typography } from "@mui/material";
-import React, { useState } from "react";
+import React from "react";
 import { QuestionProps } from "../models/props/questionProps";
 import { QuestionText } from "./QuestionText";
 
 export const MatchingQuestion: React.FC<QuestionProps> = ({
   questionGroup,
   onChangeAnswer,
+  answerState,
 }) => {
-  const [selectedAnswers, setSelectedAnswers] = useState<
-    Record<string, string>
-  >({});
-
-  const handleAnswerChange = (questionId: string, value: string) => {
-    setSelectedAnswers((prev) => ({
-      ...prev,
-      [questionId]: value,
-    }));
-  };
-
   return (
     <Box>
       <Typography sx={{ textAlign: "left", mb: 2 }}>
@@ -40,8 +30,10 @@ export const MatchingQuestion: React.FC<QuestionProps> = ({
           />
           <Select
             size="small"
-            value={selectedAnswers[question.id] || ""}
-            onChange={(e) => handleAnswerChange(question.id, e.target.value)}
+            value={answerState[Number(question.id)] || ""}
+            onChange={(e) =>
+              onChangeAnswer(Number(question.id), e.target.value)
+            }
             sx={{ width: "120px", height: "26px" }}
           >
             {question.options?.map((opt) => (
