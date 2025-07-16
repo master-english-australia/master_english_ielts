@@ -2,6 +2,7 @@ import { QuestionNumberBox } from "@/app/components/QuestionNumberBox";
 import { Box, TextField } from "@mui/material";
 import parse, { HTMLReactParserOptions } from "html-react-parser";
 import { AnswerState } from "../contexts/createAnswerContext";
+import { Answer } from "../models/Answer";
 import { Question } from "../models/Question";
 
 export const HtmlInlineQuestionParser: React.FC<{
@@ -9,7 +10,9 @@ export const HtmlInlineQuestionParser: React.FC<{
   questions: Question[];
   onChangeAnswer: (questionNumber: number, value: string) => void;
   answerState: AnswerState;
-}> = ({ htmlText, questions, onChangeAnswer, answerState }) => {
+  isSubmitted: boolean;
+  correctAnswers: Answer[];
+}> = ({ htmlText, questions, onChangeAnswer, answerState, isSubmitted, correctAnswers }) => {
   let fieldIndex = 0;
 
   const options: HTMLReactParserOptions = {
@@ -22,6 +25,10 @@ export const HtmlInlineQuestionParser: React.FC<{
           nodes.push(parts[i]);
           if (i < parts.length - 1) {
             const question = questions[fieldIndex];
+            const userAnswer = answerState[Number(question.id)];
+            const correctAnswer = correctAnswers.find(answer => answer.number === Number(question.id));
+            const isCorrect = correctAnswer?.answers.includes(userAnswer) || false;
+
             nodes.push(
               <Box
                 key={`input-${fieldIndex}`}
@@ -33,7 +40,7 @@ export const HtmlInlineQuestionParser: React.FC<{
                   my: "2px",
                 }}
               >
-                <QuestionNumberBox questionNumber={question.id} />
+                <QuestionNumberBox questionNumber={question.id} isCorrect={isCorrect} isSubmitted={isSubmitted} />
                 <TextField
                   key={`input-${fieldIndex}`}
                   size="small"
@@ -45,7 +52,7 @@ export const HtmlInlineQuestionParser: React.FC<{
                       },
                     },
                   }}
-                  value={answerState[Number(question.id)] || ""}
+                  value={isSubmitted ? correctAnswer?.answers : userAnswer}
                   onChange={(e) => {
                     onChangeAnswer(Number(question.id), e.target.value);
                   }}

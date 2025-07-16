@@ -86,6 +86,7 @@ function ListeningTestContent() {
         questionGroups={currentPartData.question_groups}
         seekTo={seekTo}
         isSubmitted={isSubmitted}
+        correctAnswers={mocktestAnswer}
       />
 
       <PartSwitcher

@@ -12,6 +12,7 @@ import {
   Typography,
 } from "@mui/material";
 import React from "react";
+import { Colors } from "../consts/colors";
 
 interface TestResultProps {
   userAnswers: Record<number, string>;
@@ -155,7 +156,7 @@ export const TestResult: React.FC<TestResultProps> = ({
                     key={questionNumber}
                     sx={{
                       height: "40px",
-                      backgroundColor: isCorrect ? "#e8f5e8" : "#ffebee",
+                      backgroundColor: isCorrect ? Colors.CORRECT_LIGHT : Colors.INCORRECT_LIGHT,
                     }}
                   >
                     <TableCell

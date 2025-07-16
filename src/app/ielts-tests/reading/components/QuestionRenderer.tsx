@@ -1,4 +1,5 @@
 // QuestionRenderer.tsx
+import { Answer } from "@/app/models/Answer";
 import { Box } from "@mui/material";
 import React from "react";
 import { QuestionNumbers } from "../../../components/QuestionNumbers";
@@ -8,9 +9,15 @@ import { useReadingAnswers } from "../hooks/useAnswerContext";
 
 type Props = {
   questionGroup: QuestionGroup;
+  isSubmitted: boolean;
+  correctAnswers: Answer[];
 };
 
-export const ReadingQuestionRenderer: React.FC<Props> = ({ questionGroup }) => {
+export const ReadingQuestionRenderer: React.FC<Props> = ({
+  questionGroup,
+  isSubmitted,
+  correctAnswers,
+}) => {
   const { state, dispatch } = useReadingAnswers();
 
   const handleChangeAnswer = (questionNumber: number, value: string) => {
@@ -24,6 +31,8 @@ export const ReadingQuestionRenderer: React.FC<Props> = ({ questionGroup }) => {
         questionGroup={questionGroup}
         onChangeAnswer={handleChangeAnswer}
         state={state}
+        isSubmitted={isSubmitted}
+        correctAnswers={correctAnswers}
       />
     </Box>
   );

@@ -1,3 +1,4 @@
+import { Answer } from "@/app/models/Answer";
 import { Box } from "@mui/material";
 import { useCallback, useRef, useState } from "react";
 import { ResizeHandle } from "../../../components/ResizeHandle";
@@ -11,12 +12,14 @@ interface TestLayoutProps {
   promptContent: string;
   isSubmitted: boolean;
   questionGroups: QuestionGroup[];
+  correctAnswers: Answer[];
 }
 
 export const TestLayout = ({
   promptContent,
   isSubmitted,
   questionGroups,
+  correctAnswers,
 }: TestLayoutProps) => {
   const [contentWidth, setContentWidth] = useState(50);
   const [answerWidth, setAnswerWidth] = useState(50);
@@ -59,6 +62,7 @@ export const TestLayout = ({
         answerWidth={answerWidth}
         isSubmitted={isSubmitted}
         questionGroups={questionGroups}
+        correctAnswers={correctAnswers}
       />
     </Box>
   );

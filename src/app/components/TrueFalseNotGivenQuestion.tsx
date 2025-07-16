@@ -9,6 +9,8 @@ export const TrueFalseNotGivenQuestion: React.FC<QuestionProps> = ({
   questionGroup,
   onChangeAnswer,
   answerState,
+  correctAnswers,
+  isSubmitted,
 }) => (
   <Box marginY={2}>
     <Typography sx={{ textAlign: "left", mb: 2 }}>
@@ -42,27 +44,38 @@ export const TrueFalseNotGivenQuestion: React.FC<QuestionProps> = ({
         <Box component="span">if there is no information on this</Box>
       </Typography>
     </Box>
-    {questionGroup.questions.map((question) => (
-      <Box marginY={2} key={question.id}>
-        <QuestionText number={question.id} text={question.questionText || ""} />
-        <Box sx={{ display: "flex", flexDirection: "column", mt: 1 }}>
-          {options.map((opt) => (
-            <Box
-              key={question.id + opt}
-              sx={{ display: "flex", alignItems: "center" }}
-            >
-              <Radio
-                value={opt}
-                checked={opt === answerState[Number(question.id)]}
-                onChange={(e) => {
-                  onChangeAnswer(Number(question.id), e.target.value);
-                }}
-              />
-              <Typography>{opt}</Typography>
-            </Box>
-          ))}
+    {questionGroup.questions.map((question) => {
+      const userAnswer = answerState[Number(question.id)];
+      const correctAnswer = correctAnswers.find(answer => answer.number === Number(question.id))?.answers[0];
+      const isCorrect = correctAnswer === userAnswer;
+      return (
+        <Box marginY={2} key={question.id}>
+          <QuestionText
+            number={question.id}
+            text={question.questionText || ""}
+            isSubmitted={isSubmitted}
+            isCorrect={isCorrect}
+          />
+          <Box sx={{ display: "flex", flexDirection: "column", mt: 1 }}>
+            {options.map((opt) => (
+              <Box
+                key={question.id + opt}
+                sx={{ display: "flex", alignItems: "center" }}
+              >
+                <Radio
+                  value={opt}
+                  checked={isSubmitted ? opt === correctAnswer : opt === userAnswer}
+                  onChange={(e) => {
+                    if (isSubmitted) return;
+                    onChangeAnswer(Number(question.id), e.target.value);
+                  }}
+                />
+                <Typography>{opt}</Typography>
+              </Box>
+            ))}
+          </Box>
         </Box>
-      </Box>
-    ))}
+      );
+    })}
   </Box>
 );

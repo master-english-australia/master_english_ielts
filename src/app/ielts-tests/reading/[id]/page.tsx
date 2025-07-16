@@ -9,7 +9,10 @@ import { TaskRequirements } from "../../../components/TaskRequirements";
 import { TestHeader } from "../../../components/TestHeader";
 import { TestResult } from "../../../components/TestResult";
 import { TestLayout } from "../components/TestLayout";
-import { ReadingAnswerProvider, useReadingAnswers } from "../hooks/useAnswerContext";
+import {
+  ReadingAnswerProvider,
+  useReadingAnswers,
+} from "../hooks/useAnswerContext";
 import { readingTest2 } from "../mockData";
 import { readingMockDataAnswer } from "../mockDataAnswer";
 
@@ -20,7 +23,7 @@ function ReadingTestContent() {
   const { bandScore, correctCount } = useScoreCalculator(
     state,
     readingMockDataAnswer,
-    "reading"
+    "reading",
   );
   const testId = params.id as string;
   const test = readingTest2;
@@ -39,7 +42,7 @@ function ReadingTestContent() {
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentTime(prev => prev + 1);
+      setCurrentTime((prev) => prev + 1);
     }, 1000);
 
     return () => clearInterval(timer);
@@ -82,6 +85,7 @@ function ReadingTestContent() {
         isSubmitted={isSubmitted}
         promptContent={currentPartData.content_html}
         questionGroups={currentPartData.question_groups}
+        correctAnswers={readingMockDataAnswer}
       />
 
       <PartSwitcher

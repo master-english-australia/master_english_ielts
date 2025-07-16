@@ -1,5 +1,6 @@
 import React from "react";
 import { AnswerState } from "../contexts/createAnswerContext";
+import { Answer } from "../models/Answer";
 import { QuestionGroup } from "../models/QuestionGroup";
 import { MatchingQuestion } from "./MatchingQuestion";
 import { MultipleChoiceQuestion } from "./MultipleChoiceQuestion";
@@ -10,12 +11,16 @@ type Props = {
   questionGroup: QuestionGroup;
   onChangeAnswer: (questionNumber: number, value: string) => void;
   state: AnswerState;
+  isSubmitted: boolean;
+  correctAnswers: Answer[];
 };
 
 export const QuestionTypeRenderer: React.FC<Props> = ({
   questionGroup,
   onChangeAnswer,
   state,
+  isSubmitted,
+  correctAnswers,
 }) => {
   switch (questionGroup.questionType) {
     case "multiple_choice":
@@ -24,6 +29,8 @@ export const QuestionTypeRenderer: React.FC<Props> = ({
           questionGroup={questionGroup}
           onChangeAnswer={onChangeAnswer}
           answerState={state}
+          isSubmitted={isSubmitted}
+          correctAnswers={correctAnswers}
         />
       );
     case "true_false_not_given":
@@ -32,6 +39,8 @@ export const QuestionTypeRenderer: React.FC<Props> = ({
           questionGroup={questionGroup}
           onChangeAnswer={onChangeAnswer}
           answerState={state}
+          isSubmitted={isSubmitted}
+          correctAnswers={correctAnswers}
         />
       );
     case "text_input":
@@ -40,6 +49,8 @@ export const QuestionTypeRenderer: React.FC<Props> = ({
           questionGroup={questionGroup}
           onChangeAnswer={onChangeAnswer}
           answerState={state}
+          isSubmitted={isSubmitted}
+          correctAnswers={correctAnswers}
         />
       );
     case "matching":
@@ -48,6 +59,8 @@ export const QuestionTypeRenderer: React.FC<Props> = ({
           questionGroup={questionGroup}
           onChangeAnswer={onChangeAnswer}
           answerState={state}
+          isSubmitted={isSubmitted}
+          correctAnswers={correctAnswers}
         />
       );
     default:

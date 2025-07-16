@@ -1,4 +1,5 @@
 // QuestionRenderer.tsx
+import { Answer } from "@/app/models/Answer";
 import { Box } from "@mui/material";
 import React from "react";
 import { QuestionNumbers } from "../../../components/QuestionNumbers";
@@ -11,12 +12,14 @@ type Props = {
   questionGroup: QuestionGroup;
   seekTo: (timeInSeconds: number) => void;
   isSubmitted: boolean;
+  correctAnswers: Answer[]; 
 };
 
 export const ListeningQuestionRenderer: React.FC<Props> = ({
   questionGroup,
   seekTo,
   isSubmitted,
+  correctAnswers,
 }) => {
   const { state, dispatch } = useListeningAnswers();
 
@@ -36,6 +39,8 @@ export const ListeningQuestionRenderer: React.FC<Props> = ({
         questionGroup={questionGroup}
         onChangeAnswer={handleChangeAnswer}
         state={state}
+        isSubmitted={isSubmitted}
+        correctAnswers={correctAnswers}
       />
     </Box>
   );

@@ -1,3 +1,4 @@
+import { Answer } from "@/app/models/Answer";
 import { Box } from "@mui/material";
 import { QuestionGroup } from "../../../models/QuestionGroup";
 import { ReadingQuestionRenderer } from "./QuestionRenderer";
@@ -7,12 +8,15 @@ interface AnswerSectionProps {
   answerWidth: number;
   isSubmitted: boolean;
   questionGroups: QuestionGroup[];
+  correctAnswers: Answer[]; 
 }
 
 export const AnswerSection = ({
   id,
   answerWidth,
+  isSubmitted,
   questionGroups,
+  correctAnswers,
 }: AnswerSectionProps) => {
   return (
     <Box
@@ -23,7 +27,12 @@ export const AnswerSection = ({
       flex={`0 0 ${answerWidth}%`}
     >
       {questionGroups.map((group) => (
-        <ReadingQuestionRenderer key={group.id} questionGroup={group} />
+        <ReadingQuestionRenderer
+          key={group.id}
+          questionGroup={group}
+          isSubmitted={isSubmitted}
+          correctAnswers={correctAnswers}
+        />
       ))}
     </Box>
   );
