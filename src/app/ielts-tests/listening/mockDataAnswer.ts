@@ -1,42 +1,148 @@
-export const mocktestAnswer = {
-  1: ["Cat"],
-  2: ["Dog"],
-  3: ["Cat", "Dog"],
-  4: ["Water"],
-  5: ["Microwave"],
-  6: ["Cat", "Dog"],
-  7: ["Cat", "Dog"],
-  8: ["Cat", "Dog"],
-  9: ["Cat", "Dog"],
-  10: ["Cat", "Dog"],
-  11: ["Cat", "Dog"],
-  12: ["Cat", "Dog"],
-  13: ["Cat", "Dog"],
-  14: ["Cat", "Dog"],
-  15: ["Cat", "Dog"],
-  16: ["Cat", "Dog"],
-  17: ["Cat", "Dog"],
-  18: ["Cat", "Dog"],
-  19: ["Cat", "Dog"],
-  20: ["Cat", "Dog"],
-  21: ["Cat", "Dog"],
-  22: ["Cat", "Dog"],
-  23: ["Cat", "Dog"],
-  24: ["Cat", "Dog"],
-  25: ["Cat", "Dog"],
-  26: ["Cat", "Dog"],
-  27: ["Cat", "Dog"],
-  28: ["Cat", "Dog"],
-  29: ["Cat", "Dog"],
-  30: ["Cat", "Dog"],
-  31: ["Cat", "Dog"],
-  32: ["Cat", "Dog"],
-  33: ["Cat", "Dog"],
-  34: ["Cat", "Dog"],
-  35: ["Cat", "Dog"],
-  36: ["Cat", "Dog"],
-  37: ["Cat", "Dog"],
-  38: ["Cat", "Dog"],
-  39: ["Cat", "Dog"],
-  40: ["Cat", "Dog"],
-};
+import { Answer } from "@/app/models/Answer";
+
+export const mocktestAnswer: Answer[] = [
+  {
+    number: 1,
+    answers: ["Cat"],
+  },
+  {
+    number: 2,
+    answers: ["Dog"],
+  },
+  {
+    number: 3,
+    answers: ["Cat", "Dog"],
+  },
+  {
+    number: 4,
+    answers: ["Water"],
+  },
+  {
+    number: 5,
+    answers: ["Microwave"],
+  },
+  {
+    number: 6,
+    answers: ["Cat", "Dog"],
+  },
+  {
+    number: 7,
+    answers: ["Cat", "Dog"],
+  },
+  {
+    number: 8,
+    answers: ["Cat", "Dog"],
+  },
+  {
+    number: 9,
+    answers: ["Cat", "Dog"],
+  },
+  {
+    number: 11,
+    answers: ["Cat", "Dog"],
+  },
+  {
+    number: 12,
+    answers: ["Cat", "Dog"],
+  },
+  {
+    number: 13,
+    answers: ["Cat", "Dog"],
+  },
+  {
+    number: 14,
+    answers: ["Cat", "Dog"],
+  },
+  {
+    number: 15,
+    answers: ["Cat", "Dog"],
+  },
+  {
+    number: 16,
+    answers: ["Cat", "Dog"],
+  },
+  {
+    number: 18,
+    answers: ["Cat", "Dog"],
+  },
+  {
+    number: 19,
+    answers: ["Cat", "Dog"],
+  },
+  {
+    number: 20,
+    answers: ["Cat", "Dog"],
+  },
+  {
+    number: 21,
+    answers: ["Cat", "Dog"],
+  },
+  {
+    number: 22,
+    answers: ["Cat", "Dog"],
+  },
+  {
+    number: 24,
+    answers: ["Cat", "Dog"],
+  },
+  {
+    number: 25,
+    answers: ["Cat", "Dog"],
+  },
+  {
+    number: 26,
+    answers: ["Cat", "Dog"],
+  },
+  {
+    number: 27,
+    answers: ["Cat", "Dog"],
+  },
+  {
+    number: 28,
+    answers: ["Cat", "Dog"],
+  },
+  {
+    number: 29,
+    answers: ["Cat", "Dog"],
+  },
+  {
+    number: 30,
+    answers: ["Cat", "Dog"],
+  },
+  {
+    number: 32,
+    answers: ["Cat", "Dog"],
+  },
+  {
+    number: 33,
+    answers: ["Cat", "Dog"],
+  },
+  {
+    number: 34,
+    answers: ["Cat", "Dog"],
+  },
+  {
+    number: 35,
+    answers: ["Cat", "Dog"],
+  },
+  {
+    number: 36,
+    answers: ["Cat", "Dog"],
+  },
+  {
+    number: 37,
+    answers: ["Cat", "Dog"],
+  },
+  {
+    number: 38,
+    answers: ["Cat", "Dog"],
+  },
+  {
+    number: 39,
+    answers: ["Cat", "Dog"],
+  },
+  {
+    number: 40,
+    answers: ["Cat", "Dog"],
+  },
+];
