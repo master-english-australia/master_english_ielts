@@ -38,6 +38,10 @@ export const mocktestAnswer: Answer[] = [
     answers: ["Cat", "Dog"],
   },
   {
+    number: 10,
+    answers: ["Cat", "Dog"],
+  },
+  {
     number: 11,
     answers: ["Cat", "Dog"],
   },
@@ -62,6 +66,10 @@ export const mocktestAnswer: Answer[] = [
     answers: ["Cat", "Dog"],
   },
   {
+    number: 17,
+    answers: ["Cat", "Dog"],
+  },
+  {
     number: 18,
     answers: ["Cat", "Dog"],
   },
@@ -79,6 +87,10 @@ export const mocktestAnswer: Answer[] = [
   },
   {
     number: 22,
+    answers: ["Cat", "Dog"],
+  },
+  {
+    number: 23,
     answers: ["Cat", "Dog"],
   },
   {
@@ -107,6 +119,10 @@ export const mocktestAnswer: Answer[] = [
   },
   {
     number: 30,
+    answers: ["Cat", "Dog"],
+  },
+  {
+    number: 31,
     answers: ["Cat", "Dog"],
   },
   {

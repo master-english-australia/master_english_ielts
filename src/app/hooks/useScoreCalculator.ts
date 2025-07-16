@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
-import { LISTENING_SCORE_TABLE, READING_SCORE_TABLE } from "../consts/bandscores";
+import {
+  LISTENING_SCORE_TABLE,
+  READING_SCORE_TABLE,
+} from "../consts/bandscores";
 import { Answer } from "../models/Answer";
 import { IeltsSection } from "../models/IeltsTest";
 
@@ -8,28 +11,27 @@ export function useScoreCalculator(
   correctAnswers: Answer[],
   ieltsSection: IeltsSection,
 ) {
-  const [totalQuestions, setTotalQuestions] = useState<number>(0);
   const [correctCount, setCorrectCount] = useState<number>(0);
-  const [incorrectCount, setIncorrectCount] = useState<number>(0);
   const [bandScore, setBandScore] = useState<number>(0);
 
-  const calculateBandScore = (correctCount: number, section: IeltsSection): number => {
-    const scoreTable = section === "listening" 
-      ? LISTENING_SCORE_TABLE 
-      : READING_SCORE_TABLE;    
-    
+  const calculateBandScore = (
+    correctCount: number,
+    section: IeltsSection,
+  ): number => {
+    const scoreTable =
+      section === "listening" ? LISTENING_SCORE_TABLE : READING_SCORE_TABLE;
+
     const scoreEntry = scoreTable.find(
-      entry => correctCount >= entry.minCorrect && correctCount <= entry.maxCorrect
+      (entry) =>
+        correctCount >= entry.minCorrect && correctCount <= entry.maxCorrect,
     );
-    
+
     return scoreEntry ? scoreEntry.bandScore : 0;
   };
 
   const calculateScore = () => {
     if (!userAnswers || !correctAnswers) {
       setCorrectCount(0);
-      setTotalQuestions(0);
-      setIncorrectCount(0);
       setBandScore(0);
       return;
     }
@@ -39,40 +41,36 @@ export function useScoreCalculator(
 
     Object.entries(userAnswers).forEach(([questionNumber, userAnswer]) => {
       const qNum = parseInt(questionNumber);
-      const correctAnswer = correctAnswers.find(answer => answer.number === qNum);
-      
+      const correctAnswer = correctAnswers.find(
+        (answer) => answer.number === qNum,
+      );
+
       if (correctAnswer) {
-        const normalizedUserAnswer = userAnswer?.trim().toLowerCase() || '';
-        
-        const isCorrect = correctAnswer.answers.some(answer => 
-          answer.trim().toLowerCase() === normalizedUserAnswer
+        const normalizedUserAnswer = userAnswer?.trim().toLowerCase() || "";
+
+        const isCorrect = correctAnswer.answers.some(
+          (answer) => answer.trim().toLowerCase() === normalizedUserAnswer,
         );
-        
+
         if (isCorrect) {
           correctCount++;
         }
       }
     });
 
-    const incorrectCount = totalQuestions - correctCount;
     const bandScore = calculateBandScore(correctCount, ieltsSection);
 
     setCorrectCount(correctCount);
-    setIncorrectCount(incorrectCount);
     setBandScore(bandScore);
-    setTotalQuestions(totalQuestions);
   };
 
-  // Automatically calculate score when userAnswers change
   useEffect(() => {
     calculateScore();
   }, [userAnswers, correctAnswers, ieltsSection]);
 
   return {
     correctCount,
-    totalQuestions,
-    incorrectCount,
     bandScore,
     calculateScore,
   };
-} 
+}

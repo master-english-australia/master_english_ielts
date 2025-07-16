@@ -10,11 +10,13 @@ import { ResumeSoundButton } from "./ResumeSoundButton";
 type Props = {
   questionGroup: QuestionGroup;
   seekTo: (timeInSeconds: number) => void;
+  isSubmitted: boolean;
 };
 
 export const ListeningQuestionRenderer: React.FC<Props> = ({
   questionGroup,
   seekTo,
+  isSubmitted,
 }) => {
   const { state, dispatch } = useListeningAnswers();
 

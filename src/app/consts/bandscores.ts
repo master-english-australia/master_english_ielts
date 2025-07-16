@@ -10,7 +10,7 @@ export const LISTENING_SCORE_TABLE = [
   { minCorrect: 16, maxCorrect: 17, bandScore: 5 },
   { minCorrect: 13, maxCorrect: 15, bandScore: 4.5 },
   { minCorrect: 11, maxCorrect: 12, bandScore: 4 },
-  { minCorrect: 0, maxCorrect: 10, bandScore: 3 }
+  { minCorrect: 0, maxCorrect: 10, bandScore: 3 },
 ];
 
 export const READING_SCORE_TABLE = [
@@ -27,5 +27,5 @@ export const READING_SCORE_TABLE = [
   { minCorrect: 15, maxCorrect: 18, bandScore: 4 },
   { minCorrect: 12, maxCorrect: 14, bandScore: 3.5 },
   { minCorrect: 9, maxCorrect: 11, bandScore: 3 },
-  { minCorrect: 0, maxCorrect: 8, bandScore: 2.5 }
+  { minCorrect: 0, maxCorrect: 8, bandScore: 2.5 },
 ];

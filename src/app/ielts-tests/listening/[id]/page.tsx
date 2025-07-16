@@ -1,11 +1,13 @@
 "use client";
 
 import { useAudio } from "@/app/hooks/useAudio";
+import { useScoreCalculator } from "@/app/hooks/useScoreCalculator";
 import { Box } from "@mui/material";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { PartSwitcher } from "../../../components/PartSwitcher";
 import { TestHeader } from "../../../components/TestHeader";
+import { TestResult } from "../../../components/TestResult";
 import { ListeningTastRequirement } from "../components/ListeningTastRequirement";
 import { TestLayout } from "../components/TestLayout";
 import {
@@ -13,11 +15,17 @@ import {
   useListeningAnswers,
 } from "../hooks/useAnswerContext";
 import { mocktest } from "../mockData";
+import { mocktestAnswer } from "../mockDataAnswer";
 
-export default function ListeningTestPage() {
+function ListeningTestContent() {
   const params = useParams();
   const router = useRouter();
-  const {} = useListeningAnswers();
+  const { state } = useListeningAnswers();
+  const { bandScore, correctCount } = useScoreCalculator(
+    state,
+    mocktestAnswer,
+    "listening",
+  );
   const testId = params.id as string;
   const test = mocktest;
 
@@ -29,12 +37,14 @@ export default function ListeningTestPage() {
   }, [test, testId, router]);
 
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isResultModalOpen, setIsResultModalOpen] = useState(false);
   const [currentPart, setCurrentPart] = useState(1);
   const [currentQuestion, setCurrentQuestion] = useState(1);
 
   const handleSubmit = () => {
     if (isSubmitted) return;
     setIsSubmitted(true);
+    setIsResultModalOpen(true);
   };
 
   if (!test) {
@@ -46,38 +56,56 @@ export default function ListeningTestPage() {
     useAudio(currentPartData.audio_url);
 
   return (
-    <ListeningAnswerProvider>
-      <Box>
-        <TestHeader timeLimit={test.time_limit} />
-
-        <ListeningTastRequirement
-          currentPart={currentPart}
-          instructions={currentPartData.instruction}
-          isPlaying={isPlaying}
-          toggle={toggle}
-          duration={duration}
+    <Box>
+      {isResultModalOpen && (
+        <TestResult
+          userAnswers={state}
+          correctAnswers={mocktestAnswer}
+          bandScore={bandScore}
+          correctCount={correctCount}
           currentTime={currentTime}
-          play={play}
-          pause={pause}
-          seekTo={seekTo}
+          close={() => setIsResultModalOpen(false)}
         />
+      )}
 
-        <TestLayout
-          questionGroups={currentPartData.question_groups}
-          seekTo={seekTo}
-        />
+      <TestHeader timeLimit={test.time_limit} />
 
-        <PartSwitcher
-          currentPart={currentPart}
-          totalParts={test.parts.length}
-          isSubmitted={isSubmitted}
-          onPartChange={(part) => {
-            setCurrentPart(part);
-            setCurrentQuestion(1);
-          }}
-          onSubmit={handleSubmit}
-        />
-      </Box>
+      <ListeningTastRequirement
+        currentPart={currentPart}
+        instructions={currentPartData.instruction}
+        isPlaying={isPlaying}
+        toggle={toggle}
+        duration={duration}
+        currentTime={currentTime}
+        play={play}
+        pause={pause}
+        seekTo={seekTo}
+      />
+
+      <TestLayout
+        questionGroups={currentPartData.question_groups}
+        seekTo={seekTo}
+        isSubmitted={isSubmitted}
+      />
+
+      <PartSwitcher
+        currentPart={currentPart}
+        totalParts={test.parts.length}
+        isSubmitted={isSubmitted}
+        onPartChange={(part) => {
+          setCurrentPart(part);
+          setCurrentQuestion(1);
+        }}
+        onSubmit={handleSubmit}
+      />
+    </Box>
+  );
+}
+
+export default function ListeningTestPage() {
+  return (
+    <ListeningAnswerProvider>
+      <ListeningTestContent />
     </ListeningAnswerProvider>
   );
 }

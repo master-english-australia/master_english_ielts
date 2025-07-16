@@ -45,7 +45,7 @@ export const HtmlInlineQuestionParser: React.FC<{
                       },
                     },
                   }}
-                  value={answerState[Number(question.id)]}
+                  value={answerState[Number(question.id)] || ""}
                   onChange={(e) => {
                     onChangeAnswer(Number(question.id), e.target.value);
                   }}
