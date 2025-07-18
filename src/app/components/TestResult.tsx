@@ -156,7 +156,9 @@ export const TestResult: React.FC<TestResultProps> = ({
                     key={questionNumber}
                     sx={{
                       height: "40px",
-                      backgroundColor: isCorrect ? Colors.CORRECT_LIGHT : Colors.INCORRECT_LIGHT,
+                      backgroundColor: isCorrect
+                        ? Colors.CORRECT_LIGHT
+                        : Colors.INCORRECT_LIGHT,
                     }}
                   >
                     <TableCell

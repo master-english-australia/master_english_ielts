@@ -90,6 +90,9 @@ export default function SpeakingTestPage() {
           setCurrentPart(part);
           setCurrentQuestion(1);
         }}
+        allParts={[]}
+        correctAnswers={[]}
+        userAnswers={{}}
       />
     </Box>
   );

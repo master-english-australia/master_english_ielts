@@ -17,9 +17,11 @@ export const MatchingQuestion: React.FC<QuestionProps> = ({
       </Typography>
       {questionGroup.questions.map((question) => {
         const userAnswer = answerState[Number(question.id)];
-        const correctAnswer = correctAnswers.find(answer => answer.number === Number(question.id)); 
+        const correctAnswer = correctAnswers.find(
+          (answer) => answer.number === Number(question.id),
+        );
         const isCorrect = correctAnswer?.answers.includes(userAnswer) || false;
-        
+
         return (
           <Box
             key={question.id}

@@ -16,7 +16,9 @@ export const MultipleChoiceQuestion: React.FC<QuestionProps> = ({
     </Typography>
     {questionGroup.questions.map((question) => {
       const userAnswer = answerState[Number(question.id)];
-      const correctAnswer = correctAnswers.find(answer => answer.number === Number(question.id))?.answers[0];
+      const correctAnswer = correctAnswers.find(
+        (answer) => answer.number === Number(question.id),
+      )?.answers[0];
       const isCorrect = correctAnswer === userAnswer;
       return (
         <Box key={question.id} my={2}>
@@ -31,10 +33,12 @@ export const MultipleChoiceQuestion: React.FC<QuestionProps> = ({
             <Box key={index} sx={{ display: "flex", alignItems: "center" }}>
               <Radio
                 value={option}
-                checked={isSubmitted ? option === correctAnswer : option === userAnswer}
+                checked={
+                  isSubmitted ? option === correctAnswer : option === userAnswer
+                }
                 onChange={(e) => {
                   if (isSubmitted) return;
-                  
+
                   onChangeAnswer(Number(question.id), e.target.value);
                 }}
               />

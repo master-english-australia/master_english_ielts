@@ -82,6 +82,9 @@ export default function WritingTestPage() {
         isSubmitted={isSubmitted}
         onPartChange={setCurrentPart}
         onSubmit={handleSubmitEssay}
+        allParts={[]}
+        correctAnswers={[]}
+        userAnswers={{}}
       />
     </Box>
   );

@@ -12,7 +12,14 @@ export const HtmlInlineQuestionParser: React.FC<{
   answerState: AnswerState;
   isSubmitted: boolean;
   correctAnswers: Answer[];
-}> = ({ htmlText, questions, onChangeAnswer, answerState, isSubmitted, correctAnswers }) => {
+}> = ({
+  htmlText,
+  questions,
+  onChangeAnswer,
+  answerState,
+  isSubmitted,
+  correctAnswers,
+}) => {
   let fieldIndex = 0;
 
   const options: HTMLReactParserOptions = {
@@ -26,8 +33,11 @@ export const HtmlInlineQuestionParser: React.FC<{
           if (i < parts.length - 1) {
             const question = questions[fieldIndex];
             const userAnswer = answerState[Number(question.id)];
-            const correctAnswer = correctAnswers.find(answer => answer.number === Number(question.id));
-            const isCorrect = correctAnswer?.answers.includes(userAnswer) || false;
+            const correctAnswer = correctAnswers.find(
+              (answer) => answer.number === Number(question.id),
+            );
+            const isCorrect =
+              correctAnswer?.answers.includes(userAnswer) || false;
 
             nodes.push(
               <Box
@@ -40,7 +50,11 @@ export const HtmlInlineQuestionParser: React.FC<{
                   my: "2px",
                 }}
               >
-                <QuestionNumberBox questionNumber={question.id} isCorrect={isCorrect} isSubmitted={isSubmitted} />
+                <QuestionNumberBox
+                  questionNumber={question.id}
+                  isCorrect={isCorrect}
+                  isSubmitted={isSubmitted}
+                />
                 <TextField
                   key={`input-${fieldIndex}`}
                   size="small"
@@ -52,7 +66,11 @@ export const HtmlInlineQuestionParser: React.FC<{
                       },
                     },
                   }}
-                  value={isSubmitted ? correctAnswer?.answers : userAnswer}
+                  value={
+                    isSubmitted
+                      ? correctAnswer?.answers?.join(", ") || ""
+                      : userAnswer || ""
+                  }
                   onChange={(e) => {
                     onChangeAnswer(Number(question.id), e.target.value);
                   }}

@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
 import { Colors } from "../consts/colors";
 
-export const QuestionNumberBox: React.FC<{
+export const PartSwitcherQuestionNumber: React.FC<{
   questionNumber: string;
   isCorrect: boolean;
   isSubmitted: boolean;
@@ -12,12 +12,12 @@ export const QuestionNumberBox: React.FC<{
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        width: "28px",
-        height: "28px",
+        width: "22px",
+        height: "22px",
+        fontSize: "14px",
         color: isSubmitted ? "white" : "black",
         border: "1px solid black",
-        borderRadius: "2px",
-        fontWeight: "bold",
+        borderRadius: "4px",
         backgroundColor: isSubmitted
           ? isCorrect
             ? Colors.CORRECT

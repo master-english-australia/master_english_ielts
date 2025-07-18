@@ -8,7 +8,7 @@ interface AnswerSectionProps {
   answerWidth: number;
   isSubmitted: boolean;
   questionGroups: QuestionGroup[];
-  correctAnswers: Answer[]; 
+  correctAnswers: Answer[];
 }
 
 export const AnswerSection = ({

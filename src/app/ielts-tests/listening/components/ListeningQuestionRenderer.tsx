@@ -12,7 +12,7 @@ type Props = {
   questionGroup: QuestionGroup;
   seekTo: (timeInSeconds: number) => void;
   isSubmitted: boolean;
-  correctAnswers: Answer[]; 
+  correctAnswers: Answer[];
 };
 
 export const ListeningQuestionRenderer: React.FC<Props> = ({

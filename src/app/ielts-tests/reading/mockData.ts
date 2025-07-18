@@ -379,7 +379,7 @@ export const readingTest2 = {
   time_limit: 60,
   parts: [
     {
-      id: "section_1",
+      id: "1",
       title: "The History of Ice Cream",
       content_html: `<div id="ielts-reading-transcript-1" class="ielts-reading-transcript current">
         <p>==== Read the text below and answer questions 1-7 ====</p>
@@ -451,7 +451,7 @@ export const readingTest2 = {
           ],
         },
         {
-          id: "group_2",
+          id: "2",
           instruction:
             "The text has six paragraphs, A-F. Which paragraph mentions the following?",
           questionType: "matching",
@@ -510,7 +510,7 @@ export const readingTest2 = {
       ],
     },
     {
-      id: "section_2",
+      id: "2",
       title: "Photography Weekend Course",
       content_html: `<div id="ielts-reading-transcript-2" class="ielts-reading-transcript current">
       <p>==== Read the text below and answer Questions 15-22 ====</p>
@@ -524,7 +524,7 @@ export const readingTest2 = {
         "This is a mock test for the IELTS Reading section. It is designed to help you practice your reading skills and prepare for the real test.",
       question_groups: [
         {
-          id: "group_3",
+          id: "3",
           instruction:
             "Complete the notes below. Choose NO MORE THAN TWO WORDS for each answer from the passage.",
           questionType: "text_input",
@@ -581,7 +581,7 @@ export const readingTest2 = {
           ],
         },
         {
-          id: "group_4",
+          id: "4",
           instruction:
             "<p>Complete the table below. Choose <strong>ONE WORD ONLY</strong> for each answer from the passage.</p>",
           questionType: "text_input",
@@ -661,7 +661,7 @@ export const readingTest2 = {
       ],
     },
     {
-      id: "section_3",
+      id: "3",
       title: "Photography Weekend Course",
       content_html: `<div id="ielts-reading-transcript-3" class="ielts-reading-transcript current"><p>==== Read the text below and answer questions 28-40 ====</p>
 <p><strong>Roman Roads</strong></p>
@@ -678,7 +678,7 @@ export const readingTest2 = {
         "This is a mock test for the IELTS Reading section. It is designed to help you practice your reading skills and prepare for the real test.",
       question_groups: [
         {
-          id: "group_6",
+          id: "6",
           instruction:
             "The text has six sections, A-F. Which section mentions the following?",
           questionType: "matching",
@@ -724,7 +724,7 @@ export const readingTest2 = {
           ],
         },
         {
-          id: "group_7",
+          id: "7",
           instruction: "Choose the correct letter, A, B, C or D.",
           questionType: "multiple_choice",
           questionText: ``,

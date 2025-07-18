@@ -98,6 +98,9 @@ function ListeningTestContent() {
           setCurrentQuestion(1);
         }}
         onSubmit={handleSubmit}
+        correctAnswers={mocktestAnswer}
+        allParts={test.parts}
+        userAnswers={state}
       />
     </Box>
   );

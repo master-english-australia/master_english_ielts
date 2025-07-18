@@ -46,7 +46,9 @@ export const TrueFalseNotGivenQuestion: React.FC<QuestionProps> = ({
     </Box>
     {questionGroup.questions.map((question) => {
       const userAnswer = answerState[Number(question.id)];
-      const correctAnswer = correctAnswers.find(answer => answer.number === Number(question.id))?.answers[0];
+      const correctAnswer = correctAnswers.find(
+        (answer) => answer.number === Number(question.id),
+      )?.answers[0];
       const isCorrect = correctAnswer === userAnswer;
       return (
         <Box marginY={2} key={question.id}>
@@ -64,7 +66,9 @@ export const TrueFalseNotGivenQuestion: React.FC<QuestionProps> = ({
               >
                 <Radio
                   value={opt}
-                  checked={isSubmitted ? opt === correctAnswer : opt === userAnswer}
+                  checked={
+                    isSubmitted ? opt === correctAnswer : opt === userAnswer
+                  }
                   onChange={(e) => {
                     if (isSubmitted) return;
                     onChangeAnswer(Number(question.id), e.target.value);

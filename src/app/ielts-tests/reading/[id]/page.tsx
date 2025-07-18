@@ -96,6 +96,9 @@ function ReadingTestContent() {
           setCurrentPart(part);
         }}
         onSubmit={handleSubmit}
+        allParts={test.parts}
+        correctAnswers={readingMockDataAnswer}
+        userAnswers={state}
       />
     </Box>
   );

@@ -1,5 +1,8 @@
-import { Box, Button, Stack } from "@mui/material";
+import { Box, Button, Stack, Typography } from "@mui/material";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import { Answer } from "../models/Answer";
+import { QuestionPart } from "../models/QuestionPart";
+import { PartSwitcherQuestionNumber } from "./PartSwitcherQuestionNumber";
 
 interface PartSwitcherProps {
   currentPart: number;
@@ -7,6 +10,9 @@ interface PartSwitcherProps {
   isSubmitted: boolean;
   onPartChange: (part: number) => void;
   onSubmit?: () => void;
+  allParts: QuestionPart[];
+  correctAnswers: Answer[];
+  userAnswers: Record<number, string>;
 }
 
 export const PartSwitcher = ({
@@ -15,6 +21,9 @@ export const PartSwitcher = ({
   isSubmitted,
   onPartChange,
   onSubmit,
+  allParts,
+  correctAnswers,
+  userAnswers,
 }: PartSwitcherProps) => {
   const parts = Array.from({ length: totalParts }, (_, i) => i + 1);
 
@@ -89,20 +98,59 @@ export const PartSwitcher = ({
             },
           }}
         >
-          {parts.map((part) => (
-            <Button
-              key={part}
-              variant="outlined"
-              onClick={() => onPartChange(part)}
-              sx={{
-                py: 1,
-                border:
-                  currentPart === part ? "1px solid red" : "1px solid grey",
-              }}
-            >
-              Part {part}
-            </Button>
-          ))}
+          {parts.map((partNumber) => {
+            const questions =
+              allParts
+                .find((part) => part.id === `${partNumber}`)
+                ?.question_groups.map((group) => group.questions)
+                .flat() || [];
+
+            return (
+              <Button
+                key={partNumber}
+                variant="outlined"
+                onClick={() => onPartChange(partNumber)}
+                sx={{
+                  py: 1,
+                  border:
+                    currentPart === partNumber
+                      ? "1px solid red"
+                      : "1px solid grey",
+                }}
+              >
+                <Box
+                  sx={{
+                    display: "flex",
+                    flexDirection: "row",
+                    gap: 0.5,
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  <Typography sx={{ fontSize: "16px", fontWeight: "bold" }}>
+                    Part {partNumber}:
+                  </Typography>
+                  {questions.map((question) => {
+                    const correctAnswer = correctAnswers.find(
+                      (answer) => answer.number === Number(question.id),
+                    );
+                    const userAnswer = userAnswers[Number(question.id)];
+                    const isCorrect = correctAnswer?.answers.includes(
+                      userAnswer || "",
+                    );
+                    return (
+                      <PartSwitcherQuestionNumber
+                        key={question.id}
+                        questionNumber={question.id}
+                        isCorrect={isCorrect || false}
+                        isSubmitted={isSubmitted}
+                      />
+                    );
+                  })}
+                </Box>
+              </Button>
+            );
+          })}
         </Stack>
       </Stack>
     </Box>
