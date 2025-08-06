@@ -1,27 +1,54 @@
 // src/app/api/send-email/route.ts
-import { NextResponse } from 'next/server';
-import { Resend } from 'resend';
+import { NextResponse } from "next/server";
+import { Resend } from "resend";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(req: Request) {
   const body = await req.json();
-  const { name, email, subject, message } = body;
+  const { name, subject, message } = body;
+  const fromEmail = process.env.RESEND_FROM_EMAIL;
 
-  if (!name || !email || !subject || !message) {
-    return NextResponse.json({ error: 'Missing fields' }, { status: 400 });
+  const requiredValueMap = {
+    name: name,
+    subject: subject,
+    message: message,
+    fromEmail: fromEmail,
+  };
+
+  if (Object.values(requiredValueMap).some((value) => !value)) {
+    const missingFields = Object.entries(requiredValueMap).filter(
+      ([key, value]) => !value,
+    );
+    console.log("missingFields", missingFields);
+    return NextResponse.json(
+      { error: "Missing fields: " + missingFields.join(", ") },
+      { status: 400 },
+    );
   }
 
   try {
     const data = await resend.emails.send({
-      from: `${name} <${email}>`,
-      to: 'shion.maruko.s@gmail.com',
-      subject: 'Submitted by ' + name + '-' + subject,
+      from: fromEmail || "",
+      to: "conquerx1@gmail.com",
+      subject: "Submitted by " + name + "-" + subject,
       html: `<p>${message}</p>`,
     });
 
+    if (data.error) {
+      console.log("data.error", data.error);
+      return NextResponse.json(
+        { success: false, error: data.error.message },
+        { status: 500 },
+      );
+    }
+
     return NextResponse.json({ success: true, data }, { status: 200 });
   } catch (error: any) {
-    return NextResponse.json({ success: false, error: error.message }, { status: 500 });
+    console.log("error", error);
+    return NextResponse.json(
+      { success: false, error: error.message },
+      { status: 500 },
+    );
   }
 }

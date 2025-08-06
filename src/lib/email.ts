@@ -1,4 +1,4 @@
-import { Resend } from 'resend';
+import { Resend } from "resend";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -17,7 +17,7 @@ export async function sendEmailViaResend({
 }: SendEmailArgs) {
   return await resend.emails.send({
     from: `${name} <${email}>`,
-    to: 'shion.maruko.s@gmail.com',
+    to: "shion.maruko.s@gmail.com",
     subject: `Submitted by ${name} - ${subject}`,
     html: `<p>${message}</p>`,
   });
