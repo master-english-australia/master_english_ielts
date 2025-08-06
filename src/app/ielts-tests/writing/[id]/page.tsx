@@ -49,6 +49,8 @@ export default function WritingTestPage() {
     } else {
       setPart2Essay(value);
     }
+    const count = value.trim().split(/\s+/).filter(Boolean).length;
+    setWordCount(count);
   };
 
   if (!test) {
