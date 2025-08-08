@@ -1,5 +1,6 @@
 "use client";
 
+import { useEmail } from "@/app/hooks/useEmail";
 import { Box } from "@mui/material";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -31,11 +32,38 @@ export default function WritingTestPage() {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [currentPart, setCurrentPart] = useState(1);
   const [feedback, setFeedback] = useState<Feedback | null>(null);
+  const { sendEmailAsync, error: emailError } = useEmail();
 
-  const handleSubmitEssay = () => {
+  const handleSubmitEssay = async () => {
     if (isSubmitted) return;
     setFeedback(calculateFeedback(wordCount));
     setIsSubmitted(true);
+
+    await sendEmailAsync({
+      name: "IELTS Student",
+      subject: "IELTS Writing Test Submission",
+      message: `Writing test has been submitted.<br>
+      <strong>Test ID:</strong> ${test.id}<br>
+      
+      <h3>=== Part 1 ===</h3>
+      <strong>Question:</strong>
+      <br>
+      ${test.part1.promptContent}
+      <br>
+      <strong>Answer:</strong>
+      <br>
+      ${part1Essay.replace(/\n/g, "<br>")}<br><br>
+      
+      <h3>=== Part 2 ===</h3><br>
+      <strong>Question:</strong>
+      <br>
+      ${test.part2.promptContent}
+      <br>
+      <strong>Answer:</strong>
+      <br>
+      ${part2Essay.replace(/\n/g, "<br>")}
+    `,
+    });
   };
 
   useEffect(() => {
