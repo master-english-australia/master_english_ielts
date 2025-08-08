@@ -30,7 +30,6 @@ export const TestLayout = ({
 
   const handleResizeStart = useCallback(
     (e: React.MouseEvent) => {
-      console.log("handleResizeStart");
       createResizeEventHandlers(e, layoutRef, setContentWidth, setAnswerWidth);
     },
     [contentWidth, answerWidth],

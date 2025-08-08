@@ -1,5 +1,8 @@
 "use client";
 
+import { EmailSuccessDialog } from "@/app/components/EmailSuccessDialog";
+import { NameInputDialog } from "@/app/components/NameInputDialog";
+import { sendEmail } from "@/lib/api";
 import { Box } from "@mui/material";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -23,12 +26,15 @@ export default function SpeakingTestPage() {
   }, [test, testId, router]);
 
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [showNameDialog, setShowNameDialog] = useState(false);
+  const [showSuccessDialog, setShowSuccessDialog] = useState(false);
   const [currentPart, setCurrentPart] = useState(1);
   const [currentQuestion, setCurrentQuestion] = useState(1);
+  const [audioBlob, setAudioBlob] = useState<Blob | null>(null);
 
   const handleSubmitEssay = () => {
     if (isSubmitted) return;
-    setIsSubmitted(true);
+    setShowNameDialog(true);
   };
 
   const handlePrevQuestion = () => {
@@ -80,6 +86,7 @@ export default function SpeakingTestPage() {
         isFirst={isFirstQuestion}
         isLast={isLastQuestion}
         isSubmitted={isSubmitted}
+        onAudioBlobReady={setAudioBlob}
       />
 
       <PartSwitcher
@@ -93,6 +100,41 @@ export default function SpeakingTestPage() {
         allParts={[]}
         correctAnswers={[]}
         userAnswers={{}}
+      />
+
+      <NameInputDialog
+        open={showNameDialog}
+        onClose={() => setShowNameDialog(false)}
+        onSubmit={async (name) => {
+          try {
+            if (!audioBlob) return;
+            const arrayBuffer = await audioBlob.arrayBuffer();
+            const base64 = Buffer.from(arrayBuffer).toString("base64");
+            await sendEmail({
+              name,
+              subject: `IELTS Speaking - ${name} - Part ${currentPart} Q${currentQuestion}`,
+              message: `Speaking answer submitted by ${name}.\nPart: ${currentPart}\nQuestion: ${currentQuestion}`,
+              attachments: [
+                {
+                  filename: `speaking_part${currentPart}_q${currentQuestion}.webm`,
+                  content: base64,
+                  contentType: audioBlob.type || "audio/webm",
+                },
+              ],
+            });
+
+            setShowSuccessDialog(true);
+          } finally {
+            setShowNameDialog(false);
+            setIsSubmitted(true);
+          }
+        }}
+      />
+
+      <EmailSuccessDialog
+        open={showSuccessDialog}
+        onClose={() => setShowSuccessDialog(false)}
+        onGoToList={() => router.push("/ielts-tests/speaking")}
       />
     </Box>
   );

@@ -1,56 +1,115 @@
 import MicIcon from "@mui/icons-material/Mic";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 interface MicRecorderProps {
   isSubmitted: boolean;
   onAudioRecorded?: (audioURL: string | null) => void;
+  onAudioBlobReady?: (blob: Blob | null) => void;
 }
 
 export const MicRecorder = ({
   isSubmitted,
   onAudioRecorded,
+  onAudioBlobReady,
 }: MicRecorderProps) => {
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
-  const [record, setRecord] = useState(false);
+  const streamRef = useRef<MediaStream | null>(null);
+  const chunksRef = useRef<BlobPart[]>([]);
+  const [recording, setRecording] = useState(false);
   const [audioURL, setAudioURL] = useState<string | null>(null);
-  const [audioChunks, setAudioChunks] = useState<Blob[]>([]);
   const [error, setError] = useState<string | null>(null);
+  const [busy, setBusy] = useState(false);
+
+  const pickMime = () => {
+    if (typeof MediaRecorder === "undefined") return null;
+    if (MediaRecorder.isTypeSupported?.("audio/webm")) return "audio/webm";
+    if (MediaRecorder.isTypeSupported?.("audio/mp4")) return "audio/mp4";
+    if (MediaRecorder.isTypeSupported?.("audio/aac")) return "audio/aac";
+    return "";
+  };
 
   const startRecording = async () => {
     setError(null);
-    setAudioURL(null);
-    setAudioChunks([]);
+    if (busy || recording) return;
+    setBusy(true);
     try {
+      if (
+        typeof navigator === "undefined" ||
+        !navigator.mediaDevices?.getUserMedia
+      ) {
+        throw new Error("このブラウザは録音に対応していません。");
+      }
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-      const mediaRecorder = new window.MediaRecorder(stream);
-      mediaRecorderRef.current = mediaRecorder;
-      mediaRecorder.start();
-      setRecord(true);
-      mediaRecorder.ondataavailable = (e) => {
-        setAudioChunks((prev) => [...prev, e.data]);
+      streamRef.current = stream;
+
+      const mimeType = pickMime();
+      if (mimeType === null)
+        throw new Error("このブラウザは録音に対応していません。");
+
+      const mr = new MediaRecorder(stream, mimeType ? { mimeType } : undefined);
+      mediaRecorderRef.current = mr;
+      chunksRef.current = [];
+
+      mr.ondataavailable = (e) => {
+        if (e.data && e.data.size > 0) chunksRef.current.push(e.data);
       };
-      mediaRecorder.onstop = () => {
-        const blob = new Blob(audioChunks.concat(), { type: "audio/webm" });
+
+      mr.onstop = () => {
+        const blob = new Blob(chunksRef.current, {
+          type: mimeType || "audio/webm",
+        });
+        chunksRef.current = [];
         const url = URL.createObjectURL(blob);
+
+        if (audioURL) URL.revokeObjectURL(audioURL);
         setAudioURL(url);
-        setRecord(false);
-        setAudioChunks([]);
-        stream.getTracks().forEach((track) => track.stop());
-        if (onAudioRecorded) onAudioRecorded(url);
+        setRecording(false);
+
+        streamRef.current?.getTracks().forEach((t) => t.stop());
+        streamRef.current = null;
+        onAudioRecorded?.(url);
+        onAudioBlobReady?.(blob);
       };
-    } catch (err) {
-      setError("マイクの利用が許可されていません。");
-      setRecord(false);
+
+      mr.start(1000);
+      setRecording(true);
+    } catch (e: any) {
+      setError(e?.message || "マイクの利用が許可されていません。");
+      setRecording(false);
+      streamRef.current?.getTracks().forEach((t) => t.stop());
+      streamRef.current = null;
+    } finally {
+      setBusy(false);
     }
   };
 
   const stopRecording = () => {
-    if (mediaRecorderRef.current && record) {
-      mediaRecorderRef.current.stop();
+    const mr = mediaRecorderRef.current;
+    if (mr && recording && mr.state !== "inactive") {
+      mr.stop();
     }
   };
+
+  useEffect(() => {
+    if (isSubmitted && recording) stopRecording();
+  }, [isSubmitted]);
+
+  useEffect(() => {
+    return () => {
+      try {
+        if (
+          mediaRecorderRef.current &&
+          mediaRecorderRef.current.state !== "inactive"
+        ) {
+          mediaRecorderRef.current.stop();
+        }
+      } catch {}
+      streamRef.current?.getTracks().forEach((t) => t.stop());
+      if (audioURL) URL.revokeObjectURL(audioURL);
+    };
+  }, [audioURL]);
 
   return (
     <Box
@@ -62,9 +121,10 @@ export const MicRecorder = ({
       }}
     >
       <Button
-        variant={record ? "contained" : "outlined"}
-        color={record ? "error" : "primary"}
-        onClick={record ? stopRecording : startRecording}
+        variant={recording ? "contained" : "outlined"}
+        color={recording ? "error" : "primary"}
+        onClick={recording ? stopRecording : startRecording}
+        disabled={isSubmitted || busy}
         sx={{
           mt: 2,
           width: 64,
@@ -76,12 +136,13 @@ export const MicRecorder = ({
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          boxShadow: record ? 4 : 1,
+          boxShadow: recording ? 4 : 1,
           fontSize: 32,
         }}
-        disabled={isSubmitted}
       >
-        <MicIcon sx={{ fontSize: 36, color: record ? "white" : "inherit" }} />
+        <MicIcon
+          sx={{ fontSize: 36, color: recording ? "white" : "inherit" }}
+        />
       </Button>
       {audioURL && <audio controls src={audioURL} style={{ marginTop: 12 }} />}
       {error && <Box sx={{ color: "red", mt: 1 }}>{error}</Box>}

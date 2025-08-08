@@ -29,8 +29,8 @@ export function EmailSuccessDialog({
       </DialogTitle>
       <DialogContent>
         <Typography variant="body2" color="text.secondary">
-          Your writing test has been successfully sent. You can go back to the
-          writing tests list.
+          Your submission has been successfully sent. You can go back to the
+          tests list.
         </Typography>
       </DialogContent>
       <DialogActions>
