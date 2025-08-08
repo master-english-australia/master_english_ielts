@@ -8,12 +8,14 @@ export async function POST(req: Request) {
   const body = await req.json();
   const { name, subject, message } = body;
   const fromEmail = process.env.RESEND_FROM_EMAIL;
+  const toEmail = process.env.RESEND_TO_EMAIL;
 
   const requiredValueMap = {
     name: name,
     subject: subject,
     message: message,
     fromEmail: fromEmail,
+    toEmail: toEmail,
   };
 
   if (Object.values(requiredValueMap).some((value) => !value)) {
@@ -30,7 +32,7 @@ export async function POST(req: Request) {
   try {
     const data = await resend.emails.send({
       from: fromEmail || "",
-      to: "conquerx1@gmail.com",
+      to: toEmail || "",
       subject: "Submitted by " + name + "-" + subject,
       html: `<p>${message}</p>`,
     });

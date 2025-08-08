@@ -1,5 +1,4 @@
 import { Box, TextField, Typography } from "@mui/material";
-import { Feedback } from "../types/feedback";
 
 interface AnswerSectionProps {
   id: string;
@@ -8,7 +7,6 @@ interface AnswerSectionProps {
   part1Essay: string;
   part2Essay: string;
   wordCount: number;
-  feedback: Feedback | null;
   onEssayChange: (part: number, value: string) => void;
 }
 
