@@ -6,7 +6,7 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(req: Request) {
   const body = await req.json();
-  const { name, subject, message } = body;
+  const { name, subject, message, attachments } = body;
   const fromEmail = process.env.RESEND_FROM_EMAIL;
   const toEmail = process.env.RESEND_TO_EMAIL;
 
@@ -35,6 +35,13 @@ export async function POST(req: Request) {
       to: toEmail || "",
       subject: "Submitted by " + name + "-" + subject,
       html: `<p>${message}</p>`,
+      attachments: Array.isArray(attachments)
+        ? attachments.map((a: any) => ({
+            filename: a.filename,
+            content: a.content,
+            contentType: a.contentType || "audio/webm",
+          }))
+        : undefined,
     });
 
     if (data.error) {

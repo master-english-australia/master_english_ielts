@@ -14,7 +14,7 @@ import { useState } from "react";
 interface NameInputDialogProps {
   open: boolean;
   onClose: () => void;
-  onSubmit: (name: string) => void;
+  onSubmit: (name: string) => void | Promise<void>;
 }
 
 export function NameInputDialog({
@@ -24,19 +24,22 @@ export function NameInputDialog({
 }: NameInputDialogProps) {
   const [userName, setUserName] = useState("");
   const [nameError, setNameError] = useState("");
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
 
-  const handleSubmit = () => {
-    if (isSubmitting) return;
+  const handleSubmit = async () => {
+    if (submitting) return;
     if (!userName.trim()) {
-      setIsSubmitting(false);
       setNameError("Please enter your name");
       return;
     }
 
-    setNameError("");
-    onSubmit(userName.trim());
-    setIsSubmitting(true);
+    try {
+      setNameError("");
+      setSubmitting(true);
+      await onSubmit(userName.trim());
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   const handleClose = () => {
@@ -54,7 +57,10 @@ export function NameInputDialog({
   return (
     <Dialog open={open} onClose={handleClose} maxWidth="sm" fullWidth>
       <DialogTitle>
-        <Typography variant="h6" component="div">
+        <Typography
+          sx={{ fontSize: "1.5rem", fontWeight: "bold" }}
+          component="div"
+        >
           Submit Your Essay
         </Typography>
       </DialogTitle>
@@ -77,14 +83,14 @@ export function NameInputDialog({
         />
       </DialogContent>
       <DialogActions>
-        <Button onClick={handleClose} color="secondary">
+        <Button onClick={handleClose} color="secondary" disabled={submitting}>
           Cancel
         </Button>
         <Button
           onClick={handleSubmit}
-          disabled={isSubmitting}
           variant="contained"
           color="success"
+          disabled={submitting}
         >
           Submit Essay
         </Button>

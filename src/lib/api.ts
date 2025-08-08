@@ -2,6 +2,11 @@ export type SendEmailPayload = {
   name: string;
   subject: string;
   message: string;
+  attachments?: Array<{
+    filename: string;
+    content: string;
+    contentType?: string;
+  }>;
 };
 
 export async function sendEmail(payload: SendEmailPayload) {

@@ -6,7 +6,7 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { MicRecorder } from "./MicRecorder";
 
 interface TestLayoutProps {
@@ -18,6 +18,7 @@ interface TestLayoutProps {
   isFirst: boolean;
   isLast: boolean;
   isSubmitted: boolean;
+  onAudioBlobReady?: (blob: Blob | null) => void;
 }
 
 export const TestLayout = ({
@@ -29,8 +30,14 @@ export const TestLayout = ({
   isFirst,
   isLast,
   isSubmitted,
+  onAudioBlobReady,
 }: TestLayoutProps) => {
   const layoutRef = useRef<HTMLDivElement>(null);
+  const [hasRecording, setHasRecording] = useState<boolean>(false);
+
+  useEffect(() => {
+    setHasRecording(false);
+  }, [questionNumber]);
 
   const buttonStyles = {
     color: "white",
@@ -86,12 +93,16 @@ export const TestLayout = ({
         <Box sx={{ fontWeight: "bold", mb: 1 }}>Question {questionNumber}</Box>
         <Box sx={{ fontWeight: 500, mb: 3 }}>{questionText}</Box>
       </Box>
-      <MicRecorder isSubmitted={isSubmitted} />
+      <MicRecorder
+        isSubmitted={isSubmitted}
+        onAudioRecorded={(url) => setHasRecording(Boolean(url))}
+        onAudioBlobReady={onAudioBlobReady}
+      />
       <Button
         variant="contained"
         color="success"
         onClick={onSubmit}
-        disabled={isSubmitted}
+        disabled={isSubmitted || !hasRecording}
         sx={{
           fontSize: "12px",
           fontWeight: 400,

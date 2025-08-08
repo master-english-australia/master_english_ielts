@@ -1,5 +1,7 @@
 "use client";
 
+import { EmailSuccessDialog } from "@/app/components/EmailSuccessDialog";
+import { NameInputDialog } from "@/app/components/NameInputDialog";
 import { useEmail } from "@/app/ielts-tests/writing/hooks/useEmail";
 import { Box } from "@mui/material";
 import { useParams, useRouter } from "next/navigation";
@@ -7,8 +9,6 @@ import { useEffect, useState } from "react";
 import { PartSwitcher } from "../../../components/PartSwitcher";
 import { TaskRequirements } from "../../../components/TaskRequirements";
 import { TestHeader } from "../../../components/TestHeader";
-import { EmailSuccessDialog } from "../components/EmailSuccessDialog";
-import { NameInputDialog } from "../components/NameInputDialog";
 import { TestLayout } from "../components/TestLayout";
 import { writingTests } from "../mockData";
 import { countWords } from "../utils/wordCounter";
