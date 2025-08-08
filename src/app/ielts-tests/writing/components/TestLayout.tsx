@@ -13,7 +13,6 @@ interface TestLayoutProps {
   part1Essay: string;
   part2Essay: string;
   wordCount: number;
-  feedback: any;
   onEssayChange: (part: number, value: string) => void;
 }
 
@@ -25,7 +24,6 @@ export const TestLayout = ({
   part1Essay,
   part2Essay,
   wordCount,
-  feedback,
   onEssayChange,
 }: TestLayoutProps) => {
   const [contentWidth, setContentWidth] = useState(50);
@@ -64,7 +62,6 @@ export const TestLayout = ({
         part1Essay={part1Essay}
         part2Essay={part2Essay}
         wordCount={wordCount}
-        feedback={feedback}
         onEssayChange={onEssayChange}
       />
     </Box>

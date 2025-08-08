@@ -1,16 +1,16 @@
 "use client";
 
-import { useEmail } from "@/app/hooks/useEmail";
+import { useEmail } from "@/app/ielts-tests/writing/hooks/useEmail";
 import { Box } from "@mui/material";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { PartSwitcher } from "../../../components/PartSwitcher";
 import { TaskRequirements } from "../../../components/TaskRequirements";
 import { TestHeader } from "../../../components/TestHeader";
+import { EmailSuccessDialog } from "../components/EmailSuccessDialog";
+import { NameInputDialog } from "../components/NameInputDialog";
 import { TestLayout } from "../components/TestLayout";
 import { writingTests } from "../mockData";
-import { Feedback } from "../types/feedback";
-import { calculateFeedback } from "../utils/feedbackHandler";
 import { countWords } from "../utils/wordCounter";
 
 export default function WritingTestPage() {
@@ -31,39 +31,34 @@ export default function WritingTestPage() {
   const [wordCount, setWordCount] = useState(0);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [currentPart, setCurrentPart] = useState(1);
-  const [feedback, setFeedback] = useState<Feedback | null>(null);
-  const { sendEmailAsync, error: emailError } = useEmail();
+  const [showNameDialog, setShowNameDialog] = useState(false);
+  const [showSuccessDialog, setShowSuccessDialog] = useState(false);
+  const { sendEmailAsync } = useEmail();
 
   const handleSubmitEssay = async () => {
     if (isSubmitted) return;
-    setFeedback(calculateFeedback(wordCount));
-    setIsSubmitted(true);
+    setShowNameDialog(true);
+  };
 
-    await sendEmailAsync({
-      name: "IELTS Student",
-      subject: "IELTS Writing Test Submission",
-      message: `Writing test has been submitted.<br>
-      <strong>Test ID:</strong> ${test.id}<br>
-      
-      <h3>=== Part 1 ===</h3>
-      <strong>Question:</strong>
-      <br>
-      ${test.part1.promptContent}
-      <br>
-      <strong>Answer:</strong>
-      <br>
-      ${part1Essay.replace(/\n/g, "<br>")}<br><br>
-      
-      <h3>=== Part 2 ===</h3><br>
-      <strong>Question:</strong>
-      <br>
-      ${test.part2.promptContent}
-      <br>
-      <strong>Answer:</strong>
-      <br>
-      ${part2Essay.replace(/\n/g, "<br>")}
-    `,
-    });
+  const handleNameSubmit = async (userName: string) => {
+    const isSuccess = await sendEmailAsync(
+      part1Essay,
+      part2Essay,
+      test.part1.promptContent,
+      test.part2.promptContent,
+      test.id.toString(),
+      userName,
+    );
+
+    if (isSuccess) {
+      setIsSubmitted(true);
+      setShowNameDialog(false);
+      setShowSuccessDialog(true);
+    }
+  };
+
+  const handleNameDialogClose = () => {
+    setShowNameDialog(false);
   };
 
   useEffect(() => {
@@ -102,7 +97,6 @@ export default function WritingTestPage() {
         part1Essay={part1Essay}
         part2Essay={part2Essay}
         wordCount={wordCount}
-        feedback={feedback}
         onEssayChange={handleEssayChange}
       />
 
@@ -115,6 +109,18 @@ export default function WritingTestPage() {
         allParts={[]}
         correctAnswers={[]}
         userAnswers={{}}
+      />
+
+      <NameInputDialog
+        open={showNameDialog}
+        onClose={handleNameDialogClose}
+        onSubmit={handleNameSubmit}
+      />
+
+      <EmailSuccessDialog
+        open={showSuccessDialog}
+        onClose={() => setShowSuccessDialog(false)}
+        onGoToList={() => router.push("/ielts-tests/writing")}
       />
     </Box>
   );
