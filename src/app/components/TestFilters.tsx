@@ -115,7 +115,7 @@ export default function TestFilters({ onFilterChange }: TestFiltersProps) {
                 cursor: "pointer",
                 fontSize: "0.9rem",
                 textAlign: "left",
-                justifyContent: "flex-start",
+                justifyContent: "center",
                 textTransform: "none",
                 transition: "all 0.2s",
                 width: "100%",
