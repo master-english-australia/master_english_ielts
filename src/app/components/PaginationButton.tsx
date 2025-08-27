@@ -33,7 +33,8 @@ export default function PaginationButton({
         "&:hover": {
           backgroundColor: isActive
             ? Colors.PRIMARY_HOVER
-            : Colors.PRIMARY_HOVER,
+            : Colors.BACKGROUND_HOVER,
+          color: isActive ? Colors.WHITE : Colors.TEXT_DEFAULT,
         },
         ...sx,
       }}
