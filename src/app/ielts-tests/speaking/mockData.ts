@@ -2,7 +2,7 @@ export const speakingTests = {
   "1": {
     title: "Academic Speaking Test 1",
     type: "Academic",
-    timeLimit: 1800, // 30 minutes
+    timeLimit: 1800,
     parts: [
       {
         id: 1,

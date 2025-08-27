@@ -1,9 +1,9 @@
 "use client";
 
+import PaginationButton from "@/app/components/PaginationButton";
 import TestCard, { TestCardProps } from "@/app/components/TestCard";
 import { Box, Typography } from "@mui/material";
 import { useState } from "react";
-import PaginationButton from "@/app/components/PaginationButton";
 
 interface Test extends TestCardProps {
   id: string;
@@ -13,11 +13,17 @@ interface TestListProps {
   tests: Test[];
   title: string;
   description: string;
+  isLoading: boolean;
 }
 
-export default function TestList({ tests, title, description }: TestListProps) {
+export default function TestList({
+  tests,
+  title,
+  description,
+  isLoading,
+}: TestListProps) {
   const [currentPage, setCurrentPage] = useState(1);
-  const testsPerPage = 6;
+  const testsPerPage = 12;
   const totalPages = Math.ceil(tests.length / testsPerPage);
 
   const indexOfLastTest = currentPage * testsPerPage;
@@ -48,15 +54,25 @@ export default function TestList({ tests, title, description }: TestListProps) {
           width: "100%",
         }}
       >
-        {currentTests.map((test) => (
-          <TestCard
-            key={test.id}
-            type={test.type}
-            title={test.title}
-            testUrl={test.testUrl}
-            questionType={test.questionType}
-          />
-        ))}
+        {isLoading
+          ? Array.from({ length: 9 }).map((_, i) => (
+              <TestCard
+                key={i}
+                type={""}
+                title={""}
+                testUrl={""}
+                isLoading={isLoading}
+              />
+            ))
+          : currentTests.map((test) => (
+              <TestCard
+                key={test.id}
+                type={test.type}
+                title={test.title}
+                testUrl={test.testUrl}
+                isLoading={isLoading}
+              />
+            ))}
       </Box>
 
       <Box

@@ -4,14 +4,17 @@ import TestFilters from "@/app/components/TestFilters";
 import TestList from "@/app/components/TestList";
 import { Box } from "@mui/material";
 import { useMemo, useState } from "react";
-import { IeltsTest } from "../models/IeltsTest";
+import { useTestsList } from "../hooks/useTestsList";
+import { IeltsSection } from "../models/IeltsTest";
 
 interface TestListPageProps {
-  tests: IeltsTest[];
   title: string;
+  part: IeltsSection;
 }
 
-export default function TestListPage({ tests, title }: TestListPageProps) {
+export default function TestListPage({ title, part }: TestListPageProps) {
+  const { data: tests, loading, error } = useTestsList({ part });
+
   const [filters, setFilters] = useState({
     search: "",
     testType: "All",
@@ -25,7 +28,7 @@ export default function TestListPage({ tests, title }: TestListPageProps) {
   };
 
   const filteredTestList = useMemo(() => {
-    return tests.filter((test) => {
+    return tests?.filter((test) => {
       if (filters.testType !== "All" && test.type !== filters.testType) {
         return false;
       }
@@ -49,7 +52,16 @@ export default function TestListPage({ tests, title }: TestListPageProps) {
           <TestFilters onFilterChange={handleFilterChange} />
         </Box>
         <Box flex={1}>
-          <TestList tests={filteredTestList} title={title} description="" />
+          {error ? (
+            <div>Failed to load: {error}</div>
+          ) : (
+            <TestList
+              tests={filteredTestList || []}
+              title={title}
+              description=""
+              isLoading={loading}
+            />
+          )}
         </Box>
       </Box>
     </Box>

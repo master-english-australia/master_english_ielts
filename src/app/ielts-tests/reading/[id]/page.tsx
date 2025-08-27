@@ -1,6 +1,8 @@
 "use client";
 
 import { useScoreCalculator } from "@/app/hooks/useScoreCalculator";
+import { QuestionGroup } from "@/app/models/QuestionGroup";
+import { QuestionPart } from "@/app/models/QuestionPart";
 import { Box } from "@mui/material";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -73,7 +75,7 @@ function ReadingTestContent() {
         />
       )}
 
-      <TestHeader timeLimit={test.time_limit} />
+      <TestHeader timeLimit={3600} />
 
       <TaskRequirements
         currentPart={currentPart}
@@ -84,7 +86,7 @@ function ReadingTestContent() {
         currentPart={currentPart}
         isSubmitted={isSubmitted}
         promptContent={currentPartData.content_html}
-        questionGroups={currentPartData.question_groups}
+        questionGroups={currentPartData.question_groups as QuestionGroup[]}
         correctAnswers={readingMockDataAnswer}
       />
 
@@ -96,7 +98,7 @@ function ReadingTestContent() {
           setCurrentPart(part);
         }}
         onSubmit={handleSubmit}
-        allParts={test.parts}
+        allParts={test.parts as QuestionPart[]}
         correctAnswers={readingMockDataAnswer}
         userAnswers={state}
       />
