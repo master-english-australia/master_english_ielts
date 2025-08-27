@@ -33,7 +33,7 @@ export default function NavButton({
         },
         textTransform: "none",
         whiteSpace: "nowrap",
-        width: "auto", // Override default full width
+        width: "auto",
         ...sx,
       }}
       {...rest}

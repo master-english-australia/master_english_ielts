@@ -14,7 +14,6 @@ export default function IELTSTestsLayout({
 }) {
   const pathname = usePathname();
 
-  // Hide layout for test pages
   const isTestPage =
     pathname?.includes("/ielts-tests/writing/") ||
     pathname?.includes("/ielts-tests/reading/") ||

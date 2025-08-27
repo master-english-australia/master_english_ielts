@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { Box, Button } from "@mui/material";
-import { Colors } from "@/app/consts/colors";
 import Link from "next/link";
 import ActionButton from "@/app/components/ActionButton";
 

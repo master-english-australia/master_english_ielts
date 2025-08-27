@@ -3,6 +3,8 @@
 import { Box } from "@mui/material";
 import { usePathname } from "next/navigation";
 import NavButton from "@/app/components/NavButton";
+import { Colors } from "@/app/consts/colors";
+import { Shadows } from "@/app/consts/shadows";
 
 export default function IELTSTestsNav() {
   const pathname = usePathname();
@@ -17,12 +19,12 @@ export default function IELTSTestsNav() {
   return (
     <Box
       sx={{
-        backgroundColor: "#f8f9fa",
+        backgroundColor: Colors.BACKGROUND_HOVER,
         p: "1rem 0",
         position: "sticky",
         top: "3.5rem",
         zIndex: 99,
-        boxShadow: "0 2px 4px rgba(0,0,0,0.1)",
+        boxShadow: Shadows.NAV,
       }}
     >
       <Box component="nav" sx={{ maxWidth: 1400, mx: "auto", px: "1rem" }}>
