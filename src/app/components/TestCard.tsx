@@ -1,23 +1,28 @@
 "use client";
 
-import { useState } from "react";
-import { Box, Button } from "@mui/material";
-import Link from "next/link";
 import ActionButton from "@/app/components/ActionButton";
+import { TestCardTitle } from "@/app/components/TestCardTitle";
+import { TestCardType } from "@/app/components/TestCardType";
+import { Box } from "@mui/material";
+import Link from "next/link";
+import { useState } from "react";
 
 export interface TestCardProps {
   type: string;
   title: string;
   testUrl: string;
-  questionType?: string;
+}
+
+export interface TestCardPropsWithLoading extends TestCardProps {
+  isLoading: boolean;
 }
 
 export default function TestCard({
   type,
   title,
   testUrl,
-  questionType,
-}: TestCardProps) {
+  isLoading,
+}: TestCardPropsWithLoading) {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
@@ -47,52 +52,12 @@ export default function TestCard({
           gap: "0.5rem",
         }}
       >
-        <Box
-          component="span"
-          sx={{
-            display: "inline-block",
-            padding: "0.25rem 0.5rem",
-            backgroundColor: "#f0f0f0",
-            borderRadius: "4px",
-            fontSize: "0.8rem",
-            color: "#666",
-          }}
-        >
-          {type}
-        </Box>
-
-        {questionType && (
-          <Box
-            component="span"
-            sx={{
-              marginLeft: "0.5rem",
-              display: "inline-block",
-              padding: "0.25rem 0.5rem",
-              backgroundColor: "#e0e0e0",
-              borderRadius: "4px",
-              fontSize: "0.75rem",
-              color: "#666",
-              fontWeight: 500,
-            }}
-          >
-            {questionType}
-          </Box>
-        )}
+        <TestCardType type={type} isLoading={isLoading} />
       </Box>
 
-      <Box
-        component="h3"
-        sx={{
-          margin: "0 0 1rem 0",
-          fontSize: "1.1rem",
-          color: "#333",
-          wordBreak: "break-word",
-        }}
-      >
-        {title}
-      </Box>
+      <TestCardTitle title={title} isLoading={isLoading} />
 
-      <ActionButton component={Link} href={testUrl}>
+      <ActionButton component={Link} href={testUrl} isLoading={isLoading}>
         Take Test
       </ActionButton>
     </Box>

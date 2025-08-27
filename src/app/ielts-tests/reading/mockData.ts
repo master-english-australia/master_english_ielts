@@ -1,7 +1,6 @@
 export const readingTests = {
   test_id: "ielts_reading_mock_01",
   title: "IELTS Reading Mock Test",
-  time_limit: 60,
   parts: [
     {
       id: "section_1",
@@ -43,49 +42,42 @@ export const readingTests = {
               questionText:
                 "Users of this machine will need to put some physical effort into making ice cream.",
               options: ["A", "B", "C", "D", "E", "F"],
-              correctAnswer: "B",
             },
             {
               id: "2",
               questionText:
                 "This machine can be fitted onto an existing kitchen appliance.",
               options: ["A", "B", "C", "D", "E", "F"],
-              correctAnswer: "F",
             },
             {
               id: "3",
               questionText:
                 "This machine is the most expensive in the selection.",
               options: ["A", "B", "C", "D", "E", "F"],
-              correctAnswer: "A",
             },
             {
               id: "4",
               questionText:
                 "This machine is the most expensive in the selection.",
               options: ["A", "B", "C", "D", "E", "F"],
-              correctAnswer: "A",
             },
             {
               id: "5",
               questionText:
                 "This machine is the most expensive in the selection.",
               options: ["A", "B", "C", "D", "E", "F"],
-              correctAnswer: "A",
             },
             {
               id: "6",
               questionText:
                 "This machine is the most expensive in the selection.",
               options: ["A", "B", "C", "D", "E", "F"],
-              correctAnswer: "A",
             },
             {
               id: "7",
               questionText:
                 "This machine is the most expensive in the selection.",
               options: ["A", "B", "C", "D", "E", "F"],
-              correctAnswer: "A",
             },
           ],
         },
@@ -100,49 +92,42 @@ export const readingTests = {
               questionText:
                 "Ice cream makers were first invented in the 20th century.",
               options: ["TRUE", "FALSE", "NOT GIVEN"],
-              correctAnswer: "FALSE",
             },
             {
               id: "9",
               questionText:
                 "People found it difficult to clean older ice cream makers.",
               options: ["TRUE", "FALSE", "NOT GIVEN"],
-              correctAnswer: "TRUE",
             },
             {
               id: "10",
               questionText:
                 "Modern ice cream makers are only suitable for professional use.",
               options: ["TRUE", "FALSE", "NOT GIVEN"],
-              correctAnswer: "FALSE",
             },
             {
               id: "11",
               questionText:
                 "Modern ice cream makers are only suitable for professional use.",
               options: ["TRUE", "FALSE", "NOT GIVEN"],
-              correctAnswer: "FALSE",
             },
             {
               id: "12",
               questionText:
                 "Modern ice cream makers are only suitable for professional use.",
               options: ["TRUE", "FALSE", "NOT GIVEN"],
-              correctAnswer: "FALSE",
             },
             {
               id: "13",
               questionText:
                 "Modern ice cream makers are only suitable for professional use.",
               options: ["TRUE", "FALSE", "NOT GIVEN"],
-              correctAnswer: "FALSE",
             },
             {
               id: "14",
               questionText:
                 "Modern ice cream makers are only suitable for professional use.",
               options: ["TRUE", "FALSE", "NOT GIVEN"],
-              correctAnswer: "FALSE",
             },
           ],
         },
@@ -171,27 +156,21 @@ export const readingTests = {
           questions: [
             {
               id: "15",
-              correctAnswer: "parking",
             },
             {
               id: "16",
-              correctAnswer: "highest",
             },
             {
               id: "17",
-              correctAnswer: "weekend",
             },
             {
               id: "18",
-              correctAnswer: "replacement",
             },
             {
               id: "19",
-              correctAnswer: "replacement",
             },
             {
               id: "20",
-              correctAnswer: "HR Manager",
             },
           ],
         },
@@ -219,31 +198,24 @@ export const readingTests = {
           questions: [
             {
               id: "21",
-              correctAnswer: "parking",
             },
             {
               id: "22",
-              correctAnswer: "highest",
             },
             {
               id: "23",
-              correctAnswer: "weekend",
             },
             {
               id: "24",
-              correctAnswer: "replacement",
             },
             {
               id: "25",
-              correctAnswer: "replacement",
             },
             {
               id: "26",
-              correctAnswer: "HR Manager",
             },
             {
               id: "27",
-              correctAnswer: "HR Manager",
             },
           ],
         },
@@ -276,39 +248,33 @@ export const readingTests = {
               id: "28",
               questionText: "the various functions of Roman roads",
               options: ["A", "B", "C", "D", "E", "F"],
-              correctAnswer: "A",
             },
             {
               id: "29",
               questionText:
                 "reference to some current remains of Roman road building",
               options: ["A", "B", "C", "D", "E", "F"],
-              correctAnswer: "B",
             },
             {
               id: "30",
               questionText: "a description of preparations for building a road",
               options: ["A", "B", "C", "D", "E", "F"],
-              correctAnswer: "C",
             },
             {
               id: "31",
               questionText: "the period in history when road building began",
               options: ["A", "B", "C", "D", "E", "F"],
-              correctAnswer: "D",
             },
             {
               id: "32",
               questionText:
                 "the consequence of damage caused by a natural disaster",
               options: ["A", "B", "C", "D", "E", "F"],
-              correctAnswer: "E",
             },
             {
               id: "33",
               questionText: "the total distance once crossed by Roman roads",
               options: ["A", "B", "C", "D", "E", "F"],
-              correctAnswer: "F",
             },
           ],
         },
@@ -328,7 +294,6 @@ export const readingTests = {
                 "the number of people involved in building",
                 "the powerful people who financed the roads",
               ],
-              correctAnswer: "the strength and permanence of the roads",
             },
             {
               id: "35",
@@ -340,7 +305,6 @@ export const readingTests = {
                 "it was used by a large number of travellers.",
                 "it was designed to avoid certain areas.",
               ],
-              correctAnswer: "it was lengthened over time.",
             },
             {
               id: "36",
@@ -352,7 +316,6 @@ export const readingTests = {
                 "it was used by a large number of travellers.",
                 "it was designed to avoid certain areas.",
               ],
-              correctAnswer: "it was used by a large number of travellers.",
             },
             {
               id: "37",
@@ -364,7 +327,6 @@ export const readingTests = {
                 "it was used by a large number of travellers.",
                 "it was designed to avoid certain areas.",
               ],
-              correctAnswer: "it was designed to avoid certain areas.",
             },
           ],
         },
@@ -376,7 +338,6 @@ export const readingTests = {
 export const readingTest2 = {
   test_id: "ielts_reading_mock_01",
   title: "IELTS Reading Mock Test",
-  time_limit: 60,
   parts: [
     {
       id: "1",
@@ -404,49 +365,42 @@ export const readingTest2 = {
               questionText:
                 "Dry cleaners are generally responsible for items left with them, even if there's a sign saying the opposite.",
               options: ["TRUE", "FALSE", "NOT GIVEN"],
-              correctAnswer: "TRUE",
             },
             {
               id: "2",
               questionText:
                 "If the dry cleaner loses an item belonging to you, they should give you enough money to buy a completely new one.",
               options: ["TRUE", "FALSE", "NOT GIVEN"],
-              correctAnswer: "FALSE",
             },
             {
               id: "3",
               questionText:
                 "If you have the receipt for a damaged item, the company should refund the amount you originally paid for it.",
               options: ["TRUE", "FALSE", "NOT GIVEN"],
-              correctAnswer: "FALSE",
             },
             {
               id: "4",
               questionText:
                 "It may be possible to get support for your complaint from a dry cleaners' trade association.",
               options: ["TRUE", "FALSE", "NOT GIVEN"],
-              correctAnswer: "TRUE",
             },
             {
               id: "5",
               questionText:
                 "If you're offered too little compensation, you can request a free report from an independent organisation.",
               options: ["TRUE", "FALSE", "NOT GIVEN"],
-              correctAnswer: "FALSE",
             },
             {
               id: "6",
               questionText:
                 "Most people who take a case about a dry-cleaning company to court are satisfied with the outcome.",
               options: ["TRUE", "FALSE", "NOT GIVEN"],
-              correctAnswer: "NOT GIVEN",
             },
             {
               id: "7",
               questionText:
                 "If an item was lost or damaged nine months ago, you can still take the dry cleaner to court.",
               options: ["TRUE", "FALSE", "NOT GIVEN"],
-              correctAnswer: "TRUE",
             },
           ],
         },
@@ -461,49 +415,42 @@ export const readingTest2 = {
               questionText:
                 "Members of this group share ideas for the books they would like to read.",
               options: ["A", "B", "C", "D", "E", "F"],
-              correctAnswer: "A",
             },
             {
               id: "9",
               questionText:
                 "It isn't possible for any new members to join this group at present.",
               options: ["A", "B", "C", "D", "E", "F"],
-              correctAnswer: "F",
             },
             {
               id: "10",
               questionText:
                 "You can get feedback on your own work from other members of this group.",
               options: ["A", "B", "C", "D", "E", "F"],
-              correctAnswer: "B",
             },
             {
               id: "11",
               questionText:
                 "This group focuses on stories belonging to just one genre.",
               options: ["A", "B", "C", "D", "E", "F"],
-              correctAnswer: "C",
             },
             {
               id: "12",
               questionText:
                 "Work produced by members of this group will be available to the public.",
               options: ["A", "B", "C", "D", "E", "F"],
-              correctAnswer: "F",
             },
             {
               id: "13",
               questionText:
                 "This group doesn't read or write either poetry or fiction.",
               options: ["A", "B", "C", "D", "E", "F"],
-              correctAnswer: "E",
             },
             {
               id: "14",
               questionText:
                 "This group would suit someone who thinks they could write a book.",
               options: ["A", "B", "C", "D", "E", "F"],
-              correctAnswer: "B",
             },
           ],
         },
@@ -548,35 +495,27 @@ export const readingTest2 = {
           questions: [
             {
               id: "15",
-              correctAnswer: "CE mark",
             },
             {
               id: "16",
-              correctAnswer: "Tests",
             },
             {
               id: "17",
-              correctAnswer: "Engineer",
             },
             {
               id: "18",
-              correctAnswer: "Control measures",
             },
             {
               id: "19",
-              correctAnswer: "lifting crew",
             },
             {
               id: "20",
-              correctAnswer: "Barriers",
             },
             {
               id: "21",
-              correctAnswer: "Banksman",
             },
             {
               id: "22",
-              correctAnswer: "Injuries",
             },
           ],
         },
@@ -651,11 +590,11 @@ export const readingTest2 = {
 </tbody>
 </table>`,
           questions: [
-            { id: "23", correctAnswer: "win" },
-            { id: "24", correctAnswer: "expectations" },
-            { id: "25", correctAnswer: "solution" },
-            { id: "26", correctAnswer: "policy" },
-            { id: "27", correctAnswer: "apology" },
+            { id: "23" },
+            { id: "24" },
+            { id: "25" },
+            { id: "26" },
+            { id: "27" },
           ],
         },
       ],
@@ -687,39 +626,33 @@ export const readingTest2 = {
               id: "28",
               questionText: "the various functions of Roman roads",
               options: ["A", "B", "C", "D", "E", "F"],
-              correctAnswer: "A",
             },
             {
               id: "29",
               questionText:
                 "reference to some current remains of Roman road building",
               options: ["A", "B", "C", "D", "E", "F"],
-              correctAnswer: "B",
             },
             {
               id: "30",
               questionText: "a description of preparations for building a road",
               options: ["A", "B", "C", "D", "E", "F"],
-              correctAnswer: "C",
             },
             {
               id: "31",
               questionText: "the period in history when road building began",
               options: ["A", "B", "C", "D", "E", "F"],
-              correctAnswer: "D",
             },
             {
               id: "32",
               questionText:
                 "the consequence of damage caused by a natural disaster",
               options: ["A", "B", "C", "D", "E", "F"],
-              correctAnswer: "E",
             },
             {
               id: "33",
               questionText: "the total distance once crossed by Roman roads",
               options: ["A", "B", "C", "D", "E", "F"],
-              correctAnswer: "F",
             },
           ],
         },
@@ -739,7 +672,6 @@ export const readingTest2 = {
                 "the number of people involved in building",
                 "the powerful people who financed the roads",
               ],
-              correctAnswer: "the strength and permanence of the roads",
             },
             {
               id: "35",
@@ -751,7 +683,6 @@ export const readingTest2 = {
                 "it was used by a large number of travellers.",
                 "it was designed to avoid certain areas.",
               ],
-              correctAnswer: "it was lengthened over time.",
             },
             {
               id: "36",
@@ -763,7 +694,6 @@ export const readingTest2 = {
                 "it was used by a large number of travellers.",
                 "it was designed to avoid certain areas.",
               ],
-              correctAnswer: "it was used by a large number of travellers.",
             },
             {
               id: "37",
@@ -775,7 +705,6 @@ export const readingTest2 = {
                 "it was used by a large number of travellers.",
                 "it was designed to avoid certain areas.",
               ],
-              correctAnswer: "it was designed to avoid certain areas.",
             },
           ],
         },
