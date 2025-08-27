@@ -59,43 +59,41 @@ export default function TestList({ tests, title, description }: TestListProps) {
         ))}
       </Box>
 
-      {totalPages > 1 && (
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            gap: "0.5rem",
-            mt: 2,
-            flexWrap: "wrap",
-          }}
-        >
-          {currentPage > 1 && (
-            <PaginationButton
-              variant="prev"
-              onClick={() => paginate(currentPage - 1)}
-            />
-          )}
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          gap: "0.5rem",
+          mt: 2,
+          flexWrap: "wrap",
+        }}
+      >
+        {currentPage > 1 && (
+          <PaginationButton
+            variant="prev"
+            onClick={() => paginate(currentPage - 1)}
+          />
+        )}
 
-          {Array.from({ length: totalPages }, (_, i) => (
-            <PaginationButton
-              key={i + 1}
-              onClick={() => paginate(i + 1)}
-              isActive={currentPage === i + 1}
-              variant="number"
-            >
-              {i + 1}
-            </PaginationButton>
-          ))}
+        {Array.from({ length: totalPages }, (_, i) => (
+          <PaginationButton
+            key={i + 1}
+            onClick={() => paginate(i + 1)}
+            isActive={currentPage === i + 1}
+            variant="number"
+          >
+            {i + 1}
+          </PaginationButton>
+        ))}
 
-          {currentPage < totalPages && (
-            <PaginationButton
-              variant="next"
-              onClick={() => paginate(currentPage + 1)}
-              sx={{ marginRight: 0 }}
-            />
-          )}
-        </Box>
-      )}
+        {currentPage < totalPages && (
+          <PaginationButton
+            variant="next"
+            onClick={() => paginate(currentPage + 1)}
+            sx={{ marginRight: 0 }}
+          />
+        )}
+      </Box>
     </Box>
   );
 }
