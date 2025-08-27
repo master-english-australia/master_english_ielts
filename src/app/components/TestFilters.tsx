@@ -1,9 +1,9 @@
 "use client";
 
-import { WidthWideTwoTone } from "@mui/icons-material";
 import { useState } from "react";
-import { Box, Button, Divider, TextField, Typography } from "@mui/material";
+import { Box, Divider, TextField, Typography } from "@mui/material";
 import { Colors } from "@/app/consts/colors";
+import SelectableButton from "@/app/components/SelectableButton";
 
 export interface TestFiltersProps {
   onFilterChange: (filters: { search: string; testType: string }) => void;
@@ -79,8 +79,8 @@ export default function TestFilters({ onFilterChange }: TestFiltersProps) {
             "& .MuiOutlinedInput-root": {
               height: "40px",
               borderRadius: "4px",
-              "& fieldset": { borderColor: "#ddd" },
-              "&:hover fieldset": { borderColor: "#ddd" },
+              "& fieldset": { borderColor: Colors.BORDER },
+              "&:hover fieldset": { borderColor: Colors.BORDER },
               "&.Mui-focused fieldset": { borderColor: Colors.PRIMARY },
               "&.Mui-focused": {
                 boxShadow: "0 0 0 2px rgba(0, 123, 255, 0.25)",
@@ -97,38 +97,20 @@ export default function TestFilters({ onFilterChange }: TestFiltersProps) {
           gap: "0.5rem",
         }}
       >
-        {testTypes.map((type) => {
-          const active = testType === type;
-
-          return (
-            <Button
-              key={type}
-              onClick={() => handleTypeChange(type)}
-              fullWidth
-              sx={{
-                padding: "0.5rem",
-                border: "1px solid #ddd",
-                borderColor: active ? Colors.PRIMARY : "#ddd",
-                backgroundColor: active ? Colors.PRIMARY : "white",
-                color: active ? "white" : "#333",
-                borderRadius: "4px",
-                cursor: "pointer",
-                fontSize: "0.9rem",
-                textAlign: "left",
-                justifyContent: "center",
-                textTransform: "none",
-                transition: "all 0.2s",
-                width: "100%",
-                boxSizing: "border-box",
-                "&:hover": {
-                  backgroundColor: active ? Colors.PRIMARY_HOVER : "#f5f5f5",
-                },
-              }}
-            >
-              {type}
-            </Button>
-          );
-        })}
+        {testTypes.map((type) => (
+          <SelectableButton
+            key={type}
+            onClick={() => handleTypeChange(type)}
+            selected={testType === type}
+            fullWidth
+            sx={{
+              textAlign: "left",
+              justifyContent: "center",
+            }}
+          >
+            {type}
+          </SelectableButton>
+        ))}
       </Box>
     </Box>
   );

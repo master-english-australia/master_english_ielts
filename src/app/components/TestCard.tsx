@@ -1,9 +1,9 @@
 "use client";
 
-import { Colors } from "@/app/consts/colors";
+import { useState } from "react";
 import { Box, Button } from "@mui/material";
 import Link from "next/link";
-import { useState } from "react";
+import ActionButton from "@/app/components/ActionButton";
 
 export interface TestCardProps {
   type: string;
@@ -92,29 +92,9 @@ export default function TestCard({
         {title}
       </Box>
 
-      <Button
-        component={Link}
-        href={testUrl}
-        sx={{
-          display: "inline-block",
-          padding: "0.5rem 1rem",
-          backgroundColor: Colors.PRIMARY,
-          color: "white",
-          textDecoration: "none",
-          borderRadius: "4px",
-          fontSize: "0.9rem",
-          transition: "background-color 0.2s",
-          width: "100%",
-          textAlign: "center",
-          boxSizing: "border-box",
-          textTransform: "none",
-          "&:hover": {
-            backgroundColor: Colors.PRIMARY_HOVER,
-          },
-        }}
-      >
+      <ActionButton component={Link} href={testUrl}>
         Take Test
-      </Button>
+      </ActionButton>
     </Box>
   );
 }

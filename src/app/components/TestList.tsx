@@ -1,10 +1,9 @@
 "use client";
 
-import TestListPaginationButton from "@/app/components/TestListPagenationButton";
 import TestCard, { TestCardProps } from "@/app/components/TestCard";
-import { Box, Button, Typography } from "@mui/material";
-import { Colors } from "@/app/consts/colors";
+import { Box, Typography } from "@mui/material";
 import { useState } from "react";
+import PaginationButton from "@/app/components/PaginationButton";
 
 interface Test extends TestCardProps {
   id: string;
@@ -71,45 +70,29 @@ export default function TestList({ tests, title, description }: TestListProps) {
           }}
         >
           {currentPage > 1 && (
-            <TestListPaginationButton
+            <PaginationButton
+              variant="prev"
               onClick={() => paginate(currentPage - 1)}
-              sx={{}}
-            >
-              &laquo; Previous
-            </TestListPaginationButton>
+            />
           )}
 
-          {Array.from({ length: totalPages }, (_, i) => {
-            const isActive = currentPage === i + 1;
-            return (
-              <TestListPaginationButton
-                key={i + 1}
-                onClick={() => paginate(i + 1)}
-                sx={{
-                  backgroundColor: isActive ? Colors.PRIMARY : "white",
-                  color: isActive ? "white" : "#333",
-                  borderColor: isActive ? Colors.PRIMARY : "#ddd",
-                  "&:hover": {
-                    backgroundColor: isActive
-                      ? Colors.PRIMARY_HOVER
-                      : Colors.PRIMARY_HOVER,
-                  },
-                }}
-              >
-                {i + 1}
-              </TestListPaginationButton>
-            );
-          })}
+          {Array.from({ length: totalPages }, (_, i) => (
+            <PaginationButton
+              key={i + 1}
+              onClick={() => paginate(i + 1)}
+              isActive={currentPage === i + 1}
+              variant="number"
+            >
+              {i + 1}
+            </PaginationButton>
+          ))}
 
           {currentPage < totalPages && (
-            <TestListPaginationButton
+            <PaginationButton
+              variant="next"
               onClick={() => paginate(currentPage + 1)}
-              sx={{
-                marginRight: 0,
-              }}
-            >
-              Next &raquo;
-            </TestListPaginationButton>
+              sx={{ marginRight: 0 }}
+            />
           )}
         </Box>
       )}

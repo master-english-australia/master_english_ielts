@@ -1,8 +1,11 @@
 "use client";
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
 import React from "react";
+import { Box } from "@mui/material";
+import { usePathname } from "next/navigation";
+import { Colors } from "@/app/consts/colors";
+import BackButton from "@/app/components/BackButton";
+import IELTSTestsNav from "@/app/components/IELTSTestsNav";
 
 export default function IELTSTestsLayout({
   children,
@@ -11,58 +14,36 @@ export default function IELTSTestsLayout({
 }) {
   const pathname = usePathname();
 
-  // Check if the current path is a test page
   const isTestPage =
     pathname?.includes("/ielts-tests/writing/") ||
     pathname?.includes("/ielts-tests/reading/") ||
     pathname?.includes("/ielts-tests/listening/") ||
     pathname?.includes("/ielts-tests/speaking/");
 
-  // Don't show the header for individual test pages
   if (isTestPage) {
     return <>{children}</>;
   }
 
   return (
-    <div className="ielts-tests-layout">
-      <div className="ielts-tests-header">
-        <div className="header-container">
-          <Link href="/" className="back-button">
-            <span className="back-arrow">←</span> Back to Home
-          </Link>
-        </div>
-      </div>
-
-      <div className="ielts-tests-nav">
-        <nav>
-          <ul>
-            <li>
-              <Link href="/ielts-tests/reading" className="nav-link reading">
-                IELTS Reading Tests
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/ielts-tests/listening"
-                className="nav-link listening"
-              >
-                IELTS Listening Tests
-              </Link>
-            </li>
-            <li>
-              <Link href="/ielts-tests/writing" className="nav-link writing">
-                IELTS Writing Tests
-              </Link>
-            </li>
-            <li>
-              <Link href="/ielts-tests/speaking" className="nav-link speaking">
-                IELTS Speaking Tests
-              </Link>
-            </li>
-          </ul>
-        </nav>
-      </div>
-      {children}
-    </div>
+    <Box sx={{ minWidth: 320, width: "100%", overflowX: "hidden" }}>
+      <Box
+        sx={{
+          backgroundColor: Colors.HEADER,
+          color: Colors.HEADER_TEXT,
+          py: "1rem",
+          position: "sticky",
+          top: 0,
+          zIndex: 100,
+        }}
+      >
+        <Box sx={{ maxWidth: 1400, mx: "auto", px: "1rem" }}>
+          <BackButton label="Back to Home" href="/" variant="text" />
+        </Box>
+      </Box>
+      <IELTSTestsNav />
+      <Box sx={{ maxWidth: 1400, mx: "auto", px: "1rem", py: "1.5rem" }}>
+        {children}
+      </Box>
+    </Box>
   );
 }
