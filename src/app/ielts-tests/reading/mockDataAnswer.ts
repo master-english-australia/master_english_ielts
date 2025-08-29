@@ -7,7 +7,7 @@ readingTest2.parts.forEach((part) => {
   part.question_groups.forEach((group) => {
     group.questions.forEach((question) => {
       const questionNumber = parseInt(question.id);
-      const correctAnswer = question.correctAnswer;
+      const correctAnswer = question.id;
 
       if (correctAnswer) {
         readingMockDataAnswer.push({
