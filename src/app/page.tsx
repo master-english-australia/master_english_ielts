@@ -1,70 +1,113 @@
 "use client";
 
-import Link from "next/link";
 import { useEffect } from "react";
+import { Box } from "@mui/material";
+import { Colors } from "@/app/consts/colors";
+import { Shadows } from "./consts/shadows";
+import ActionTestCard from "./components/ActionTestCard";
 
-interface FeatureProps {
+export interface TestCardProps {
   title: string;
-  description: string;
-  link: string;
-}
-
-function FeatureCard({ title, description, link }: FeatureProps) {
-  return (
-    <Link href={link} className="feature-card">
-      <h3>{title}</h3>
-      <p>{description}</p>
-      <div className="feature-cta">Explore Tests</div>
-    </Link>
-  );
+  testUrl: string;
+  bgColor?: string;
+  ctaColor?: string;
+  buttonText?: string;
 }
 
 export default function Home() {
   useEffect(() => {}, []);
 
-  const features = [
+  const features: TestCardProps[] = [
     {
-      title: "Speaking Practice",
-      description:
-        "Practice your IELTS speaking skills with AI-powered conversations.",
-      link: "/ielts-tests/speaking",
+      title: "Speaking Tests",
+      testUrl: "/ielts-tests/speaking",
+      bgColor: Colors.CARD_BG_LIGHT_RED,
+      ctaColor: Colors.PRIMARY,
     },
     {
-      title: "Writing Assessment",
-      description: "Get your IELTS essays evaluated with detailed feedback.",
-      link: "/ielts-tests/writing",
+      title: "Writing Tests",
+      testUrl: "/ielts-tests/writing",
+      bgColor: Colors.CARD_BG_LIGHT_RED,
+      ctaColor: Colors.PRIMARY,
     },
     {
-      title: "Reading Exercises",
-      description:
-        "Improve your reading comprehension with IELTS-style passages.",
-      link: "/ielts-tests/reading",
+      title: "Reading Tests",
+      testUrl: "/ielts-tests/reading",
+      bgColor: Colors.CARD_BG_LIGHT_RED,
+      ctaColor: Colors.PRIMARY,
     },
     {
       title: "Listening Tests",
-      description:
-        "Enhance your listening skills with authentic IELTS audio tests.",
-      link: "/ielts-tests/listening",
+      testUrl: "/ielts-tests/listening",
+      bgColor: Colors.CARD_BG_LIGHT_RED,
+      ctaColor: Colors.PRIMARY,
     },
   ];
 
   return (
-    <main className="design-mockup">
-      <h1>IELTS Master</h1>
-      <p>
-        Prepare for your IELTS exam with our comprehensive practice platform
-      </p>
-
-      <div className="feature-grid">
+    <Box
+      component="main"
+      sx={{
+        backgroundColor: Colors.WHITE,
+        borderRadius: "8px",
+        boxShadow: Shadows.MAIN,
+        padding: "30px",
+        marginTop: "20px",
+      }}
+    >
+      <Box
+        component="h1"
+        sx={{
+          color: Colors.MAIN_TEXT,
+          marginBottom: "20px",
+          textAlign: "center",
+        }}
+      >
+        IELTS Master
+      </Box>
+      <Box
+        sx={{
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
+          gap: "20px",
+          marginTop: "30px",
+        }}
+      >
         {features.map((feature, index) => (
-          <FeatureCard
+          <ActionTestCard
             key={index}
-            title={feature.title}
-            description={feature.description}
-            link={feature.link}
-          />
+            sx={{
+              background: feature.bgColor,
+              textAlign: "center",
+            }}
+          >
+            <Box component="h2" sx={{ fontWeight: "bold", mb: 2, mt: 1 }}>
+              {feature.title}
+            </Box>
+            <Box
+              sx={{
+                mt: 2,
+              }}
+            >
+              <a
+                href={feature.testUrl}
+                style={{
+                  display: "inline-block",
+                  background: Colors.PRIMARY,
+                  color: Colors.WHITE,
+                  padding: "8px 16px",
+                  borderRadius: "4px",
+                  textDecoration: "none",
+                  fontWeight: "bold",
+                  width: "80%",
+                }}
+              >
+                Explore Tests
+              </a>
+            </Box>
+          </ActionTestCard>
         ))}
-      </div>
-    </main>
+      </Box>
+    </Box>
   );
 }
