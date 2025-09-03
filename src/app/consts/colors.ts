@@ -10,6 +10,10 @@ export const Colors = {
   HEADER: "#B22222",
   HEADER_TEXT: "#ffffff",
 
+  CARD_BG_LIGHT_RED: "#FFE5E5",
+
+  MAIN_TEXT: "#2c3e50",
+
   WHITE: "#ffffff",
   BLACK: "#000000",
   BORDER: "#ddd",
