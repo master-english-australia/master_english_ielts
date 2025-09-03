@@ -1,14 +1,14 @@
 const { test, expect } = require("@playwright/test");
 
-test("homepage has IELTS Master title and features", async ({ page }) => {
+test("homepage has Master IELTS title and features", async ({ page }) => {
   // Navigate to the homepage
   await page.goto("http://localhost:3000");
 
-  // Expect the page to have the title 'IELTS Master'
-  await expect(page).toHaveTitle(/IELTS Master/);
+  // Expect the page to have the title 'Master IELTS'
+  await expect(page).toHaveTitle(/Master IELTS/);
 
   // Expect the heading to be visible
-  const heading = page.locator('h1:has-text("IELTS Master")');
+  const heading = page.locator('h1:has-text("Master IELTS")');
   await expect(heading).toBeVisible();
 
   // Expect 4 feature cards to be present

@@ -2,7 +2,7 @@ import "@/styles/globals.css";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "IELTS Master - English Learning Platform",
+  title: "Master IELTS - English Learning Platform",
   description:
     "Practice and prepare for your IELTS exam with our comprehensive platform",
 };

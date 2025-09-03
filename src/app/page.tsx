@@ -63,7 +63,7 @@ export default function Home() {
           textAlign: "center",
         }}
       >
-        IELTS Master
+        Master IELTS
       </Box>
       <Box
         sx={{
