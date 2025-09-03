@@ -1,31 +1,26 @@
 import { useEffect, useState } from "react";
 
-export const formatTime = (seconds: number) => {
-  const hours = Math.floor(seconds / 3600);
-  const minutes = Math.floor((seconds % 3600) / 60);
-  const secs = seconds % 60;
-
-  return `${hours.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}`;
-};
-
-export const useTimer = (initialTime: number) => {
-  const [timer, setTimer] = useState(initialTime);
+export function useTimer(timeLimit: number) {
+  const [timeLeft, setTimeLeft] = useState(timeLimit);
+  const [overtime, setOvertime] = useState(0);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setTimer((prevTimer) => {
-        if (prevTimer <= 1) {
-          clearInterval(interval);
-          return 0;
-        }
-        return prevTimer - 1;
-      });
-    }, 1000);
+    let interval: NodeJS.Timeout;
+    if (timeLeft > 0) {
+      interval = setInterval(() => setTimeLeft((t) => t - 1), 1000);
+    } else {
+      interval = setInterval(() => setOvertime((o) => o + 1), 1000);
+    }
+    return () => clearInterval(interval);
+  }, [timeLeft]);
 
-    return () => {
-      clearInterval(interval);
-    };
-  }, []);
+  return { timeLeft: Math.max(0, timeLeft), overtime: timeLeft <= 0 ? overtime : 0 };
+}
 
-  return timer;
-};
+export function formatTime(sec: number) {
+  const m = Math.floor(sec / 60)
+    .toString()
+    .padStart(2, "0");
+  const s = (sec % 60).toString().padStart(2, "0");
+  return `${m}:${s}`;
+}
