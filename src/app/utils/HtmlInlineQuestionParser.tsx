@@ -93,6 +93,7 @@ export const HtmlInlineQuestionParser: React.FC<{
 
   return (
     <Box
+      pl={2}
       sx={{
         "& > div": {
           my: 3,

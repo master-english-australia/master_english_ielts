@@ -12,11 +12,12 @@ export const QuestionNumberBox: React.FC<{
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        width: "28px",
-        height: "28px",
+        width: "24px",
+        height: "24px",
         color: isSubmitted ? "white" : "black",
         border: "1px solid black",
         borderRadius: "2px",
+        fontSize: "0.8rem",
         fontWeight: "bold",
         backgroundColor: isSubmitted
           ? isCorrect

@@ -128,7 +128,7 @@ export const PartSwitcher = ({
                   }}
                 >
                   <Typography sx={{ fontSize: "16px", fontWeight: "bold" }}>
-                    Part {partNumber}:
+                    PART {partNumber}:
                   </Typography>
                   {questions.map((question) => {
                     const correctAnswer = correctAnswers.find(
