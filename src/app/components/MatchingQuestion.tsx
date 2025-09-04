@@ -15,6 +15,9 @@ export const MatchingQuestion: React.FC<QuestionProps> = ({
       <Typography sx={{ textAlign: "left", mb: 2 }}>
         {questionGroup.instruction}
       </Typography>
+      <Box
+        dangerouslySetInnerHTML={{ __html: questionGroup.questionText || "" }}
+      />
       {questionGroup.questions.map((question) => {
         const userAnswer = answerState[Number(question.id)];
         const correctAnswer = correctAnswers.find(

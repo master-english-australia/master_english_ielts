@@ -13,7 +13,7 @@ export const TextInputQuestion: React.FC<QuestionProps> = ({
 }) => {
   return (
     <Box padding={2} border={1} borderColor="grey.400" borderRadius={1}>
-      <div dangerouslySetInnerHTML={{ __html: questionGroup.instruction }} />
+      <Box dangerouslySetInnerHTML={{ __html: questionGroup.instruction }} />
       <HtmlInlineQuestionParser
         htmlText={questionGroup.questionText || ""}
         questions={questionGroup.questions}

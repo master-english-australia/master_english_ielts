@@ -1,10 +1,12 @@
 "use client";
 
+import { useAnswers } from "@/app/hooks/useAnswers";
 import { useScoreCalculator } from "@/app/hooks/useScoreCalculator";
+import { useTestDetail } from "@/app/hooks/useTestDetail";
 import { QuestionGroup } from "@/app/models/QuestionGroup";
 import { QuestionPart } from "@/app/models/QuestionPart";
 import { Box } from "@mui/material";
-import { useParams, useRouter } from "next/navigation";
+import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { PartSwitcher } from "../../../components/PartSwitcher";
 import { TaskRequirements } from "../../../components/TaskRequirements";
@@ -15,28 +17,19 @@ import {
   ReadingAnswerProvider,
   useReadingAnswers,
 } from "../hooks/useAnswerContext";
-import { readingTest2 } from "../mockData";
-import { readingMockDataAnswer } from "../mockDataAnswer";
 
 function ReadingTestContent() {
   const params = useParams();
-  const router = useRouter();
+  const testId = params.id as string;
   const { state } = useReadingAnswers();
+  const { data: test } = useTestDetail({ part: "reading", id: testId });
+  const answers = useAnswers({ part: "reading", id: testId });
+
   const { bandScore, correctCount } = useScoreCalculator(
     state,
-    readingMockDataAnswer,
+    answers,
     "reading",
   );
-  const testId = params.id as string;
-  const test = readingTest2;
-
-  useEffect(() => {
-    if (!test) {
-      console.error(`Invalid test ID: ${testId}`);
-      router.push("/ielts-tests/reading");
-    }
-  }, [test, testId, router]);
-
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isResultModalOpen, setIsResultModalOpen] = useState(false);
   const [currentPart, setCurrentPart] = useState(1);
@@ -63,11 +56,11 @@ function ReadingTestContent() {
   const currentPartData = test.parts[currentPart - 1];
 
   return (
-    <Box>
+    <Box sx={{ "& p": { fontSize: "0.8rem" } }}>
       {isResultModalOpen && (
         <TestResult
           userAnswers={state}
-          correctAnswers={readingMockDataAnswer}
+          correctAnswers={answers}
           bandScore={bandScore}
           correctCount={correctCount}
           currentTime={currentTime}
@@ -87,7 +80,7 @@ function ReadingTestContent() {
         isSubmitted={isSubmitted}
         promptContent={currentPartData.content_html}
         questionGroups={currentPartData.question_groups as QuestionGroup[]}
-        correctAnswers={readingMockDataAnswer}
+        correctAnswers={answers}
       />
 
       <PartSwitcher
@@ -99,7 +92,7 @@ function ReadingTestContent() {
         }}
         onSubmit={handleSubmit}
         allParts={test.parts as QuestionPart[]}
-        correctAnswers={readingMockDataAnswer}
+        correctAnswers={answers}
         userAnswers={state}
       />
     </Box>

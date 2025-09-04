@@ -25,7 +25,7 @@ export const ReadingQuestionRenderer: React.FC<Props> = ({
   };
 
   return (
-    <Box mb={8}>
+    <Box mb={8} mr={2}>
       <QuestionNumbers questions={questionGroup.questions} />
       <QuestionTypeRenderer
         questionGroup={questionGroup}
