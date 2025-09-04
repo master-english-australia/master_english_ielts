@@ -7,7 +7,7 @@ interface TestHeaderProps {
 }
 
 export const TestHeader = ({ timeLimit }: TestHeaderProps) => {
-  const timer = useTimer(timeLimit);
+  const { timeLeft, overtime } = useTimer(timeLimit);
 
   return (
     <Box
@@ -21,8 +21,14 @@ export const TestHeader = ({ timeLimit }: TestHeaderProps) => {
     >
       <WatchLaterIcon sx={{ fontSize: 18 }} />
       <Box width={8} />
-      <Typography variant="body1" fontWeight={600}>
-        {formatTime(timer)}
+      <Typography
+        variant="body1"
+        fontWeight={600}
+        color={timeLeft === 0 ? "error.main" : "text.primary"}
+      >
+        {timeLeft > 0
+          ? formatTime(timeLeft)
+          : `+${formatTime(overtime)}`}
       </Typography>
     </Box>
   );
