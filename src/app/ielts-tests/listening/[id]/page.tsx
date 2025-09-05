@@ -68,7 +68,7 @@ function ListeningTestContent() {
         />
       )}
 
-      <TestHeader timeLimit={test.time_limit} />
+      <TestHeader timeLimit={2400} />
 
       <ListeningTastRequirement
         currentPart={currentPart}
