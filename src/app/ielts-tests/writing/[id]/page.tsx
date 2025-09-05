@@ -82,7 +82,7 @@ export default function WritingTestPage() {
 
   return (
     <Box>
-      <TestHeader timeLimit={test.timeLimit} />
+      <TestHeader timeLimit={3600} />
 
       <TaskRequirements
         currentPart={currentPart}

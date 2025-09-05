@@ -70,7 +70,7 @@ export default function SpeakingTestPage() {
 
   return (
     <Box>
-      <TestHeader timeLimit={test.timeLimit} />
+      <TestHeader timeLimit={900} />
 
       <TaskRequirements
         currentPart={currentPart}
