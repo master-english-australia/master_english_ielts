@@ -2,7 +2,7 @@
 // The Cursor Agent will be able to modify and enhance this code
 
 document.addEventListener("DOMContentLoaded", () => {
-  console.log("IELTS Master application loaded");
+  console.log("Master IELTS application loaded");
 
   // Get all feature cards
   const featureCards = document.querySelectorAll(".feature-card");
