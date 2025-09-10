@@ -132,11 +132,22 @@ export const PartSwitcher = ({
                       display: "flex",
                       flexDirection: "row",
                       gap: 0.5,
+                      rowGap: 0.5,
                       alignItems: "center",
                       justifyContent: "center",
+                      flexWrap: "wrap",
+                      maxWidth: "100%",
                     }}
                   >
-                    <Typography sx={{ fontSize: "16px", fontWeight: "bold" }}>
+                    <Typography
+                      sx={{
+                        fontSize: "16px",
+                        fontWeight: "bold",
+                        ...(currentPart === partNumber
+                          ? { flexBasis: { xs: "100%", sm: "auto" } }
+                          : {}),
+                      }}
+                    >
                       PART {partNumber}
                       {currentPart === partNumber ? ":" : ""}
                     </Typography>
