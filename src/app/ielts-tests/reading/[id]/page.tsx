@@ -56,7 +56,15 @@ function ReadingTestContent() {
   const currentPartData = test.parts[currentPart - 1];
 
   return (
-    <Box sx={{ "& p": { fontSize: "0.8rem" } }}>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        height: "100vh",
+        overflow: "hidden",
+        "& p": { fontSize: "0.8rem" },
+      }}
+    >
       {isResultModalOpen && (
         <TestResult
           userAnswers={state}
@@ -75,26 +83,29 @@ function ReadingTestContent() {
         instructions={currentPartData.instruction}
       />
 
-      <TestLayout
-        currentPart={currentPart}
-        isSubmitted={isSubmitted}
-        promptContent={currentPartData.content_html}
-        questionGroups={currentPartData.question_groups as QuestionGroup[]}
-        correctAnswers={answers}
-      />
-
-      <PartSwitcher
-        currentPart={currentPart}
-        totalParts={test.parts.length}
-        isSubmitted={isSubmitted}
-        onPartChange={(part) => {
-          setCurrentPart(part);
-        }}
-        onSubmit={handleSubmit}
-        allParts={test.parts as QuestionPart[]}
-        correctAnswers={answers}
-        userAnswers={state}
-      />
+      <Box sx={{ flex: 1, minHeight: 0, overflow: "hidden", position: "relative", pb: 8 }}>
+        <TestLayout
+          currentPart={currentPart}
+          isSubmitted={isSubmitted}
+          promptContent={currentPartData.content_html}
+          questionGroups={currentPartData.question_groups as QuestionGroup[]}
+          correctAnswers={answers}
+        />
+        <Box sx={{ position: "absolute", left: 0, right: 0, bottom: 0, zIndex: 10 }}>
+          <PartSwitcher
+            currentPart={currentPart}
+            totalParts={test.parts.length}
+            isSubmitted={isSubmitted}
+            onPartChange={(part) => {
+              setCurrentPart(part);
+            }}
+            onSubmit={handleSubmit}
+            allParts={test.parts as QuestionPart[]}
+            correctAnswers={answers}
+            userAnswers={state}
+          />
+        </Box>
+      </Box>
     </Box>
   );
 }

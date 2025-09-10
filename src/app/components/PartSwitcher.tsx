@@ -28,14 +28,15 @@ export const PartSwitcher = ({
   const parts = Array.from({ length: totalParts }, (_, i) => i + 1);
 
   return (
-    <Box sx={{ width: "100%", p: 2 }}>
-      <Stack spacing={2} sx={{ width: "100%" }}>
+    <Box sx={{ width: "100%", p: 2, backgroundColor: "transparent" }}>
+      <Stack spacing={2} sx={{ width: "100%"}}>
         <Box
           sx={{
             width: "100%",
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
+            backgroundColor: "transparent"
           }}
         >
           <Stack direction="row" spacing={1}>

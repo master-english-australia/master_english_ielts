@@ -37,11 +37,13 @@ export const TestLayout = ({
 
   return (
     <Box
-      p={2}
+      mt={1}
+      px={2}
       ref={layoutRef}
       display="flex"
       gap={2}
       width="100%"
+      height="100%"
       position="relative"
     >
       <TaskPrompt

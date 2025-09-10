@@ -25,6 +25,7 @@ export const AnswerSection = ({
       width={`${answerWidth}%`}
       maxWidth={`${answerWidth}%`}
       flex={`0 0 ${answerWidth}%`}
+      sx={{ overflowY: "auto", height: "100%", overscrollBehavior: "contain" }}
     >
       {questionGroups.map((group) => (
         <ReadingQuestionRenderer
