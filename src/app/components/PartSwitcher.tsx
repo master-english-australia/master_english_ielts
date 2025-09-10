@@ -75,7 +75,14 @@ export const PartSwitcher = ({
             <Button
               variant="contained"
               color="success"
-              onClick={onSubmit}
+              onClick={() => {
+                if (!onSubmit) return;
+                const message =
+                  "Are you sure you want to end the test and submit your answers?";
+                if (typeof window === "undefined") return;
+                const confirmed = window.confirm(message);
+                if (confirmed) onSubmit();
+              }}
               disabled={isSubmitted}
               sx={{
                 textTransform: "none",
