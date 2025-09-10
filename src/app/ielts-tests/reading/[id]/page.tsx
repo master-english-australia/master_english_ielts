@@ -8,6 +8,7 @@ import { QuestionPart } from "@/app/models/QuestionPart";
 import { Box } from "@mui/material";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import { CommonLoading } from "../../../components/CommonLoading";
 import { PartSwitcher } from "../../../components/PartSwitcher";
 import { TaskRequirements } from "../../../components/TaskRequirements";
 import { TestHeader } from "../../../components/TestHeader";
@@ -50,7 +51,7 @@ function ReadingTestContent() {
   };
 
   if (!test) {
-    return <div>Loading test data...</div>;
+    return <CommonLoading />;
   }
 
   const currentPartData = test.parts[currentPart - 1];

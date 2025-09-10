@@ -5,6 +5,7 @@ import { useScoreCalculator } from "@/app/hooks/useScoreCalculator";
 import { Box } from "@mui/material";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { CommonLoading } from "../../../components/CommonLoading";
 import { PartSwitcher } from "../../../components/PartSwitcher";
 import { TestHeader } from "../../../components/TestHeader";
 import { TestResult } from "../../../components/TestResult";
@@ -48,7 +49,7 @@ function ListeningTestContent() {
   };
 
   if (!test) {
-    return <div>Loading test data...</div>;
+    return <CommonLoading />;
   }
 
   const currentPartData = test.parts[currentPart - 1];

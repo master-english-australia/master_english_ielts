@@ -6,6 +6,7 @@ import { useEmail } from "@/app/ielts-tests/writing/hooks/useEmail";
 import { Box } from "@mui/material";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { CommonLoading } from "../../../components/CommonLoading";
 import { PartSwitcher } from "../../../components/PartSwitcher";
 import { TaskRequirements } from "../../../components/TaskRequirements";
 import { TestHeader } from "../../../components/TestHeader";
@@ -77,7 +78,7 @@ export default function WritingTestPage() {
   };
 
   if (!test) {
-    return <div>Loading test data...</div>;
+    return <CommonLoading />;
   }
 
   return (

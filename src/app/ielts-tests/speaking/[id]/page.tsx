@@ -6,6 +6,7 @@ import { sendEmail } from "@/lib/api";
 import { Box } from "@mui/material";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { CommonLoading } from "../../../components/CommonLoading";
 import { PartSwitcher } from "../../../components/PartSwitcher";
 import { TaskRequirements } from "../../../components/TaskRequirements";
 import { TestHeader } from "../../../components/TestHeader";
@@ -58,7 +59,7 @@ export default function SpeakingTestPage() {
   };
 
   if (!test) {
-    return <div>Loading test data...</div>;
+    return <CommonLoading />;
   }
 
   const currentPartData = test.parts[currentPart - 1];
