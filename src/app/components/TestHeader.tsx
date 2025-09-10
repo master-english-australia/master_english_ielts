@@ -26,9 +26,7 @@ export const TestHeader = ({ timeLimit }: TestHeaderProps) => {
         fontWeight={600}
         color={timeLeft === 0 ? "error.main" : "text.primary"}
       >
-        {timeLeft > 0
-          ? formatTime(timeLeft)
-          : `+${formatTime(overtime)}`}
+        {timeLeft > 0 ? formatTime(timeLeft) : `+${formatTime(overtime)}`}
       </Typography>
     </Box>
   );

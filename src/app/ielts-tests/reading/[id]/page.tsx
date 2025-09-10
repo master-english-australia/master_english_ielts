@@ -83,7 +83,16 @@ function ReadingTestContent() {
         instructions={currentPartData.instruction}
       />
 
-      <Box sx={{ flex: 1, minHeight: 0, overflow: "hidden", position: "relative", pb: 8 }}>
+      <Box
+        sx={{
+          flex: 1,
+          minHeight: 0,
+          overflow: "hidden",
+          position: "relative",
+          pb: 0,
+          "--overlay-h": "180px",
+        }}
+      >
         <TestLayout
           currentPart={currentPart}
           isSubmitted={isSubmitted}
@@ -91,7 +100,15 @@ function ReadingTestContent() {
           questionGroups={currentPartData.question_groups as QuestionGroup[]}
           correctAnswers={answers}
         />
-        <Box sx={{ position: "absolute", left: 0, right: 0, bottom: 0, zIndex: 10 }}>
+        <Box
+          sx={{
+            position: "absolute",
+            left: 0,
+            right: 0,
+            bottom: 0,
+            zIndex: 10,
+          }}
+        >
           <PartSwitcher
             currentPart={currentPart}
             totalParts={test.parts.length}

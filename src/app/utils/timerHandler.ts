@@ -14,7 +14,10 @@ export function useTimer(timeLimit: number) {
     return () => clearInterval(interval);
   }, [timeLeft]);
 
-  return { timeLeft: Math.max(0, timeLeft), overtime: timeLeft <= 0 ? overtime : 0 };
+  return {
+    timeLeft: Math.max(0, timeLeft),
+    overtime: timeLeft <= 0 ? overtime : 0,
+  };
 }
 
 export function formatTime(sec: number) {

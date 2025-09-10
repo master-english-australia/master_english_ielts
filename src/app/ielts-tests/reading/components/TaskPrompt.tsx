@@ -19,7 +19,12 @@ export const TaskPrompt = ({
       width={`${contentWidth}%`}
       maxWidth={`${contentWidth}%`}
       flex={`0 0 ${contentWidth}%`}
-      sx={{ overflowY: "auto", height: "100%", overscrollBehavior: "contain" }}
+      sx={{
+        overflowY: "auto",
+        height: "100%",
+        overscrollBehavior: "contain",
+        pb: "var(--overlay-h, 0px)",
+      }}
     >
       <Box dangerouslySetInnerHTML={{ __html: promptContent }} />
     </Box>

@@ -28,15 +28,14 @@ export const PartSwitcher = ({
   const parts = Array.from({ length: totalParts }, (_, i) => i + 1);
 
   return (
-    <Box sx={{ width: "100%", p: 2, backgroundColor: "transparent" }}>
-      <Stack spacing={2} sx={{ width: "100%"}}>
+    <Box sx={{ width: "100%", px: 2 }}>
+      <Stack spacing={2} sx={{ width: "100%" }}>
         <Box
           sx={{
             width: "100%",
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
-            backgroundColor: "transparent"
           }}
         >
           <Stack direction="row" spacing={1}>
@@ -86,73 +85,76 @@ export const PartSwitcher = ({
             </Button>
           )}
         </Box>
-        <Stack
-          direction="row"
-          spacing={1}
-          sx={{
-            width: "100%",
-            "& > button": {
-              flex: 1,
-              minWidth: 0,
-              color: "black",
-              border: "1px solid grey.300",
-            },
-          }}
-        >
-          {parts.map((partNumber) => {
-            const questions =
-              allParts
-                .find((part) => part.id === `${partNumber}`)
-                ?.question_groups.map((group) => group.questions)
-                .flat() || [];
+        <Box sx={{ backgroundColor: "white" }}>
+          <Stack
+            direction="row"
+            spacing={1}
+            sx={{
+              width: "100%",
+              mb: 2,
+              "& > button": {
+                flex: 1,
+                minWidth: 0,
+                color: "black",
+                border: "1px solid grey.300",
+              },
+            }}
+          >
+            {parts.map((partNumber) => {
+              const questions =
+                allParts
+                  .find((part) => part.id === `${partNumber}`)
+                  ?.question_groups.map((group) => group.questions)
+                  .flat() || [];
 
-            return (
-              <Button
-                key={partNumber}
-                variant="outlined"
-                onClick={() => onPartChange(partNumber)}
-                sx={{
-                  py: 1,
-                  border:
-                    currentPart === partNumber
-                      ? "1px solid red"
-                      : "1px solid grey",
-                }}
-              >
-                <Box
+              return (
+                <Button
+                  key={partNumber}
+                  variant="outlined"
+                  onClick={() => onPartChange(partNumber)}
                   sx={{
-                    display: "flex",
-                    flexDirection: "row",
-                    gap: 0.5,
-                    alignItems: "center",
-                    justifyContent: "center",
+                    py: 1,
+                    border:
+                      currentPart === partNumber
+                        ? "1px solid red"
+                        : "1px solid grey",
                   }}
                 >
-                  <Typography sx={{ fontSize: "16px", fontWeight: "bold" }}>
-                    PART {partNumber}:
-                  </Typography>
-                  {questions.map((question) => {
-                    const correctAnswer = correctAnswers.find(
-                      (answer) => answer.number === Number(question.id),
-                    );
-                    const userAnswer = userAnswers[Number(question.id)];
-                    const isCorrect = correctAnswer?.answers.includes(
-                      userAnswer || "",
-                    );
-                    return (
-                      <PartSwitcherQuestionNumber
-                        key={question.id}
-                        questionNumber={question.id}
-                        isCorrect={isCorrect || false}
-                        isSubmitted={isSubmitted}
-                      />
-                    );
-                  })}
-                </Box>
-              </Button>
-            );
-          })}
-        </Stack>
+                  <Box
+                    sx={{
+                      display: "flex",
+                      flexDirection: "row",
+                      gap: 0.5,
+                      alignItems: "center",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <Typography sx={{ fontSize: "16px", fontWeight: "bold" }}>
+                      PART {partNumber}:
+                    </Typography>
+                    {questions.map((question) => {
+                      const correctAnswer = correctAnswers.find(
+                        (answer) => answer.number === Number(question.id),
+                      );
+                      const userAnswer = userAnswers[Number(question.id)];
+                      const isCorrect = correctAnswer?.answers.includes(
+                        userAnswer || "",
+                      );
+                      return (
+                        <PartSwitcherQuestionNumber
+                          key={question.id}
+                          questionNumber={question.id}
+                          isCorrect={isCorrect || false}
+                          isSubmitted={isSubmitted}
+                        />
+                      );
+                    })}
+                  </Box>
+                </Button>
+              );
+            })}
+          </Stack>
+        </Box>
       </Stack>
     </Box>
   );
