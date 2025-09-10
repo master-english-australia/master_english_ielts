@@ -137,25 +137,27 @@ export const PartSwitcher = ({
                     }}
                   >
                     <Typography sx={{ fontSize: "16px", fontWeight: "bold" }}>
-                      PART {partNumber}:
+                      PART {partNumber}
+                      {currentPart === partNumber ? ":" : ""}
                     </Typography>
-                    {questions.map((question) => {
-                      const correctAnswer = correctAnswers.find(
-                        (answer) => answer.number === Number(question.id),
-                      );
-                      const userAnswer = userAnswers[Number(question.id)];
-                      const isCorrect = correctAnswer?.answers.includes(
-                        userAnswer || "",
-                      );
-                      return (
-                        <PartSwitcherQuestionNumber
-                          key={question.id}
-                          questionNumber={question.id}
-                          isCorrect={isCorrect || false}
-                          isSubmitted={isSubmitted}
-                        />
-                      );
-                    })}
+                    {currentPart === partNumber &&
+                      questions.map((question) => {
+                        const correctAnswer = correctAnswers.find(
+                          (answer) => answer.number === Number(question.id),
+                        );
+                        const userAnswer = userAnswers[Number(question.id)];
+                        const isCorrect = correctAnswer?.answers.includes(
+                          userAnswer || "",
+                        );
+                        return (
+                          <PartSwitcherQuestionNumber
+                            key={question.id}
+                            questionNumber={question.id}
+                            isCorrect={isCorrect || false}
+                            isSubmitted={isSubmitted}
+                          />
+                        );
+                      })}
                   </Box>
                 </Button>
               );
