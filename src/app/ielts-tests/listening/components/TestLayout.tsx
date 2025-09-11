@@ -17,7 +17,15 @@ export const TestLayout = ({
   correctAnswers,
 }: TestLayoutProps) => {
   return (
-    <Box p={2} mx={2}>
+    <Box
+      p={2}
+      mx={2}
+      sx={{
+        height: "100%",
+        overflowY: "auto",
+        pb: "var(--overlay-h)",
+      }}
+    >
       {questionGroups.map((group) => (
         <ListeningQuestionRenderer
           key={group.id}

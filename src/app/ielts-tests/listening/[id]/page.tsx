@@ -57,7 +57,15 @@ function ListeningTestContent() {
     useAudio(currentPartData.audio_url);
 
   return (
-    <Box>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        height: "100vh",
+        overflow: "hidden",
+        "& p": { fontSize: "0.8rem" },
+      }}
+    >
       {isResultModalOpen && (
         <TestResult
           userAnswers={state}
@@ -83,26 +91,47 @@ function ListeningTestContent() {
         seekTo={seekTo}
       />
 
-      <TestLayout
-        questionGroups={currentPartData.question_groups}
-        seekTo={seekTo}
-        isSubmitted={isSubmitted}
-        correctAnswers={mocktestAnswer}
-      />
-
-      <PartSwitcher
-        currentPart={currentPart}
-        totalParts={test.parts.length}
-        isSubmitted={isSubmitted}
-        onPartChange={(part) => {
-          setCurrentPart(part);
-          setCurrentQuestion(1);
+      <Box
+        sx={{
+          flex: 1,
+          minHeight: 0,
+          overflow: "hidden",
+          position: "relative",
+          pb: 0,
+          "--overlay-h": "180px",
         }}
-        onSubmit={handleSubmit}
-        correctAnswers={mocktestAnswer}
-        allParts={test.parts}
-        userAnswers={state}
-      />
+      >
+        <TestLayout
+          questionGroups={currentPartData.question_groups}
+          seekTo={seekTo}
+          isSubmitted={isSubmitted}
+          correctAnswers={mocktestAnswer}
+        />
+
+        <Box
+          sx={{
+            position: "absolute",
+            left: 0,
+            right: 0,
+            bottom: 0,
+            zIndex: 10,
+          }}
+        >
+          <PartSwitcher
+            currentPart={currentPart}
+            totalParts={test.parts.length}
+            isSubmitted={isSubmitted}
+            onPartChange={(part) => {
+              setCurrentPart(part);
+              setCurrentQuestion(1);
+            }}
+            onSubmit={handleSubmit}
+            correctAnswers={mocktestAnswer}
+            allParts={test.parts}
+            userAnswers={state}
+          />
+        </Box>
+      </Box>
     </Box>
   );
 }
