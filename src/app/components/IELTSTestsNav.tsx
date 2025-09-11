@@ -1,17 +1,17 @@
 "use client";
 
-import { Box } from "@mui/material";
-import { usePathname } from "next/navigation";
 import NavButton from "@/app/components/NavButton";
 import { Colors } from "@/app/consts/colors";
 import { Shadows } from "@/app/consts/shadows";
+import { Box } from "@mui/material";
+import { usePathname } from "next/navigation";
 
 export default function IELTSTestsNav() {
   const pathname = usePathname();
 
   const items = [
-    { href: "/ielts-tests/reading", label: "IELTS Reading Tests" },
     { href: "/ielts-tests/listening", label: "IELTS Listening Tests" },
+    { href: "/ielts-tests/reading", label: "IELTS Reading Tests" },
     { href: "/ielts-tests/writing", label: "IELTS Writing Tests" },
     { href: "/ielts-tests/speaking", label: "IELTS Speaking Tests" },
   ];
