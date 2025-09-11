@@ -1,10 +1,15 @@
 "use client";
 
+import { useAnswers } from "@/app/hooks/useAnswers";
 import { useAudio } from "@/app/hooks/useAudio";
 import { useScoreCalculator } from "@/app/hooks/useScoreCalculator";
+import { useStoragePublicUrl } from "@/app/hooks/useStoragePublicUrl";
+import { useTestDetail } from "@/app/hooks/useTestDetail";
+import { QuestionGroup } from "@/app/models/QuestionGroup";
+import { QuestionPart } from "@/app/models/QuestionPart";
 import { Box } from "@mui/material";
-import { useParams, useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useParams } from "next/navigation";
+import { useState } from "react";
 import { CommonLoading } from "../../../components/CommonLoading";
 import { PartSwitcher } from "../../../components/PartSwitcher";
 import { TestHeader } from "../../../components/TestHeader";
@@ -15,32 +20,23 @@ import {
   ListeningAnswerProvider,
   useListeningAnswers,
 } from "../hooks/useAnswerContext";
-import { mocktest } from "../mockData";
-import { mocktestAnswer } from "../mockDataAnswer";
+// Fetch questions/answers from Supabase like the Reading implementation
 
 function ListeningTestContent() {
   const params = useParams();
-  const router = useRouter();
   const { state } = useListeningAnswers();
+  const testId = params.id as string;
+  const { data: test } = useTestDetail({ part: "listening", id: testId });
+  const answers = useAnswers({ part: "listening", id: testId });
   const { bandScore, correctCount } = useScoreCalculator(
     state,
-    mocktestAnswer,
+    answers,
     "listening",
   );
-  const testId = params.id as string;
-  const test = mocktest;
-
-  useEffect(() => {
-    if (!test) {
-      console.error(`Invalid test ID: ${testId}`);
-      router.push("/ielts-tests/listening");
-    }
-  }, [test, testId, router]);
 
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isResultModalOpen, setIsResultModalOpen] = useState(false);
   const [currentPart, setCurrentPart] = useState(1);
-  const [currentQuestion, setCurrentQuestion] = useState(1);
 
   const handleSubmit = () => {
     if (isSubmitted) return;
@@ -48,13 +44,17 @@ function ListeningTestContent() {
     setIsResultModalOpen(true);
   };
 
-  if (!test) {
+  const currentPartData = test?.parts[currentPart - 1];
+  const audioUrl = useStoragePublicUrl(
+    "ielts-tests",
+    currentPartData?.audio_url,
+  );
+  const { isPlaying, duration, currentTime, play, pause, toggle, seekTo } =
+    useAudio(audioUrl ?? "");
+
+  if (!test || !currentPartData) {
     return <CommonLoading />;
   }
-
-  const currentPartData = test.parts[currentPart - 1];
-  const { isPlaying, duration, currentTime, play, pause, toggle, seekTo } =
-    useAudio(currentPartData.audio_url);
 
   return (
     <Box
@@ -69,7 +69,7 @@ function ListeningTestContent() {
       {isResultModalOpen && (
         <TestResult
           userAnswers={state}
-          correctAnswers={mocktestAnswer}
+          correctAnswers={answers}
           bandScore={bandScore}
           correctCount={correctCount}
           currentTime={currentTime}
@@ -102,10 +102,10 @@ function ListeningTestContent() {
         }}
       >
         <TestLayout
-          questionGroups={currentPartData.question_groups}
+          questionGroups={currentPartData.question_groups as QuestionGroup[]}
           seekTo={seekTo}
           isSubmitted={isSubmitted}
-          correctAnswers={mocktestAnswer}
+          correctAnswers={answers}
         />
 
         <Box
@@ -123,11 +123,10 @@ function ListeningTestContent() {
             isSubmitted={isSubmitted}
             onPartChange={(part) => {
               setCurrentPart(part);
-              setCurrentQuestion(1);
             }}
             onSubmit={handleSubmit}
-            correctAnswers={mocktestAnswer}
-            allParts={test.parts}
+            correctAnswers={answers}
+            allParts={test.parts as QuestionPart[]}
             userAnswers={state}
           />
         </Box>

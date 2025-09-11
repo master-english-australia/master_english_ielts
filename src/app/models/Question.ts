@@ -3,6 +3,7 @@ export enum QuestionType {
   Matching = "matching",
   TrueFalseNotGiven = "true_false_not_given",
   TextInput = "text_input",
+  MultipleSelectChoice = "multiple_select_choice",
 }
 
 export interface Question {
