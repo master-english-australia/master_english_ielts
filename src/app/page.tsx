@@ -1,10 +1,10 @@
 "use client";
 
-import { useEffect } from "react";
-import { Box } from "@mui/material";
 import { Colors } from "@/app/consts/colors";
-import { Shadows } from "./consts/shadows";
+import { Box } from "@mui/material";
+import { useEffect } from "react";
 import ActionTestCard from "./components/ActionTestCard";
+import { Shadows } from "./consts/shadows";
 
 export interface TestCardProps {
   title: string;
@@ -19,14 +19,8 @@ export default function Home() {
 
   const features: TestCardProps[] = [
     {
-      title: "Speaking Tests",
-      testUrl: "/ielts-tests/speaking",
-      bgColor: Colors.CARD_BG_LIGHT_RED,
-      ctaColor: Colors.PRIMARY,
-    },
-    {
-      title: "Writing Tests",
-      testUrl: "/ielts-tests/writing",
+      title: "Listening Tests",
+      testUrl: "/ielts-tests/listening",
       bgColor: Colors.CARD_BG_LIGHT_RED,
       ctaColor: Colors.PRIMARY,
     },
@@ -37,8 +31,14 @@ export default function Home() {
       ctaColor: Colors.PRIMARY,
     },
     {
-      title: "Listening Tests",
-      testUrl: "/ielts-tests/listening",
+      title: "Speaking Tests",
+      testUrl: "/ielts-tests/speaking",
+      bgColor: Colors.CARD_BG_LIGHT_RED,
+      ctaColor: Colors.PRIMARY,
+    },
+    {
+      title: "Writing Tests",
+      testUrl: "/ielts-tests/writing",
       bgColor: Colors.CARD_BG_LIGHT_RED,
       ctaColor: Colors.PRIMARY,
     },
