@@ -14,10 +14,13 @@
     "test": "playwright test",
     "upload:reading": "npx --yes ts-node generated_ielts_tests/scripts/upload_tests.ts",
     "upload:listening": "npx --yes ts-node generated_ielts_tests/scripts/upload_tests.ts listening",
+    "upload:writing": "npx --yes ts-node generated_ielts_tests/scripts/upload_tests.ts writing",
     "gen:listening": "npx --yes tsx generated_ielts_tests/scripts/generate-listening.ts",
     "gen:listening:all": "node -e \"const fs=require('fs');const {execSync}=require('child_process');fs.readdirSync('listening',{withFileTypes:true}).filter(d=>d.isDirectory()).forEach(d=>{const p='listening/'+d.name+'/fetch.html'; if(fs.existsSync(p)) execSync('npx --yes tsx generated_ielts_tests/scripts/generate-listening.ts '+p, {stdio:'inherit'});});\"",
     "dl:listening:audio": "npx --yes tsx generated_ielts_tests/scripts/download-listening-audio.ts",
-    "dl:listening:audio:all": "node -e \"const fs=require('fs');const {execSync}=require('child_process');fs.readdirSync('listening',{withFileTypes:true}).filter(d=>d.isDirectory()).forEach(d=>{const dir='listening/'+d.name; if(fs.existsSync(dir+'/fetch.html')) execSync('npx --yes tsx generated_ielts_tests/scripts/download-listening-audio.ts '+dir, {stdio:'inherit'});});\""
+    "dl:listening:audio:all": "node -e \"const fs=require('fs');const {execSync}=require('child_process');fs.readdirSync('listening',{withFileTypes:true}).filter(d=>d.isDirectory()).forEach(d=>{const dir='listening/'+d.name; if(fs.existsSync(dir+'/fetch.html')) execSync('npx --yes tsx generated_ielts_tests/scripts/download-listening-audio.ts '+dir, {stdio:'inherit'});});\"",
+    "gen:writing": "npx --yes tsx generated_ielts_tests/scripts/generate-writing.ts",
+    "gen:writing:all": "node -e \"const fs=require('fs');const {execSync}=require('child_process');const base='generated_ielts_tests/writing';fs.readdirSync(base,{withFileTypes:true}).filter(d=>d.isDirectory()).forEach(d=>{const p=base+'/'+d.name+'/fetch.html'; if(fs.existsSync(p)) execSync('npx --yes tsx generated_ielts_tests/scripts/generate-writing.ts '+p, {stdio:'inherit'});});\""
   },
   "keywords": [],
   "author": "",

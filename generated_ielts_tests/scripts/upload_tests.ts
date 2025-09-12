@@ -1,12 +1,10 @@
 #!/usr/bin/env -S node
-
 /**
  * Upload IELTS assets to Supabase Storage (bucket: ielts-tests).
- * Modes: reading (default) or listening (excludes fetch.html).
- * Usage: ts-node scripts/upload_tests.ts [reading|listening]
+ * Modes: reading (JSON only), writing (JSON only), listening (excludes fetch.html).
+ * Usage: ts-node scripts/upload_tests.ts [reading|listening|writing]
  * Requires: SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY
  */
-
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 import fs from "fs";
 import path from "path";
@@ -35,7 +33,6 @@ function getContentType(filePath: string): string {
 function listJsonTargets(baseDir: string): string[] {
   const results: string[] = [];
   const stack: string[] = [baseDir];
-
   while (stack.length > 0) {
     const current = stack.pop() as string;
     const entries = fs.readdirSync(current, { withFileTypes: true });
@@ -50,14 +47,12 @@ function listJsonTargets(baseDir: string): string[] {
       }
     }
   }
-
   return results.sort();
 }
 
 function listListeningTargets(baseDir: string): string[] {
   const results: string[] = [];
   const stack: string[] = [baseDir];
-
   while (stack.length > 0) {
     const current = stack.pop() as string;
     const entries = fs.readdirSync(current, { withFileTypes: true });
@@ -72,7 +67,6 @@ function listListeningTargets(baseDir: string): string[] {
       }
     }
   }
-
   return results.sort();
 }
 
@@ -103,7 +97,6 @@ async function uploadFile(
     contentType: getContentType(localPath),
     upsert: true,
   });
-
   if (error) {
     throw new Error(error.message);
   }
@@ -112,14 +105,12 @@ async function uploadFile(
 async function main(): Promise<void> {
   const supabaseUrl = process.env.SUPABASE_URL;
   const supabaseServiceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
-
   if (!supabaseUrl || !supabaseServiceRoleKey) {
     console.error(
       "Missing env vars. Set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY.",
     );
     process.exit(1);
   }
-
   if (
     supabaseServiceRoleKey.split(".").length < 3 ||
     /publishable/i.test(supabaseServiceRoleKey)
@@ -135,13 +126,14 @@ async function main(): Promise<void> {
   const bucket = "ielts-tests";
 
   const repoRoot = process.cwd();
+  const dataRoot = path.join(repoRoot, "generated_ielts_tests");
   const mode = (process.argv[2] || "reading").toLowerCase();
 
   let baseDir: string;
   let files: string[] = [];
 
   if (mode === "listening") {
-    baseDir = path.join(repoRoot, "listening");
+    baseDir = path.join(dataRoot, "listening");
     if (!fs.existsSync(baseDir)) {
       console.error(`Listening directory not found: ${baseDir}`);
       process.exit(1);
@@ -153,22 +145,24 @@ async function main(): Promise<void> {
       );
       return;
     }
-  } else if (mode === "reading") {
-    baseDir = path.join(repoRoot, "reading");
+  } else if (mode === "reading" || mode === "writing") {
+    baseDir = path.join(dataRoot, mode);
     if (!fs.existsSync(baseDir)) {
-      console.error(`Reading directory not found: ${baseDir}`);
+      console.error(
+        `${mode[0].toUpperCase() + mode.slice(1)} directory not found: ${baseDir}`,
+      );
       process.exit(1);
     }
     files = listJsonTargets(baseDir);
     if (files.length === 0) {
       console.log(
-        "No questions.json or answers.json files found under reading/.",
+        `No questions.json or answers.json files found under ${mode}/.`,
       );
       return;
     }
   } else {
     console.error(
-      `Unknown mode: ${mode}. Use either 'reading' (default) or 'listening'.`,
+      `Unknown mode: ${mode}. Use 'reading' (default), 'writing', or 'listening'.`,
     );
     process.exit(1);
   }
@@ -177,7 +171,8 @@ async function main(): Promise<void> {
   let failed = 0;
 
   for (const localPath of files) {
-    const relativePath = path.relative(repoRoot, localPath).replace(/\\/g, "/");
+    // Ensure remote path starts with <mode>/... (strip generated_ielts_tests/ prefix)
+    const relativePath = path.relative(dataRoot, localPath).replace(/\\/g, "/");
     const remotePath = relativePath;
     const contentType = getContentType(localPath);
 

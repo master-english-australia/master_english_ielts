@@ -1,30 +1,41 @@
+import { Box } from "@mui/material";
+
 interface TaskPromptProps {
   id: string;
   contentWidth: number;
-  promptTitle: string;
   promptContent: string;
 }
 
 export const TaskPrompt = ({
   id,
   contentWidth,
-  promptTitle,
   promptContent,
 }: TaskPromptProps) => {
   return (
-    <div
+    <Box
       id={id}
-      className="writing-test-content"
       style={{
         width: `${contentWidth}%`,
         maxWidth: `${contentWidth}%`,
         flex: `0 0 ${contentWidth}%`,
       }}
     >
-      <div className="task-prompt">
-        <h2>{promptTitle}</h2>
-        <div dangerouslySetInnerHTML={{ __html: promptContent }} />
-      </div>
-    </div>
+      <Box>
+        <Box
+          sx={{
+            "& ul": {
+              display: "table",
+              marginLeft: "60px",
+              marginRight: "auto",
+              textAlign: "left",
+            },
+            "& ul li": {
+              textAlign: "left",
+            },
+          }}
+          dangerouslySetInnerHTML={{ __html: promptContent }}
+        />
+      </Box>
+    </Box>
   );
 };

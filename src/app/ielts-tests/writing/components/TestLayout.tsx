@@ -7,9 +7,7 @@ import { TaskPrompt } from "./TaskPrompt";
 
 interface TestLayoutProps {
   currentPart: number;
-  promptTitle: string;
   promptContent: string;
-  isSubmitted: boolean;
   part1Essay: string;
   part2Essay: string;
   wordCount: number;
@@ -18,9 +16,7 @@ interface TestLayoutProps {
 
 export const TestLayout = ({
   currentPart,
-  promptTitle,
   promptContent,
-  isSubmitted,
   part1Essay,
   part2Essay,
   wordCount,
@@ -46,7 +42,6 @@ export const TestLayout = ({
       <TaskPrompt
         id="content-prompt"
         contentWidth={contentWidth}
-        promptTitle={promptTitle}
         promptContent={promptContent}
       />
 
