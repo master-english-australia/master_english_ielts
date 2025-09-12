@@ -1,8 +1,8 @@
 #!/usr/bin/env -S node
 /**
  * Upload IELTS assets to Supabase Storage (bucket: ielts-tests).
- * Modes: reading (JSON only), writing (JSON only), listening (excludes fetch.html).
- * Usage: ts-node scripts/upload_tests.ts [reading|listening|writing]
+ * Modes: reading (JSON only), writing (JSON only), speaking (JSON only), listening (excludes fetch.html).
+ * Usage: ts-node scripts/upload_tests.ts [reading|listening|writing|speaking]
  * Requires: SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY
  */
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
@@ -145,7 +145,7 @@ async function main(): Promise<void> {
       );
       return;
     }
-  } else if (mode === "reading" || mode === "writing") {
+  } else if (mode === "reading" || mode === "writing" || mode === "speaking") {
     baseDir = path.join(dataRoot, mode);
     if (!fs.existsSync(baseDir)) {
       console.error(
@@ -162,7 +162,7 @@ async function main(): Promise<void> {
     }
   } else {
     console.error(
-      `Unknown mode: ${mode}. Use 'reading' (default), 'writing', or 'listening'.`,
+      `Unknown mode: ${mode}. Use 'reading' (default), 'writing', 'speaking', or 'listening'.`,
     );
     process.exit(1);
   }

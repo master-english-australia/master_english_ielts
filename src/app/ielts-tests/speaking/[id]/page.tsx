@@ -2,29 +2,26 @@
 
 import { EmailSuccessDialog } from "@/app/components/EmailSuccessDialog";
 import { NameInputDialog } from "@/app/components/NameInputDialog";
+import { useTestDetail } from "@/app/hooks/useTestDetail";
 import { sendEmail } from "@/lib/api";
 import { Box } from "@mui/material";
 import { useParams, useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { CommonLoading } from "../../../components/CommonLoading";
 import { PartSwitcher } from "../../../components/PartSwitcher";
 import { TaskRequirements } from "../../../components/TaskRequirements";
 import { TestHeader } from "../../../components/TestHeader";
 import { TestLayout } from "../components/TestLayout";
-import { speakingTests } from "../mockData";
 
 export default function SpeakingTestPage() {
   const params = useParams();
   const router = useRouter();
   const testId = params.id as string;
-  const test = speakingTests;
+  const { data: test } = useTestDetail({ part: "speaking", id: testId });
 
-  useEffect(() => {
-    if (!test) {
-      console.error(`Invalid test ID: ${testId}`);
-      // router.push("/ielts-tests/speaking");
-    }
-  }, [test, testId, router]);
+  type SpeakingQuestion = { id: number; text: string };
+  type SpeakingPart = { id: number | string; questions: SpeakingQuestion[] };
+  const parts = (((test as any) || {}).parts || []) as SpeakingPart[];
 
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [showNameDialog, setShowNameDialog] = useState(false);
@@ -42,17 +39,17 @@ export default function SpeakingTestPage() {
     if (currentQuestion > 1) {
       setCurrentQuestion(currentQuestion - 1);
     } else if (currentPart > 1) {
-      const prevPartData = test.parts[currentPart - 2];
+      const prevPartData = parts[currentPart - 2];
       setCurrentPart(currentPart - 1);
-      setCurrentQuestion(prevPartData.questions.length);
+      setCurrentQuestion(prevPartData?.questions.length || 1);
     }
   };
 
   const handleNextQuestion = () => {
-    const currentPartData = test.parts[currentPart - 1];
-    if (currentQuestion < currentPartData.questions.length) {
+    const currentPartData = parts[currentPart - 1];
+    if (currentQuestion < (currentPartData?.questions.length || 0)) {
       setCurrentQuestion(currentQuestion + 1);
-    } else if (currentPart < test.parts.length) {
+    } else if (currentPart < parts.length) {
       setCurrentPart(currentPart + 1);
       setCurrentQuestion(1);
     }
@@ -62,12 +59,16 @@ export default function SpeakingTestPage() {
     return <CommonLoading />;
   }
 
-  const currentPartData = test.parts[currentPart - 1];
-  const currentQuestionData = currentPartData.questions[currentQuestion - 1];
+  const currentPartData = parts[currentPart - 1];
+  const currentQuestionData = currentPartData?.questions[currentQuestion - 1];
   const isFirstQuestion = currentPart === 1 && currentQuestion === 1;
   const isLastQuestion =
-    currentPart === test.parts.length &&
-    currentQuestion === currentPartData.questions.length;
+    currentPart === parts.length &&
+    currentQuestion === (currentPartData?.questions.length || 0);
+  const partQuestions = currentPartData?.questions || [];
+  const startQuestionId = partQuestions[0]?.id ?? currentQuestionData.id;
+  const endQuestionId =
+    partQuestions[partQuestions.length - 1]?.id ?? currentQuestionData.id;
 
   return (
     <Box>
@@ -75,7 +76,7 @@ export default function SpeakingTestPage() {
 
       <TaskRequirements
         currentPart={currentPart}
-        instructions={currentPartData.instructions}
+        instructions={`Answer questions ${startQuestionId}-${endQuestionId}`}
       />
 
       <TestLayout
@@ -92,7 +93,7 @@ export default function SpeakingTestPage() {
 
       <PartSwitcher
         currentPart={currentPart}
-        totalParts={test.parts.length}
+        totalParts={parts.length}
         isSubmitted={isSubmitted}
         onPartChange={(part) => {
           setCurrentPart(part);
