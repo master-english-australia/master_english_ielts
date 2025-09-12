@@ -14,6 +14,8 @@ interface UseEmailReturn extends UseEmailState {
     part2Prompt: string,
     testId: string,
     userName: string,
+    userEmail: string,
+    userPhone: string,
   ) => Promise<boolean>;
   reset: () => void;
 }
@@ -31,10 +33,14 @@ export function useEmail(): UseEmailReturn {
     part2Essay: string,
     testId: string,
     userName: string,
+    userEmail: string,
+    userPhone: string,
   ) => {
     return `Writing test has been submitted.<br>
       <strong>Test ID:</strong> ${testId}<br>
       <strong>User Name:</strong> ${userName}<br>
+      <strong>Email:</strong> ${userEmail}<br>
+      <strong>Phone:</strong> ${userPhone}<br>
       
       <h3>=== Part 1 ===</h3>
       <strong>Question:</strong>
@@ -63,6 +69,8 @@ export function useEmail(): UseEmailReturn {
     part2Prompt: string,
     testId: string,
     userName: string,
+    userEmail: string,
+    userPhone: string,
   ): Promise<boolean> => {
     const payload = {
       name: userName,
@@ -74,6 +82,8 @@ export function useEmail(): UseEmailReturn {
         part2Essay,
         testId,
         userName,
+        userEmail,
+        userPhone,
       ),
     };
 

@@ -34,7 +34,11 @@ export default function WritingTestPage() {
     setShowNameDialog(true);
   };
 
-  const handleNameSubmit = async (userName: string) => {
+  const handleNameSubmit = async (
+    userName: string,
+    userEmail: string,
+    userPhone: string,
+  ) => {
     const part1 = test?.part1 || undefined;
     const part2 = test?.part2 || undefined;
     const part1Prompt = part1?.promptContent || "";
@@ -47,6 +51,8 @@ export default function WritingTestPage() {
       part2Prompt,
       String(resolvedTestId),
       userName,
+      userEmail,
+      userPhone,
     );
 
     if (isSuccess) {
@@ -117,7 +123,9 @@ export default function WritingTestPage() {
       <NameInputDialog
         open={showNameDialog}
         onClose={handleNameDialogClose}
-        onSubmit={handleNameSubmit}
+        onSubmit={async ({ name, email, phone }) => {
+          await handleNameSubmit(name, email, phone);
+        }}
       />
 
       <EmailSuccessDialog

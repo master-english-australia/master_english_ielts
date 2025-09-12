@@ -14,7 +14,11 @@ import { useState } from "react";
 interface NameInputDialogProps {
   open: boolean;
   onClose: () => void;
-  onSubmit: (name: string) => void | Promise<void>;
+  onSubmit: (data: {
+    name: string;
+    email: string;
+    phone: string;
+  }) => void | Promise<void>;
 }
 
 export function NameInputDialog({
@@ -24,19 +28,43 @@ export function NameInputDialog({
 }: NameInputDialogProps) {
   const [userName, setUserName] = useState("");
   const [nameError, setNameError] = useState("");
+  const [email, setEmail] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [phone, setPhone] = useState("");
+  const [phoneError, setPhoneError] = useState("");
   const [submitting, setSubmitting] = useState(false);
 
   const handleSubmit = async () => {
     if (submitting) return;
+    let hasError = false;
     if (!userName.trim()) {
       setNameError("Please enter your name");
-      return;
+      hasError = true;
     }
+    const emailValue = email.trim();
+    const phoneValue = phone.trim();
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailValue || !emailRegex.test(emailValue)) {
+      setEmailError("Please enter a valid email address");
+      hasError = true;
+    }
+    const phoneRegex = /^[0-9+()\-\s]{7,}$/;
+    if (!phoneValue || !phoneRegex.test(phoneValue)) {
+      setPhoneError("Please enter a valid phone number");
+      hasError = true;
+    }
+    if (hasError) return;
 
     try {
       setNameError("");
+      setEmailError("");
+      setPhoneError("");
       setSubmitting(true);
-      await onSubmit(userName.trim());
+      await onSubmit({
+        name: userName.trim(),
+        email: emailValue,
+        phone: phoneValue,
+      });
     } finally {
       setSubmitting(false);
     }
@@ -45,6 +73,10 @@ export function NameInputDialog({
   const handleClose = () => {
     setUserName("");
     setNameError("");
+    setEmail("");
+    setEmailError("");
+    setPhone("");
+    setPhoneError("");
     onClose();
   };
 
@@ -80,6 +112,28 @@ export function NameInputDialog({
           error={!!nameError}
           helperText={nameError}
           onKeyPress={handleKeyPress}
+        />
+        <TextField
+          margin="dense"
+          label="Email Address"
+          type="email"
+          fullWidth
+          variant="outlined"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          error={!!emailError}
+          helperText={emailError}
+        />
+        <TextField
+          margin="dense"
+          label="Phone Number"
+          type="tel"
+          fullWidth
+          variant="outlined"
+          value={phone}
+          onChange={(e) => setPhone(e.target.value)}
+          error={!!phoneError}
+          helperText={phoneError}
         />
       </DialogContent>
       <DialogActions>

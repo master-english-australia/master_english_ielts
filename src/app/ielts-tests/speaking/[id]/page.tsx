@@ -17,12 +17,12 @@ export default function SpeakingTestPage() {
   const params = useParams();
   const router = useRouter();
   const testId = params.id as string;
-  const test = speakingTests[testId as keyof typeof speakingTests];
+  const test = speakingTests;
 
   useEffect(() => {
     if (!test) {
       console.error(`Invalid test ID: ${testId}`);
-      router.push("/ielts-tests/speaking");
+      // router.push("/ielts-tests/speaking");
     }
   }, [test, testId, router]);
 
@@ -106,7 +106,7 @@ export default function SpeakingTestPage() {
       <NameInputDialog
         open={showNameDialog}
         onClose={() => setShowNameDialog(false)}
-        onSubmit={async (name) => {
+        onSubmit={async ({ name, email, phone }) => {
           try {
             if (!audioBlob) return;
             const arrayBuffer = await audioBlob.arrayBuffer();
@@ -114,7 +114,7 @@ export default function SpeakingTestPage() {
             await sendEmail({
               name,
               subject: `IELTS Speaking - ${name} - Part ${currentPart} Q${currentQuestion}`,
-              message: `Speaking answer submitted by ${name}.\nPart: ${currentPart}\nQuestion: ${currentQuestion}`,
+              message: `Speaking answer submitted by ${name}.\nEmail: ${email}\nPhone: ${phone}\nPart: ${currentPart}\nQuestion: ${currentQuestion}`,
               attachments: [
                 {
                   filename: `speaking_part${currentPart}_q${currentQuestion}.webm`,
