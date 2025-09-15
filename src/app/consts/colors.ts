@@ -1,8 +1,8 @@
 export const Colors = {
   CORRECT: "green",
   INCORRECT: "darkred",
-  CORRECT_LIGHT: "#e8f5e8",
-  INCORRECT_LIGHT: "#ffebee",
+  CORRECT_LIGHT: "#d4edda",
+  INCORRECT_LIGHT: "#f8d7da",
 
   PRIMARY: "#EB0000",
   PRIMARY_HOVER: "#cc0000",

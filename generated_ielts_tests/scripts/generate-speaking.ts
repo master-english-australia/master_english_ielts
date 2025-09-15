@@ -13,6 +13,7 @@ import path from "path";
 interface OutputQuestion {
   id: number;
   text: string;
+  followups?: string[];
 }
 interface OutputPart {
   id: number;
@@ -33,6 +34,13 @@ function normalize(s: string): string {
     .replace(/[\u00A0\u200B]/g, " ")
     .replace(/\s+/g, " ")
     .trim();
+}
+
+function splitByBrToTextsUsingCheerio(html: string, $: any): string[] {
+  return html
+    .split(/<br\s*\/?\s*>/gi)
+    .map((segment) => normalize($("<div>").html(segment).text()))
+    .filter((t) => !!t);
 }
 
 function main(): void {
@@ -68,9 +76,60 @@ function main(): void {
             ? 3
             : 0;
     if (!partId) return;
-    const text = normalize($(el).find(".question-text p").first().text() || "");
+    let text = "";
+    let followups: string[] | undefined;
+    if (partId === 2) {
+      const container = $(el).find(".question-text").first();
+      text = normalize(container.find("p").first().text() || "");
+
+      // Extract followups appearing after the "You should say:" marker
+      const paras = container.find("p").toArray();
+      let markerIdx = -1;
+      for (let i = 0; i < paras.length; i++) {
+        const pText = normalize($(paras[i]).text() || "").toLowerCase();
+        if (pText.startsWith("you should say")) {
+          markerIdx = i;
+          break;
+        }
+      }
+
+      const collected: string[] = [];
+      if (markerIdx >= 0) {
+        for (let j = markerIdx + 1; j < paras.length; j++) {
+          const p = $(paras[j]);
+          const html = p.html() || "";
+          if (/<br\s*\/?\s*>/i.test(html)) {
+            collected.push(...splitByBrToTextsUsingCheerio(html, $));
+          } else {
+            const t = normalize(p.text() || "");
+            if (t) collected.push(t);
+          }
+        }
+      }
+
+      // Also support list formats, if present
+      container.find("li").each((__, li) => {
+        const t = normalize($(li).text() || "");
+        if (t) collected.push(t);
+      });
+
+      if (collected.length) {
+        const seen = new Set<string>();
+        followups = collected.filter((t) => {
+          if (seen.has(t)) return false;
+          seen.add(t);
+          return true;
+        });
+      }
+    } else {
+      text = normalize($(el).find(".question-text p").first().text() || "");
+    }
     if (!text) return;
-    partsMap[partId].push({ id: nextId++, text });
+    const q =
+      followups && followups.length
+        ? { id: nextId++, text, followups }
+        : { id: nextId++, text };
+    partsMap[partId].push(q);
   });
 
   const parts: OutputPart[] = [1, 2, 3].map((pid) => ({

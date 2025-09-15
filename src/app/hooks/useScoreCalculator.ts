@@ -5,6 +5,7 @@ import {
 } from "../consts/bandscores";
 import { Answer } from "../models/Answer";
 import { IeltsSection } from "../models/IeltsTest";
+import { isAnswerCorrect } from "../utils/answerUtils";
 
 export function useScoreCalculator(
   userAnswers: Record<number, string>,
@@ -46,15 +47,11 @@ export function useScoreCalculator(
       );
 
       if (correctAnswer) {
-        const normalizedUserAnswer = userAnswer?.trim().toLowerCase() || "";
-
-        const isCorrect = correctAnswer.answers.some(
-          (answer) => answer.trim().toLowerCase() === normalizedUserAnswer,
+        const correct = isAnswerCorrect(
+          userAnswer || "",
+          correctAnswer.answers,
         );
-
-        if (isCorrect) {
-          correctCount++;
-        }
+        if (correct) correctCount++;
       }
     });
 

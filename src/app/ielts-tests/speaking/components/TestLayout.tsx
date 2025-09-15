@@ -12,6 +12,7 @@ import { MicRecorder } from "./MicRecorder";
 interface TestLayoutProps {
   questionNumber: number;
   questionText: string;
+  followups?: string[];
   onPrev: () => void;
   onNext: () => void;
   onSubmit: () => void;
@@ -24,6 +25,7 @@ interface TestLayoutProps {
 export const TestLayout = ({
   questionNumber,
   questionText,
+  followups,
   onPrev,
   onNext,
   onSubmit,
@@ -89,9 +91,30 @@ export const TestLayout = ({
           Next Question
         </Button>
       </Box>
-      <Box sx={{ width: "100%", textAlign: "center", mb: 2 }}>
+      <Box sx={{ width: "50%", textAlign: "center", mb: 2 }}>
         <Box sx={{ fontWeight: "bold", mb: 1 }}>Question {questionNumber}</Box>
         <Box sx={{ fontWeight: 500, mb: 3 }}>{questionText}</Box>
+        {followups && followups.length > 0 && (
+          <Box
+            component="ul"
+            sx={{
+              fontWeight: 500,
+              mb: 3,
+              display: "inline-block",
+              textAlign: "left",
+              listStyleType: "disc",
+              listStylePosition: "inside",
+              pl: 0,
+              m: 0,
+            }}
+          >
+            {followups.map((followup, index) => (
+              <Box component="li" key={index} sx={{ mb: 0.5 }}>
+                {followup}
+              </Box>
+            ))}
+          </Box>
+        )}
       </Box>
       <MicRecorder
         isSubmitted={isSubmitted}

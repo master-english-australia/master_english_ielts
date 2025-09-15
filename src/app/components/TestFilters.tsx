@@ -1,9 +1,9 @@
 "use client";
 
-import { useState } from "react";
-import { Box, Divider, TextField, Typography } from "@mui/material";
-import { Colors } from "@/app/consts/colors";
 import SelectableButton from "@/app/components/SelectableButton";
+import { Colors } from "@/app/consts/colors";
+import { Box, Divider, TextField, Typography } from "@mui/material";
+import { useState } from "react";
 
 export interface TestFiltersProps {
   onFilterChange: (filters: { search: string; testType: string }) => void;
@@ -11,9 +11,9 @@ export interface TestFiltersProps {
 
 export default function TestFilters({ onFilterChange }: TestFiltersProps) {
   const [search, setSearch] = useState("");
-  const [testType, setTestType] = useState("All");
+  const [testType, setTestType] = useState("General");
 
-  const testTypes = ["All", "Academic", "General"];
+  const testTypes = ["General", "Academic"];
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newSearch = e.target.value;

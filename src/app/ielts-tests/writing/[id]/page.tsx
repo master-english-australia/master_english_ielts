@@ -132,6 +132,7 @@ export default function WritingTestPage() {
         open={showSuccessDialog}
         onClose={() => setShowSuccessDialog(false)}
         onGoToList={() => router.push("/ielts-tests/writing")}
+        testType="writing"
       />
     </Box>
   );

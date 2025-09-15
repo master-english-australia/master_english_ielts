@@ -1,6 +1,7 @@
 import { Box, Checkbox, Typography } from "@mui/material";
 import React from "react";
 import { QuestionProps } from "../models/props/questionProps";
+import { isMultiSelectCorrect } from "../utils/answerUtils";
 import { QuestionNumberBox } from "./QuestionNumberBox";
 import { QuestionText } from "./QuestionText";
 
@@ -28,15 +29,10 @@ export const MultipleSelectChoiceQuestion: React.FC<MultipleSelectProps> = ({
     const correctAnswersArray =
       correctAnswers.find((a) => a.number === currentQuestionId)?.answers || [];
 
-    const normalize = (arr: string[]) =>
-      arr.map((v) => v.trim().toLowerCase()).filter(Boolean);
-
-    const isCorrect = (() => {
-      const sel = normalize(selectedValues);
-      const cor = normalize(correctAnswersArray);
-      if (sel.length !== cor.length) return false;
-      return cor.every((c) => sel.includes(c));
-    })();
+    const isCorrect = isMultiSelectCorrect(
+      selectedValues.join(","),
+      correctAnswersArray,
+    );
 
     const handleToggle = (option: string) => {
       if (isSubmitted) return;

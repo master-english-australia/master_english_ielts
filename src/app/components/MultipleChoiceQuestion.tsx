@@ -1,6 +1,7 @@
 import { Box, Radio, Typography } from "@mui/material";
 import React from "react";
 import { QuestionProps } from "../models/props/questionProps";
+import { isAnswerCorrect, normalizeAnswer } from "../utils/answerUtils";
 import { QuestionText } from "./QuestionText";
 
 export const MultipleChoiceQuestion: React.FC<QuestionProps> = ({
@@ -19,7 +20,9 @@ export const MultipleChoiceQuestion: React.FC<QuestionProps> = ({
       const correctAnswer = correctAnswers.find(
         (answer) => answer.number === Number(question.id),
       )?.answers[0];
-      const isCorrect = correctAnswer === userAnswer;
+      const isCorrect = isAnswerCorrect(userAnswer || "", [
+        correctAnswer || "",
+      ]);
       return (
         <Box key={question.id} my={2}>
           <QuestionText
@@ -34,7 +37,10 @@ export const MultipleChoiceQuestion: React.FC<QuestionProps> = ({
               <Radio
                 value={option}
                 checked={
-                  isSubmitted ? option === correctAnswer : option === userAnswer
+                  isSubmitted
+                    ? normalizeAnswer(option) ===
+                      normalizeAnswer(correctAnswer || "")
+                    : option === userAnswer
                 }
                 onChange={(e) => {
                   if (isSubmitted) return;

@@ -13,6 +13,7 @@ import {
 } from "@mui/material";
 import React from "react";
 import { Colors } from "../consts/colors";
+import { isAnswerCorrect } from "../utils/answerUtils";
 
 interface TestResultProps {
   userAnswers: Record<number, string>;
@@ -41,7 +42,7 @@ export const TestResult: React.FC<TestResultProps> = ({
       .padStart(2, "0")}`;
   };
 
-  const isAnswerCorrect = (
+  const checkCorrect = (
     questionNumber: number,
     userAnswer: string,
   ): boolean => {
@@ -49,13 +50,7 @@ export const TestResult: React.FC<TestResultProps> = ({
       (answer) => answer.number === questionNumber,
     );
     if (!correctAnswer) return false;
-
-    const normalizedUserAnswer = userAnswer?.trim().toLowerCase() || "";
-    if (!normalizedUserAnswer) return false;
-
-    return correctAnswer.answers.some(
-      (answer) => answer.trim().toLowerCase() === normalizedUserAnswer,
-    );
+    return isAnswerCorrect(userAnswer || "", correctAnswer.answers);
   };
 
   const getCorrectAnswerText = (questionNumber: number): string => {
@@ -148,7 +143,7 @@ export const TestResult: React.FC<TestResultProps> = ({
             <TableBody>
               {allQuestions.map((questionNumber) => {
                 const userAnswer = userAnswers[questionNumber] || "";
-                const isCorrect = isAnswerCorrect(questionNumber, userAnswer);
+                const isCorrect = checkCorrect(questionNumber, userAnswer);
                 const correctAnswerText = getCorrectAnswerText(questionNumber);
 
                 return (

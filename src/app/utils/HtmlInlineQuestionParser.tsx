@@ -4,6 +4,7 @@ import parse, { HTMLReactParserOptions } from "html-react-parser";
 import { AnswerState } from "../contexts/createAnswerContext";
 import { Answer } from "../models/Answer";
 import { Question } from "../models/Question";
+import { isAnswerCorrect } from "./answerUtils";
 
 export const HtmlInlineQuestionParser: React.FC<{
   htmlText: string;
@@ -36,8 +37,10 @@ export const HtmlInlineQuestionParser: React.FC<{
             const correctAnswer = correctAnswers.find(
               (answer) => answer.number === Number(question.id),
             );
-            const isCorrect =
-              correctAnswer?.answers.includes(userAnswer) || false;
+            const isCorrect = isAnswerCorrect(
+              userAnswer || "",
+              correctAnswer?.answers || [],
+            );
 
             nodes.push(
               <Box

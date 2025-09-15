@@ -2,6 +2,7 @@ import { Box, Button, Stack, Typography } from "@mui/material";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { Answer } from "../models/Answer";
 import { QuestionPart } from "../models/QuestionPart";
+import { isAnswerCorrect } from "../utils/answerUtils";
 import { PartSwitcherQuestionNumber } from "./PartSwitcherQuestionNumber";
 
 interface PartSwitcherProps {
@@ -157,8 +158,9 @@ export const PartSwitcher = ({
                           (answer) => answer.number === Number(question.id),
                         );
                         const userAnswer = userAnswers[Number(question.id)];
-                        const isCorrect = correctAnswer?.answers.includes(
+                        const isCorrect = isAnswerCorrect(
                           userAnswer || "",
+                          correctAnswer?.answers || [],
                         );
                         return (
                           <PartSwitcherQuestionNumber

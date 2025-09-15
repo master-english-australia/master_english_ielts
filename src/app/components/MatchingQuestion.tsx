@@ -1,6 +1,7 @@
 import { Box, MenuItem, Select, Typography } from "@mui/material";
 import React from "react";
 import { QuestionProps } from "../models/props/questionProps";
+import { isAnswerCorrect } from "../utils/answerUtils";
 import { QuestionText } from "./QuestionText";
 
 export const MatchingQuestion: React.FC<QuestionProps> = ({
@@ -23,7 +24,10 @@ export const MatchingQuestion: React.FC<QuestionProps> = ({
         const correctAnswer = correctAnswers.find(
           (answer) => answer.number === Number(question.id),
         );
-        const isCorrect = correctAnswer?.answers.includes(userAnswer) || false;
+        const isCorrect = isAnswerCorrect(
+          userAnswer || "",
+          correctAnswer?.answers || [],
+        );
 
         return (
           <Box

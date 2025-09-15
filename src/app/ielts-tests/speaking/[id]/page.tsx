@@ -19,7 +19,7 @@ export default function SpeakingTestPage() {
   const testId = params.id as string;
   const { data: test } = useTestDetail({ part: "speaking", id: testId });
 
-  type SpeakingQuestion = { id: number; text: string };
+  type SpeakingQuestion = { id: number; text: string; followups?: string[] };
   type SpeakingPart = { id: number | string; questions: SpeakingQuestion[] };
   const parts = (((test as any) || {}).parts || []) as SpeakingPart[];
 
@@ -82,6 +82,7 @@ export default function SpeakingTestPage() {
       <TestLayout
         questionNumber={currentQuestionData.id}
         questionText={currentQuestionData.text}
+        followups={currentQuestionData.followups}
         onPrev={handlePrevQuestion}
         onNext={handleNextQuestion}
         onSubmit={handleSubmitEssay}
@@ -137,6 +138,7 @@ export default function SpeakingTestPage() {
         open={showSuccessDialog}
         onClose={() => setShowSuccessDialog(false)}
         onGoToList={() => router.push("/ielts-tests/speaking")}
+        testType="speaking"
       />
     </Box>
   );

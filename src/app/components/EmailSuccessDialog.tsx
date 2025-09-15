@@ -1,5 +1,6 @@
 "use client";
 
+import { IeltsSection } from "@/app/models/IeltsTest";
 import {
   Button,
   Dialog,
@@ -13,13 +14,24 @@ interface EmailSuccessDialogProps {
   open: boolean;
   onClose: () => void;
   onGoToList: () => void;
+  testType: IeltsSection;
 }
 
 export function EmailSuccessDialog({
   open,
   onClose,
   onGoToList,
+  testType,
 }: EmailSuccessDialogProps) {
+  const buttonText =
+    testType === "reading"
+      ? "Reading"
+      : testType === "writing"
+        ? "Writing"
+        : testType === "speaking"
+          ? "Speaking"
+          : "Listening";
+
   return (
     <Dialog open={open} onClose={onClose} maxWidth="xs" fullWidth>
       <DialogTitle>
@@ -38,7 +50,7 @@ export function EmailSuccessDialog({
           Close
         </Button>
         <Button onClick={onGoToList} variant="contained" color="success">
-          Go to Tests List
+          Go to {buttonText} Tests List
         </Button>
       </DialogActions>
     </Dialog>
