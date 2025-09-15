@@ -4,6 +4,8 @@ import NavButton from "@/app/components/NavButton";
 import { Colors } from "@/app/consts/colors";
 import { Shadows } from "@/app/consts/shadows";
 import { Box } from "@mui/material";
+import Image from "next/image";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 export default function IELTSTestsNav() {
@@ -20,14 +22,32 @@ export default function IELTSTestsNav() {
     <Box
       sx={{
         backgroundColor: Colors.BACKGROUND_HOVER,
-        p: "1rem 0",
+        px: "2rem",
         position: "sticky",
-        top: "3.5rem",
         zIndex: 99,
         boxShadow: Shadows.NAV,
       }}
     >
-      <Box component="nav" sx={{ maxWidth: 1400, mx: "auto", px: "1rem" }}>
+      <Box
+        component="nav"
+        sx={{
+          maxWidth: 1400,
+          mx: "auto",
+          px: "1rem",
+          display: "flex",
+          alignItems: "center",
+        }}
+      >
+        <Link href="/" aria-label="Go to home">
+          <Image
+            src="/images/logo.png"
+            alt="Home"
+            width={64}
+            height={64}
+            style={{ cursor: "pointer" }}
+          />
+        </Link>
+        <Box width="1.5rem" />
         <Box sx={{ display: "flex", flexWrap: "wrap", gap: "0.75rem" }}>
           {items.map((it) => (
             <NavButton

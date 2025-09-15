@@ -5,6 +5,9 @@ export const metadata: Metadata = {
   title: "Master IELTS - English Learning Platform",
   description:
     "Practice and prepare for your IELTS exam with our comprehensive platform",
+  icons: {
+    icon: "/favicon.png",
+  },
 };
 
 export default function RootLayout({

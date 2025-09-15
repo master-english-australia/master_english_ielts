@@ -1,6 +1,6 @@
-import ArrowCircleLeftIcon from "@mui/icons-material/ArrowCircleLeft";
 import WatchLaterIcon from "@mui/icons-material/WatchLater";
 import { Box, IconButton, Typography } from "@mui/material";
+import Image from "next/image";
 import { formatTime, useTimer } from "../utils/timerHandler";
 
 interface TestHeaderProps {
@@ -41,7 +41,7 @@ export const TestHeader = ({ timeLimit }: TestHeaderProps) => {
           color: "text.primary",
         }}
       >
-        <ArrowCircleLeftIcon sx={{ fontSize: 24 }} />
+        <Image src="/images/logo.png" alt="Back" width={60} height={60} />
       </IconButton>
       <WatchLaterIcon sx={{ fontSize: 18 }} />
       <Box width={8} />

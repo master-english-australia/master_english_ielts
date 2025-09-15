@@ -36,14 +36,16 @@ export default function TestFilters({ onFilterChange }: TestFiltersProps) {
         width: "100%",
         maxWidth: "200px",
         boxSizing: "border-box",
+        mt: "48px",
       }}
     >
       <Typography
-        component="h2"
         sx={{
+          fontWeight: "bold",
+          textAlign: "center",
           fontSize: "1.2rem",
           color: "#333",
-          margin: "0 0 1rem 0",
+          mb: "0.5rem",
           wordBreak: "break-word",
         }}
       >

@@ -1,11 +1,9 @@
 "use client";
 
-import React from "react";
+import IELTSTestsNav from "@/app/components/IELTSTestsNav";
 import { Box } from "@mui/material";
 import { usePathname } from "next/navigation";
-import { Colors } from "@/app/consts/colors";
-import BackButton from "@/app/components/BackButton";
-import IELTSTestsNav from "@/app/components/IELTSTestsNav";
+import React from "react";
 
 export default function IELTSTestsLayout({
   children,
@@ -26,24 +24,8 @@ export default function IELTSTestsLayout({
 
   return (
     <Box sx={{ minWidth: 320, width: "100%", overflowX: "hidden" }}>
-      <Box
-        sx={{
-          backgroundColor: Colors.HEADER,
-          color: Colors.HEADER_TEXT,
-          py: "1rem",
-          position: "sticky",
-          top: 0,
-          zIndex: 100,
-        }}
-      >
-        <Box sx={{ maxWidth: 1400, mx: "auto", px: "1rem" }}>
-          <BackButton label="Back to Home" href="/" variant="text" />
-        </Box>
-      </Box>
       <IELTSTestsNav />
-      <Box sx={{ maxWidth: 1400, mx: "auto", px: "1rem", py: "1.5rem" }}>
-        {children}
-      </Box>
+      <Box sx={{ maxWidth: 1400, px: "1rem", py: "1.5rem" }}>{children}</Box>
     </Box>
   );
 }

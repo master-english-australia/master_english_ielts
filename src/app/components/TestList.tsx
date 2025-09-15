@@ -35,8 +35,11 @@ export default function TestList({
   return (
     <Box sx={{ width: "100%", overflowX: "hidden" }}>
       <Typography
-        component="h1"
         sx={{
+          height: "32px",
+          width: "100%",
+          textAlign: "center",
+          fontWeight: "bold",
           fontSize: "1.2rem",
           color: "#333",
           margin: "0 0 1rem 0",
