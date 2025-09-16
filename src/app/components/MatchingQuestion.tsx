@@ -1,7 +1,7 @@
 import { Box, MenuItem, Select, Typography } from "@mui/material";
 import React from "react";
 import { QuestionProps } from "../models/props/questionProps";
-import { isAnswerCorrect } from "../utils/answerUtils";
+import { isAnswerCorrect, normalizeAnswer } from "../utils/answerUtils";
 import { QuestionText } from "./QuestionText";
 
 export const MatchingQuestion: React.FC<QuestionProps> = ({
@@ -29,6 +29,20 @@ export const MatchingQuestion: React.FC<QuestionProps> = ({
           correctAnswer?.answers || [],
         );
 
+        const options = question.options || [];
+        const normalizedOptions = options.map((opt) => normalizeAnswer(opt));
+        const toCanonicalOption = (value: string): string => {
+          const norm = normalizeAnswer(value || "");
+          const idx = normalizedOptions.findIndex((v) => v === norm);
+          return idx >= 0 ? options[idx] : "";
+        };
+
+        const submittedValue = toCanonicalOption(
+          (correctAnswer?.answers || [""])[0] || "",
+        );
+        const currentValue = toCanonicalOption(userAnswer || "");
+        const selectValue = isSubmitted ? submittedValue : currentValue;
+
         return (
           <Box
             key={question.id}
@@ -48,7 +62,7 @@ export const MatchingQuestion: React.FC<QuestionProps> = ({
             />
             <Select
               size="small"
-              value={isSubmitted ? correctAnswer?.answers[0] : userAnswer || ""}
+              value={selectValue}
               onChange={(e) =>
                 onChangeAnswer(Number(question.id), e.target.value)
               }

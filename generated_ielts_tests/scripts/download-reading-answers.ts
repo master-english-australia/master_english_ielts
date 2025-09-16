@@ -1,11 +1,8 @@
 #!/usr/bin/env -S node --enable-source-maps
 /**
  * Download IELTS Extremes reading answers page into reading/<id>/fetch_answers.html
- * Example URL patterns:
- *   https://ieltsextremes.com/cambridge-18-reading-test-1-answers-with-explanation/
- *   https://ieltsextremes.com/cambridge-18-reading-test-1-answer-with-explanation/
- *   https://ieltsextremes.com/cambridge-18-reading-test-1-answers/
- *   https://ieltsextremes.com/cambridge-18-reading-test-1-answer/
+ * Fixed URL pattern (always used):
+ *   https://ieltsextremes.com/ielts-general-training-<vol>-test-<test>-reading-answers/
  * Usage:
  *   npx --yes tsx generated_ielts_tests/scripts/download-reading-answers.ts generated_ielts_tests/reading/18-1 [...]
  */
@@ -36,13 +33,8 @@ async function tryDownload(urls: string[], dest: string): Promise<boolean> {
 }
 
 function buildUrlCandidates(vol: string, test: string): string[] {
-  const base = `https://ieltsextremes.com/cambridge-${vol}-reading-test-${test}-`;
-  return [
-    base + "answers-with-explanation/",
-    base + "answer-with-explanation/",
-    base + "answers/",
-    base + "answer/",
-  ];
+  const url = `https://ieltsextremes.com/ielts-general-training-${vol}-test-${test}-reading-answers/`;
+  return [url];
 }
 
 async function processDir(dir: string): Promise<void> {

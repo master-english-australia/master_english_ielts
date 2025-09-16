@@ -21,6 +21,15 @@ export const MicRecorder = ({
   const [audioURL, setAudioURL] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
+  const autoStopTimerRef = useRef<number | null>(null);
+  const MAX_RECORDING_MS = 20 * 60 * 1000;
+
+  const clearAutoStopTimer = () => {
+    if (autoStopTimerRef.current != null) {
+      window.clearTimeout(autoStopTimerRef.current);
+      autoStopTimerRef.current = null;
+    }
+  };
 
   const pickMime = () => {
     if (typeof MediaRecorder === "undefined") return null;
@@ -39,14 +48,14 @@ export const MicRecorder = ({
         typeof navigator === "undefined" ||
         !navigator.mediaDevices?.getUserMedia
       ) {
-        throw new Error("このブラウザは録音に対応していません。");
+        throw new Error("This browser does not support recording.");
       }
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
       streamRef.current = stream;
 
       const mimeType = pickMime();
       if (mimeType === null)
-        throw new Error("このブラウザは録音に対応していません。");
+        throw new Error("This browser does not support recording.");
 
       const mr = new MediaRecorder(stream, mimeType ? { mimeType } : undefined);
       mediaRecorderRef.current = mr;
@@ -57,6 +66,7 @@ export const MicRecorder = ({
       };
 
       mr.onstop = () => {
+        clearAutoStopTimer();
         const blob = new Blob(chunksRef.current, {
           type: mimeType || "audio/webm",
         });
@@ -75,8 +85,20 @@ export const MicRecorder = ({
 
       mr.start(1000);
       setRecording(true);
+      clearAutoStopTimer();
+      autoStopTimerRef.current = window.setTimeout(() => {
+        try {
+          const currentMr = mediaRecorderRef.current;
+          if (currentMr && currentMr.state !== "inactive") {
+            currentMr.stop();
+          }
+          if (!isSubmitted) {
+            setError("Maximum recording time of 20 minutes reached.");
+          }
+        } catch {}
+      }, MAX_RECORDING_MS);
     } catch (e: any) {
-      setError(e?.message || "マイクの利用が許可されていません。");
+      setError(e?.message || "Microphone access is not allowed.");
       setRecording(false);
       streamRef.current?.getTracks().forEach((t) => t.stop());
       streamRef.current = null;
@@ -88,6 +110,7 @@ export const MicRecorder = ({
   const stopRecording = () => {
     const mr = mediaRecorderRef.current;
     if (mr && recording && mr.state !== "inactive") {
+      clearAutoStopTimer();
       mr.stop();
     }
   };
@@ -107,6 +130,7 @@ export const MicRecorder = ({
         }
       } catch {}
       streamRef.current?.getTracks().forEach((t) => t.stop());
+      clearAutoStopTimer();
       if (audioURL) URL.revokeObjectURL(audioURL);
     };
   }, [audioURL]);

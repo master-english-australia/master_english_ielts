@@ -1,7 +1,7 @@
 import { Box, Radio, Typography } from "@mui/material";
 import React from "react";
 import { QuestionProps } from "../models/props/questionProps";
-import { isAnswerCorrect, normalizeAnswer } from "../utils/answerUtils";
+import { normalizeAnswer } from "../utils/answerUtils";
 import { QuestionText } from "./QuestionText";
 
 export const MultipleChoiceQuestion: React.FC<QuestionProps> = ({
@@ -17,12 +17,34 @@ export const MultipleChoiceQuestion: React.FC<QuestionProps> = ({
     </Typography>
     {questionGroup.questions.map((question) => {
       const userAnswer = answerState[Number(question.id)];
-      const correctAnswer = correctAnswers.find(
-        (answer) => answer.number === Number(question.id),
-      )?.answers[0];
-      const isCorrect = isAnswerCorrect(userAnswer || "", [
-        correctAnswer || "",
-      ]);
+      const correctAnswerRaw =
+        correctAnswers.find((answer) => answer.number === Number(question.id))
+          ?.answers[0] || "";
+
+      const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+      const getLetterForIndex = (i: number) => letters[i] || "";
+
+      const options = question.options || [];
+      const normalizedOptions = options.map((opt) => normalizeAnswer(opt));
+      const normalizedCorrectRaw = normalizeAnswer(correctAnswerRaw);
+
+      let correctLetter = "";
+      if (normalizedCorrectRaw.length === 1) {
+        const maybeIndex = letters.indexOf(normalizedCorrectRaw.toUpperCase());
+        if (maybeIndex >= 0 && maybeIndex < options.length) {
+          correctLetter = letters[maybeIndex];
+        }
+      }
+      if (!correctLetter) {
+        const matchIndex = normalizedOptions.findIndex(
+          (opt) => opt === normalizedCorrectRaw,
+        );
+        if (matchIndex >= 0) correctLetter = getLetterForIndex(matchIndex);
+      }
+
+      const isCorrect =
+        normalizeAnswer(userAnswer || "") === normalizeAnswer(correctLetter);
+
       return (
         <Box key={question.id} my={2}>
           <QuestionText
@@ -32,25 +54,42 @@ export const MultipleChoiceQuestion: React.FC<QuestionProps> = ({
             isCorrect={isCorrect}
           />
           <Box height={8} />
-          {question.options?.map((option, index) => (
-            <Box key={index} sx={{ display: "flex", alignItems: "center" }}>
-              <Radio
-                value={option}
-                checked={
-                  isSubmitted
-                    ? normalizeAnswer(option) ===
-                      normalizeAnswer(correctAnswer || "")
-                    : option === userAnswer
-                }
-                onChange={(e) => {
-                  if (isSubmitted) return;
+          {options.map((option, index) => {
+            const letter = getLetterForIndex(index);
+            const isChecked = isSubmitted
+              ? normalizeAnswer(letter) === normalizeAnswer(correctLetter)
+              : letter === userAnswer;
 
-                  onChangeAnswer(Number(question.id), e.target.value);
-                }}
-              />
-              {option}
-            </Box>
-          ))}
+            return (
+              <Box key={index} sx={{ display: "flex", alignItems: "center" }}>
+                <Box
+                  sx={{
+                    width: 24,
+                    height: 24,
+                    borderRadius: "50%",
+                    bgcolor: "grey.200",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    fontWeight: "bold",
+                    color: "text.primary",
+                    mr: 1.5,
+                  }}
+                >
+                  {letter}
+                </Box>
+                <Radio
+                  value={letter}
+                  checked={isChecked}
+                  onChange={(e) => {
+                    if (isSubmitted) return;
+                    onChangeAnswer(Number(question.id), e.target.value);
+                  }}
+                />
+                {option}
+              </Box>
+            );
+          })}
         </Box>
       );
     })}

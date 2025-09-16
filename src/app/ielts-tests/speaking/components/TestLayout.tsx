@@ -36,6 +36,7 @@ export const TestLayout = ({
 }: TestLayoutProps) => {
   const layoutRef = useRef<HTMLDivElement>(null);
   const [hasRecording, setHasRecording] = useState<boolean>(false);
+  const [recorderKey, setRecorderKey] = useState<number>(0);
 
   useEffect(() => {
     setHasRecording(false);
@@ -117,27 +118,61 @@ export const TestLayout = ({
         )}
       </Box>
       <MicRecorder
+        key={recorderKey}
         isSubmitted={isSubmitted}
         onAudioRecorded={(url) => setHasRecording(Boolean(url))}
         onAudioBlobReady={onAudioBlobReady}
       />
-      <Button
-        variant="contained"
-        color="success"
-        onClick={onSubmit}
-        disabled={isSubmitted || !hasRecording}
-        sx={{
-          fontSize: "12px",
-          fontWeight: 400,
-          textTransform: "none",
-          "&.Mui-disabled": {
-            backgroundColor: "rgba(76, 175, 80, 0.3)",
-            color: "rgba(255, 255, 255, 0.3)",
-          },
-        }}
-      >
-        Submit Answer
-      </Button>
+      <Box sx={{ width: 260, maxWidth: "100%" }}>
+        {hasRecording && (
+          <Button
+            fullWidth
+            variant="outlined"
+            color="error"
+            onClick={() => {
+              if (typeof window === "undefined") return;
+              const confirmed = window.confirm(
+                "Are you sure you want to clear the recording?",
+              );
+              if (!confirmed) return;
+              if (onAudioBlobReady) onAudioBlobReady(null);
+              setHasRecording(false);
+              setRecorderKey((k) => k + 1);
+            }}
+            disabled={isSubmitted || !hasRecording}
+            sx={{
+              fontSize: "12px",
+              fontWeight: 400,
+              textTransform: "none",
+              mb: 1,
+              "&.Mui-disabled": {
+                borderColor: "rgba(244, 67, 54, 0.3)",
+                color: "rgba(244, 67, 54, 0.3)",
+              },
+            }}
+          >
+            Clear Recording
+          </Button>
+        )}
+        <Button
+          fullWidth
+          variant="contained"
+          color="success"
+          onClick={onSubmit}
+          disabled={isSubmitted || !hasRecording}
+          sx={{
+            fontSize: "12px",
+            fontWeight: 400,
+            textTransform: "none",
+            "&.Mui-disabled": {
+              backgroundColor: "rgba(76, 175, 80, 0.3)",
+              color: "rgba(255, 255, 255, 0.3)",
+            },
+          }}
+        >
+          Submit Answer
+        </Button>
+      </Box>
     </Container>
   );
 };

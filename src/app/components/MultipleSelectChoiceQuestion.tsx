@@ -1,7 +1,7 @@
 import { Box, Checkbox, Typography } from "@mui/material";
 import React from "react";
 import { QuestionProps } from "../models/props/questionProps";
-import { isMultiSelectCorrect } from "../utils/answerUtils";
+import { normalizeAnswer } from "../utils/answerUtils";
 import { QuestionNumberBox } from "./QuestionNumberBox";
 import { QuestionText } from "./QuestionText";
 
@@ -16,68 +16,135 @@ export const MultipleSelectChoiceQuestion: React.FC<MultipleSelectProps> = ({
   maxSelectable = 2,
 }) => {
   const firstQuestion = questionGroup.questions[0];
+  const questionIds = (questionGroup.questions || [])
+    .map((q) => Number(q.id))
+    .sort((a, b) => a - b);
 
   const content = (() => {
     if (!firstQuestion) return null;
-    const currentQuestionId = Number(firstQuestion.id);
-    const rawUserAnswer = answerState[currentQuestionId] || "";
-    const selectedValues = rawUserAnswer
-      .split(",")
-      .map((v) => v.trim())
-      .filter(Boolean);
+    const slots = questionIds.map((id) => (answerState[id] || "").trim());
+    const selectedLetters = slots.filter(Boolean);
 
-    const correctAnswersArray =
-      correctAnswers.find((a) => a.number === currentQuestionId)?.answers || [];
-
-    const isCorrect = isMultiSelectCorrect(
-      selectedValues.join(","),
-      correctAnswersArray,
+    const correctAnswersArrayAll = questionIds.flatMap(
+      (qid) => correctAnswers.find((a) => a.number === qid)?.answers || [],
     );
 
-    const handleToggle = (option: string) => {
-      if (isSubmitted) return;
-      const alreadySelected = selectedValues.includes(option);
-      let next = selectedValues.slice();
-      if (alreadySelected) {
-        next = next.filter((v) => v !== option);
-      } else {
-        if (next.length >= maxSelectable) {
-          return;
-        }
-        next.push(option);
+    const options = firstQuestion.options || [];
+    const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    const getLetterForIndex = (i: number) => letters[i] || "";
+    const normalizedOptions = options.map((opt) => normalizeAnswer(opt));
+    const mapToLetter = (value: string): string => {
+      const norm = normalizeAnswer(value);
+      if (!norm) return "";
+      if (norm.length === 1) {
+        const idx = letters.indexOf(norm.toUpperCase());
+        if (idx >= 0 && idx < options.length) return letters[idx];
       }
-      onChangeAnswer(currentQuestionId, next.join(","));
+      const idx2 = normalizedOptions.findIndex((opt) => opt === norm);
+      return idx2 >= 0 ? getLetterForIndex(idx2) : "";
     };
 
-    const reachedMax = selectedValues.length >= maxSelectable;
+    const correctLetters = correctAnswersArrayAll
+      .flatMap((ans) =>
+        ans
+          .split(",")
+          .map((p) => p.trim())
+          .filter(Boolean)
+          .map(mapToLetter),
+      )
+      .filter(Boolean);
+
+    // Compute correctness per question ID
+    const correctLettersById = new Map<number, string[]>();
+    questionIds.forEach((qid) => {
+      const lettersForId = (
+        correctAnswers.find((a) => a.number === qid)?.answers || []
+      )
+        .flatMap((ans) =>
+          ans
+            .split(",")
+            .map((p) => p.trim())
+            .filter(Boolean)
+            .map(mapToLetter),
+        )
+        .filter(Boolean);
+      correctLettersById.set(qid, lettersForId);
+    });
+
+    const isCorrectFirst = (() => {
+      const qid = Number(firstQuestion.id);
+      const sel = (answerState[qid] || "").trim();
+      if (!sel) return false;
+      const pool = (correctLettersById.get(qid) || []).map(normalizeAnswer);
+      return pool.includes(normalizeAnswer(sel));
+    })();
+
+    const handleToggle = (letter: string) => {
+      if (isSubmitted) return;
+      const currentSlots = questionIds.map((id) =>
+        (answerState[id] || "").trim(),
+      );
+      const existingIndex = currentSlots.findIndex((v) => v === letter);
+      if (existingIndex >= 0) {
+        onChangeAnswer(questionIds[existingIndex], "");
+        return;
+      }
+      const filledCount = currentSlots.filter(Boolean).length;
+      if (filledCount >= maxSelectable) return;
+      const emptyIndex = currentSlots.findIndex((v) => !v);
+      if (emptyIndex >= 0) {
+        onChangeAnswer(questionIds[emptyIndex], letter);
+      }
+    };
+
+    const reachedMax = selectedLetters.length >= maxSelectable;
 
     return (
       <Box my={2}>
         <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
           <QuestionNumberBox
             questionNumber={firstQuestion.id}
-            isCorrect={isCorrect}
+            isCorrect={isCorrectFirst}
             isSubmitted={isSubmitted}
           />
           <QuestionText
             text={firstQuestion.questionText || ""}
             number={String(Number(firstQuestion.id) + 1)}
             isSubmitted={isSubmitted}
-            isCorrect={isCorrect}
+            isCorrect={isCorrectFirst}
           />
         </Box>
         {firstQuestion.options?.map((option, index) => {
-          const isOptionSelected = selectedValues.includes(option);
+          const letter = getLetterForIndex(index);
+          const isOptionSelected = selectedLetters.includes(letter);
           const disabled = isSubmitted || (!isOptionSelected && reachedMax);
           const checked = isSubmitted
-            ? correctAnswersArray.includes(option)
+            ? correctLetters
+                .map(normalizeAnswer)
+                .includes(normalizeAnswer(letter))
             : isOptionSelected;
           return (
             <Box key={index} sx={{ display: "flex", alignItems: "center" }}>
+              <Box
+                sx={{
+                  width: 24,
+                  height: 24,
+                  borderRadius: "50%",
+                  bgcolor: "grey.200",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  fontWeight: "bold",
+                  color: "text.primary",
+                  mr: 1.5,
+                }}
+              >
+                {letter}
+              </Box>
               <Checkbox
                 checked={checked}
                 disabled={disabled}
-                onChange={() => handleToggle(option)}
+                onChange={() => handleToggle(letter)}
               />
               {option}
             </Box>
