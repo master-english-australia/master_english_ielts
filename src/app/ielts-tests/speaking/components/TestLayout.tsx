@@ -151,7 +151,7 @@ export const TestLayout = ({
               },
             }}
           >
-            Clear Recording
+            Clear Audio
           </Button>
         )}
         <Button
@@ -170,7 +170,7 @@ export const TestLayout = ({
             },
           }}
         >
-          Submit Answer
+          Download Recording
         </Button>
       </Box>
     </Container>

@@ -1,11 +1,8 @@
 "use client";
 
-import { EmailSuccessDialog } from "@/app/components/EmailSuccessDialog";
-import { NameInputDialog } from "@/app/components/NameInputDialog";
 import { useTestDetail } from "@/app/hooks/useTestDetail";
-import { sendEmail } from "@/lib/api";
 import { Box } from "@mui/material";
-import { useParams, useRouter } from "next/navigation";
+import { useParams } from "next/navigation";
 import { useState } from "react";
 import { CommonLoading } from "../../../components/CommonLoading";
 import { PartSwitcher } from "../../../components/PartSwitcher";
@@ -15,7 +12,6 @@ import { TestLayout } from "../components/TestLayout";
 
 export default function SpeakingTestPage() {
   const params = useParams();
-  const router = useRouter();
   const testId = params.id as string;
   const { data: test } = useTestDetail({ part: "speaking", id: testId });
 
@@ -23,16 +19,28 @@ export default function SpeakingTestPage() {
   type SpeakingPart = { id: number | string; questions: SpeakingQuestion[] };
   const parts = (((test as any) || {}).parts || []) as SpeakingPart[];
 
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const [showNameDialog, setShowNameDialog] = useState(false);
-  const [showSuccessDialog, setShowSuccessDialog] = useState(false);
   const [currentPart, setCurrentPart] = useState(1);
   const [currentQuestion, setCurrentQuestion] = useState(1);
   const [audioBlob, setAudioBlob] = useState<Blob | null>(null);
 
   const handleSubmitEssay = () => {
-    if (isSubmitted) return;
-    setShowNameDialog(true);
+    try {
+      if (!audioBlob) return;
+      const base = `speaking_part${currentPart}_q${currentQuestion}`;
+      const filename = `${base}.mp3`;
+
+      const mp3Blob =
+        audioBlob.type === "audio/mpeg"
+          ? audioBlob
+          : new Blob([audioBlob], { type: "audio/mpeg" });
+
+      downloadBlobAsFile(mp3Blob, filename);
+    } catch (e) {
+      if (typeof window !== "undefined") {
+        console.error(e);
+        window.alert("Failed to download the MP3. Please try again.");
+      }
+    }
   };
 
   const handlePrevQuestion = () => {
@@ -57,6 +65,17 @@ export default function SpeakingTestPage() {
 
   if (!test) {
     return <CommonLoading />;
+  }
+
+  function downloadBlobAsFile(blob: Blob, filename: string) {
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
   }
 
   const currentPartData = parts[currentPart - 1];
@@ -88,14 +107,14 @@ export default function SpeakingTestPage() {
         onSubmit={handleSubmitEssay}
         isFirst={isFirstQuestion}
         isLast={isLastQuestion}
-        isSubmitted={isSubmitted}
+        isSubmitted={false}
         onAudioBlobReady={setAudioBlob}
       />
 
       <PartSwitcher
         currentPart={currentPart}
         totalParts={parts.length}
-        isSubmitted={isSubmitted}
+        isSubmitted={false}
         onPartChange={(part) => {
           setCurrentPart(part);
           setCurrentQuestion(1);
@@ -103,42 +122,6 @@ export default function SpeakingTestPage() {
         allParts={[]}
         correctAnswers={[]}
         userAnswers={{}}
-      />
-
-      <NameInputDialog
-        open={showNameDialog}
-        onClose={() => setShowNameDialog(false)}
-        onSubmit={async ({ name, email, phone }) => {
-          try {
-            if (!audioBlob) return;
-            const arrayBuffer = await audioBlob.arrayBuffer();
-            const base64 = Buffer.from(arrayBuffer).toString("base64");
-            await sendEmail({
-              name,
-              subject: `IELTS Speaking - ${name} - Part ${currentPart} Q${currentQuestion}`,
-              message: `Speaking answer submitted by ${name}.\nEmail: ${email}\nPhone: ${phone}\nPart: ${currentPart}\nQuestion: ${currentQuestion}`,
-              attachments: [
-                {
-                  filename: `speaking_part${currentPart}_q${currentQuestion}.webm`,
-                  content: base64,
-                  contentType: audioBlob.type || "audio/webm",
-                },
-              ],
-            });
-
-            setShowSuccessDialog(true);
-          } finally {
-            setShowNameDialog(false);
-            setIsSubmitted(true);
-          }
-        }}
-      />
-
-      <EmailSuccessDialog
-        open={showSuccessDialog}
-        onClose={() => setShowSuccessDialog(false)}
-        onGoToList={() => router.push("/ielts-tests/speaking")}
-        testType="speaking"
       />
     </Box>
   );
