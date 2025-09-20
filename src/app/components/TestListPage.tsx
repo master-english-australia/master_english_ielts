@@ -49,7 +49,7 @@ export default function TestListPage({ title, part }: TestListPageProps) {
     <Box p={2}>
       <Box display="flex" gap={2}>
         <Box width="200px">
-          <TestFilters onFilterChange={handleFilterChange} />
+          <TestFilters part={part} onFilterChange={handleFilterChange} />
         </Box>
         <Box flex={1}>
           {error ? (

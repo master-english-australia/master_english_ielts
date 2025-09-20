@@ -6,14 +6,21 @@ import { Box, Divider, TextField, Typography } from "@mui/material";
 import { useState } from "react";
 
 export interface TestFiltersProps {
+  part: "writing" | "reading" | "listening" | "speaking";
   onFilterChange: (filters: { search: string; testType: string }) => void;
 }
 
-export default function TestFilters({ onFilterChange }: TestFiltersProps) {
+export default function TestFilters({
+  part,
+  onFilterChange,
+}: TestFiltersProps) {
   const [search, setSearch] = useState("");
   const [testType, setTestType] = useState("General");
 
-  const testTypes = ["General", "Academic"];
+  const testTypes =
+    part === "writing" || part === "reading"
+      ? ["General", "Academic"]
+      : ["General"];
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newSearch = e.target.value;
