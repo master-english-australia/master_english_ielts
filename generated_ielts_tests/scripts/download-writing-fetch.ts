@@ -1,8 +1,11 @@
 #!/usr/bin/env -S node --enable-source-maps
 /**
- * Download Engnovate IELTS General Training Writing pages into writing/<id>/fetch.html
+ * Download IELTS Writing pages into writing/<id>/fetch.html
+ * Supports variants:
+ *  - general (default): Engnovate General Training URL
+ *  - academic: try likely Academic URL patterns; allow --url override
  * Usage:
- *   npx --yes tsx generated_ielts_tests/scripts/download-writing-fetch.ts writing/19-4 [writing/18-4 ...]
+ *   npx --yes tsx generated_ielts_tests/scripts/download-writing-fetch.ts [--variant=general|academic] [--url=<override>] writing/<vol>-<test> [...]
  */
 import fs from "fs";
 import path from "path";
@@ -23,34 +26,93 @@ async function download(url: string, dest: string): Promise<void> {
   await fs.promises.writeFile(dest, html, "utf8");
 }
 
-function buildUrl(vol: string, test: string): string {
-  return `https://engnovate.com/ielts-writing-tests/cambridge-ielts-${vol}-general-training-writing-test-${test}/`;
+function inferVariantFromPath(dir: string): "general" | "academic" | undefined {
+  const norm = dir.replace(/\\/g, "/");
+  if (/\bacademic\b/.test(norm)) return "academic";
+  if (/\bgeneral\b/.test(norm)) return "general";
+  return undefined;
 }
 
-async function processDir(dir: string): Promise<void> {
+function parseArgs(argv: string[]): {
+  variant?: "general" | "academic";
+  url?: string;
+  targets: string[];
+} {
+  let variant: "general" | "academic" | undefined;
+  let url: string | undefined;
+  const targets: string[] = [];
+  for (const a of argv) {
+    if (a.startsWith("--variant=")) {
+      const v = a.split("=")[1]?.trim().toLowerCase();
+      if (v === "general" || v === "academic") variant = v;
+    } else if (a.startsWith("--url=")) {
+      url = a.split("=")[1]?.trim();
+    } else {
+      targets.push(a);
+    }
+  }
+  return { variant, url, targets };
+}
+
+function buildUrlCandidates(
+  vol: string,
+  test: string,
+  variant: "general" | "academic",
+  override?: string,
+): string[] {
+  if (override) return [override];
+  if (variant === "general") {
+    return [
+      `https://engnovate.com/ielts-writing-tests/cambridge-ielts-${vol}-general-training-writing-test-${test}/`,
+    ];
+  }
+  // Academic guesses; pass --url to override if needed
+  return [
+    `https://engnovate.com/ielts-writing-tests/cambridge-ielts-${vol}-academic-writing-test-${test}/`,
+    `https://engnovate.com/ielts-writing-tests/cambridge-ielts-${vol}-writing-test-${test}/`,
+  ];
+}
+
+async function processDir(
+  dir: string,
+  variantHint?: "general" | "academic",
+  overrideUrl?: string,
+): Promise<void> {
   const { vol, test } = parseIdFromDir(dir);
-  const url = buildUrl(vol, test);
+  const inferred = inferVariantFromPath(dir);
+  const variant = variantHint || inferred || "general";
+  const urls = buildUrlCandidates(vol, test, variant, overrideUrl);
   const out = path.join(dir, "fetch.html");
   try {
-    await download(url, out);
-    process.stdout.write(`${out} downloaded.\n`);
+    let ok = false;
+    for (const u of urls) {
+      try {
+        await download(u, out);
+        process.stdout.write(`${out} downloaded from ${u}.\n`);
+        ok = true;
+        break;
+      } catch {}
+    }
+    if (!ok) throw new Error(`None of URL candidates worked.`);
   } catch (e: any) {
-    process.stderr.write(`[FAIL] ${dir}: ${url} -> ${e?.message || e}\n`);
+    process.stderr.write(
+      `[FAIL] ${dir}: variant=${variant}. Tried: ${urls.join(", ")}. Error: ${e?.message || e}\n`,
+    );
   }
 }
 
 async function main(): Promise<void> {
-  const targets = process.argv.slice(2);
+  const { variant, url, targets } = parseArgs(process.argv.slice(2));
   if (targets.length === 0) {
     console.error(
-      "Usage: npx --yes tsx generated_ielts_tests/scripts/download-writing-fetch.ts writing/<vol>-<test> [...more]",
+      "Usage: npx --yes tsx generated_ielts_tests/scripts/download-writing-fetch.ts [--variant=general|academic] [--url=<override>] writing/<vol>-<test> [...more]",
     );
     process.exit(1);
   }
   for (const t of targets) {
     const dir = path.resolve(t);
     if (fs.existsSync(dir) && fs.statSync(dir).isDirectory()) {
-      await processDir(dir);
+      await processDir(dir, variant, url);
     }
   }
 }

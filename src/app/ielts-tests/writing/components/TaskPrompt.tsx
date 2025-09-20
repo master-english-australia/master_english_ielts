@@ -4,12 +4,14 @@ interface TaskPromptProps {
   id: string;
   contentWidth: number;
   promptContent: string;
+  imageUrl?: string;
 }
 
 export const TaskPrompt = ({
   id,
   contentWidth,
   promptContent,
+  imageUrl,
 }: TaskPromptProps) => {
   return (
     <Box
@@ -35,6 +37,23 @@ export const TaskPrompt = ({
           }}
           dangerouslySetInnerHTML={{ __html: promptContent }}
         />
+        {imageUrl && (
+          <Box
+            component="img"
+            src={imageUrl}
+            alt="Task Prompt"
+            loading="lazy"
+            sx={{
+              width: "70%",
+              height: "auto",
+              mt: 2,
+              borderRadius: 1,
+              display: "block",
+              mx: "auto",
+              pt: 2,
+            }}
+          />
+        )}
       </Box>
     </Box>
   );

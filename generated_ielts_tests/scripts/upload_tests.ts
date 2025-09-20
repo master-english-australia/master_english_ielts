@@ -128,12 +128,13 @@ async function main(): Promise<void> {
   const repoRoot = process.cwd();
   const dataRoot = path.join(repoRoot, "generated_ielts_tests");
   const mode = (process.argv[2] || "reading").toLowerCase();
+  const subdirArg = process.argv[3]; // optional: e.g., "writing/academic"
 
   let baseDir: string;
   let files: string[] = [];
 
   if (mode === "listening") {
-    baseDir = path.join(dataRoot, "listening");
+    baseDir = path.join(dataRoot, subdirArg || "listening");
     if (!fs.existsSync(baseDir)) {
       console.error(`Listening directory not found: ${baseDir}`);
       process.exit(1);
@@ -146,7 +147,7 @@ async function main(): Promise<void> {
       return;
     }
   } else if (mode === "reading" || mode === "writing" || mode === "speaking") {
-    baseDir = path.join(dataRoot, mode);
+    baseDir = path.join(dataRoot, subdirArg || mode);
     if (!fs.existsSync(baseDir)) {
       console.error(
         `${mode[0].toUpperCase() + mode.slice(1)} directory not found: ${baseDir}`,

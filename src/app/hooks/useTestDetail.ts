@@ -31,6 +31,7 @@ export interface IeltsReadingTestContent {
 interface UseTestDetailOptions {
   part: IeltsSection;
   id: string;
+  isAcademic?: boolean;
 }
 
 interface UseTestDetailState<TData>
@@ -40,6 +41,7 @@ interface UseTestDetailState<TData>
 export function useTestDetail(options: {
   part: "writing";
   id: string;
+  isAcademic?: boolean;
 }): UseTestDetailState<WritingTestContent>;
 export function useTestDetail(options: {
   part: "reading" | "listening" | "speaking";
@@ -48,8 +50,13 @@ export function useTestDetail(options: {
 export function useTestDetail({
   part,
   id,
+  isAcademic,
 }: UseTestDetailOptions): UseTestDetailState<any> {
-  const path = useMemo(() => `${part}/${id}/questions.json`, [part, id]);
+  const path = useMemo(
+    () => `${part}/${isAcademic ? "academic/" : ""}${id}/questions.json`,
+    [part, id, isAcademic],
+  );
+  console.log(path);
   if (part === "writing") {
     return useStorageJson<WritingTestContent>(
       "ielts-tests",

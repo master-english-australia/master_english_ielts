@@ -43,13 +43,11 @@ export const AnswerSection = ({
         placeholder={`Enter your part ${currentPart} answer...`}
         multiline
         minRows={15}
-        maxRows={30}
         fullWidth
         variant="outlined"
         value={currentEssay}
         onChange={(e) => onEssayChange(currentPart, e.target.value)}
         sx={{
-          flex: 1,
           mb: 1,
           backgroundColor: "#fff",
           "& textarea": {

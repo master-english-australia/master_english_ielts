@@ -39,13 +39,17 @@ export function useTestsList(options: UseTestsListOptions) {
         const { data: rows, error: qError } = await query;
         if (qError) throw qError;
 
-        const mapped: IeltsTest[] = (rows || []).map((r) => ({
-          id: r.id,
-          type: r.type,
-          title: r.title,
-          description: r.description || "",
-          testUrl: `/ielts-tests/${part}/${r.book_number}-${r.test_number}`,
-        }));
+        const mapped: IeltsTest[] = (rows || []).map((r) => {
+          const typeSegment =
+            part === "writing" ? `/${(r.type || "General").toLowerCase()}` : "";
+          return {
+            id: r.id,
+            type: r.type,
+            title: r.title,
+            description: r.description || "",
+            testUrl: `/ielts-tests/${part}${typeSegment}/${r.book_number}-${r.test_number}`,
+          };
+        });
 
         if (!cancelled) setData(mapped);
       } catch (e: any) {

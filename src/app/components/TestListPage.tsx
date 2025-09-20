@@ -17,7 +17,7 @@ export default function TestListPage({ title, part }: TestListPageProps) {
 
   const [filters, setFilters] = useState({
     search: "",
-    testType: "All",
+    testType: "General",
   });
 
   const handleFilterChange = (newFilters: {
@@ -29,7 +29,7 @@ export default function TestListPage({ title, part }: TestListPageProps) {
 
   const filteredTestList = useMemo(() => {
     return tests?.filter((test) => {
-      if (filters.testType !== "All" && test.type !== filters.testType) {
+      if (test.type !== filters.testType) {
         return false;
       }
 

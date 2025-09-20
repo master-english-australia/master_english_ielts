@@ -8,6 +8,7 @@ import { TaskPrompt } from "./TaskPrompt";
 interface TestLayoutProps {
   currentPart: number;
   promptContent: string;
+  imageUrl?: string;
   part1Essay: string;
   part2Essay: string;
   wordCount: number;
@@ -17,6 +18,7 @@ interface TestLayoutProps {
 export const TestLayout = ({
   currentPart,
   promptContent,
+  imageUrl,
   part1Essay,
   part2Essay,
   wordCount,
@@ -43,6 +45,7 @@ export const TestLayout = ({
         id="content-prompt"
         contentWidth={contentWidth}
         promptContent={promptContent}
+        imageUrl={imageUrl}
       />
 
       <ResizeHandle

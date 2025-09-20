@@ -7,18 +7,24 @@ import { useEmail } from "@/app/ielts-tests/writing/hooks/useEmail";
 import { Box } from "@mui/material";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { CommonLoading } from "../../../components/CommonLoading";
-import { PartSwitcher } from "../../../components/PartSwitcher";
-import { TaskRequirements } from "../../../components/TaskRequirements";
-import { TestHeader } from "../../../components/TestHeader";
-import { TestLayout } from "../components/TestLayout";
-import { countWords } from "../utils/wordCounter";
+import { CommonLoading } from "../../../../components/CommonLoading";
+import { PartSwitcher } from "../../../../components/PartSwitcher";
+import { TaskRequirements } from "../../../../components/TaskRequirements";
+import { TestHeader } from "../../../../components/TestHeader";
+import { TestLayout } from "../../components/TestLayout";
+import { countWords } from "../../utils/wordCounter";
 
 export default function WritingTestPage() {
   const params = useParams();
   const router = useRouter();
   const testId = params.id as string;
-  const { data: test } = useTestDetail({ part: "writing", id: testId });
+  const type = (params.type as string | undefined)?.toLowerCase();
+  const isAcademic = type === "academic";
+  const { data: test } = useTestDetail({
+    part: "writing",
+    id: testId,
+    isAcademic,
+  });
 
   const [part1Essay, setPart1Essay] = useState("");
   const [part2Essay, setPart2Essay] = useState("");
@@ -103,6 +109,7 @@ export default function WritingTestPage() {
         promptContent={
           currentPart == 1 ? test.part1.promptContent : test.part2.promptContent
         }
+        imageUrl={currentPart == 1 ? test.part1.imageUrl : test.part2.imageUrl}
         part1Essay={part1Essay}
         part2Essay={part2Essay}
         wordCount={wordCount}
