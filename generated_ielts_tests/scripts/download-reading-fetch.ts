@@ -1,12 +1,11 @@
 #!/usr/bin/env -S node --enable-source-maps
 /**
- * Download IELTS reading answers page into reading/<id>/fetch_answers.html
+ * Download IELTS Reading test pages into reading/<id>/fetch.html
  * Supports variants:
- *  - general (default)
- *  - academic (use --variant=academic or infer from path containing "/academic/")
- * You can force a specific URL with --url=<override>.
+ *  - general (default): Engnovate General Training Reading URL
+ *  - academic: try likely Academic URL patterns; allow --url override
  * Usage:
- *   npx --yes tsx generated_ielts_tests/scripts/download-reading-answers.ts [--variant=general|academic] [--url=<override>] generated_ielts_tests/reading/<vol>-<test> [...]
+ *   npx --yes tsx generated_ielts_tests/scripts/download-reading-fetch.ts [--variant=general|academic] [--url=<override>] reading/<vol>-<test> [...]
  */
 import fs from "fs";
 import path from "path";
@@ -17,6 +16,14 @@ function parseIdFromDir(dir: string): { vol: string; test: string } {
   if (!m)
     throw new Error(`Cannot parse id from ${dir}. Expected <vol>-<test>.`);
   return { vol: m[1], test: m[2] };
+}
+
+async function download(url: string, dest: string): Promise<void> {
+  const res = await fetch(url, { redirect: "follow" });
+  if (!res.ok) throw new Error(`${res.status} ${res.statusText}`);
+  const html = await res.text();
+  await fs.promises.mkdir(path.dirname(dest), { recursive: true });
+  await fs.promises.writeFile(dest, html, "utf8");
 }
 
 function inferVariantFromPath(dir: string): "general" | "academic" | undefined {
@@ -47,21 +54,6 @@ function parseArgs(argv: string[]): {
   return { variant, url, targets };
 }
 
-async function tryDownload(urls: string[], dest: string): Promise<boolean> {
-  for (const url of urls) {
-    try {
-      const res = await fetch(url, { redirect: "follow" });
-      if (!res.ok) continue;
-      const html = await res.text();
-      await fs.promises.mkdir(path.dirname(dest), { recursive: true });
-      await fs.promises.writeFile(dest, html, "utf8");
-      process.stdout.write(`${dest} downloaded from ${url}.\n`);
-      return true;
-    } catch {}
-  }
-  return false;
-}
-
 function buildUrlCandidates(
   vol: string,
   test: string,
@@ -71,14 +63,13 @@ function buildUrlCandidates(
   if (override) return [override];
   if (variant === "general") {
     return [
-      `https://ieltsextremes.com/ielts-general-training-${vol}-test-${test}-reading-answers/`,
+      `https://engnovate.com/ielts-reading-tests/cambridge-ielts-${vol}-general-training-reading-test-${test}/`,
     ];
   }
   // Academic guesses; pass --url to override if needed
   return [
-    `https://ieltsextremes.com/ielts-academic-${vol}-test-${test}-reading-answers/`,
-    `https://ieltsextremes.com/cambridge-${vol}-academic-reading-test-${test}-answers/`,
-    `https://ieltsextremes.com/cambridge-${vol}-reading-test-${test}-answers/`,
+    `https://engnovate.com/ielts-reading-tests/cambridge-ielts-${vol}-academic-reading-test-${test}/`,
+    `https://engnovate.com/ielts-reading-tests/cambridge-ielts-${vol}-reading-test-${test}/`,
   ];
 }
 
@@ -91,19 +82,30 @@ async function processDir(
   const inferred = inferVariantFromPath(dir);
   const variant = variantHint || inferred || "general";
   const urls = buildUrlCandidates(vol, test, variant, overrideUrl);
-  const out = path.join(dir, "fetch_answers.html");
-  const ok = await tryDownload(urls, out);
-  if (!ok)
+  const out = path.join(dir, "fetch.html");
+  try {
+    let ok = false;
+    for (const u of urls) {
+      try {
+        await download(u, out);
+        process.stdout.write(`${out} downloaded from ${u}.\n`);
+        ok = true;
+        break;
+      } catch {}
+    }
+    if (!ok) throw new Error(`None of URL candidates worked.`);
+  } catch (e: any) {
     process.stderr.write(
-      `[FAIL] ${dir}: none of URLs worked (variant=${variant}). Tried: ${urls.join(", ")}\n`,
+      `[FAIL] ${dir}: variant=${variant}. Tried: ${urls.join(", ")}. Error: ${e?.message || e}\n`,
     );
+  }
 }
 
 async function main(): Promise<void> {
   const { variant, url, targets } = parseArgs(process.argv.slice(2));
   if (targets.length === 0) {
     console.error(
-      "Usage: npx --yes tsx generated_ielts_tests/scripts/download-reading-answers.ts [--variant=general|academic] [--url=<override>] generated_ielts_tests/reading/<vol>-<test> [...more]",
+      "Usage: npx --yes tsx generated_ielts_tests/scripts/download-reading-fetch.ts [--variant=general|academic] [--url=<override>] reading/<vol>-<test> [...more]",
     );
     process.exit(1);
   }

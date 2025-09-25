@@ -2,7 +2,11 @@
 /**
  * Upload IELTS assets to Supabase Storage (bucket: ielts-tests).
  * Modes: reading (JSON only), writing (JSON only), speaking (JSON only), listening (excludes fetch.html).
- * Usage: ts-node scripts/upload_tests.ts [reading|listening|writing|speaking]
+ * Usage: ts-node generated_ielts_tests/scripts/upload_tests.ts [reading|listening|writing|speaking] [optional-subdir]
+ *   examples:
+ *     reading entire tree:   ts-node ... upload_tests.ts reading
+ *     reading academic only: ts-node ... upload_tests.ts reading reading/academic
+ *     writing academic only: ts-node ... upload_tests.ts writing writing/academic
  * Requires: SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY
  */
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";

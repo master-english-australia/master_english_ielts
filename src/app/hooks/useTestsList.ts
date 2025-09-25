@@ -40,8 +40,10 @@ export function useTestsList(options: UseTestsListOptions) {
         if (qError) throw qError;
 
         const mapped: IeltsTest[] = (rows || []).map((r) => {
-          const typeSegment =
-            part === "writing" ? `/${(r.type || "General").toLowerCase()}` : "";
+          let typeSegment = "";
+          if (part === "writing" || part === "reading") {
+            typeSegment = `/${(r.type || "General").toLowerCase()}`;
+          }
           return {
             id: r.id,
             type: r.type,

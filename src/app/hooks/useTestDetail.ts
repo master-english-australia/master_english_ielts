@@ -46,6 +46,7 @@ export function useTestDetail(options: {
 export function useTestDetail(options: {
   part: "reading" | "listening" | "speaking";
   id: string;
+  isAcademic?: boolean;
 }): UseTestDetailState<IeltsReadingTestContent>;
 export function useTestDetail({
   part,

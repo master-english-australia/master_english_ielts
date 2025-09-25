@@ -8,22 +8,28 @@ import { QuestionPart } from "@/app/models/QuestionPart";
 import { Box } from "@mui/material";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import { CommonLoading } from "../../../components/CommonLoading";
-import { PartSwitcher } from "../../../components/PartSwitcher";
-import { TaskRequirements } from "../../../components/TaskRequirements";
-import { TestHeader } from "../../../components/TestHeader";
-import { TestResult } from "../../../components/TestResult";
-import { TestLayout } from "../components/TestLayout";
+import { CommonLoading } from "../../../../components/CommonLoading";
+import { PartSwitcher } from "../../../../components/PartSwitcher";
+import { TaskRequirements } from "../../../../components/TaskRequirements";
+import { TestHeader } from "../../../../components/TestHeader";
+import { TestResult } from "../../../../components/TestResult";
+import { TestLayout } from "../../components/TestLayout";
 import {
   ReadingAnswerProvider,
   useReadingAnswers,
-} from "../hooks/useAnswerContext";
+} from "../../hooks/useAnswerContext";
 
 function ReadingTestContent() {
   const params = useParams();
   const testId = params.id as string;
+  const type = (params.type as string | undefined)?.toLowerCase();
+  const isAcademic = type === "academic";
   const { state } = useReadingAnswers();
-  const { data: test } = useTestDetail({ part: "reading", id: testId });
+  const { data: test } = useTestDetail({
+    part: "reading",
+    id: testId,
+    isAcademic,
+  });
   const answers = useAnswers({ part: "reading", id: testId });
 
   const { bandScore, correctCount } = useScoreCalculator(
@@ -114,7 +120,7 @@ function ReadingTestContent() {
             currentPart={currentPart}
             totalParts={test.parts.length}
             isSubmitted={isSubmitted}
-            onPartChange={(part) => {
+            onPartChange={(part: number) => {
               setCurrentPart(part);
             }}
             onSubmit={handleSubmit}

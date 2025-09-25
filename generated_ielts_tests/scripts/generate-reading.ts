@@ -36,6 +36,7 @@ interface OutputPart {
   title: string;
   content_html: string;
   instruction: string;
+  imageUrl?: string;
   question_groups: OutputGroup[];
 }
 interface OutputDoc {
@@ -105,6 +106,35 @@ function extractContentHtml($: ReturnType<typeof load>): string[] {
     }
   }
   return parts.slice(0, 3).map((h) => h || "");
+}
+
+function imageFromPart(
+  $: ReturnType<typeof load>,
+  partNumber: number,
+): string | undefined {
+  const container = $(
+    `.ielts-reading-question-section[data-part-number="${partNumber}"]`,
+  ).first();
+  if (!container.length) return undefined;
+  const el = container.find(".ielts-reading-image").first();
+  if (!el || !el.length) return undefined;
+  const pickFromSrcset = (srcset?: string): string | undefined => {
+    if (!srcset) return undefined;
+    const first = srcset.split(",")[0]?.trim();
+    return first?.split(/\s+/)[0];
+  };
+  const src =
+    el.attr("src")?.trim() ||
+    el.attr("data-src")?.trim() ||
+    pickFromSrcset(el.attr("srcset")?.trim());
+  if (!src) return undefined;
+  if (/^https?:\/\//i.test(src)) return src;
+  const baseHref = $("base[href]").attr("href")?.trim();
+  try {
+    return baseHref ? new URL(src, baseHref).href : src;
+  } catch {
+    return src;
+  }
 }
 
 function normalizeSpaces(s: string): string {
@@ -282,11 +312,13 @@ function extractGroupsForPart(
 
 function buildOutput($: ReturnType<typeof load>, testId: string): OutputDoc {
   const [c1, c2, c3] = extractContentHtml($);
+  const images = [1, 2, 3].map((p) => imageFromPart($, p));
   const parts: OutputPart[] = [1, 2, 3].map((p, idx) => ({
     id: String(p),
     title: "",
     content_html: [c1, c2, c3][idx] || "",
     instruction: "",
+    ...(images[idx] ? { imageUrl: images[idx] as string } : {}),
     question_groups: extractGroupsForPart($, p),
   }));
   return { test_id: testId, title: "", parts };
