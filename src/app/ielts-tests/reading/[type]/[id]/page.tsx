@@ -30,7 +30,7 @@ function ReadingTestContent() {
     id: testId,
     isAcademic,
   });
-  const answers = useAnswers({ part: "reading", id: testId });
+  const answers = useAnswers({ part: "reading", id: testId, isAcademic });
 
   const { bandScore, correctCount } = useScoreCalculator(
     state,

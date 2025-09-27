@@ -250,17 +250,19 @@ function extractGroupsForPart(
         if (!Number.isFinite(idNum)) return;
         const clone = $it.clone();
         clone.find(".ielts-reading-question-number").remove();
+        // Remove options before extracting question text
+        clone.find(".ielts-reading-option").remove();
         const rawText = normalizeSpaces(clone.text());
         const qText = stripTrailingOptions(rawText);
         let options: string[] = [];
-        clone.find("select option").each((__, opt) => {
+        $it.find("select option").each((__, opt) => {
           const val = ($(opt).attr("value") || "").trim();
           const txt = ($(opt).text() || "").trim();
           const v = (txt || val).trim();
           if (v && v !== "-") options.push(v);
         });
         if (options.length === 0) {
-          clone.find(".ielts-reading-option span").each((__, sp) => {
+          $it.find(".ielts-reading-option span").each((__, sp) => {
             const txt = normalizeSpaces($(sp).text());
             if (txt) options.push(txt);
           });

@@ -6,10 +6,18 @@ import { useStorageJson } from "./useStorageJson";
 interface UseAnswersOptions {
   part: IeltsSection;
   id: string;
+  isAcademic?: boolean;
 }
 
-export function useAnswers({ part, id }: UseAnswersOptions): Answer[] {
-  const path = useMemo(() => `${part}/${id}/answers.json`, [part, id]);
+export function useAnswers({
+  part,
+  id,
+  isAcademic,
+}: UseAnswersOptions): Answer[] {
+  const path = useMemo(
+    () => `${part}/${isAcademic ? "academic/" : ""}${id}/answers.json`,
+    [part, id, isAcademic],
+  );
   const state = useStorageJson<Record<string, string[]>>(
     "ielts-tests",
     () => path,
