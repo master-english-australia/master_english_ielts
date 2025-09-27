@@ -4,6 +4,7 @@ import { Answer } from "../models/Answer";
 import { QuestionGroup } from "../models/QuestionGroup";
 import { AnswerQuestion } from "./AnswerQuestion";
 import { MatchingQuestion } from "./MatchingQuestion";
+import { MultipleChoiceInput } from "./MultipleChoiceInput";
 import { MultipleChoiceQuestion } from "./MultipleChoiceQuestion";
 import { MultipleSelectChoiceQuestion } from "./MultipleSelectChoiceQuestion";
 import { TextInputQuestion } from "./TextInputQuestion";
@@ -79,6 +80,16 @@ export const QuestionTypeRenderer: React.FC<Props> = ({
     case "answer_question":
       return (
         <AnswerQuestion
+          questionGroup={questionGroup}
+          onChangeAnswer={onChangeAnswer}
+          answerState={state}
+          isSubmitted={isSubmitted}
+          correctAnswers={correctAnswers}
+        />
+      );
+    case "multiple_choice_input":
+      return (
+        <MultipleChoiceInput
           questionGroup={questionGroup}
           onChangeAnswer={onChangeAnswer}
           answerState={state}

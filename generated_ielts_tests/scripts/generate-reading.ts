@@ -28,7 +28,8 @@ interface OutputGroup {
     | "matching"
     | "multiple_select_choice"
     | "true_false_not_given"
-    | "answer_question";
+    | "answer_question"
+    | "multiple_choice_input";
   questionText?: string;
   questions: OutputQuestion[];
 }
@@ -199,6 +200,11 @@ function inferQuestionTypeForGroup(
   // Multiple select choice
   if (/choose\s+(two|three|two\s+letters|two\s+options)/i.test(instr))
     return "multiple_select_choice";
+
+  // Multiple choice input (summary completion with embedded dropdowns)
+  if (/complete the summary using the list/i.test(instr)) {
+    return "multiple_choice_input";
+  }
 
   // Matching
   if (/list of headings|choose the correct heading/i.test(instr))

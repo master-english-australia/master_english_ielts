@@ -57,7 +57,7 @@ export function useTestDetail({
     () => `${part}/${isAcademic ? "academic/" : ""}${id}/questions.json`,
     [part, id, isAcademic],
   );
-  console.log(path);
+
   if (part === "writing") {
     return useStorageJson<WritingTestContent>(
       "ielts-tests",

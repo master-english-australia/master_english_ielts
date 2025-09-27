@@ -47,6 +47,7 @@ export const AnswerSection = ({
         variant="outlined"
         value={currentEssay}
         onChange={(e) => onEssayChange(currentPart, e.target.value)}
+        spellCheck={false}
         sx={{
           mb: 1,
           backgroundColor: "#fff",
