@@ -102,14 +102,29 @@ export const MultipleSelectChoiceQuestion: React.FC<MultipleSelectProps> = ({
     return (
       <Box my={2}>
         <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-          <QuestionNumberBox
-            questionNumber={firstQuestion.id}
-            isCorrect={isCorrectFirst}
-            isSubmitted={isSubmitted}
-          />
+          {Array.from({ length: maxSelectable - 1 }, (_, index) => {
+            const questionId = Number(firstQuestion.id) + index;
+            const isCorrect = (() => {
+              const sel = (answerState[questionId] || "").trim();
+              if (!sel) return false;
+              const pool = (correctLettersById.get(questionId) || []).map(
+                normalizeAnswer,
+              );
+              return pool.includes(normalizeAnswer(sel));
+            })();
+
+            return (
+              <QuestionNumberBox
+                key={questionId}
+                questionNumber={String(questionId)}
+                isCorrect={isCorrect}
+                isSubmitted={isSubmitted}
+              />
+            );
+          })}
           <QuestionText
             text={firstQuestion.questionText || ""}
-            number={String(Number(firstQuestion.id) + 1)}
+            number={String(Number(firstQuestion.id) + maxSelectable - 1)}
             isSubmitted={isSubmitted}
             isCorrect={isCorrectFirst}
           />

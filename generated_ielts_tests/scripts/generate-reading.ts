@@ -168,6 +168,7 @@ function isAllLetterOptions(questions: OutputQuestion[]): boolean {
 function inferQuestionTypeForGroup(
   groupInstruction: string,
   questions: OutputQuestion[],
+  $scope?: any,
 ): OutputGroup["questionType"] {
   const instr = normCue(groupInstruction);
   // True/False/Not Given
@@ -188,6 +189,11 @@ function inferQuestionTypeForGroup(
       );
     });
   if (looksTFNGInstr || looksTFNGOpts) return "true_false_not_given";
+
+  // Check for data-limit attribute on checkbox inputs (multiple select choice)
+  if ($scope && $scope.find('input[type="checkbox"][data-limit]').length > 0) {
+    return "multiple_select_choice";
+  }
 
   // Multiple select choice
   if (/choose\s+(two|three|two\s+letters|two\s+options)/i.test(instr))
@@ -248,10 +254,17 @@ function extractGroupsForPart(
           .trim();
         const idNum = parseInt(numText, 10);
         if (!Number.isFinite(idNum)) return;
+
+        // Check for data-limit attribute on checkbox inputs (multiple select choice)
+        const dataLimit = $it
+          .find('input[type="checkbox"][data-limit]')
+          .attr("data-limit");
+        const limit = dataLimit ? parseInt(dataLimit, 10) : 1;
         const clone = $it.clone();
         clone.find(".ielts-reading-question-number").remove();
         // Remove options before extracting question text
         clone.find(".ielts-reading-option").remove();
+        clone.find("select").remove();
         const rawText = normalizeSpaces(clone.text());
         const qText = stripTrailingOptions(rawText);
         let options: string[] = [];
@@ -267,10 +280,13 @@ function extractGroupsForPart(
             if (txt) options.push(txt);
           });
         }
-        const q: OutputQuestion = { id: String(idNum) };
-        if (qText) q.questionText = qText;
-        if (options.length) q.options = options;
-        results.push(q);
+        // Create multiple questions based on data-limit
+        for (let i = 0; i < limit; i++) {
+          const q: OutputQuestion = { id: String(idNum + i) };
+          if (qText) q.questionText = qText;
+          if (options.length) q.options = options;
+          results.push(q);
+        }
       });
       return results;
     };
@@ -290,7 +306,11 @@ function extractGroupsForPart(
       .sort((a, b) => parseInt(a.id, 10) - parseInt(b.id, 10));
 
     const instructionText = normalizeSpaces($content.text() || "");
-    const qtype = inferQuestionTypeForGroup(instructionText, questions);
+    const qtype = inferQuestionTypeForGroup(
+      instructionText,
+      questions,
+      qb && qb.length ? qb : $content,
+    );
 
     // Normalize options for TF/NG if needed
     if (qtype === "true_false_not_given") {

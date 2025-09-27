@@ -42,6 +42,7 @@ export const QuestionTypeRenderer: React.FC<Props> = ({
           answerState={state}
           isSubmitted={isSubmitted}
           correctAnswers={correctAnswers}
+          maxSelectable={questionGroup.questions.length}
         />
       );
     case "true_false_not_given":

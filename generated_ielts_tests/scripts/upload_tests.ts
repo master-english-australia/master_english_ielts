@@ -34,7 +34,10 @@ function getContentType(filePath: string): string {
   }
 }
 
-function listJsonTargets(baseDir: string): string[] {
+function listJsonTargets(
+  baseDir: string,
+  excludeAcademic: boolean = false,
+): string[] {
   const results: string[] = [];
   const stack: string[] = [baseDir];
   while (stack.length > 0) {
@@ -43,6 +46,10 @@ function listJsonTargets(baseDir: string): string[] {
     for (const entry of entries) {
       const entryPath = path.join(current, entry.name);
       if (entry.isDirectory()) {
+        // Skip academic folder if excludeAcademic is true
+        if (excludeAcademic && entry.name === "academic") {
+          continue;
+        }
         stack.push(entryPath);
       } else if (entry.isFile()) {
         if (entry.name === "questions.json" || entry.name === "answers.json") {
@@ -158,7 +165,9 @@ async function main(): Promise<void> {
       );
       process.exit(1);
     }
-    files = listJsonTargets(baseDir);
+    // For reading mode without subdir, exclude academic folder to upload only general tests
+    const excludeAcademic = mode === "reading" && !subdirArg;
+    files = listJsonTargets(baseDir, excludeAcademic);
     if (files.length === 0) {
       console.log(
         `No questions.json or answers.json files found under ${mode}/.`,
