@@ -27,7 +27,8 @@ interface OutputGroup {
     | "multiple_choice"
     | "matching"
     | "multiple_select_choice"
-    | "true_false_not_given";
+    | "true_false_not_given"
+    | "answer_question";
   questionText?: string;
   questions: OutputQuestion[];
 }
@@ -204,6 +205,11 @@ function inferQuestionTypeForGroup(
     return "matching";
   if (/\b[a-z]\s*[-–—〜~]\s*[a-z]\b/i.test(groupInstruction)) return "matching";
   if (isAllLetterOptions(questions)) return "matching";
+
+  // Answer questions (Answer the questions pattern)
+  if (/answer the questions/i.test(instr)) {
+    return "answer_question";
+  }
 
   // Multiple choice
   const anyHasOptions = questions.some(
